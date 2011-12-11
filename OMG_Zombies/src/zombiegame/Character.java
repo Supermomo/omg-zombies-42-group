@@ -65,6 +65,23 @@ public abstract class Character {
         public boolean isVampire() {
                 return false;
         }
+        
+        /**
+         * wether or not this character is a werewolf
+         * 
+         * @return
+         */
+        public boolean isWerewolf() {
+                return false;
+        }
+        
+        /**
+         * wether or not the character is an evil character
+         * @return
+         */
+        public boolean isEvilCharacter(){
+                return false;
+        }
 
         /**
          * Decrease the number of HP by a certain amount. HP cannot go below 0.
@@ -78,6 +95,24 @@ public abstract class Character {
                         healthPoints = 0;
                 }
         }
+        
+        
+        /**
+         * Increase the number of HP by a certain amount.
+         * 
+         * @param increase
+         *                number of HP to add
+         */
+        public void increaseHealthPoints(int increase) {
+                if(increase >=0) {
+                        this.healthPoints+=increase;   
+                }
+                else
+                {
+                        System.out.println("Wrong hp values in increaseHp method");
+                }
+        }
+        
 
         /**
          * Output a character's saying to the screen
