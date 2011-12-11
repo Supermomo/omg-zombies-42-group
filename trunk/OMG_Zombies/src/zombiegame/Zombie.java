@@ -29,42 +29,44 @@ public class Zombie extends Character {
                 System.out.println(name + " says: BRAIIIIIINS!");
         }
 
-        
         /**
-         * the encounter between this character and c
-         * attack c
+         * the encounter between this character and c attack c
          */
-        public void encounterCharacter(Character c){
-                this.say("Go away "+c.getName()+" before i start to...humm...beg you to leave me alive ???");
+        public void encounterCharacter(Character c) {
+                this.say("Go away " + c.getName()
+                                + " before i start to...humm...beg you to leave me alive ???");
         }
-        
+
         /**
          * wether or not this character is a zombie
+         * 
          * @return
          */
         public boolean isZombie() {
                 return true;
         }
-        
+
         /**
          * wether or not this character is a MadZombie
+         * 
          * @return
          */
-        public boolean isMasZombie(){
+        public boolean isMasZombie() {
                 return false;
         }
-        
+
         /**
          * attack the character c
+         * 
          * @param c
          */
         protected void attack(Character c) {
-                 if(c.isHuman() || c.isVampire()&&Simulator.GenerateRandomBoolean()){
-                         super.attack(c);
-                         c.reduceHealthPoints(5);
-                 }               
+                if (c.isHuman() || c.isVampire() && Simulator.GenerateRandomBoolean()) {
+                        super.attack(c);
+                        c.reduceHealthPoints(5);
+                }
         }
-        
+
         /**
          * Method triggered on each character at the end of each turn.
          */
