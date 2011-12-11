@@ -7,12 +7,15 @@ package zombiegame;
  * 
  */
 public abstract class Character {
-        
-        /** name of the character*/
+
+        /** name of the character */
         protected String name;
 
-        /** represents the health (once down to 0, this character will be destroyed)*/
-        protected int healthPoints; 
+        /**
+         * represents the health (once down to 0, this character will be
+         * destroyed)
+         */
+        protected int healthPoints;
 
         /**
          * Constructor of Character class.
@@ -38,29 +41,31 @@ public abstract class Character {
 
         /**
          * wether or not this character is a human
+         * 
          * @return
          */
-        public boolean isHuman(){
+        public boolean isHuman() {
                 return false;
         }
-        
+
         /**
          * wether or not this character is a zombie
+         * 
          * @return
          */
-        public boolean isZombie(){
+        public boolean isZombie() {
                 return false;
         }
-        
+
         /**
          * wether or not this character is a vampire
+         * 
          * @return
          */
-        public boolean isVampire(){
+        public boolean isVampire() {
                 return false;
         }
-        
-        
+
         /**
          * Decrease the number of HP by a certain amount. HP cannot go below 0.
          * 
@@ -94,11 +99,9 @@ public abstract class Character {
          */
         public void encounterCharacter(Character c) {
                 // Default action: do nothing
-                System.out.println(name + " meets " + c.name
-                                + " and does not attack!");
+                System.out.println(name + " meets " + c.name + " and does not attack!");
         }
 
-        
         public void endOfTurn() {
                 // do nothing
                 System.out.println("this is not suposse to be print, check endOfTurn if Character");
@@ -106,10 +109,11 @@ public abstract class Character {
 
         /**
          * attack the character c
+         * 
          * @param c
          */
         protected void attack(Character c) {
-                 this.say(c.getName()+", I'm gonna kill you!");
-                
+                this.say(c.getName() + ", I'm gonna kill you!");
+
         }
 }

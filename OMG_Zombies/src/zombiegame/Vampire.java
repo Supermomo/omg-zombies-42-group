@@ -7,21 +7,20 @@ package zombiegame;
  * 
  */
 public class Vampire extends Character {
-        
 
         private boolean isThirsty;
-        
+
         /**
-         * Create  new vampire, which is not thirsty at that point
+         * Create new vampire, which is not thirsty at that point
+         * 
          * @param name
          * @param healthPoints
          */
         public Vampire(String name, int healthPoints) {
                 super(name, healthPoints);
-                this.isThirsty=false;
+                this.isThirsty = false;
         }
-        
-        
+
         public boolean getIsThirsty() {
                 return isThirsty;
         }
@@ -32,30 +31,31 @@ public class Vampire extends Character {
 
         /**
          * wether or not this character is a vamp
+         * 
          * @return
          */
         public boolean isVampire() {
                 return true;
         }
-        
-        
+
         /**
-         * the encounter between this character and c
-         * attack c
+         * the encounter between this character and c attack c
          */
-        public void encounterCharacter(Character c){
-                this.say("Go away "+c.getName()+" before i start to...humm...beg you to leave me alive ???");
+        public void encounterCharacter(Character c) {
+                this.say("Go away " + c.getName()
+                                + " before i start to...humm...beg you to leave me alive ???");
         }
-        
+
         /**
          * attack a character
+         * 
          * @param c
          */
         protected void attack(Character c) {
                 super.attack(c);
                 c.reduceHealthPoints(10);
         }
-        
+
         /**
          * Method triggered on each character at the end of each turn.
          */

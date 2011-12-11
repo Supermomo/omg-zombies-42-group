@@ -8,9 +8,10 @@ package zombiegame;
  */
 public class Human extends Character {
         private boolean hasBeenBitten; // false, until a vampire bites this
-                                       // human
+        // human
         private int turnsSinceLastMeal; // the human will lose health if he's
-                                        // too hungry
+
+        // too hungry
 
         /**
          * Constructor of Human class. At the beginning of the game, humans just
@@ -52,18 +53,20 @@ public class Human extends Character {
         /**
          * the encounter between this character and c
          */
-        public void encounterCharacter(Character c){
-                this.say("Go away "+c.getName()+" before i start to...humm...beg you to leave me alive ???");
+        public void encounterCharacter(Character c) {
+                this.say("Go away " + c.getName()
+                                + " before i start to...humm...beg you to leave me alive ???");
         }
-        
+
         /**
          * wether or not this character is human
+         * 
          * @return
          */
         public boolean isHuman() {
                 return true;
         }
-        
+
         /**
          * Transform this human who has been bitten, into a blood-thirsty
          * vampire.
@@ -74,7 +77,7 @@ public class Human extends Character {
          *         as this human; the new vampire is immediately thirsty
          */
         public Vampire turnIntoVampire() {
-                Vampire v=new Vampire(super.name,super.healthPoints);
+                Vampire v = new Vampire(super.name, super.healthPoints);
                 return v;
                 // ... add your code here (question 7b) ...
         }
