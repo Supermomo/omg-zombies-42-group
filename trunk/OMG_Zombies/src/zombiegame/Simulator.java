@@ -52,12 +52,17 @@ public class Simulator {
                 for (int i = 0; i < characterList.size(); ++i) {
                         Character c = characterList.get(i);
                         Character encountered = characterList.get((i + 1) % (characterList.size()));
-                        c.encounterCharacter(encountered);
-                        if (c.getHealthPoints() <= 0) {
-                                characterList.remove(i);
+                        if(c.getHealthPoints()>0){
+                                c.encounterCharacter(encountered);
+                                if (c.getHealthPoints() <= 0) {
+                                        characterList.remove(i);
+                                }
+                                if (encountered.getHealthPoints() <= 0) {
+                                        characterList.remove((i + 1) % (characterList.size()));
+                                } 
                         }
-                        if (encountered.getHealthPoints() <= 0) {
-                                characterList.remove((i + 1) % (characterList.size()));
+                        else {
+                                characterList.remove(i);
                         }
                 }
                 // Dead characters are removed from the character list

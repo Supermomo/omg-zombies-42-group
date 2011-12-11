@@ -6,7 +6,7 @@ package zombiegame;
  * @author pylaffon
  * 
  */
-public class Zombie extends Character {
+public class Zombie extends EvilCharacter {
         /**
          * Constructor of Zombie class.
          * 
@@ -51,7 +51,7 @@ public class Zombie extends Character {
          * 
          * @return
          */
-        public boolean isMasZombie() {
+        public boolean isMadZombie() {
                 return false;
         }
 

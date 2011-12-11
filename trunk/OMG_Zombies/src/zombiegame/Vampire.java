@@ -6,7 +6,7 @@ package zombiegame;
  * @author pylaffon
  * 
  */
-public class Vampire extends Character {
+public class Vampire extends EvilCharacter {
 
         private boolean isThirsty;
 
