@@ -1,7 +1,13 @@
-package zombiegame;
+package zombiegame.engine;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import zombiegame.people.Character;
+import zombiegame.people.Human;
+import zombiegame.people.MadZombie;
+import zombiegame.people.Vampire;
+import zombiegame.people.Zombie;
 
 /**
  * Simulator for Midterm Zombiegame.
