@@ -1,5 +1,15 @@
-package zombiegame;
+package zombiegame.objects;
 
+import zombiegame.people.Character;
+import zombiegame.people.EvilCharacter;
+import zombiegame.people.Zombie;
+
+/**
+ * The enum enumerating all the eatable/drinkable stuffs of the game
+ * 
+ * @author gaubert
+ *
+ */
 public enum Edible implements Usable {
 
         FOOD {

@@ -1,5 +1,15 @@
-package zombiegame;
+package zombiegame.objects;
 
+import zombiegame.people.Character;
+import zombiegame.people.EvilCharacter;
+
+/**
+ * The Enum enumerating all the weapon available
+ * in the game
+ * 
+ * @author gaubert
+ *
+ */
 public enum Weapon implements Usable {
         
         WOODENSTICK {

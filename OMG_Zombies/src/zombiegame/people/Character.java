@@ -1,4 +1,4 @@
-package zombiegame;
+package zombiegame.people;
 
 /**
  * Parent Character class

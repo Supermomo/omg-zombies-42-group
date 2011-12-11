@@ -1,7 +1,9 @@
-package zombiegame;
+package zombiegame.people;
+
+import zombiegame.engine.Simulator;
 
 /**
- * Zombie class, derives from Character.
+ * Zombie class, derives from EvilCharacter.
  * 
  * @author pylaffon
  * 
