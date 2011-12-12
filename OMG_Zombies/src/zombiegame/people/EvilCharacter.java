@@ -7,7 +7,7 @@ package zombiegame.people;
  * @author gaubert
  * 
  */
-public class EvilCharacter extends Character {
+public abstract class EvilCharacter extends Character {
 
         private boolean isStun = false;
 

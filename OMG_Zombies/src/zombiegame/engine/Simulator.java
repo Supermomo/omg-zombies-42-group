@@ -2,7 +2,6 @@ package zombiegame.engine;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import zombiegame.people.Character;
 import zombiegame.people.Human;
 import zombiegame.people.MadZombie;
@@ -20,9 +19,11 @@ public class Simulator {
         private static final int HP_HUMANS = 100;
         private static final int HP_VAMPIRES = 150;
         private static final int HP_ZOMBIES = 30;
+        private static final int HP_WEREWOLF = 150;
 
         // List of characters currently in the game
-        private ArrayList<Character> characterList;
+        private Field field;
+
 
         /**
          * Initialize game.
@@ -35,17 +36,17 @@ public class Simulator {
                 Character v2 = new Vampire("Vampire 2", HP_VAMPIRES);
                 Character z1 = new Zombie("Zombie 1", HP_ZOMBIES);
                 MadZombie mz1 = new MadZombie("MadZombie 1", HP_ZOMBIES); // uncomment
-                                                                          // in
-                                                                          // question
-                                                                          // 5b
+                // in
+                // question
+                // 5b
                 // Add characters to the list
-                characterList = new ArrayList<Character>();
-                characterList.add(h1);
-                characterList.add(h2);
-                characterList.add(v1);
-                characterList.add(v2);
-                characterList.add(z1);
-                characterList.add(mz1);
+                field = new Field(50,50);
+                field.placeRandomly(h1);
+                field.placeRandomly(h2);
+                field.placeRandomly(v1);
+                field.placeRandomly(v2);
+                field.placeRandomly(z1);
+                field.placeRandomly(mz1);
                 // uncomment in question 5b
         }
 
@@ -55,20 +56,19 @@ public class Simulator {
         public void nextTurn() {
                 // All characters encounter the next character in the list
                 // (question 5)
-                for (int i = 0; i < characterList.size(); ++i) {
-                        Character c = characterList.get(i);
-                        Character encountered = characterList.get((i + 1) % (characterList.size()));
-                        if(c.getHealthPoints()>0){
+                for (int i = 0; i < field.size(); ++i) {
+                        Character c = field.get(i);
+                        Character encountered = field.get((i + 1) % (field.size()));
+                        if (c.getHealthPoints() > 0) {
                                 c.encounterCharacter(encountered);
                                 if (c.getHealthPoints() <= 0) {
-                                        characterList.remove(i);
+                                        field.remove(i);
                                 }
                                 if (encountered.getHealthPoints() <= 0) {
-                                        characterList.remove((i + 1) % (characterList.size()));
-                                } 
-                        }
-                        else {
-                                characterList.remove(i);
+                                        field.remove((i + 1) % (field.size()));
+                                }
+                        } else {
+                                field.remove(i);
                         }
                 }
                 // Dead characters are removed from the character list
@@ -82,18 +82,18 @@ public class Simulator {
                 Human h;
                 Vampire v;
                 Character cha;
-                for (int i = 0; i < characterList.size(); i++) {
-                        cha = characterList.get(i);
+                for (int i = 0; i < field.size(); i++) {
+                        cha = field.get(i);
                         if (cha.isVampire()) {
                                 v = (Vampire) cha;
 
-                                while (j < characterList.size() && !bite) {
+                                while (j < field.size() && !bite) {
                                         if (cha.isHuman()) {
                                                 h = (Human) cha;
                                                 if (h.getHasBeenBitten() == false) {
                                                         bite = true;
                                                         v.bite(h);
-                                                        characterList.set(i, h.turnIntoVampire());
+                                                        field.set(i, h.turnIntoVampire());
                                                 }
                                         }
                                         j++;
@@ -105,8 +105,8 @@ public class Simulator {
                 // Humans that have been bitten become vampires
                 // ... add your code here (question 7b) ...
                 // Perform end-of-turn actions for all characters (question 4)
-                for (int i = 0; i < characterList.size(); ++i) {
-                        Character c = characterList.get(i);
+                for (int i = 0; i < field.size(); ++i) {
+                        Character c = field.get(i);
                         c.endOfTurn();
                 }
         }
@@ -118,7 +118,7 @@ public class Simulator {
                 // Need to iterate through the list of characters
                 // and count the number of humans
                 int nbHumans = 0;
-                for (Character character : characterList) {
+                for (Character character : field) {
                         if (character.isHuman()) {
                                 nbHumans++;
                         }

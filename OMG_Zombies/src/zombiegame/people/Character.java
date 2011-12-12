@@ -1,5 +1,9 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
+import zombiegame.engine.Location;
+
+
 /**
  * Parent Character class
  * 
@@ -16,6 +20,10 @@ public abstract class Character {
          * destroyed)
          */
         protected int healthPoints;
+
+        private Location location;
+
+        private Field field;
 
         /**
          * Constructor of Character class.
@@ -150,5 +158,28 @@ public abstract class Character {
         protected void attack(Character c) {
                 this.say(c.getName() + ", I'm gonna kill you!");
 
+        }
+        
+        /**
+         * Return the rabbit's location.
+         * 
+         * @return The rabbit's location.
+         */
+        public Location getLocation() {
+            return location;
+        }
+
+        /**
+         * Place the rabbit at the new location in the given field.
+         * 
+         * @param newLocation
+         *            The rabbit's new location.
+         */
+        protected void setLocation(Location newLocation) {
+            if (location != null) {
+                field.clear(location);
+            }
+            location = newLocation;
+            field.place(this, newLocation);
         }
 }
