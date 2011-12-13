@@ -15,7 +15,8 @@ public class Werewolf extends EvilCharacter{
          * @param name
          * @param healthPoints
          */
-        public Werewolf(String name, int healthPoints) {
+        public Werewolf(String name, int healthPoints) 
+        {
                 super(name, healthPoints);
         }
 
