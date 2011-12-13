@@ -1,4 +1,4 @@
-package zombiegame.objects;
+package zombiegame.objects.backup;
 
 import zombiegame.people.Character;
 
