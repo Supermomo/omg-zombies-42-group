@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import zombiegame.objects.Weapon;
+
 /**
  * Human class, derives from Character
  * 
@@ -10,8 +12,9 @@ public class Human extends Character {
         private boolean hasBeenBitten; // false, until a vampire bites this
         // human
         private int turnsSinceLastMeal; // the human will lose health if he's
-
         // too hungry
+        
+        private Weapon weapon;
 
         /**
          * Constructor of Human class. At the beginning of the game, humans just
@@ -54,8 +57,14 @@ public class Human extends Character {
          * the encounter between this character and c
          */
         public void encounterCharacter(Character c) {
-                this.say("Go away " + c.getName()
-                                + " before i start to...humm...beg you to leave me alive ???");
+                
+                if(isArmed()){
+                        
+                }
+                else {
+                        this.say("Go away " + c.getName()
+                                        + " before i start to...humm...beg you to leave me alive ???");
+                }
         }
 
         /**
@@ -65,6 +74,14 @@ public class Human extends Character {
          */
         public boolean isHuman() {
                 return true;
+        }
+        
+        /**
+         * Whether or not this human has a weapon
+         * @return true if armed
+         */
+        public boolean isArmed(){
+                return weapon!=null;
         }
 
         /**
