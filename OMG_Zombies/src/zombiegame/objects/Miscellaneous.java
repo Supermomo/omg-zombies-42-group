@@ -10,12 +10,14 @@ import zombiegame.objects.Weapon;
  *
  */
 public enum Miscellaneous implements Unusable{
+    ;
+
+    @Override
+    public boolean isUsableWith(Weapon item)
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
         
-        SILVERBULLET{
-                @Override
-                public boolean isUsableWith(Weapon item) {
-                        return item.equals(Weapon.SHOTGUN);
-                }            
-        };
 
 }
