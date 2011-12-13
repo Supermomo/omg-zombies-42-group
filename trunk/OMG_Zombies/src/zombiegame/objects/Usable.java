@@ -9,8 +9,6 @@ import zombiegame.people.Character;
  * 
  */
 public interface Usable {
-        
-        public int remainingUses=0;
 
         /**
          * Use the item on the character
