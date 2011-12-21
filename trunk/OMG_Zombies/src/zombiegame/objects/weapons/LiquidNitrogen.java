@@ -18,6 +18,7 @@ public class LiquidNitrogen extends Weapon{
                 else {
                         character.reduceHealthPoints(1);
                 }
+                super.Use(character);
         }
         
 

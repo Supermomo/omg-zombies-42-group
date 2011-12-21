@@ -15,6 +15,7 @@ public class WoodenStick extends Weapon{
                 } else {
                         character.reduceHealthPoints(1); // Ouch !
                 }
+                super.Use(character);
         }
 
 }
