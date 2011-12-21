@@ -45,7 +45,25 @@ public class Vampire extends EvilCharacter {
          */
         public void encounterCharacter(Character c) 
         {
-                
+            if(c.isVampire())
+            {
+                if(getHealthPoints() < 150)
+                {
+                    this.increaseHealthPoints(5);
+                }
+            }
+            else
+            {
+                if(c.isHuman() && this.getIsThirsty())
+                {
+                    this.bite((Human)c);
+                }
+                else
+                {
+                    attack(c);
+                }
+                    
+            }
         }
 
         /**
