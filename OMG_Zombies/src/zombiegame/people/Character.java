@@ -144,6 +144,24 @@ public abstract class Character {
                 // Default action: do nothing
                 System.out.println(name + " meets " + c.name + " and does not attack!");
         }
+        
+        /**
+         * Method triggered when the new turn start.
+         * 
+         */
+        public void action()
+        {
+        	Location loc = field.randomAdjacentLocation(location);
+        	
+        	if(field.getObjectAt(loc) == null)
+        	{
+        		place(this,loc);
+        	}
+        	else
+        	{
+        		encounterCharacter(getObjectAt(loc));
+        	}
+        }
 
         public void endOfTurn() {
                 // do nothing
