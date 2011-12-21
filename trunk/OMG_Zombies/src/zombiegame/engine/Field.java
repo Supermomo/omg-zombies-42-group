@@ -52,7 +52,7 @@ public class Field {
          * @param location
          *                The location to clear.
          */
-        public void clear(Location location) {
+         public void clear(Location location) {
                 field[location.getRow()][location.getCol()] = null;
         }
 
