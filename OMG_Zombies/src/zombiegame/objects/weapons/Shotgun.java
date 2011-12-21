@@ -19,6 +19,7 @@ public class Shotgun extends Weapon {
                 else{
                         character.reduceHealthPoints(1);
                 }
+                super.Use(character);
         }
         
 
