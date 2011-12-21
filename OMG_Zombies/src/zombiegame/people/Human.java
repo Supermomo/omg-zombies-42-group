@@ -1,6 +1,6 @@
 package zombiegame.people;
 
-import zombiegame.objects.Weapon;
+import zombiegame.objects.weapons.Weapon;
 
 /**
  * Human class, derives from Character
