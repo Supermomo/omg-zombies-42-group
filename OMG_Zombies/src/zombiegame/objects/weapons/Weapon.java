@@ -12,10 +12,14 @@ import zombiegame.people.EvilCharacter;
  *
  */
 
-public class Weapon implements Usable {
+public abstract class Weapon implements Usable {
         
     public int ammunition;
 
+    public Weapon(int ammo){
+            this.ammunition=ammo;
+    }
+    
     @Override
     public void Use(Character character)
     {
