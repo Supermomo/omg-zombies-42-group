@@ -155,11 +155,15 @@ public abstract class Character {
         	
         	if(field.getObjectAt(loc) == null)
         	{
-        		place(this,loc);
+        		field.place(this,loc);
         	}
         	else
         	{
-        		encounterCharacter(getObjectAt(loc));
+        		try {
+                                encounterCharacter((Character)field.getObjectAt(loc));
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
         	}
         }
 
