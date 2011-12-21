@@ -1,5 +1,7 @@
 package zombiegame.objects;
 
+import zombiegame.objects.weapons.Weapon;
+
 
 /**
  * Interface of a item witch is not usable
