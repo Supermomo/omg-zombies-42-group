@@ -1,5 +1,6 @@
 package zombiegame.objects.weapons;
 
+import zombiegame.objects.Item;
 import zombiegame.objects.Usable;
 import zombiegame.objects.micellaneous.Miscellaneous;
 import zombiegame.people.Character;
@@ -11,7 +12,7 @@ import zombiegame.people.Character;
  * 
  */
 
-public abstract class Weapon implements Usable {
+public abstract class Weapon extends Item implements Usable {
 
         private int ammunition;
 
@@ -75,6 +76,10 @@ public abstract class Weapon implements Usable {
         
         public boolean isLiquidNitrogen(){
                 return false;
+        }
+        
+        public boolean isWeapon(){
+                return true;
         }
 
 }

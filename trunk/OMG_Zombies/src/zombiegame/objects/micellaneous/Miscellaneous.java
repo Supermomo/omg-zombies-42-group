@@ -33,4 +33,8 @@ public abstract class Miscellaneous extends Item implements Unusable {
         public int getUses(){
                 return this.numberOfUses;
         }
+        
+        public boolean isMicellaneous(){
+                return true;
+        }
 }

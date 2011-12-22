@@ -45,5 +45,9 @@ public abstract class Edible extends Item implements Usable {
         public int getUses() {
                 return this.numberOfUses;
         }
+        
+        public boolean isEdible(){
+                return true;
+        }
 
 }
