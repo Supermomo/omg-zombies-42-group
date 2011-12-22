@@ -78,6 +78,7 @@ public class Simulator {
                         {
                             c.action();
                             c.justPlayed();
+                            c.endOfTurn();
                         }
                     }
                 }
