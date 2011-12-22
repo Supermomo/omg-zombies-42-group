@@ -218,5 +218,6 @@ public abstract class Character {
          */
         public void setLocation(Location newLocation) {
                 this.location = newLocation;
+                System.out.println(this.name+" go to : "+location.getRow()+location.getCol());
         }
 }
