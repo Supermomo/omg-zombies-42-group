@@ -9,8 +9,11 @@ import zombiegame.objects.weapons.Weapon;
  * 
  */
 public class Human extends Character {
-        private boolean hasBeenBitten; // false, until a vampire bites this
+        private boolean hasBeenBittenByVamp; // false, until a vampire bites this
         // human
+        
+        private boolean hasBeenBittenByLycan;
+        
         private int turnsSinceLastMeal; // the human will lose health if he's
         // too hungry
         
@@ -27,17 +30,18 @@ public class Human extends Character {
          */
         public Human(String name, int healthPoints) {
                 super(name, healthPoints);
-                hasBeenBitten = false;
+                hasBeenBittenByVamp = false;
+                setHasBeenBittenByLycan(false);
                 turnsSinceLastMeal = 0;
         }
 
         // Accessors and mutators
-        public boolean getHasBeenBitten() {
-                return hasBeenBitten;
+        public boolean getHasBeenBittenByVamp() {
+                return hasBeenBittenByVamp;
         }
 
-        public void setHasBeenBitten(boolean hasBeenBitten) {
-                this.hasBeenBitten = hasBeenBitten;
+        public void setHasBeenBittenByVamp(boolean hasBeenBitten) {
+                this.hasBeenBittenByVamp = hasBeenBitten;
         }
 
         /**
@@ -97,5 +101,26 @@ public class Human extends Character {
                 Vampire v = new Vampire(super.name, super.healthPoints);
                 return v;
                 // ... add your code here (question 7b) ...
+        }
+        
+        /**
+         * perform the action of eating food, set the trunsSinceLastMeal to 0
+         */
+        public void eatFood(){
+                this.turnsSinceLastMeal=0;
+        }
+
+        /**
+         * @param hasBeenBittenByLycan the hasBeenBittenByLycan to set
+         */
+        public void setHasBeenBittenByLycan(boolean hasBeenBittenByLycan) {
+                this.hasBeenBittenByLycan = hasBeenBittenByLycan;
+        }
+
+        /**
+         * @return the hasBeenBittenByLycan
+         */
+        public boolean getHasBeenBittenByLycan() {
+                return hasBeenBittenByLycan;
         }
 }

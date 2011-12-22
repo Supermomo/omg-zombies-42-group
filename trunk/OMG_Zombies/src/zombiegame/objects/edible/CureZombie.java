@@ -1,23 +1,38 @@
-package zombiegame.objects.Edible;
+package zombiegame.objects.edible;
 
 import zombiegame.people.Character;
 import zombiegame.people.EvilCharacter;
 import zombiegame.people.Zombie;
 
+/**
+ * the class for the potion that cure zombie from their ills
+ * @author gaubert
+ *
+ */
 public class CureZombie extends Edible{
 
         private static final int cureUses =1;
         
+        /**
+         * create the object that can cure zombyism
+         */
         public CureZombie() {
                 super(CureZombie.cureUses);
         }
         
+        /**
+         * Cure an already turned zombie or prevent a human to turn into a brainless zombie
+         * a mad zombie can't be cured
+         */
         public void Use(Character character) {
                 if (character.isZombie()) {
-                        if (((Zombie) character).isMadZombie()) {
+                        if (!((Zombie) character).isMadZombie()) {
                                 character = ((EvilCharacter) character)
                                                 .turnBackIntoHumain();
                         }
+
+                }
+                else if(character.isHuman()){
 
                 }
                 super.Use(character);
