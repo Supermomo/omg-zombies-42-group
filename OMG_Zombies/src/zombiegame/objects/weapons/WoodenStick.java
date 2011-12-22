@@ -16,6 +16,10 @@ public class WoodenStick extends Weapon{
                         character.reduceHealthPoints(1); // Ouch !
                 }
                 super.Use(character);
+        }      
+        
+        public boolean isWoodenStick(){
+                return true;
         }
 
 }

@@ -64,5 +64,17 @@ public abstract class Weapon implements Usable {
         public void useWith(Miscellaneous item) {
                 this.usedWith = item;
         }
+        
+        public boolean isShotgun(){
+                return false;
+        }
+        
+        public boolean isWoodenStick(){
+                return false;
+        }
+        
+        public boolean isLiquidNitrogen(){
+                return false;
+        }
 
 }

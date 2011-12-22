@@ -22,5 +22,8 @@ public class Shotgun extends Weapon {
                 super.Use(character);
         }
         
+        public boolean isShotgun(){
+                return true;
+        }    
 
 }
