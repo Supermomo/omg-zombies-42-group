@@ -56,74 +56,35 @@ public class Simulator {
         public void nextTurn() {
                 // All characters encounter the next character in the list
                 // (question 5)
-                for (int i = 0; i < field.size(); ++i) {
-                        Character c = field.get(i);
-                        Character encountered = field.get((i + 1) % (field.size()));
-                        if (c.getHealthPoints() > 0) {
-                                c.encounterCharacter(encountered);
-                                if (c.getHealthPoints() <= 0) {
-                                        field.remove(i);
-                                }
-                                if (encountered.getHealthPoints() <= 0) {
-                                        field.remove((i + 1) % (field.size()));
-                                }
-                        } else {
-                                field.remove(i);
+                Character c = null;
+                for(int i=0; i <field.getDepth();i++ )
+                {
+                    for(int j=0; j<field.getWidth();j++)
+                    {   
+                        try 
+                        {
+                            c = (Character)field.getObjectAt(i,j);
+                        } 
+                        catch (Exception e)
+                        {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
                         }
-                }
-                // Dead characters are removed from the character list
-                // ... add your code here (question 6) ...
-                // Each vampire (if he is thirsty) bites the first Human in the
-                // list
-                // who has not been bitten yet
-                // ... add your code here (question 7a) ...
-                int j = 0;
-                boolean bite = false;
-                Human h;
-                Vampire v;
-                Character cha;
-                for (int i = 0; i < field.size(); i++) {
-                        cha = field.get(i);
-                        if (cha.isVampire()) {
-                                v = (Vampire) cha;
-
-                                while (j < field.size() && !bite) {
-                                        if (cha.isHuman()) {
-                                                h = (Human) cha;
-                                                if (h.getHasBeenBittenByVamp() == false) {
-                                                        bite = true;
-                                                        v.bite(h);
-                                                        field.set(i, h.turnIntoVampire());
-                                                }
-                                        }
-                                        j++;
-                                }
+                        
+                        if(c != null)
+                        {
+                            c.action();
                         }
-
-                }
-
-                // Humans that have been bitten become vampires
-                // ... add your code here (question 7b) ...
-                // Perform end-of-turn actions for all characters (question 4)
-                for (int i = 0; i < field.size(); ++i) {
-                        Character c = field.get(i);
-                        c.endOfTurn();
+                    }
                 }
         }
 
         /**
          * @return the number of human characters currently in the game
          */
-        public int nbHumansAlive() {
-                // Need to iterate through the list of characters
-                // and count the number of humans
-                int nbHumans = 0;
-                for (Character character : field) {
-                        if (character.isHuman()) {
-                                nbHumans++;
-                        }
-                }
-                return nbHumans;
+        public int nbHumansAlive()
+        {
+              return 0;
         }
 
         /**
