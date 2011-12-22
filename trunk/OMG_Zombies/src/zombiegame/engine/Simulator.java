@@ -84,7 +84,29 @@ public class Simulator {
          */
         public int nbHumansAlive()
         {
-              return 0;
+            int nbHumans = 0;
+            Character c = null;
+            for(int i=0; i <field.getDepth();i++ )
+            {
+                for(int j=0; j<field.getWidth();j++)
+                {   
+                    try 
+                    {
+                        c = (Character)field.getObjectAt(i,j);
+                    } 
+                    catch (Exception e)
+                    {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    
+                    if(c != null && c.isHuman())
+                    {
+                        nbHumans++;
+                    }
+                }
+            }
+            return nbHumans;
         }
 
         /**
