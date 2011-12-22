@@ -2,8 +2,7 @@ package zombiegame.objects.edible;
 
 import zombiegame.objects.Usable;
 import zombiegame.people.Character;
-import zombiegame.people.EvilCharacter;
-import zombiegame.people.Zombie;
+
 
 /**
  * The enum enumerating all the eatable/drinkable stuffs of the game
@@ -15,10 +14,17 @@ public abstract class Edible implements Usable {
 
         private int numberOfUses;
         
+        /**
+         * creator for an edible object
+         * @param use
+         */
         public Edible(int use){
                 this.numberOfUses=use;
         }
         
+        /**
+         * Use the object, remaining uses is decreased
+         */
         @Override
         public void Use(Character character) {
                this.loseUses();
@@ -26,14 +32,14 @@ public abstract class Edible implements Usable {
         }
               
         /**
-         * @param ammunition the ammunition to set
+         * @param ammunition the remaining uses to set
          */
         private void loseUses() {
                 this.numberOfUses--;
         }
 
         /**
-         * @return the ammunition
+         * @return the remaining uses
          */
         public int getUses() {
                 return this.numberOfUses;
