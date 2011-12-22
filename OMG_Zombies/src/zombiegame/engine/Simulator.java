@@ -80,6 +80,8 @@ public class Simulator {
                         }
                     }
                 }
+                
+                System.out.println("\n FIN DU TOUR \n");
         }
 
         /**
