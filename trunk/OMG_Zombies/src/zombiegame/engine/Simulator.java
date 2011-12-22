@@ -74,7 +74,7 @@ public class Simulator {
                             e.printStackTrace();
                         }
                         
-                        if(c != null)
+                        if(c != null && c.canPlay())
                         {
                             c.action();
                         }
@@ -105,8 +105,13 @@ public class Simulator {
                     
                     if(c != null && c.isHuman())
                     {
+                        if(c.isHuman())
                         nbHumans++;
+                        
+                        c.setPlay();
                     }
+                    
+                    
                 }
             }
             return nbHumans;
