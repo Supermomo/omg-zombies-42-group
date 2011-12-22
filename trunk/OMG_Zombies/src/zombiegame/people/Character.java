@@ -159,11 +159,14 @@ public abstract class Character {
         	}
         	else
         	{
-        		try {
-                                encounterCharacter((Character)field.getObjectAt(loc));
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
+        		try 
+        		{
+        			encounterCharacter((Character)field.getObjectAt(loc));
+                } 
+        		catch (Exception e) 
+        		{
+        			e.printStackTrace();
+                }
         	}
         }
 
