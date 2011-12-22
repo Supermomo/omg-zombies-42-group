@@ -11,6 +11,56 @@ public class WerewolfCrew extends Werewolf
 		this.CrewMembers = members;
 	}
 	
-	
+	public void addMember()
+	{
+	    this.CrewMembers++;
+	}
 
+	protected void attack(Character c) 
+	{
+        super.attack(c);
+        c.reduceHealthPoints(15*CrewMembers);
+	}
+	
+	public boolean isWerewolfCrew()
+	{
+	    return true;
+	}
+	
+	public int getCrewMembers()
+	{
+	    return CrewMembers;
+	}
+	
+	public void encounterCharacter(Character c) 
+    {
+        if(c.isWerewolf())
+        {
+            if( this.getCrewMembers() < 5)
+            {
+                ((WerewolfCrew)c).addMember();
+                field.clear(c.location);
+            }
+            if(c.isWerewolfCrew())
+            {
+               attack(c);
+            }
+        }
+        else
+        {
+            if(c.isHuman() && (c.getHealthPoints() <= 25))
+            {
+                this.bite((Human)c);
+            }
+            else
+            {
+                attack(c);
+                if(c.isHuman() && (c.getHealthPoints() <= 25))
+                {
+                    this.bite((Human)c);
+                }
+            }
+                
+        }
+    }
 }

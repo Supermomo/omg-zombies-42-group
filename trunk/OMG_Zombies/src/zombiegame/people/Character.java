@@ -90,6 +90,15 @@ public abstract class Character {
         public boolean isEvilCharacter(){
                 return false;
         }
+        
+        /**
+         * wether or not the character is a WerewolfCrew
+         * @return
+         */
+        public boolean isWerewolfCrew()
+        {
+            return false;
+        }
 
         /**
          * Decrease the number of HP by a certain amount. HP cannot go below 0.

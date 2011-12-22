@@ -39,6 +39,14 @@ public class Werewolf extends EvilCharacter{
                 field.clear(c.location);
                 field.clear(this.location);
                 field.place(meute,this.location);
+                if(c.isWerewolfCrew())
+                {
+                    if( ((WerewolfCrew)c).getCrewMembers() < 5)
+                    {
+                        ((WerewolfCrew)c).addMember();
+                        field.clear(this.location);
+                    }
+                }
             }
             else
             {
