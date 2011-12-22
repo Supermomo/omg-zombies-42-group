@@ -5,13 +5,14 @@ import zombiegame.people.Human;
 
 /**
  * The bread, the most basic food in the world
+ * 
  * @author gaubert
- *
+ * 
  */
-public class Bread extends Edible{
+public class Bread extends Edible {
 
         private static final int breadUses = 4;
-        
+
         /**
          * create a bread object that can be eat in four parts
          */
@@ -20,17 +21,21 @@ public class Bread extends Edible{
         }
 
         /**
-         * HUMAN : Use the bread to regain some healthPoints and stop being hungry <BR>
-         * OTHER : lose some healthPoints, the bread is not edible for evil character
+         * HUMAN : Use the bread to regain some healthPoints and stop being
+         * hungry <BR>
+         * OTHER : lose some healthPoints, the bread is not edible for evil
+         * character
          */
-        public void Use(Character character) {             
+        public void Use(Character character) {
                 super.Use(character);
-                if(character.isHuman()){
-                        character.increaseHealthPoints(5); 
-                        ((Human)character).eatFood();
+
+                character.increaseHealthPoints(5);
+                try {
+                        ((Human) character).eatFood();
+                } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("the character can't eat because he is not human");
                 }
-                else {
-                        character.reduceHealthPoints(5);
-                }
+
         }
 }

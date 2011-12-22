@@ -32,9 +32,6 @@ public class CureZombie extends Edible{
                         }
 
                 }
-                else if(character.isHuman()){
-
-                }
                 super.Use(character);
         }
         
