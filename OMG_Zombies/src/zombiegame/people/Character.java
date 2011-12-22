@@ -214,11 +214,8 @@ public abstract class Character {
          * @param newLocation
          *            The rabbit's new location.
          */
-        public void setLocation(Location newLocation) {
-            if (location != null) {
-                field.clear(location);
-            }
-            location = newLocation;
-            field.place(this, newLocation);
+        public void setLocation(Location newLocation) 
+        {
+            this.location = newLocation;
         }
 }
