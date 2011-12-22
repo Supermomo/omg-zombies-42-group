@@ -64,6 +64,15 @@ public class Human extends Character {
                 if (turnsSinceLastMeal > 3) {
                         healthPoints -= 2;
                 }
+                
+                if(hasBeenBittenByVamp)
+                {
+                    Vampire vamp = turnIntoVampire();
+                    vamp.setLocation(this.location);
+                    field.clear(this.location);
+                    field.place(vamp,vamp.location);
+                    this.say("I'm a vampire now");
+                }
         }
 
         /**
@@ -109,7 +118,6 @@ public class Human extends Character {
         public Vampire turnIntoVampire() {
                 Vampire v = new Vampire(super.name, super.healthPoints,super.field);
                 return v;
-                // ... add your code here (question 7b) ...
         }
         
         /**
