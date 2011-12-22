@@ -171,6 +171,10 @@ public abstract class Character {
         		try 
         		{
         			encounterCharacter((Character)field.getObjectAt(loc));
+        			if(((Character)field.getObjectAt(loc)).getHealthPoints() == 0)
+        			{
+        			    field.clear(loc);
+        			}
                 } 
         		catch (Exception e) 
         		{
