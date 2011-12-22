@@ -24,6 +24,8 @@ public abstract class Character {
         protected Location location;
 
         protected Field field;
+        
+        protected boolean asPlayed;
 
         /**
          * Constructor of Character class.
@@ -46,6 +48,16 @@ public abstract class Character {
 
         public int getHealthPoints() {
                 return healthPoints;
+        }
+        
+        public boolean canPlay()
+        {
+            return !asPlayed;
+        }
+        
+        public void setPlay()
+        {
+            asPlayed = false;
         }
 
         /**
