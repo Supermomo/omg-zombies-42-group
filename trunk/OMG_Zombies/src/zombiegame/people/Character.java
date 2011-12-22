@@ -217,7 +217,8 @@ public abstract class Character {
          *                The rabbit's new location.
          */
         public void setLocation(Location newLocation) {
+                System.out.println(this.name+" go from "+ location.getRow()+" "+location.getCol());
                 this.location = newLocation;
-                System.out.println(this.name+" go to : "+location.getRow()+location.getCol());
+                System.out.println(" to : "+location.getRow()+" "+location.getCol());
         }
 }
