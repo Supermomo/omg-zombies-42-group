@@ -77,6 +77,7 @@ public class Simulator {
                         if(c != null && c.canPlay())
                         {
                             c.action();
+                            c.setPlay();
                         }
                     }
                 }
