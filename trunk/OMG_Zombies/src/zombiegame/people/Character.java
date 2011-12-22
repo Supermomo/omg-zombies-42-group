@@ -59,6 +59,11 @@ public abstract class Character {
             asPlayed = false;
         }
 
+        public void justPlayed()
+        {
+            asPlayed = true;
+        }
+        
         /**
          * wether or not this character is a human
          * 
