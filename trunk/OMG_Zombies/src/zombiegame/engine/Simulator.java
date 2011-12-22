@@ -107,10 +107,12 @@ public class Simulator {
                         e.printStackTrace();
                     }
                     
-                    if(c != null && c.isHuman())
+                    if(c != null)
                     {
                         if(c.isHuman())
-                        nbHumans++;
+                        {
+                            nbHumans++;
+                        }
                         
                         c.setPlay();
                     }
