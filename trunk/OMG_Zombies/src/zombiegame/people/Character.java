@@ -21,9 +21,9 @@ public abstract class Character {
          */
         protected int healthPoints;
 
-        private Location location;
+        protected Location location;
 
-        private Field field;
+        protected Field field;
 
         /**
          * Constructor of Character class.

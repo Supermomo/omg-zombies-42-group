@@ -3,9 +3,14 @@ package zombiegame.people;
 public class WerewolfCrew extends Werewolf
 {
 
-	public WerewolfCrew(String name, int healthPoints) {
+	private int CrewMembers;
+	
+	public WerewolfCrew(String name, int healthPoints,int members) 
+	{
 		super(name, healthPoints);
-		// TODO Auto-generated constructor stub
-	} 
+		this.CrewMembers = members;
+	}
+	
+	
 
 }
