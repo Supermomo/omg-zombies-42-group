@@ -33,9 +33,10 @@ public abstract class Character {
          * @param healthPoints
          *                initial HP
          */
-        public Character(String name, int healthPoints) {
+        public Character(String name, int healthPoints, Field field) {
                 this.name = name;
                 this.healthPoints = healthPoints;
+                this.field=field;
         }
 
         // Accessors
@@ -213,7 +214,7 @@ public abstract class Character {
          * @param newLocation
          *            The rabbit's new location.
          */
-        protected void setLocation(Location newLocation) {
+        public void setLocation(Location newLocation) {
             if (location != null) {
                 field.clear(location);
             }

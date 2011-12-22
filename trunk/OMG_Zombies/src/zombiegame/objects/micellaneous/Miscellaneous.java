@@ -1,5 +1,6 @@
 package zombiegame.objects.micellaneous;
 
+import zombiegame.objects.Item;
 import zombiegame.objects.Unusable;
 import zombiegame.objects.weapons.Weapon;
 
@@ -9,7 +10,7 @@ import zombiegame.objects.weapons.Weapon;
  * @author gaubert
  * 
  */
-public abstract class Miscellaneous implements Unusable {
+public abstract class Miscellaneous extends Item implements Unusable {
 
         private int numberOfUses;
         

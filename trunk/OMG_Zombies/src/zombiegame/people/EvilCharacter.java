@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
+
 /**
  * The class of en EvilCharacter, derive from character<BR>
  * Basically like a character but in more...mean
@@ -16,9 +18,10 @@ public abstract class EvilCharacter extends Character {
          * 
          * @param name
          * @param healthPoints
+         * @param field 
          */
-        public EvilCharacter(String name, int healthPoints) {
-                super(name, healthPoints);
+        public EvilCharacter(String name, int healthPoints, Field field) {
+                super(name, healthPoints,field);
         }
 
         /**
@@ -28,7 +31,7 @@ public abstract class EvilCharacter extends Character {
          * @return the Human that have been created
          */
         public Human turnBackIntoHumain() {
-                return new Human(name, healthPoints);
+                return new Human(name, healthPoints,super.field);
         }
 
         /**

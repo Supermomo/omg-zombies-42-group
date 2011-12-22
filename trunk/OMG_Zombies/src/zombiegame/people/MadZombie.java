@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
+
 /**
  * Mad zombie class, derive from zombie just like a zombie but is even more
  * hungry for brain and does more damage
@@ -14,9 +16,10 @@ public class MadZombie extends Zombie {
          * 
          * @param name
          * @param healthPoints
+         * @param field 
          */
-        public MadZombie(String name, int healthPoints) {
-                super(name, healthPoints);
+        public MadZombie(String name, int healthPoints, Field field) {
+                super(name, healthPoints, field);
         }
 
         /**

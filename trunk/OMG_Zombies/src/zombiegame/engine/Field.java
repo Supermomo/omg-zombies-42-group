@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import zombiegame.people.*;
+import zombiegame.people.Character;
 
 /**
  * Represent a rectangular grid of field positions. Each position is able to
@@ -76,6 +78,7 @@ public class Field {
          */
         public void placeRandomly(Object character) {
                 place(character, getFreeRandomLocation());
+                
         }
 
         /**
@@ -89,6 +92,7 @@ public class Field {
          */
         public void place(Object animal, Location location) {
                 field[location.getRow()][location.getCol()] = animal;
+                ((Character)animal).setLocation(location);
         }
 
         /**

@@ -1,5 +1,6 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
 import zombiegame.engine.Simulator;
 
 /**
@@ -17,9 +18,10 @@ public class Vampire extends EvilCharacter {
          * 
          * @param name
          * @param healthPoints
+         * @param field 
          */
-        public Vampire(String name, int healthPoints) {
-                super(name, healthPoints);
+        public Vampire(String name, int healthPoints, Field field) {
+                super(name, healthPoints,field);
                 this.isThirsty = false;
         }
 
