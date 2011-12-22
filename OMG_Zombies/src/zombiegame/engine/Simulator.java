@@ -33,8 +33,8 @@ public class Simulator {
 
                 field = new Field(5,5);
 
-                //Character h1 = new Human("Human 1", HP_HUMANS,field);
-                //Character h2 = new Human("Human 2", HP_HUMANS,field);
+                Character h1 = new Human("Human 1", HP_HUMANS,field);
+                Character h2 = new Human("Human 2", HP_HUMANS,field);
                 Character v1 = new Vampire("Vampire 1", HP_VAMPIRES,field);
                 Character v2 = new Vampire("Vampire 2", HP_VAMPIRES,field);
                 Character z1 = new Zombie("Zombie 1", HP_ZOMBIES,field);
@@ -44,8 +44,8 @@ public class Simulator {
                 // 5b
                 // Add characters to the list
 
-                //field.placeRandomly(h1);
-                //field.placeRandomly(h2);
+                field.placeRandomly(h1);
+                field.placeRandomly(h2);
                 field.placeRandomly(v1);
                 field.placeRandomly(v2);
                 field.placeRandomly(z1);
@@ -87,7 +87,7 @@ public class Simulator {
          */
         public int nbHumansAlive()
         {
-            /*int nbHumans = 0;
+            int nbHumans = 0;
             Character c = null;
             for(int i=0; i <field.getDepth();i++ )
             {
@@ -110,8 +110,6 @@ public class Simulator {
                 }
             }
             return nbHumans;
-            */
-            return 1;
         }
 
         /**
