@@ -30,6 +30,7 @@ public class Simulator {
          */
         public void init() {
                 // Create characters
+                field = new Field(50,50);
                 Character h1 = new Human("Human 1", HP_HUMANS,field);
                 Character h2 = new Human("Human 2", HP_HUMANS,field);
                 Character v1 = new Vampire("Vampire 1", HP_VAMPIRES,field);
@@ -40,7 +41,6 @@ public class Simulator {
                 // question
                 // 5b
                 // Add characters to the list
-                field = new Field(50,50);
                 field.placeRandomly(h1);
                 field.placeRandomly(h2);
                 field.placeRandomly(v1);
