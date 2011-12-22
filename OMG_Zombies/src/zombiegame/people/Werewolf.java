@@ -80,7 +80,7 @@ public class Werewolf extends EvilCharacter{
          */
         public void bite(Human h) {
                 // The human has no way to escape. He gets bitten.
-                h.setHasBeenBitten(true);
+                h.setHasBeenBittenByLycan(true);
                 say("I have bitten you, " + h.getName() + "!");
         }
 }

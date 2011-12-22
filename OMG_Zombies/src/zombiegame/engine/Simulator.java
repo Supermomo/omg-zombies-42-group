@@ -90,7 +90,7 @@ public class Simulator {
                                 while (j < field.size() && !bite) {
                                         if (cha.isHuman()) {
                                                 h = (Human) cha;
-                                                if (h.getHasBeenBitten() == false) {
+                                                if (h.getHasBeenBittenByVamp() == false) {
                                                         bite = true;
                                                         v.bite(h);
                                                         field.set(i, h.turnIntoVampire());

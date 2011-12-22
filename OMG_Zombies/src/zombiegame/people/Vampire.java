@@ -96,7 +96,7 @@ public class Vampire extends EvilCharacter {
          */
         public void bite(Human h) {
                 // The human has no way to escape. He gets bitten.
-                h.setHasBeenBitten(true);
+                h.setHasBeenBittenByVamp(true);
                 say("I have bitten you, " + h.getName() + "!");
                 // Vampire is not thirsty anymore
                 isThirsty = false;

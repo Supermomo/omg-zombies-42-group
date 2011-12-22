@@ -1,4 +1,4 @@
-package zombiegame.objects.Micellaneous;
+package zombiegame.objects.micellaneous;
 
 import zombiegame.objects.weapons.Weapon;
 
@@ -9,6 +9,6 @@ public class SilverBullet extends Miscellaneous{
         }
 
         public boolean isUsableWith(Weapon item) {
-                return item.equals(zombiegame.objects.backup.Weapon.SHOTGUN);
+                return false;
         }  
 }

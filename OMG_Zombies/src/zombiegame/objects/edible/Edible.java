@@ -1,4 +1,4 @@
-package zombiegame.objects.Edible;
+package zombiegame.objects.edible;
 
 import zombiegame.objects.Usable;
 import zombiegame.people.Character;

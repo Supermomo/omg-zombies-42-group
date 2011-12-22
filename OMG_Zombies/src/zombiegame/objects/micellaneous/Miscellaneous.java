@@ -1,4 +1,4 @@
-package zombiegame.objects.Micellaneous;
+package zombiegame.objects.micellaneous;
 
 import zombiegame.objects.Unusable;
 import zombiegame.objects.weapons.Weapon;
