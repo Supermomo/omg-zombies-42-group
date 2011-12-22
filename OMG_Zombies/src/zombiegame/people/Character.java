@@ -3,7 +3,6 @@ package zombiegame.people;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 
-
 /**
  * Parent Character class
  * 
@@ -38,7 +37,7 @@ public abstract class Character {
         public Character(String name, int healthPoints, Field field) {
                 this.name = name;
                 this.healthPoints = healthPoints;
-                this.field=field;
+                this.field = field;
         }
 
         // Accessors
@@ -86,7 +85,7 @@ public abstract class Character {
         public boolean isVampire() {
                 return false;
         }
-        
+
         /**
          * wether or not this character is a werewolf
          * 
@@ -95,22 +94,23 @@ public abstract class Character {
         public boolean isWerewolf() {
                 return false;
         }
-        
+
         /**
          * wether or not the character is an evil character
+         * 
          * @return
          */
-        public boolean isEvilCharacter(){
+        public boolean isEvilCharacter() {
                 return false;
         }
-        
+
         /**
          * wether or not the character is a WerewolfCrew
+         * 
          * @return
          */
-        public boolean isWerewolfCrew()
-        {
-            return false;
+        public boolean isWerewolfCrew() {
+                return false;
         }
 
         /**
@@ -125,8 +125,7 @@ public abstract class Character {
                         healthPoints = 0;
                 }
         }
-        
-        
+
         /**
          * Increase the number of HP by a certain amount.
          * 
@@ -134,15 +133,12 @@ public abstract class Character {
          *                number of HP to add
          */
         public void increaseHealthPoints(int increase) {
-                if(increase >=0) {
-                        this.healthPoints+=increase;   
-                }
-                else
-                {
+                if (increase >= 0) {
+                        this.healthPoints += increase;
+                } else {
                         System.out.println("Wrong hp values in increaseHp method");
                 }
         }
-        
 
         /**
          * Output a character's saying to the screen
@@ -166,36 +162,28 @@ public abstract class Character {
                 // Default action: do nothing
                 System.out.println(name + " meets " + c.name + " and does not attack!");
         }
-        
+
         /**
          * Method triggered when the new turn start.
          * 
          */
-        public void action()
-        {
-        	Location loc = field.randomAdjacentLocation(location);
-        	
-        	if(field.getObjectAt(loc) == null)
-        	{
-        	    Location a = this.location;
-        		field.place(this,loc);
-        		field.clear(a);
-        	}
-        	else
-        	{
-        		try 
-        		{
-        			encounterCharacter((Character)field.getObjectAt(loc));
-        			if(((Character)field.getObjectAt(loc)).getHealthPoints() == 0)
-        			{
-        			    field.clear(loc);
-        			}
-                } 
-        		catch (Exception e) 
-        		{
-        			e.printStackTrace();
+        public void action() {
+                Location loc = field.randomAdjacentLocation(location);
+
+                if (field.getObjectAt(loc) == null) {
+                        Location a = this.location;
+                        field.place(this, loc);
+                        field.clear(a);
+                } else {
+                        try {
+                                encounterCharacter((Character) field.getObjectAt(loc));
+                                if (((Character) field.getObjectAt(loc)).getHealthPoints() == 0) {
+                                        field.clear(loc);
+                                }
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
                 }
-        	}
         }
 
         public void endOfTurn() {
@@ -212,24 +200,23 @@ public abstract class Character {
                 this.say(c.getName() + ", I'm gonna kill you!");
 
         }
-        
+
         /**
          * Return the rabbit's location.
          * 
          * @return The rabbit's location.
          */
         public Location getLocation() {
-            return location;
+                return location;
         }
 
         /**
          * Place the rabbit at the new location in the given field.
          * 
          * @param newLocation
-         *            The rabbit's new location.
+         *                The rabbit's new location.
          */
-        public void setLocation(Location newLocation) 
-        {
-            this.location = newLocation;
+        public void setLocation(Location newLocation) {
+                this.location = newLocation;
         }
 }

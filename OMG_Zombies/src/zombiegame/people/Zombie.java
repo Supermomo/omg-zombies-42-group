@@ -37,8 +37,6 @@ public class Zombie extends EvilCharacter {
          * the encounter between this character and c attack c
          */
         public void encounterCharacter(Character c) {
-                this.say("Go away " + c.getName()
-                                + " before i start to...humm...beg you to leave me alive ???");
                 attack(c);
         }
 
