@@ -165,7 +165,9 @@ public abstract class Character {
         	
         	if(field.getObjectAt(loc) == null)
         	{
+        	    Location a = this.location;
         		field.place(this,loc);
+        		field.clear(a);
         	}
         	else
         	{
