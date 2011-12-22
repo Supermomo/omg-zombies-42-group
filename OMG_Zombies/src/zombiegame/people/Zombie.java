@@ -39,6 +39,7 @@ public class Zombie extends EvilCharacter {
         public void encounterCharacter(Character c) {
                 this.say("Go away " + c.getName()
                                 + " before i start to...humm...beg you to leave me alive ???");
+                attack(c);
         }
 
         /**
