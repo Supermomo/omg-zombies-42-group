@@ -1,5 +1,6 @@
 package zombiegame.objects.edible;
 
+import zombiegame.objects.Item;
 import zombiegame.objects.Usable;
 import zombiegame.people.Character;
 
@@ -10,7 +11,7 @@ import zombiegame.people.Character;
  * @author gaubert
  *
  */
-public abstract class Edible implements Usable {
+public abstract class Edible extends Item implements Usable {
 
         private int numberOfUses;
         

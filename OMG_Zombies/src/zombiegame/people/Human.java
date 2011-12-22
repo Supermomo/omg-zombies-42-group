@@ -1,5 +1,8 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
+import zombiegame.objects.edible.Edible;
+import zombiegame.objects.micellaneous.Miscellaneous;
 import zombiegame.objects.weapons.Weapon;
 
 /**
@@ -18,6 +21,8 @@ public class Human extends Character {
         // too hungry
         
         private Weapon weapon;
+        private Edible edible;
+        private Miscellaneous item;
 
         /**
          * Constructor of Human class. At the beginning of the game, humans just
@@ -27,12 +32,16 @@ public class Human extends Character {
          *                name of the character
          * @param healthPoints
          *                initial HP
+         * @param field 
          */
-        public Human(String name, int healthPoints) {
-                super(name, healthPoints);
+        public Human(String name, int healthPoints, Field field) {
+                super(name, healthPoints,field);
                 hasBeenBittenByVamp = false;
                 setHasBeenBittenByLycan(false);
                 turnsSinceLastMeal = 0;
+                weapon=null;
+                edible=null;
+                item=null;
         }
 
         // Accessors and mutators
@@ -98,7 +107,7 @@ public class Human extends Character {
          *         as this human; the new vampire is immediately thirsty
          */
         public Vampire turnIntoVampire() {
-                Vampire v = new Vampire(super.name, super.healthPoints);
+                Vampire v = new Vampire(super.name, super.healthPoints,super.field);
                 return v;
                 // ... add your code here (question 7b) ...
         }
@@ -122,5 +131,12 @@ public class Human extends Character {
          */
         public boolean getHasBeenBittenByLycan() {
                 return hasBeenBittenByLycan;
+        }
+        
+        /** 
+         * pick up an object
+         */
+        public void pickUpObject(){
+                
         }
 }

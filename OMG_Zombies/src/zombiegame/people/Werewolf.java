@@ -1,5 +1,6 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
 import zombiegame.engine.Simulator;
 
 /**
@@ -17,9 +18,9 @@ public class Werewolf extends EvilCharacter{
          * @param name
          * @param healthPoints
          */
-        public Werewolf(String name, int healthPoints) 
+        public Werewolf(String name, int healthPoints,Field field) 
         {
-                super(name, healthPoints);
+                super(name, healthPoints,field);
         }
 
         /**
@@ -35,7 +36,7 @@ public class Werewolf extends EvilCharacter{
         {
             if(c.isWerewolf())
             {
-                WerewolfCrew meute = new WerewolfCrew(this.name,150,2);
+                WerewolfCrew meute = new WerewolfCrew(this.name,150,2,super.field);
                 field.clear(c.location);
                 field.clear(this.location);
                 field.place(meute,this.location);

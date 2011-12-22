@@ -1,13 +1,15 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
+
 public class WerewolfCrew extends Werewolf
 {
 
 	private int CrewMembers;
 	
-	public WerewolfCrew(String name, int healthPoints,int members) 
+	public WerewolfCrew(String name, int healthPoints,int members,Field field) 
 	{
-		super(name, healthPoints);
+		super(name, healthPoints,field);
 		this.CrewMembers = members;
 	}
 	

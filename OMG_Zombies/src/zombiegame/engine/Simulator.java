@@ -30,12 +30,12 @@ public class Simulator {
          */
         public void init() {
                 // Create characters
-                Character h1 = new Human("Human 1", HP_HUMANS);
-                Character h2 = new Human("Human 2", HP_HUMANS);
-                Character v1 = new Vampire("Vampire 1", HP_VAMPIRES);
-                Character v2 = new Vampire("Vampire 2", HP_VAMPIRES);
-                Character z1 = new Zombie("Zombie 1", HP_ZOMBIES);
-                MadZombie mz1 = new MadZombie("MadZombie 1", HP_ZOMBIES); // uncomment
+                Character h1 = new Human("Human 1", HP_HUMANS,field);
+                Character h2 = new Human("Human 2", HP_HUMANS,field);
+                Character v1 = new Vampire("Vampire 1", HP_VAMPIRES,field);
+                Character v2 = new Vampire("Vampire 2", HP_VAMPIRES,field);
+                Character z1 = new Zombie("Zombie 1", HP_ZOMBIES,field);
+                MadZombie mz1 = new MadZombie("MadZombie 1", HP_ZOMBIES,field); // uncomment
                 // in
                 // question
                 // 5b
