@@ -116,7 +116,7 @@ public class Human extends Character {
          *         as this human; the new vampire is immediately thirsty
          */
         public Vampire turnIntoVampire() {
-                Vampire v = new Vampire(super.name, super.healthPoints,super.field);
+                Vampire v = new Vampire("(Vamp)"+super.name, super.healthPoints,super.field);
                 return v;
         }
         
