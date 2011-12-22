@@ -20,6 +20,9 @@ public class LiquidNitrogen extends Weapon{
                 }
                 super.Use(character);
         }
+       
+        public boolean isLiquidNitrogen(){
+                return true;
+        }
         
-
 }

@@ -17,6 +17,9 @@ public abstract class Miscellaneous implements Unusable {
                 this.numberOfUses=uses;
         }
         
+        /**
+         * return whether or not the current object is usable with the weapon
+         */
         @Override
         public boolean isUsableWith(Weapon item) {
                 return false;

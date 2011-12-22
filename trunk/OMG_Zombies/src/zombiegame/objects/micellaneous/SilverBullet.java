@@ -8,7 +8,10 @@ public class SilverBullet extends Miscellaneous{
                 super(number);     
         }
 
+        /**
+         * return whether or not the current object is usable with the weapon
+         */
         public boolean isUsableWith(Weapon item) {
-                return false;
+                return item.isShotgun();
         }  
 }
