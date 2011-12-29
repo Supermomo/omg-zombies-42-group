@@ -96,10 +96,12 @@ public class Helico
         return objet;
     }
     
-    public void dropSoute(int x, int y)
+    public void dropSoute()
     {
-        map.place(this.objetEnSoute,x,y);
-        System.out.println("object drop on "+x+y);
+        Random r = new Random();
+        map.place(objetEnSoute,r.nextInt(map.getDepth()),r.nextInt(map.getWidth()));        
     }
+    
+    
     
 }
