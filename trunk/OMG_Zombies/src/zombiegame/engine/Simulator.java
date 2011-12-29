@@ -6,6 +6,7 @@ import zombiegame.people.Character;
 import zombiegame.people.Human;
 import zombiegame.people.MadZombie;
 import zombiegame.people.Vampire;
+import zombiegame.people.Werewolf;
 import zombiegame.people.Zombie;
 
 /**
@@ -39,6 +40,8 @@ public class Simulator {
                 Character v2 = new Vampire("Vampire 2", HP_VAMPIRES,field);
                 Character z1 = new Zombie("Zombie 1", HP_ZOMBIES,field);
                 MadZombie mz1 = new MadZombie("MadZombie 1", HP_ZOMBIES,field); // uncomment
+                Werewolf w1 = new Werewolf("Wolf 1",HP_WEREWOLF, field);
+                Werewolf w2 = new Werewolf("Wolf 2",HP_WEREWOLF, field);
                 // in
                 // question
                 // 5b
@@ -50,6 +53,8 @@ public class Simulator {
                 field.placeRandomly(v2);
                 field.placeRandomly(z1);
                 field.placeRandomly(mz1);
+                field.placeRandomly(w1);
+                field.placeRandomly(w2);
                 // uncomment in question 5b
         }
 
