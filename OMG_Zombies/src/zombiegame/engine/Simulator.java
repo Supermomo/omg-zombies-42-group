@@ -3,6 +3,7 @@ package zombiegame.engine;
 import java.util.ArrayList;
 import java.util.Random;
 import zombiegame.people.Character;
+import zombiegame.people.Helico;
 import zombiegame.people.Human;
 import zombiegame.people.MadZombie;
 import zombiegame.people.Vampire;
@@ -89,6 +90,8 @@ public class Simulator {
                         }
                     }
                 }
+                Helico helic = new Helico(fieldObject);
+                helic.dropSoute();
                 
                 System.out.println("\n FIN DU TOUR \n");
         }
