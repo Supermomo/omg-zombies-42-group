@@ -32,4 +32,8 @@ public class CureLycan extends Edible{
                 super.Use(character);
         }
 
+        
+        public boolean isCureLycan(){
+                return true;
+        }
 }

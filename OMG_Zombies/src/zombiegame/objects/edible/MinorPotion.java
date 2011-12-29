@@ -26,5 +26,7 @@ public class MinorPotion extends Edible{
                 super.Use(character);
         }
         
-        
+        public boolean isIncreasingHp(){
+                return true;
+        }
 }

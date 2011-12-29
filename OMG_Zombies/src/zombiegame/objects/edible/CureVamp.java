@@ -32,5 +32,10 @@ public class CureVamp extends Edible{
                 }
                 super.Use(character);
         }
+        
+        public boolean isCureVamp(){
+                return true;
+        }
+        
 
 }

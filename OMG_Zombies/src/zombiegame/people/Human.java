@@ -89,12 +89,40 @@ public class Human extends Character {
 
         /**
          * the encounter between this character and c
+         * Use weapon if he has one
          */
         public void encounterCharacter(Character c,Field field) {
                 
                 if(isArmed()){
                         weapon.Use(c);
+                        if(weapon.getAmmunition()<=0){
+                                weapon=null;
+                        }
                         this.say("humm...may be i shoulden't have done that...");
+                }
+                if(edible!=null){
+                        if(c.isVampire()&& edible.isCureVamp()){
+                                edible.Use(c);
+                        }
+                        else if(c.isWerewolf() && edible.isCureLycan()){
+                                edible.Use(c);
+                        }
+                        else if(c.isZombie() && edible.isCureZomb()){
+                                edible.Use(c);
+                        }
+                        else if(edible.isIncreasingHp() && super.getHealthPoints()<30){
+                                edible.Use(this);
+                        }
+                        
+                        if(edible.getUses()<=0){
+                                edible=null;
+                        }
+                        
+                }
+                if(this.item!=null){
+                        if(this.item.getUses()<=0){
+                                item=null;
+                        }
                 }
                 else {
                         this.say("Go away " + c.getName()
