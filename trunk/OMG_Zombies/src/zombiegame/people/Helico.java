@@ -99,6 +99,7 @@ public class Helico
     public void dropSoute(int x, int y)
     {
         map.place(this.objetEnSoute,x,y);
+        System.out.println("object drop on "+x+y);
     }
     
 }
