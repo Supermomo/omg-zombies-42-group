@@ -205,24 +205,29 @@ public class Human extends Character {
                         Item it=null;
                         try {
                                 it=(Item)fieldObj.getObjectAt(loc);
+                                
+                                if(it.isEdible()){
+                                        this.edible=(Edible)it;
+                                }
+                                else if(it.isMiscellaneous()){
+                                        this.item=(Miscellaneous)it;
+                                }
+                                else if(it.isWeapon()){
+                                        this.weapon=(Weapon)it;
+                                }
+                                if(weapon!=null && item!=null){
+                                        if(item.isUsableWith(weapon)){
+                                                weapon.useWith(item);
+                                        }
+                                }
+                                
+                                System.out.println(super.getName()+"  just picked up an object");
+                                
                         } catch (Exception e) {
                                 e.printStackTrace();
                                 System.out.println("Fail to pick up the object");
                         }
-                        if(it.isEdible()){
-                                this.edible=(Edible)it;
-                        }
-                        else if(it.isMiscellaneous()){
-                                this.item=(Miscellaneous)it;
-                        }
-                        else if(it.isWeapon()){
-                                this.weapon=(Weapon)it;
-                        }
-                        if(weapon!=null && item!=null){
-                                if(item.isUsableWith(weapon)){
-                                        weapon.useWith(item);
-                                }
-                        }
+                        
                         
                 }
         }
