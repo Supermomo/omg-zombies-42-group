@@ -23,7 +23,7 @@ public abstract class Character {
         protected Location location;
 
         protected Field field;
-        
+
         protected boolean asPlayed;
 
         /**
@@ -48,22 +48,19 @@ public abstract class Character {
         public int getHealthPoints() {
                 return healthPoints;
         }
-        
-        public boolean canPlay()
-        {
-            return !asPlayed;
-        }
-        
-        public void setPlay()
-        {
-            asPlayed = false;
+
+        public boolean canPlay() {
+                return !asPlayed;
         }
 
-        public void justPlayed()
-        {
-            asPlayed = true;
+        public void setPlay() {
+                asPlayed = false;
         }
-        
+
+        public void justPlayed() {
+                asPlayed = true;
+        }
+
         /**
          * wether or not this character is a human
          * 
@@ -182,9 +179,15 @@ public abstract class Character {
                         field.clear(a);
                 } else {
                         try {
-                                encounterCharacter((Character) field.getObjectAt(loc));
-                                if (((Character) field.getObjectAt(loc)).getHealthPoints() == 0) {
+                                Character c=(Character) field.getObjectAt(loc);
+                                encounterCharacter(c);
+                                if (c.getHealthPoints() == 0) {
                                         field.clear(loc);
+                                        if(c.isHuman()){
+                                                field.place(((Human)c).turnIntoZombie(), loc);
+                                                System.out.println(c.getName()+" has been turend into a zombie");
+                                        }
+
                                 }
                         } catch (Exception e) {
                                 e.printStackTrace();
@@ -223,15 +226,14 @@ public abstract class Character {
          *                The rabbit's new location.
          */
         public void setLocation(Location newLocation) {
-                if(location!=null)
-                {
-                        System.out.println(this.name+" go from "+ location.getRow()+" "+location.getCol());
-                }
-                else {
+                if (location != null) {
+                        System.out.println(this.name + " go from " + location.getRow() + " "
+                                        + location.getCol());
+                } else {
                         System.out.print("start at location ");
                 }
-                
+
                 this.location = newLocation;
-                System.out.println(" to : "+location.getRow()+" "+location.getCol());
+                System.out.println(" to : " + location.getRow() + " " + location.getCol());
         }
 }

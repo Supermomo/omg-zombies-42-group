@@ -73,17 +73,16 @@ public class Human extends Character {
                     field.place(vamp,vamp.location);
                     this.say("I'm a vampire now");
                 }
-                else
+                else if(hasBeenBittenByLycan)
                 {
-                    if(hasBeenBittenByLycan)
-                    {
                         Werewolf w = turnIntoWerewolf();
                         w.setLocation(this.location);
                         field.clear(this.location);
                         field.place(w,w.location);
                         this.say("I'm a vampire now");
-                    }
-                }
+                 }
+                
+                
         }
 
         /**
@@ -135,6 +134,12 @@ public class Human extends Character {
         {
             Werewolf w = new Werewolf("(Wolf)"+super.name, super.healthPoints,super.field);
             return w;
+        }
+        
+        public Zombie turnIntoZombie()
+        {
+            Zombie z = new Zombie("(Zomb)"+super.name, super.healthPoints,super.field);
+            return z;
         }
         
         /**
