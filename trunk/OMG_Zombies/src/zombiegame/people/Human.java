@@ -207,15 +207,15 @@ public class Human extends Character {
                                 it=(Item)fieldObj.getObjectAt(loc);
                                 
                                 if(it.isEdible()){
-                                        fieldObj.place(this.edible, loc);
+                                        fieldObj.placeItem(this.edible, loc.getRow(),loc.getCol());
                                         this.edible=(Edible)it;
                                 }
                                 else if(it.isMiscellaneous()){
-                                        fieldObj.place(this.item, loc);
+                                        fieldObj.placeItem(this.item, loc.getRow(),loc.getCol());
                                         this.item=(Miscellaneous)it;
                                 }
                                 else if(it.isWeapon()){
-                                        fieldObj.place(this.weapon, loc);
+                                        fieldObj.placeItem(this.weapon, loc.getRow(),loc.getCol());
                                         this.weapon=(Weapon)it;
                                 }
                                 
