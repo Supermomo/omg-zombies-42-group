@@ -1,6 +1,6 @@
 package zombiegame.objects;
 
-public class Item {
+public abstract class Item {
     
     public Item()
     {
