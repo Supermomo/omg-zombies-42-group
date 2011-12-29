@@ -14,7 +14,7 @@ public class MinorPotion extends Edible{
          * create a minor potion object
          * @param use
          */
-        public MinorPotion(int use) {
+        public MinorPotion() {
                 super(MinorPotion.potionUses);            
         }
 
