@@ -1,6 +1,11 @@
 package zombiegame.objects;
 
-public abstract class Item {
+public class Item {
+    
+    public Item()
+    {
+        
+    }
 
         public boolean isWeapon() {
                 return false;
