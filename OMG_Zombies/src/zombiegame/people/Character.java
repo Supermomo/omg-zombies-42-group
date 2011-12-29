@@ -197,7 +197,7 @@ public abstract class Character {
                 }
         }
 
-        public void endOfTurn() {
+        public void endOfTurn(Field field) {
                 // do nothing
                 System.out.println("this is not suposse to be print, check endOfTurn if Character");
         }

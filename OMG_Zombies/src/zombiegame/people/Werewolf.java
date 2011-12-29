@@ -82,7 +82,7 @@ public class Werewolf extends EvilCharacter{
         /**
          * Method triggered on each character at the end of each turn.
          */
-        public void endOfTurn() {
+        public void endOfTurn(Field field) {
                
         }
 

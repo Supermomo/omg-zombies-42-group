@@ -85,7 +85,7 @@ public class Simulator {
                         {
                             c.action(field, fieldObject);
                             c.justPlayed();
-                            c.endOfTurn();
+                            c.endOfTurn(field);
                         }
                     }
                 }
