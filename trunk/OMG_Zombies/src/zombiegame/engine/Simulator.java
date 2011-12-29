@@ -24,6 +24,7 @@ public class Simulator {
 
         // List of characters currently in the game
         private Field field;
+        private Field fieldObject;
 
 
         /**
@@ -33,6 +34,7 @@ public class Simulator {
                 // Create characters
 
                 field = new Field(5,5);
+                fieldObject=new Field(5,5);
 
                 Character h1 = new Human("Human 1", HP_HUMANS);
                 Character h2 = new Human("Human 2", HP_HUMANS);
@@ -81,7 +83,7 @@ public class Simulator {
                         
                         if(c != null && c.canPlay())
                         {
-                            c.action(field);
+                            c.action(field, fieldObject);
                             c.justPlayed();
                             c.endOfTurn();
                         }
