@@ -165,9 +165,10 @@ public abstract class Character {
         /**
          * Method triggered when the new turn start.
          * Clear the encounter character if dead, turn it into zombie if human
+         * After the action, if human, pick up the object on the ground(if there is any)
          * 
          */
-        public void action(Field field) {
+        public void action(Field field, Field fieldObj) {
                 Location loc = field.randomAdjacentLocation(location);
                 this.say("I'm now acting");
 
@@ -190,6 +191,9 @@ public abstract class Character {
                         } catch (Exception e) {
                                 e.printStackTrace();
                         }
+                }
+                if(this.isHuman()){
+                        ((Human)this).pickUpObject(fieldObj,loc);
                 }
         }
 

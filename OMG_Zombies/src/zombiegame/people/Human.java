@@ -2,6 +2,7 @@ package zombiegame.people;
 
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
+import zombiegame.objects.Item;
 import zombiegame.objects.edible.Edible;
 import zombiegame.objects.micellaneous.Miscellaneous;
 import zombiegame.objects.weapons.Weapon;
@@ -92,7 +93,8 @@ public class Human extends Character {
         public void encounterCharacter(Character c,Field field) {
                 
                 if(isArmed()){
-                        
+                        weapon.Use(c);
+                        this.say("humm...may be i shoulden't have done that...");
                 }
                 else {
                         this.say("Go away " + c.getName()
@@ -166,8 +168,34 @@ public class Human extends Character {
         
         /** 
          * pick up an object
+         * Replace the current object by the new one
+         * associate the objects if possible
          */
-        public void pickUpObject(Location loc){
+        public void pickUpObject(Field fieldObj , Location loc){
                 
+                if(fieldObj.getObjectAt(loc)!=null){
+                        Item it=null;
+                        try {
+                                it=(Item)fieldObj.getObjectAt(loc);
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                                System.out.println("Fail to pick up the object");
+                        }
+                        if(it.isEdible()){
+                                this.edible=(Edible)it;
+                        }
+                        else if(it.isMiscellaneous()){
+                                this.item=(Miscellaneous)it;
+                        }
+                        else if(it.isWeapon()){
+                                this.weapon=(Weapon)it;
+                        }
+                        if(weapon!=null && item!=null){
+                                if(item.isUsableWith(weapon)){
+                                        weapon.useWith(item);
+                                }
+                        }
+                        
+                }
         }
 }
