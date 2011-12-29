@@ -49,5 +49,21 @@ public abstract class Edible extends Item implements Usable {
         public boolean isEdible(){
                 return true;
         }
+        
+        public boolean isCureVamp(){
+                return false;
+        }
+        
+        public boolean isCureZomb(){
+                return false;
+        }
+        
+        public boolean isCureLycan(){
+                return false;
+        }
+        
+        public boolean isIncreasingHp(){
+                return false;
+        }
 
 }

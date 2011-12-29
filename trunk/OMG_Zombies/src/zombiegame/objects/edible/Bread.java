@@ -38,4 +38,8 @@ public class Bread extends Edible {
                 }
 
         }
+        
+        public boolean isIncreasingHp(){
+                return true;
+        }
 }

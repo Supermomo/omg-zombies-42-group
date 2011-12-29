@@ -35,6 +35,11 @@ public class CureZombie extends Edible{
                 super.Use(character);
         }
         
+        
+        public boolean isCureZomb(){
+                return true;
+        }
+        
                 
 
 }
