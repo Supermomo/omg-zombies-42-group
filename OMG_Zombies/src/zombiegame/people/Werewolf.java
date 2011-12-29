@@ -18,9 +18,9 @@ public class Werewolf extends EvilCharacter{
          * @param name
          * @param healthPoints
          */
-        public Werewolf(String name, int healthPoints,Field field) 
+        public Werewolf(String name, int healthPoints) 
         {
-                super(name, healthPoints,field);
+                super(name, healthPoints);
         }
 
         /**
@@ -32,11 +32,11 @@ public class Werewolf extends EvilCharacter{
                 return true;
         }
         
-        public void encounterCharacter(Character c) 
+        public void encounterCharacter(Character c,Field field) 
         {
             if(c.isWerewolf())
             {
-                WerewolfCrew meute = new WerewolfCrew(this.name,150,2,super.field);
+                WerewolfCrew meute = new WerewolfCrew(this.name,150,2);
                 meute.setLocation(c.location);
                 field.clear(c.location);
                 field.clear(this.location);

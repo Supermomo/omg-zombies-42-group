@@ -20,8 +20,8 @@ public abstract class EvilCharacter extends Character {
          * @param healthPoints
          * @param field 
          */
-        public EvilCharacter(String name, int healthPoints, Field field) {
-                super(name, healthPoints,field);
+        public EvilCharacter(String name, int healthPoints) {
+                super(name, healthPoints);
         }
 
         /**
@@ -31,7 +31,7 @@ public abstract class EvilCharacter extends Character {
          * @return the Human that have been created
          */
         public Human turnBackIntoHumain() {
-                return new Human(name, healthPoints,super.field);
+                return new Human(name, healthPoints);
         }
 
         /**

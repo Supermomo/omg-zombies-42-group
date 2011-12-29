@@ -19,8 +19,8 @@ public class Zombie extends EvilCharacter {
          *                initial HP
          * @param field 
          */
-        public Zombie(String name, int healthPoints, Field field) {
-                super(name, healthPoints, field);
+        public Zombie(String name, int healthPoints) {
+                super(name, healthPoints);
         }
 
         /**
@@ -36,7 +36,7 @@ public class Zombie extends EvilCharacter {
         /**
          * the encounter between this character and c attack c
          */
-        public void encounterCharacter(Character c) {
+        public void encounterCharacter(Character c,Field fielf) {
                 attack(c);
         }
 
