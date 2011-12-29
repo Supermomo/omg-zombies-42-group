@@ -22,8 +22,6 @@ public abstract class Character {
 
         protected Location location;
 
-        protected Field field;
-
         protected boolean asPlayed;
 
         /**
@@ -34,10 +32,9 @@ public abstract class Character {
          * @param healthPoints
          *                initial HP
          */
-        public Character(String name, int healthPoints, Field field) {
+        public Character(String name, int healthPoints) {
                 this.name = name;
                 this.healthPoints = healthPoints;
-                this.field = field;
         }
 
         // Accessors
@@ -160,16 +157,17 @@ public abstract class Character {
          * @param c
          *                the other character that this character meets
          */
-        public void encounterCharacter(Character c) {
+        public void encounterCharacter(Character c, Field field) {
                 // Default action: do nothing
                 System.out.println(name + " meets " + c.name + " and does not attack!");
         }
 
         /**
          * Method triggered when the new turn start.
+         * Clear the encounter character if dead, turn it into zombie if human
          * 
          */
-        public void action() {
+        public void action(Field field) {
                 Location loc = field.randomAdjacentLocation(location);
                 this.say("I'm now acting");
 
@@ -180,7 +178,7 @@ public abstract class Character {
                 } else {
                         try {
                                 Character c=(Character) field.getObjectAt(loc);
-                                encounterCharacter(c);
+                                encounterCharacter(c,field);
                                 if (c.getHealthPoints() == 0) {
                                         field.clear(loc);
                                         if(c.isHuman()){

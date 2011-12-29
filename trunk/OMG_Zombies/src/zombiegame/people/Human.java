@@ -1,6 +1,7 @@
 package zombiegame.people;
 
 import zombiegame.engine.Field;
+import zombiegame.engine.Location;
 import zombiegame.objects.edible.Edible;
 import zombiegame.objects.micellaneous.Miscellaneous;
 import zombiegame.objects.weapons.Weapon;
@@ -34,8 +35,8 @@ public class Human extends Character {
          *                initial HP
          * @param field 
          */
-        public Human(String name, int healthPoints, Field field) {
-                super(name, healthPoints,field);
+        public Human(String name, int healthPoints) {
+                super(name, healthPoints);
                 hasBeenBittenByVamp = false;
                 setHasBeenBittenByLycan(false);
                 turnsSinceLastMeal = 0;
@@ -56,7 +57,7 @@ public class Human extends Character {
         /**
          * Method triggered on each character at the end of each turn.
          */
-        public void endOfTurn() {
+        public void endOfTurn(Field field) {
                 // Increment the number of turns since the last time the human
                 // ate
                 turnsSinceLastMeal++;
@@ -88,7 +89,7 @@ public class Human extends Character {
         /**
          * the encounter between this character and c
          */
-        public void encounterCharacter(Character c) {
+        public void encounterCharacter(Character c,Field field) {
                 
                 if(isArmed()){
                         
@@ -126,19 +127,19 @@ public class Human extends Character {
          *         as this human; the new vampire is immediately thirsty
          */
         public Vampire turnIntoVampire() {
-                Vampire v = new Vampire("(Vamp)"+super.name, super.healthPoints,super.field);
+                Vampire v = new Vampire("(Vamp)"+super.name, super.healthPoints);
                 return v;
         }
         
         public Werewolf turnIntoWerewolf()
         {
-            Werewolf w = new Werewolf("(Wolf)"+super.name, super.healthPoints,super.field);
+            Werewolf w = new Werewolf("(Wolf)"+super.name, super.healthPoints);
             return w;
         }
         
         public Zombie turnIntoZombie()
         {
-            Zombie z = new Zombie("(Zomb)"+super.name, super.healthPoints,super.field);
+            Zombie z = new Zombie("(Zomb)"+super.name, super.healthPoints);
             return z;
         }
         
@@ -166,7 +167,7 @@ public class Human extends Character {
         /** 
          * pick up an object
          */
-        public void pickUpObject(){
+        public void pickUpObject(Location loc){
                 
         }
 }

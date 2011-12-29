@@ -20,8 +20,8 @@ public class Vampire extends EvilCharacter {
          * @param healthPoints
          * @param field 
          */
-        public Vampire(String name, int healthPoints, Field field) {
-                super(name, healthPoints,field);
+        public Vampire(String name, int healthPoints) {
+                super(name, healthPoints);
                 this.isThirsty = false;
         }
 
@@ -45,7 +45,7 @@ public class Vampire extends EvilCharacter {
         /**
          * the encounter between this character and c attack c
          */
-        public void encounterCharacter(Character c) 
+        public void encounterCharacter(Character c, Field field) 
         {
             if(c.isVampire())
             {

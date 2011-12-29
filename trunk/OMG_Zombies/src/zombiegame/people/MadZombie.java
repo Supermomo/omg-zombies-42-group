@@ -18,8 +18,8 @@ public class MadZombie extends Zombie {
          * @param healthPoints
          * @param field 
          */
-        public MadZombie(String name, int healthPoints, Field field) {
-                super(name, healthPoints, field);
+        public MadZombie(String name, int healthPoints) {
+                super(name, healthPoints);
         }
 
         /**

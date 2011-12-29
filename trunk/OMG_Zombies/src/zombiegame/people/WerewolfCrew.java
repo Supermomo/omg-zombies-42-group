@@ -7,9 +7,9 @@ public class WerewolfCrew extends Werewolf
 
 	private int CrewMembers;
 	
-	public WerewolfCrew(String name, int healthPoints,int members,Field field) 
+	public WerewolfCrew(String name, int healthPoints,int members) 
 	{
-		super(name, healthPoints,field);
+		super(name, healthPoints);
 		this.CrewMembers = members;
 	}
 	
@@ -34,7 +34,7 @@ public class WerewolfCrew extends Werewolf
 	    return CrewMembers;
 	}
 	
-	public void encounterCharacter(Character c) 
+	public void encounterCharacter(Character c, Field field) 
     {
         if(c.isWerewolf())
         {
