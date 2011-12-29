@@ -69,8 +69,8 @@ public class Field {
          * @param col
          *                Column coordinate of the location.
          */
-        public void place(Object animal, int row, int col) {
-                place(animal, new Location(row, col));
+        public void placeItem(Object animal, int row, int col) {
+                field[row][col] = animal;
         }
 
         /**
