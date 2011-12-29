@@ -34,14 +34,14 @@ public class Simulator {
 
                 field = new Field(5,5);
 
-                Character h1 = new Human("Human 1", HP_HUMANS,field);
-                Character h2 = new Human("Human 2", HP_HUMANS,field);
-                Character v1 = new Vampire("Vampire 1", HP_VAMPIRES,field);
-                Character v2 = new Vampire("Vampire 2", HP_VAMPIRES,field);
-                Character z1 = new Zombie("Zombie 1", HP_ZOMBIES,field);
-                MadZombie mz1 = new MadZombie("MadZombie 1", HP_ZOMBIES,field); // uncomment
-                Werewolf w1 = new Werewolf("Wolf 1",HP_WEREWOLF, field);
-                Werewolf w2 = new Werewolf("Wolf 2",HP_WEREWOLF, field);
+                Character h1 = new Human("Human 1", HP_HUMANS);
+                Character h2 = new Human("Human 2", HP_HUMANS);
+                Character v1 = new Vampire("Vampire 1", HP_VAMPIRES);
+                Character v2 = new Vampire("Vampire 2", HP_VAMPIRES);
+                Character z1 = new Zombie("Zombie 1", HP_ZOMBIES);
+                MadZombie mz1 = new MadZombie("MadZombie 1", HP_ZOMBIES); // uncomment
+                Werewolf w1 = new Werewolf("Wolf 1",HP_WEREWOLF);
+                Werewolf w2 = new Werewolf("Wolf 2",HP_WEREWOLF);
                 // in
                 // question
                 // 5b
@@ -81,7 +81,7 @@ public class Simulator {
                         
                         if(c != null && c.canPlay())
                         {
-                            c.action();
+                            c.action(field);
                             c.justPlayed();
                             c.endOfTurn();
                         }
