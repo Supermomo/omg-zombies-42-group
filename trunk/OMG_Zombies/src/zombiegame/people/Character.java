@@ -226,6 +226,9 @@ public abstract class Character {
                 {
                         System.out.println(this.name+" go from "+ location.getRow()+" "+location.getCol());
                 }
+                else {
+                        System.out.print("start at location ");
+                }
                 
                 this.location = newLocation;
                 System.out.println(" to : "+location.getRow()+" "+location.getCol());
