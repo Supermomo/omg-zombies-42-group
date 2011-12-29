@@ -99,7 +99,7 @@ public class Helico
     public void dropSoute()
     {
         Random r = new Random();
-        map.place(objetEnSoute,r.nextInt(map.getDepth()),r.nextInt(map.getWidth()));        
+        map.placeItem(objetEnSoute,r.nextInt(map.getDepth()),r.nextInt(map.getWidth()));        
     }
     
     
