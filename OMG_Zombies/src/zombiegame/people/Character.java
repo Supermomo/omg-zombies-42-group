@@ -174,6 +174,7 @@ public abstract class Character {
          */
         public void action() {
                 Location loc = field.randomAdjacentLocation(location);
+                this.say("I'm now acting");
 
                 if (field.getObjectAt(loc) == null) {
                         Location a = this.location;
