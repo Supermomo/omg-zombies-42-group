@@ -59,22 +59,22 @@ public class Field {
         }
 
         /**
-         * Place an character at the given location. If there is already an
-         * animal at the location it will be lost.
+         * Place an object at the given location. If there is already an
+         * object at the location it will be lost.
          * 
-         * @param animal
+         * @param object
          *                The animal to be placed.
          * @param row
          *                Row coordinate of the location.
          * @param col
          *                Column coordinate of the location.
          */
-        public void placeItem(Object animal, int row, int col) {
-                field[row][col] = animal;
+        public void placeItem(Object object, int row, int col) {
+                field[row][col] = object;
         }
 
         /**
-         * Place a character at a random location on the field.
+         * Place an object at a random location on the field.
          */
         public void placeRandomly(Object character) {
                 place(character, getFreeRandomLocation());
@@ -82,38 +82,38 @@ public class Field {
         }
 
         /**
-         * Place an animal at the given location. If there is already an animal
+         * Place an object at the given location. If there is already a character
          * at the location it will be lost.
          * 
-         * @param animal
+         * @param character
          *                The animal to be placed.
          * @param location
          *                Where to place the animal.
          */
-        public void place(Object animal, Location location) {
-                field[location.getRow()][location.getCol()] = animal;
-                ((Character)animal).setLocation(location);
+        public void place(Object character, Location location) {
+                field[location.getRow()][location.getCol()] = character;
+                ((Character)character).setLocation(location);
         }
 
         /**
-         * Return the animal at the given location, if any.
+         * Return the object at the given location, if any.
          * 
          * @param location
          *                Where in the field.
-         * @return The animal at the given location, or null if there is none.
+         * @return The object at the given location, or null if there is none.
          */
         public Object getObjectAt(Location location) {
                 return getObjectAt(location.getRow(), location.getCol());
         }
 
         /**
-         * Return the animal at the given location, if any.
+         * Return the object at the given location, if any.
          * 
          * @param row
          *                The desired row.
          * @param col
          *                The desired column.
-         * @return The animal at the given location, or null if there is none.
+         * @return The object at the given location, or null if there is none.
          */
         public Object getObjectAt(int row, int col) {
                 return field[row][col];
@@ -195,9 +195,7 @@ public class Field {
                                                 // the original location.
                                                 if (nextCol >= 0 && nextCol < width
                                                                 && (roffset != 0 || coffset != 0)) {
-                                                        locations
-                                                                        .add(new Location(nextRow,
-                                                                                        nextCol));
+                                                        locations.add(new Location(nextRow,nextCol));
                                                 }
                                         }
                                 }

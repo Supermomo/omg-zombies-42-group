@@ -229,7 +229,7 @@ public abstract class Character {
          */
         public void setLocation(Location newLocation) {
                 if (location != null) {
-                        System.out.println(this.name + " go from " + location.getRow() + " "
+                        System.out.print(this.name + " go from " + location.getRow() + " "
                                         + location.getCol());
                 } else {
                         System.out.print("start at location ");

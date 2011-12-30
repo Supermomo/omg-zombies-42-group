@@ -89,17 +89,12 @@ public class Human extends Character {
 
         /**
          * the encounter between this character and c
-         * Use weapon if he has one
+         * Greet the encountered character if he is human
+         * Use weapon if he has one and if the encoutered character is an ennemy
+         * Eat something if he need to
          */
         public void encounterCharacter(Character c,Field field) {
                 
-                if(isArmed()){
-                        weapon.Use(c);
-                        if(weapon.getAmmunition()<=0){
-                                weapon=null;
-                        }
-                        this.say("humm...may be i shoulden't have done that...");
-                }
                 if(edible!=null){
                         if(c.isVampire()&& edible.isCureVamp()){
                                 edible.Use(c);
@@ -123,6 +118,17 @@ public class Human extends Character {
                         if(this.item.getUses()<=0){
                                 item=null;
                         }
+                }
+                
+                if(isArmed() && !c.isHuman()){
+                        weapon.Use(c);
+                        if(weapon.getAmmunition()<=0){
+                                weapon=null;
+                        }
+                        this.say("humm...may be i shoulden't have done that...");
+                }
+                else if(c.isHuman()){
+                        this.say("Hi "+c.getName()+"...what's up ?");
                 }
                 else {
                         this.say("Go away " + c.getName()
