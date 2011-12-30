@@ -8,7 +8,7 @@ Mort Humain => Zombie X modif : seulement si zombie a tué humain
 Integration objest X
 Helicop X
 PB : deplacements en diagonale ? on laisse ou pas ?
-Ajout du systeme d'ajout de munition pour les objets trouvés
-Gestion du stun
+Ajout du systeme d'ajout de munition pour les objets trouvés...ca me fait galerer ca...je regrette mon systeme d'enum
+Gestion du stun X
 Changement des combats Werewolf VS Vamp ?(augentation des degat vamp sur werewolf ?
 Checker les TODO

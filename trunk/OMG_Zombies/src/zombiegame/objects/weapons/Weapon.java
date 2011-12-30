@@ -40,7 +40,7 @@ public abstract class Weapon extends Item implements Usable {
 
         /**
          * @param ammunition
-         *                the ammunition to set
+         *                the ammunition to add
          */
         public void findAmmo(int am) {
                 this.ammunition += am;
