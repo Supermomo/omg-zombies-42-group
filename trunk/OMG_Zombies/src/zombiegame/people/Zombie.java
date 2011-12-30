@@ -17,7 +17,7 @@ public class Zombie extends EvilCharacter {
          *                name of the character
          * @param healthPoints
          *                initial HP
-         * @param field 
+         * @param field
          */
         public Zombie(String name, int healthPoints) {
                 super(name, healthPoints);
@@ -36,7 +36,7 @@ public class Zombie extends EvilCharacter {
         /**
          * the encounter between this character and c attack c
          */
-        public void encounterCharacter(Character c,Field fielf) {
+        public void encounterCharacter(Character c, Field fielf) {
                 attack(c);
         }
 
@@ -71,9 +71,11 @@ public class Zombie extends EvilCharacter {
         }
 
         /**
-         * Method triggered on each character at the end of each turn.
+         * Method triggered on each character at the end of each turn. Unstun
+         * the zombie if stun
          */
         public void endOfTurn(Field field) {
+                super.setStun(false);
                 // Do nothing. Zombies are useless anyway...
         }
 }

@@ -16,21 +16,34 @@ import zombiegame.objects.weapons.LiquidNitrogen;
 import zombiegame.objects.weapons.Shotgun;
 import zombiegame.objects.weapons.WoodenStick;
 
+/**
+ * Class of the helicopter dropint the items on the map
+ * @author gaubert
+ *
+ */
 public class Helico 
 {
 
-    private Item objetEnSoute;
+    private Item itemInStorage;
     private Field map;
     
+    /**
+     * Constructor creating an helicopter object
+     * @param map
+     */
     public Helico(Field map)
     {
         this.map = map;
-        this.objetEnSoute = createSoute();
+        this.itemInStorage = initializeStorage();
     }
     
-    private Item createSoute() 
+    /**
+     * Initialize what is in the storage
+     * @return
+     */
+    private Item initializeStorage() 
     {
-        Item objet=null;
+        Item object=null;
         
         Random r = new Random();
         int rand = r.nextInt(3);
@@ -41,15 +54,15 @@ public class Helico
             switch (rand) 
             {
                 case 0:
-                    objet = new LiquidNitrogen();
+                    object = new LiquidNitrogen();
                 break;
 
                 case 1:
-                    objet = new Shotgun();
+                    object = new Shotgun();
                 break;
                 
                 case 2:
-                    objet = new WoodenStick();
+                    object = new WoodenStick();
                 break;
                 
                 default:
@@ -62,27 +75,27 @@ public class Helico
             switch (rand)
             {
                 case 0:
-                    objet = new Bread();
+                    object = new Bread();
                 break;
                 
                 case 1:
-                    objet = new CureLycan();
+                    object = new CureLycan();
                 break;
                     
                 case 2:
-                    objet = new CureVamp();
+                    object = new CureVamp();
                 break;
                     
                 case 3:
-                    objet = new CureZombie();
+                    object = new CureZombie();
                 break;
                     
                 case 4:
-                    objet = new MajorPotion();
+                    object = new MajorPotion();
                 break;
                     
                 case 5:
-                    objet = new MinorPotion();
+                    object = new MinorPotion();
                 break;
 
                 default:
@@ -90,16 +103,19 @@ public class Helico
             }
         }
         else {
-                objet=new SilverBullet();
+                object=new SilverBullet();
         }
         
-        return objet;
+        return object;
     }
     
-    public void dropSoute()
+    /**
+     * Drop the content of the storage on a random spot of the map
+     */
+    public void dropItem()
     {
         Random r = new Random();
-        map.placeItem(objetEnSoute,r.nextInt(map.getDepth()),r.nextInt(map.getWidth()));        
+        map.placeItem(itemInStorage,r.nextInt(map.getDepth()),r.nextInt(map.getWidth()));        
     }
     
     

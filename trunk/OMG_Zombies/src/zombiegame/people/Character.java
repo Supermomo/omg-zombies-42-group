@@ -20,9 +20,11 @@ public abstract class Character {
          */
         protected int healthPoints;
 
+        /** the location of the character */
         protected Location location;
 
-        protected boolean asPlayed;
+        /** bollean telling if the character has just played */
+        protected boolean hasPlayed;
 
         /**
          * Constructor of Character class.
@@ -47,15 +49,15 @@ public abstract class Character {
         }
 
         public boolean canPlay() {
-                return !asPlayed;
+                return !hasPlayed;
         }
 
         public void setPlay() {
-                asPlayed = false;
+                hasPlayed = false;
         }
 
         public void justPlayed() {
-                asPlayed = true;
+                hasPlayed = true;
         }
 
         /**
@@ -163,38 +165,70 @@ public abstract class Character {
         }
 
         /**
-         * Method triggered when the new turn start.
-         * Clear the encounter character if dead, turn it into zombie if human
-         * After the action, if human, pick up the object on the ground(if there is any)
+         * Method triggered when the new turn start. Perform the action of this
+         * character Clear the encounter character if dead, turn it into zombie
+         * if human After the action, if human, pick up the object on the
+         * ground(if there is any)
+         * 
+         * Do nothing if the character is stun
          * 
          */
         public void action(Field field, Field fieldObj) {
-                Location loc = field.randomAdjacentLocation(location);
-                this.say("I'm now acting");
 
-                if (field.getObjectAt(loc) == null) {
-                        Location a = this.location;
-                        field.place(this, loc);
-                        field.clear(a);
-                } else {
+                boolean stun = false;
+
+                if (this.isEvilCharacter()) {
+                        
                         try {
-                                Character c=(Character) field.getObjectAt(loc);
-                                encounterCharacter(c,field);
-                                if (c.getHealthPoints() == 0) {
-                                        field.clear(loc);
-                                        if(c.isHuman()){
-                                                field.place(((Human)c).turnIntoZombie(), loc);
-                                                System.out.println(c.getName()+" has been turend into a zombie");
-                                        }
-
+                                if (((EvilCharacter) this).isStun()) {
+                                        stun = true;
                                 }
                         } catch (Exception e) {
                                 e.printStackTrace();
+                                System.out.println("Cannot cast into evilCharacter during the action method");
                         }
                 }
-                if(this.isHuman()){
-                        ((Human)this).pickUpObject(fieldObj,loc);
+
+                if (!stun) {
+
+                        Location loc = field.randomAdjacentLocation(location);
+                        this.say("I'm now acting");
+
+                        if (field.getObjectAt(loc) == null) {
+                                Location a = this.location;
+                                field.place(this, loc);
+                                field.clear(a);
+                        } else {
+                                try {
+                                        Character c = (Character) field.getObjectAt(loc);
+                                        encounterCharacter(c, field);
+                                        if (c.getHealthPoints() == 0) {
+                                                field.clear(loc);
+                                                if (c.isHuman()) {
+                                                        field.place(((Human) c).turnIntoZombie(),
+                                                                        loc);
+                                                        System.out
+                                                                        .println(c.getName()
+                                                                                        + " has been turned into a zombie");
+                                                }
+
+                                        }
+                                } catch (Exception e) {
+                                        e.printStackTrace();
+                                }
+                        }
+                        if (this.isHuman()) {
+                                try {
+                                        ((Human) this).pickUpObject(fieldObj, loc);
+                                } catch (Exception e) {
+                                        e.printStackTrace();
+                                        System.out
+                                                        .println("Cannot cast into human in method action");
+                                }
+                        }
+
                 }
+
         }
 
         public void endOfTurn(Field field) {
@@ -228,6 +262,7 @@ public abstract class Character {
          *                The rabbit's new location.
          */
         public void setLocation(Location newLocation) {
+
                 if (location != null) {
                         System.out.print(this.name + " go from " + location.getRow() + " "
                                         + location.getCol());

@@ -1,6 +1,5 @@
 package zombiegame.people;
 
-import zombiegame.engine.Field;
 
 /**
  * The class of en EvilCharacter, derive from character<BR>

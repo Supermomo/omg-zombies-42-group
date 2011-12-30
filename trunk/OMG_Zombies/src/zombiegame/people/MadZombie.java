@@ -16,7 +16,6 @@ public class MadZombie extends Zombie {
          * 
          * @param name
          * @param healthPoints
-         * @param field 
          */
         public MadZombie(String name, int healthPoints) {
                 super(name, healthPoints);
