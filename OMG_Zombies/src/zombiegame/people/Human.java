@@ -14,13 +14,15 @@ import zombiegame.objects.weapons.Weapon;
  * 
  */
 public class Human extends Character {
-        private boolean hasBeenBittenByVamp; // false, until a vampire bites this
-        // human
         
+        /**false, until a vampire bites this human*/
+        private boolean hasBeenBittenByVamp; 
+        
+        /**false, until a werewolf bites this human*/
         private boolean hasBeenBittenByLycan;
         
-        private int turnsSinceLastMeal; // the human will lose health if he's
-        // too hungry
+        /**the human will lose health if he's too hungry*/
+        private int turnsSinceLastMeal; 
         
         private Weapon weapon;
         private Edible edible;
@@ -46,7 +48,6 @@ public class Human extends Character {
                 item=null;
         }
 
-        // Accessors and mutators
         public boolean getHasBeenBittenByVamp() {
                 return hasBeenBittenByVamp;
         }
@@ -57,6 +58,8 @@ public class Human extends Character {
 
         /**
          * Method triggered on each character at the end of each turn.
+         * increase the turns since last meal
+         * turn into werewolf or vampire if he has been bitten by one
          */
         public void endOfTurn(Field field) {
                 // Increment the number of turns since the last time the human
@@ -90,7 +93,7 @@ public class Human extends Character {
         /**
          * the encounter between this character and c
          * Greet the encountered character if he is human
-         * Use weapon if he has one and if the encoutered character is an ennemy
+         * Use weapon if he has one and if the encountered character is an enemy
          * Eat something if he need to
          */
         public void encounterCharacter(Character c,Field field) {
@@ -167,12 +170,22 @@ public class Human extends Character {
                 return v;
         }
         
+        /**
+         * Transform the human that has been bitten by a werewolf into one of them
+         * @return a new object of class Werewolf, with the same name and
+         *         healthpoints
+         */
         public Werewolf turnIntoWerewolf()
         {
             Werewolf w = new Werewolf("(Wolf)"+super.name, super.healthPoints);
             return w;
         }
         
+        /**
+         * Transform the human into a Zombie
+         * @return a new object of class Zombie, with the same name and
+         *         healthpoints
+         */
         public Zombie turnIntoZombie()
         {
             Zombie z = new Zombie("(Zomb)"+super.name, super.healthPoints);

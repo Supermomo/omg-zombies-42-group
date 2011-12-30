@@ -44,15 +44,13 @@ public class Vampire extends EvilCharacter {
 
         /**
          * the encounter between this character and c attack c
+         * if the encountered is a vampire, take a bite of his blood to become more powerful
          */
         public void encounterCharacter(Character c, Field field) 
         {
             if(c.isVampire())
             {
-                if(getHealthPoints() < 150)
-                {
-                    this.increaseHealthPoints(5);
-                }
+                this.increaseHealthPoints(5);
             }
             else
             {

@@ -4,22 +4,20 @@ import zombiegame.engine.Field;
 import zombiegame.engine.Simulator;
 
 /**
- * Class for a werewolf
- * derive from EvilCharacter
+ * Class for a werewolf extends from EvilCharacter
  * 
  * @author gaubert
- *
+ * 
  */
-public class Werewolf extends EvilCharacter{
+public class Werewolf extends EvilCharacter {
 
         /**
-         * Create a new werewolf
-         * just like a normal character
+         * Create a new werewolf just like a normal character
+         * 
          * @param name
          * @param healthPoints
          */
-        public Werewolf(String name, int healthPoints) 
-        {
+        public Werewolf(String name, int healthPoints) {
                 super(name, healthPoints);
         }
 
@@ -31,42 +29,38 @@ public class Werewolf extends EvilCharacter{
         public boolean isWerewolf() {
                 return true;
         }
-        
-        public void encounterCharacter(Character c,Field field) 
-        {
-            if(c.isWerewolf())
-            {
-                WerewolfCrew meute = new WerewolfCrew(this.name,150,2);
-                meute.setLocation(c.location);
-                field.clear(c.location);
-                field.clear(this.location);
-                field.place(meute,meute.location);
-                this.say("We are now 2 !");
-                if(c.isWerewolfCrew())
-                {
-                    if( ((WerewolfCrew)c).getCrewMembers() < 5)
-                    {
-                        ((WerewolfCrew)c).addMember();
+
+        /**
+         * Make the encounter with the character c Create a crew if he encounter
+         * a werewolf or attack any other race
+         */
+        public void encounterCharacter(Character c, Field field) {
+                if (c.isWerewolf()) {
+                        WerewolfCrew meute = new WerewolfCrew("(Crew)" + this.name, 150, 2);
+                        meute.setLocation(c.location);
+                        // TODO la ligne au dessus ne sert a rien il me
+                        // semble...
+                        field.clear(c.location);
                         field.clear(this.location);
-                    }
+                        field.place(meute, meute.location);
+                        this.say("We are now a crew !");
+                        if (c.isWerewolfCrew()) {
+                                if (((WerewolfCrew) c).getCrewMembers() < 5) {
+                                        ((WerewolfCrew) c).addMember();
+                                        field.clear(this.location);
+                                }
+                        }
+                } else {
+                        if (c.isHuman() && (c.getHealthPoints() <= 25)) {
+                                this.bite((Human) c);
+                        } else {
+                                attack(c);
+                                if (c.isHuman() && (c.getHealthPoints() <= 25)) {
+                                        this.bite((Human) c);
+                                }
+                        }
+
                 }
-            }
-            else
-            {
-                if(c.isHuman() && (c.getHealthPoints() <= 25))
-                {
-                    this.bite((Human)c);
-                }
-                else
-                {
-                    attack(c);
-                    if(c.isHuman() && (c.getHealthPoints() <= 25))
-                    {
-                        this.bite((Human)c);
-                    }
-                }
-                    
-            }
         }
 
         /**
@@ -83,7 +77,7 @@ public class Werewolf extends EvilCharacter{
          * Method triggered on each character at the end of each turn.
          */
         public void endOfTurn(Field field) {
-               
+
         }
 
         /**

@@ -91,7 +91,7 @@ public class Simulator {
                     }
                 }
                 Helico helic = new Helico(fieldObject);
-                helic.dropSoute();
+                helic.dropItem();
                 
                 System.out.println("\n FIN DU TOUR \n");
         }
