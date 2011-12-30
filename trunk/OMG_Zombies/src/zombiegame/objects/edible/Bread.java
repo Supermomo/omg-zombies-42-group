@@ -39,6 +39,9 @@ public class Bread extends Edible {
 
         }
         
+        /**
+         * return true if the item increase your Hp when eaten
+         */
         public boolean isIncreasingHp(){
                 return true;
         }

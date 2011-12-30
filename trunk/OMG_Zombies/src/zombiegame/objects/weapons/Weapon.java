@@ -11,13 +11,16 @@ import zombiegame.people.Character;
  * @author gaubert
  * 
  */
-
 public abstract class Weapon extends Item implements Usable {
 
         private int ammunition;
 
         private Miscellaneous usedWith = null;
 
+        /**
+         * Constructor for a weapon, will not be used directly
+         * @param ammo number of ammunition for this weapon
+         */
         public Weapon(int ammo) {
                 this.ammunition = ammo;
         }

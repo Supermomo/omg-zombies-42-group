@@ -2,13 +2,25 @@ package zombiegame.objects.weapons;
 
 import zombiegame.people.Character;
 
+/**
+ * Class for the wooden sticks objects
+ * @author gaubert
+ *
+ */
 public class WoodenStick extends Weapon{
         private static final int woodenStickAmmo=1;
         
+        /**
+         * Constructor for a wooden stick object
+         * is initialized with the default number of ammo
+         */
         public WoodenStick() {
                 super(WoodenStick.woodenStickAmmo);
         }
 
+        /**
+         * attack with the wooden stick
+         */
         public void Use(Character character) {
                 if (character.isVampire()) {
                         character.reduceHealthPoints(200);

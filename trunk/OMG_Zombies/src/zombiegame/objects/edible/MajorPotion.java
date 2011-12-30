@@ -26,6 +26,9 @@ public class MajorPotion extends Edible{
                 super.Use(character);
         }
         
+        /**
+         * return true if the item increase your Hp when eaten
+         */
         public boolean isIncreasingHp(){
                 return true;
         }
