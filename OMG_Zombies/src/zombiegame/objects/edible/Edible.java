@@ -46,6 +46,14 @@ public abstract class Edible extends Item implements Usable {
                 return this.numberOfUses;
         }
         
+        /**
+         * Add uses to this item
+         * @param uses
+         */
+        public void addUses(int uses){
+                this.numberOfUses+=uses;
+        }
+        
         public boolean isEdible(){
                 return true;
         }
