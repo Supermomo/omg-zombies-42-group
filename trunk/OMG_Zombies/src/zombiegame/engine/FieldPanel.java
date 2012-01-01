@@ -1,6 +1,8 @@
 package zombiegame.engine;
 
 import java.awt.Graphics;
+import zombiegame.people.*;
+import zombiegame.people.Character;
 
 import javax.swing.JPanel;
 
@@ -25,8 +27,23 @@ public class FieldPanel extends JPanel {
                 for (int i = 0; i < field.getDepth(); i++) {
                         for (int j = 0; j < field.getWidth(); j++) {
                                 if (field.getObjectAt(i, j) != null) {
-                                        g.setColor(java.awt.Color.blue);
-
+                                        Character o=(Character)field.getObjectAt(i,j);
+                                        if(o.isHuman()){
+                                                g.setColor(java.awt.Color.blue);
+                                        }
+                                        else if(o.isWerewolfCrew()){
+                                                g.setColor(java.awt.Color.red);
+                                        }
+                                        else if(o.isWerewolf()){
+                                                g.setColor(java.awt.Color.pink);
+                                        }
+                                        else if(o.isVampire()){
+                                                g.setColor(java.awt.Color.black);
+                                        }
+                                        else if(o.isZombie()){
+                                                g.setColor(java.awt.Color.magenta);
+                                        }
+                                        
                                 } else {
                                         g.setColor(java.awt.Color.gray);
                                 }
