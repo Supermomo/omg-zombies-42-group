@@ -31,7 +31,7 @@ public class FieldPanel extends JPanel {
                                 } else {
                                         g.setColor(java.awt.Color.gray);
                                 }
-                                g.fillRect((i + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                g.fillRect((j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
                                                 heightBox);
 
                         }
