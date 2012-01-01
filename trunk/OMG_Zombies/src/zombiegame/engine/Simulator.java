@@ -18,10 +18,10 @@ import zombiegame.people.Zombie;
  */
 public class Simulator {
         // Default health points for our creatures
-        private static final int HP_HUMANS = 100;
-        private static final int HP_VAMPIRES = 150;
-        private static final int HP_ZOMBIES = 30;
-        private static final int HP_WEREWOLF = 150;
+        public static final int HP_HUMANS = 100;
+        public static final int HP_VAMPIRES = 150;
+        public static final int HP_ZOMBIES = 30;
+        public static final int HP_WEREWOLF = 150;
 
         // List of characters currently in the game
         private Field field;
