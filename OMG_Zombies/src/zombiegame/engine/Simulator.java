@@ -34,11 +34,13 @@ public class Simulator {
         public void init() {
                 // Create characters
 
-                field = new Field(5,5);
-                fieldObject=new Field(5,5);
+                field = new Field(10,10);
+                fieldObject=new Field(10,10);
 
                 Character h1 = new Human("Human 1", HP_HUMANS);
                 Character h2 = new Human("Human 2", HP_HUMANS);
+                Character h3 = new Human("Human 3", HP_HUMANS);
+                Character h4 = new Human("Human 4", HP_HUMANS);
                 Character v1 = new Vampire("Vampire 1", HP_VAMPIRES);
                 Character v2 = new Vampire("Vampire 2", HP_VAMPIRES);
                 Character z1 = new Zombie("Zombie 1", HP_ZOMBIES);
@@ -52,6 +54,8 @@ public class Simulator {
 
                 field.placeRandomly(h1);
                 field.placeRandomly(h2);
+                field.placeRandomly(h3);
+                field.placeRandomly(h4);
                 field.placeRandomly(v1);
                 field.placeRandomly(v2);
                 field.placeRandomly(z1);
