@@ -178,7 +178,7 @@ public class Human extends Character {
             
             Collections.shuffle(noms,rand);
             List<Location> free = field.getFreeAdjacentLocations(this.location);
-            if(free != null)
+            if(free.size() != 0)
             {
                 field.place(new Human(noms.get(0).toString(),Simulator.HP_HUMANS), free.get(0));
             }
