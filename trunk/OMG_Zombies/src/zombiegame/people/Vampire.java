@@ -80,9 +80,9 @@ public class Vampire extends EvilCharacter {
          * Method triggered on each character at the end of each turn.
          */
         public void endOfTurn(Field field) {
-                // The vampire has 50% chance of becoming thirsty, if he is not
+                // The vampire has 1/6 chance of becoming thirsty, if he is not
                 // already
-                if (isThirsty || Simulator.GenerateRandomBoolean()) {
+                if (isThirsty || (Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean())) {
                         isThirsty = true;
                         say("I am thirsty now!!");
                 }
