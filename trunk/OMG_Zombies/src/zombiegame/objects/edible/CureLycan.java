@@ -11,6 +11,8 @@ import zombiegame.people.Human;
  */
 public class CureLycan extends Edible{
 
+        private static final String TYPE="CURE WEREWOLF POTION";
+        
         private static final int cureUses=1;
         
         /**
@@ -23,7 +25,7 @@ public class CureLycan extends Edible{
         }
         
         public void Use(Character character) {
-                if (character.isWerewolf()) {
+                if (character.isWerewolf() && ! character.isWerewolfCrew()) {
                         character = ((EvilCharacter) character).turnBackIntoHumain();
                 }
                 else if(character.isHuman()){
@@ -35,5 +37,14 @@ public class CureLycan extends Edible{
         
         public boolean isCureLycan(){
                 return true;
+        }
+        
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
         }
 }

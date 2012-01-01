@@ -11,6 +11,8 @@ import zombiegame.people.Human;
  */
 public class CureVamp extends Edible{
 
+        private static final String TYPE="CURE VAMPIRE POTION";
+        
         private static final int cureUse =1;
         
         /**
@@ -37,5 +39,13 @@ public class CureVamp extends Edible{
                 return true;
         }
         
-
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
+        }
+        
 }

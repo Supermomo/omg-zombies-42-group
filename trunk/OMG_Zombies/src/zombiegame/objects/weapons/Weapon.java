@@ -13,6 +13,8 @@ import zombiegame.people.Character;
  */
 public abstract class Weapon extends Item implements Usable {
 
+        private static final String TYPE="WEAPON";
+        
         private Miscellaneous usedWith = null;
 
         /**
@@ -60,4 +62,12 @@ public abstract class Weapon extends Item implements Usable {
                 return true;
         }
 
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
+        }
 }

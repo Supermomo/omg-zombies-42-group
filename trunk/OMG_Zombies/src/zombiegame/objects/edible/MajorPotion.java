@@ -9,6 +9,8 @@ import zombiegame.people.Character;
  */
 public class MajorPotion extends Edible{
 
+        private static final String TYPE="MAJOR POTION";
+        
         private static final int potionUses=1;
         
         /**
@@ -33,4 +35,13 @@ public class MajorPotion extends Edible{
                 return true;
         }
 
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
+        }
+        
 }

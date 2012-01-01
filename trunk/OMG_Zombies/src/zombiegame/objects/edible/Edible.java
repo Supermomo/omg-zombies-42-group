@@ -13,7 +13,7 @@ import zombiegame.people.Character;
  */
 public abstract class Edible extends Item implements Usable {
 
-
+        private static final String TYPE = "EDIBLE";
         
         /**
          * creator for an edible object
@@ -53,4 +53,12 @@ public abstract class Edible extends Item implements Usable {
                 return false;
         }
 
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
+        }
 }

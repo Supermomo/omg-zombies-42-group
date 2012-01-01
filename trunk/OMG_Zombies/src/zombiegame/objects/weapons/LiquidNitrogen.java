@@ -9,6 +9,8 @@ import zombiegame.people.Character;
  */
 public class LiquidNitrogen extends Weapon{
 
+        private static final String TYPE="LIQUID NITROGEN";
+        
         private static final int liquidNitrogenAmmo=1;
         
         /**
@@ -35,6 +37,15 @@ public class LiquidNitrogen extends Weapon{
        
         public boolean isLiquidNitrogen(){
                 return true;
+        }
+        
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
         }
         
 }

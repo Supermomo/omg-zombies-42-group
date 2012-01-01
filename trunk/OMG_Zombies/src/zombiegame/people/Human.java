@@ -217,6 +217,7 @@ public class Human extends Character {
          * pick up an object
          * Replace the current object by the new one
          * associate the objects if possible
+         * if the object find is already in the inventory, add the found one to the possessed one
          */
         public void pickUpObject(Field fieldObj , Location loc){
                 
@@ -225,7 +226,16 @@ public class Human extends Character {
                         try {
                                 it=(Item)fieldObj.getObjectAt(loc);
                                 
-                                if(it.isEdible()){
+                                if(it.getType().equals(this.edible.getType())){
+                                    this.edible.addUses(it.getUses());    
+                                }
+                                else if(it.getType().equals(this.item.getType())){
+                                        this.item.addUses(it.getUses());
+                                }
+                                else if(it.getType().equals(this.weapon.getType())){
+                                        this.weapon.addUses(it.getUses());
+                                }
+                                else if(it.isEdible()){
                                         fieldObj.placeItem(this.edible, loc.getRow(),loc.getCol());
                                         this.edible=(Edible)it;
                                 }
