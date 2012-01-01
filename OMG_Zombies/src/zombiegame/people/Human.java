@@ -1,7 +1,13 @@
 package zombiegame.people;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
+import zombiegame.engine.Simulator;
 import zombiegame.objects.Item;
 import zombiegame.objects.edible.Edible;
 import zombiegame.objects.micellaneous.Miscellaneous;
@@ -132,6 +138,7 @@ public class Human extends Character {
                 }
                 else if(c.isHuman()){
                         this.say("Hi "+c.getName()+"...what's up ?");
+                        baby(field);
                 }
                 else {
                         this.say("Go away " + c.getName()
@@ -154,6 +161,28 @@ public class Human extends Character {
          */
         public boolean isArmed(){
                 return weapon!=null;
+        }
+        
+        /**
+         * Create a baby
+         * 
+         */
+        public void baby(Field field)
+        {
+            Random rand = new Random();
+            List<Nom> noms = new LinkedList<Nom>();
+            for(int i =0;Nom.values().length > i;i++)
+            {
+                noms.add(Nom.values()[i]);
+            }
+            
+            Collections.shuffle(noms,rand);
+            List<Location> free = field.getFreeAdjacentLocations(this.location);
+            if(free != null)
+            {
+                field.place(new Human(noms.get(0).toString(),Simulator.HP_HUMANS), free.get(0));
+            }
+            
         }
 
         /**
