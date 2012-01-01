@@ -19,7 +19,6 @@ public class FieldPanel extends JPanel {
 
         public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEE");
                 int heightBox = this.getHeight() / (field.getDepth() + 2);
                 int widthBox = this.getWidth() / (field.getWidth() + 2);
 
