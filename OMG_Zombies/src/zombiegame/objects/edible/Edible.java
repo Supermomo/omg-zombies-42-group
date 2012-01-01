@@ -13,14 +13,14 @@ import zombiegame.people.Character;
  */
 public abstract class Edible extends Item implements Usable {
 
-        private int numberOfUses;
+
         
         /**
          * creator for an edible object
          * @param use
          */
         public Edible(int use){
-                this.numberOfUses=use;
+                super(use);
         }
         
         /**
@@ -28,31 +28,10 @@ public abstract class Edible extends Item implements Usable {
          */
         @Override
         public void Use(Character character) {
-               this.loseUses();
+               super.loseUses();
                 
         }
               
-        /**
-         * @param ammunition the remaining uses to set
-         */
-        private void loseUses() {
-                this.numberOfUses--;
-        }
-
-        /**
-         * @return the remaining uses
-         */
-        public int getUses() {
-                return this.numberOfUses;
-        }
-        
-        /**
-         * Add uses to this item
-         * @param uses
-         */
-        public void addUses(int uses){
-                this.numberOfUses+=uses;
-        }
         
         public boolean isEdible(){
                 return true;

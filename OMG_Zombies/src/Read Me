@@ -12,3 +12,7 @@ Ajout du systeme d'ajout de munition pour les objets trouvés...ca me fait galer
 Gestion du stun X
 Changement des combats Werewolf VS Vamp ?(augentation des degat vamp sur werewolf ?
 Checker les TODO
+
+
+Check si il manque des try/chatch et exception
+Faire les tests unitaires
