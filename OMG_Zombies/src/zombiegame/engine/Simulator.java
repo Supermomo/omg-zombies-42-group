@@ -74,6 +74,13 @@ public class Simulator {
                 {
                     for(int j=0; j<field.getWidth();j++)
                     {   
+                            ff.repaint();
+                            try {
+                                    Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                            }
                         try 
                         {
                             c = (Character)field.getObjectAt(i,j);
@@ -89,13 +96,7 @@ public class Simulator {
                             c.justPlayed();
                             c.endOfTurn(field);
                         }
-                        ff.repaint();
-                        try {
-                                Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                        }
+
                     }
                 }
                 Helico helic = new Helico(fieldObject);
