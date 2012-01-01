@@ -34,13 +34,17 @@ public class Simulator {
         public void init() {
                 // Create characters
 
-                field = new Field(10,10);
-                fieldObject=new Field(10,10);
+                field = new Field(25,25);
+                fieldObject=new Field(25,25);
 
                 Character h1 = new Human("Human 1", HP_HUMANS);
                 Character h2 = new Human("Human 2", HP_HUMANS);
                 Character h3 = new Human("Human 3", HP_HUMANS);
                 Character h4 = new Human("Human 4", HP_HUMANS);
+                Character h5 = new Human("Human 5", HP_HUMANS);
+                Character h6 = new Human("Human 6", HP_HUMANS);
+                Character h7 = new Human("Human 7", HP_HUMANS);
+                Character h8 = new Human("Human 8", HP_HUMANS);
                 Character v1 = new Vampire("Vampire 1", HP_VAMPIRES);
                 Character v2 = new Vampire("Vampire 2", HP_VAMPIRES);
                 Character z1 = new Zombie("Zombie 1", HP_ZOMBIES);
@@ -56,6 +60,10 @@ public class Simulator {
                 field.placeRandomly(h2);
                 field.placeRandomly(h3);
                 field.placeRandomly(h4);
+                field.placeRandomly(h5);
+                field.placeRandomly(h6);
+                field.placeRandomly(h7);
+                field.placeRandomly(h8);
                 field.placeRandomly(v1);
                 field.placeRandomly(v2);
                 field.placeRandomly(z1);
@@ -80,7 +88,7 @@ public class Simulator {
                     {   
                             ff.repaint();
                             try {
-                                    Thread.sleep(10);
+                                    Thread.sleep(5);
                             } catch (InterruptedException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
