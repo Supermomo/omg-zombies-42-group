@@ -11,6 +11,8 @@ import zombiegame.people.Human;
  */
 public class Bread extends Edible {
 
+        private static final String TYPE="BREAD";
+        
         private static final int breadUses = 4;
 
         /**
@@ -44,5 +46,14 @@ public class Bread extends Edible {
          */
         public boolean isIncreasingHp(){
                 return true;
+        }
+        
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
         }
 }

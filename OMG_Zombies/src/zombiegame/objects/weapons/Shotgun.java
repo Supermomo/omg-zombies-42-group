@@ -10,6 +10,9 @@ import zombiegame.people.EvilCharacter;
  */
 public class Shotgun extends Weapon {
         
+        
+        private static final String TYPE="SHOTGUN";
+        
         private static final int shotgunAmmo=8;
         
         /**
@@ -32,6 +35,15 @@ public class Shotgun extends Weapon {
                         character.reduceHealthPoints(1);
                 }
                 super.Use(character);
+        }
+        
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
         }
         
         public boolean isShotgun(){

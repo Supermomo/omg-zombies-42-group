@@ -10,6 +10,8 @@ import zombiegame.objects.weapons.Weapon;
  */
 public class SilverBullet extends Miscellaneous{
         
+        private static final String TYPE="SILVER BULLET";
+        
         static final int numberOfBullets=4;
         
         public SilverBullet(){
@@ -22,4 +24,13 @@ public class SilverBullet extends Miscellaneous{
         public boolean isUsableWith(Weapon item) {
                 return item.isShotgun();
         }  
+        
+        /**
+         * Get a string representing the type of the object
+         * @return
+         */
+        @Override
+        public String getType(){
+                return TYPE;
+        }
 }
