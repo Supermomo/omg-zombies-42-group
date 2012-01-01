@@ -80,7 +80,7 @@ public class Simulator {
                     {   
                             ff.repaint();
                             try {
-                                    Thread.sleep(50);
+                                    Thread.sleep(10);
                             } catch (InterruptedException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
