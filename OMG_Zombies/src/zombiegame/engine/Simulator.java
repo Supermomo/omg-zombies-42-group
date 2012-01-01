@@ -78,7 +78,6 @@ public class Simulator {
                         } 
                         catch (Exception e)
                         {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                         
@@ -113,7 +112,6 @@ public class Simulator {
                     } 
                     catch (Exception e)
                     {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                     

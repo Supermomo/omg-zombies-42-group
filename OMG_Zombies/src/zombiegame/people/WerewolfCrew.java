@@ -38,8 +38,6 @@ public class WerewolfCrew extends Werewolf {
          */
         protected void attack(Character c) {
                 super.attack(c);
-                // TODO modif ici : crewMembers-1 (car -15 deja fait dans le
-                // super)
                 c.reduceHealthPoints(15 * (CrewMembers - 1));
         }
 
