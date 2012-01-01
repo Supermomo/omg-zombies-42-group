@@ -18,7 +18,7 @@ public class FieldPanel extends JPanel {
         }
 
         public void paintComponent(Graphics g) {
-
+                System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEE");
                 int heightBox = this.getHeight() / (field.getDepth() + 2);
                 int widthBox = this.getWidth() / (field.getWidth() + 2);
 
@@ -27,9 +27,7 @@ public class FieldPanel extends JPanel {
                                 if (field.getObjectAt(i, j) != null) {
                                         g.setColor(java.awt.Color.blue);
 
-                                } 
-                                else
-                                {
+                                } else {
                                         g.setColor(java.awt.Color.gray);
                                 }
                                 g.fillRect((i + 1) * (widthBox), (i + 1) * heightBox, widthBox,
@@ -37,5 +35,7 @@ public class FieldPanel extends JPanel {
 
                         }
                 }
+
         }
+
 }
