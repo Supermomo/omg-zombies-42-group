@@ -12,10 +12,9 @@ import zombiegame.objects.weapons.Weapon;
  */
 public abstract class Miscellaneous extends Item implements Unusable {
 
-        private int numberOfUses;
         
         public Miscellaneous(int uses){
-                this.numberOfUses=uses;
+                super(uses);
         }
         
         /**
@@ -26,17 +25,7 @@ public abstract class Miscellaneous extends Item implements Unusable {
                 return false;
         }
 
-        public void loseUses(){
-                this.numberOfUses--;
-        }
-        
-        public int getUses(){
-                return this.numberOfUses;
-        }
-        
-        public void addUses(int uses){
-                this.numberOfUses+=uses;
-        }
+
         
         public boolean isMicellaneous(){
                 return true;

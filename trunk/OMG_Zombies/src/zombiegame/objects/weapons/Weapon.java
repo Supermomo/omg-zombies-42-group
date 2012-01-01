@@ -13,8 +13,6 @@ import zombiegame.people.Character;
  */
 public abstract class Weapon extends Item implements Usable {
 
-        private int ammunition;
-
         private Miscellaneous usedWith = null;
 
         /**
@@ -22,13 +20,13 @@ public abstract class Weapon extends Item implements Usable {
          * @param ammo number of ammunition for this weapon
          */
         public Weapon(int ammo) {
-                this.ammunition = ammo;
+                super(ammo);
         }
 
         @Override
         public void Use(Character character) {
                 if (usedWith == null) {
-                        this.loseAmmo();
+                        super.loseUses();
                 } else {
                         usedWith.loseUses();
                         if (usedWith.getUses() == 0) {
@@ -36,29 +34,6 @@ public abstract class Weapon extends Item implements Usable {
                         }
                 }
 
-        }
-
-        /**
-         * @param ammunition
-         *                the ammunition to add
-         */
-        public void findAmmo(int am) {
-                this.ammunition += am;
-        }
-
-        /**
-         * @param ammunition
-         *                the ammunition to set
-         */
-        private void loseAmmo() {
-                this.ammunition--;
-        }
-
-        /**
-         * @return the ammunition
-         */
-        public int getAmmunition() {
-                return ammunition;
         }
 
         /**

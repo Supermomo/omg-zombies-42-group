@@ -125,7 +125,7 @@ public class Human extends Character {
                 
                 if(isArmed() && !c.isHuman()){
                         weapon.Use(c);
-                        if(weapon.getAmmunition()<=0){
+                        if(weapon.getUses()<=0){
                                 weapon=null;
                         }
                         this.say("humm...may be i shoulden't have done that...");
