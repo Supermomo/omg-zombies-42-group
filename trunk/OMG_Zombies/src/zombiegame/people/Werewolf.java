@@ -37,12 +37,9 @@ public class Werewolf extends EvilCharacter {
         public void encounterCharacter(Character c, Field field) {
                 if (c.isWerewolf()) {
                         WerewolfCrew meute = new WerewolfCrew("(Crew)" + this.name, 150, 2);
-                        meute.setLocation(c.location);
-                        // TODO la ligne au dessus ne sert a rien il me
-                        // semble...
                         field.clear(c.location);
                         field.clear(this.location);
-                        field.place(meute, meute.location);
+                        field.place(meute, c.location);
                         this.say("We are now a crew !");
                         if (c.isWerewolfCrew()) {
                                 if (((WerewolfCrew) c).getCrewMembers() < 5) {
