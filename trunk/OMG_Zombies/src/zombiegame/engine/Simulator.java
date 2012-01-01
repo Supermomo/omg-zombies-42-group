@@ -26,7 +26,7 @@ public class Simulator {
         // List of characters currently in the game
         private Field field;
         private Field fieldObject;
-
+        private FieldFrame ff;
 
         /**
          * Initialize game.
@@ -59,6 +59,8 @@ public class Simulator {
                 field.placeRandomly(w1);
                 field.placeRandomly(w2);
                 // uncomment in question 5b
+                
+                ff=new FieldFrame(field);
         }
 
         /**
@@ -86,6 +88,7 @@ public class Simulator {
                             c.action(field, fieldObject);
                             c.justPlayed();
                             c.endOfTurn(field);
+                            ff.repaint();
                         }
                     }
                 }

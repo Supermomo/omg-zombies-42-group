@@ -16,6 +16,7 @@ public class FieldFrame extends JFrame{
                 FieldPanel fieldPan=new FieldPanel(field);
                 
                 this.add(fieldPan);
+                fieldPan.setVisible(true);
                 
                 this.setBackground(java.awt.Color.LIGHT_GRAY);
                 this.setLocation(200, 100);
