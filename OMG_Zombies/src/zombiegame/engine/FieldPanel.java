@@ -27,7 +27,9 @@ public class FieldPanel extends JPanel {
                                 if (field.getObjectAt(i, j) != null) {
                                         g.setColor(java.awt.Color.blue);
 
-                                } else {
+                                } 
+                                else
+                                {
                                         g.setColor(java.awt.Color.gray);
                                 }
                                 g.fillRect((i + 1) * (widthBox), (i + 1) * heightBox, widthBox,
@@ -35,7 +37,5 @@ public class FieldPanel extends JPanel {
 
                         }
                 }
-
-                super.paintComponent(g);
         }
 }
