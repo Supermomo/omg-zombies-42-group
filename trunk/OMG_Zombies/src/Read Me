@@ -3,14 +3,16 @@ Reproduction X
 transformation humain loup garou X
 test loup garou X
 test meute X
-Mort Humain => Zombie X modif : seulement si zombie a tué humain
+Mort Humain => Zombie X modif : seulement si zombie a tué humain =>> a laisser comme ca
 Integration objest X
 Helicop X
 Ajout du systeme d'ajout de munition pour les objets trouvés...ca me fait galerer ca...je regrette mon systeme d'enum X
 Gestion du stun X
-Checker les TODO
+Checker les TODO X
 Ajout de la possibilité de se soigner avec les potion de cure
-
+Interface de base X
+Interface plus stylée
+Interface Helico
 
 Check si il manque des try/chatch et exception
 Faire les tests unitaires
