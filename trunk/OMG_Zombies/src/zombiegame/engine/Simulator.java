@@ -88,8 +88,8 @@ public class Simulator {
                             c.action(field, fieldObject);
                             c.justPlayed();
                             c.endOfTurn(field);
-                            ff.repaint();
                         }
+                        ff.repaint();
                     }
                 }
                 Helico helic = new Helico(fieldObject);
