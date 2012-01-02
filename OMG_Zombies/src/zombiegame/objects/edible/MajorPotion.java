@@ -9,7 +9,7 @@ import zombiegame.people.Character;
  */
 public class MajorPotion extends Edible{
 
-        private static final String TYPE="MAJOR POTION";
+        private static final String TYPE = "MAJOR POTION";
         
         private static final int potionUses=1;
         

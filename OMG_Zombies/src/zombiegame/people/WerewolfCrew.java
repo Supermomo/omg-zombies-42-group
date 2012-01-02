@@ -65,7 +65,10 @@ public class WerewolfCrew extends Werewolf {
 
                 if (c.isWerewolf()) {
                         if (this.getCrewMembers() < 5) {
-                                ((WerewolfCrew) c).addMember();
+                                //TODO erreur appelée ici...pourquoi c'est a c qu'on ajoute un membre ?
+                                //c'est pas this le crew normalement ?
+                               // ((WerewolfCrew) c).addMember();
+                                this.addMember();
                                 field.clear(c.location);
                         }
                         if (c.isWerewolfCrew()) {

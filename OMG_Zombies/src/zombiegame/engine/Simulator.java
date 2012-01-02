@@ -1,11 +1,15 @@
 package zombiegame.engine;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import zombiegame.people.Character;
 import zombiegame.people.Helico;
 import zombiegame.people.Human;
 import zombiegame.people.MadZombie;
+import zombiegame.people.Nom;
 import zombiegame.people.Vampire;
 import zombiegame.people.Werewolf;
 import zombiegame.people.Zombie;
@@ -37,7 +41,7 @@ public class Simulator {
                 field = new Field(25,25);
                 fieldObject=new Field(25,25);
 
-                Character h1 = new Human("Human 1", HP_HUMANS);
+                /*Character h1 = new Human("Human 1", HP_HUMANS);
                 Character h2 = new Human("Human 2", HP_HUMANS);
                 Character h3 = new Human("Human 3", HP_HUMANS);
                 Character h4 = new Human("Human 4", HP_HUMANS);
@@ -50,13 +54,13 @@ public class Simulator {
                 Character z1 = new Zombie("Zombie 1", HP_ZOMBIES);
                 MadZombie mz1 = new MadZombie("MadZombie 1", HP_ZOMBIES); // uncomment
                 Werewolf w1 = new Werewolf("Wolf 1",HP_WEREWOLF);
-                Werewolf w2 = new Werewolf("Wolf 2",HP_WEREWOLF);
+                Werewolf w2 = new Werewolf("Wolf 2",HP_WEREWOLF);*/
                 // in
                 // question
                 // 5b
                 // Add characters to the list
 
-                field.placeRandomly(h1);
+               /* field.placeRandomly(h1);
                 field.placeRandomly(h2);
                 field.placeRandomly(h3);
                 field.placeRandomly(h4);
@@ -69,8 +73,10 @@ public class Simulator {
                 field.placeRandomly(z1);
                 field.placeRandomly(mz1);
                 field.placeRandomly(w1);
-                field.placeRandomly(w2);
+                field.placeRandomly(w2);*/
                 // uncomment in question 5b
+                
+                this.generatePeople(10, 30, 1, 10);
                 
                 ff=new FieldFrame(field);
         }
@@ -82,17 +88,18 @@ public class Simulator {
                 // All characters encounter the next character in the list
                 // (question 5)
                 Character c = null;
+                try {
+                        Thread.sleep(1100);
+                } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
                 for(int i=0; i <field.getDepth();i++ )
                 {
                     for(int j=0; j<field.getWidth();j++)
                     {   
                             ff.repaint();
-                            try {
-                                    Thread.sleep(5);
-                            } catch (InterruptedException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                            }
+
                         try 
                         {
                             c = (Character)field.getObjectAt(i,j);
@@ -176,5 +183,37 @@ public class Simulator {
         public static boolean GenerateRandomBoolean() {
                 Random random = new Random();
                 return random.nextBoolean();
+        }
+        
+        public void generatePeople(int nbVamp, int nbWerewolf, int nbZombie, int nbHuman){
+                
+                Random rand = new Random();
+                List<Nom> noms = new LinkedList<Nom>();
+                for(int i =0;Nom.values().length > i;i++)
+                {
+                    noms.add(Nom.values()[i]);
+                }
+                
+                for(int i=0;i<nbVamp;i++){
+                        Collections.shuffle(noms,rand);
+                        this.field.placeRandomly(new Vampire(noms.get(0).toString(),HP_VAMPIRES));
+                }
+                
+                for(int i=0;i<nbWerewolf;i++){
+                        Collections.shuffle(noms,rand);
+                        this.field.placeRandomly(new Werewolf(noms.get(0).toString(),HP_WEREWOLF));
+                }
+                
+                for(int i=0;i<nbZombie;i++){
+                        Collections.shuffle(noms,rand);
+                        this.field.placeRandomly(new Zombie(noms.get(0).toString(),HP_ZOMBIES));
+                }
+                
+                for(int i=0;i<nbHuman;i++){
+                        Collections.shuffle(noms,rand);
+                        this.field.placeRandomly(new Human(noms.get(0).toString(),HP_HUMANS));
+                }
+                
+                
         }
 }

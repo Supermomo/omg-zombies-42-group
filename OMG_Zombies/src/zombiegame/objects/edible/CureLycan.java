@@ -11,7 +11,7 @@ import zombiegame.people.Human;
  */
 public class CureLycan extends Edible{
 
-        private static final String TYPE="CURE WEREWOLF POTION";
+        private static final String TYPE = "CURE LYCAN";
         
         private static final int cureUses=1;
         

@@ -11,7 +11,7 @@ import zombiegame.people.Human;
  */
 public class Bread extends Edible {
 
-        private static final String TYPE="BREAD";
+        private static final String TYPE = "BREAD";
         
         private static final int breadUses = 4;
 

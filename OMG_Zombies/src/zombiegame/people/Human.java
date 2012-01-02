@@ -293,4 +293,13 @@ public class Human extends Character {
                         
                 }
         }
+        
+        
+        /**
+         * Get the weapon used by this human
+         * @return null if there is no weapon, a weapon object if there is
+         */
+        public Weapon getWeapon(){
+                return this.weapon;
+        }
 }
