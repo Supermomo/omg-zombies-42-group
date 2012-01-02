@@ -87,6 +87,9 @@ public class Simulator {
         public void nextTurn() {
                 // All characters encounter the next character in the list
                 // (question 5)
+                int heightBox = ff.getHeight() / (field.getDepth() + 2);
+                int widthBox = ff.getWidth() / (field.getWidth() + 2);
+                
                 Character c = null;
                 try {
                         Thread.sleep(1100);
@@ -119,7 +122,7 @@ public class Simulator {
                     }
                 }
                 Helico helic = new Helico(fieldObject);
-                helic.dropItem();
+                helic.dropItem(ff,widthBox,heightBox);
                 
                 System.out.println("\n FIN DU TOUR \n");
         }

@@ -42,6 +42,7 @@ public class FieldPanel extends JPanel {
                 imgWerewolf=tk.getImage(this.getClass().getResource("/img/Werewolf.png"));
                 imgWerewolfCrew=tk.getImage(this.getClass().getResource("/img/WerewolfCrew.png"));
                 imgVampire=tk.getImage(this.getClass().getResource("/img/Vamp.png"));
+
         }
 
         public void paintComponent(Graphics g) {
@@ -52,7 +53,9 @@ public class FieldPanel extends JPanel {
                 g.drawImage(imgMap, widthBox, heightBox, field.getWidth()*widthBox, field.getDepth()*heightBox, null);
                 
                 for (int i = 0; i < field.getDepth(); i++) {
+                        g.drawLine(widthBox,(i+1)*heightBox , (field.getWidth()+1)*widthBox, (i+1)*heightBox);
                         for (int j = 0; j < field.getWidth(); j++) {
+                                g.drawLine((j+1)*widthBox,heightBox , (j+1)*widthBox,field.getDepth()*widthBox);
                                 if (field.getObjectAt(i, j) != null) {
                                         Character o=(Character)field.getObjectAt(i,j);
                                         if(o.isHuman()){

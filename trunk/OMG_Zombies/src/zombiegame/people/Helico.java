@@ -1,7 +1,11 @@
 package zombiegame.people;
 
-
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Random;
+
+import javax.swing.JFrame;
 
 import zombiegame.engine.Field;
 import zombiegame.objects.Item;
@@ -18,106 +22,120 @@ import zombiegame.objects.weapons.WoodenStick;
 
 /**
  * Class of the helicopter dropint the items on the map
+ * 
  * @author gaubert
- *
+ * 
  */
-public class Helico 
-{
+public class Helico {
 
-    private Item itemInStorage;
-    private Field map;
-    
-    /**
-     * Constructor creating an helicopter object
-     * @param map
-     */
-    public Helico(Field map)
-    {
-        this.map = map;
-        this.itemInStorage = initializeStorage();
-    }
-    
-    /**
-     * Initialize what is in the storage
-     * @return
-     */
-    private Item initializeStorage() 
-    {
-        Item object=null;
-        
-        Random r = new Random();
-        int rand = r.nextInt(3);
-        
-        if(rand == 1)
-        {
-            rand = r.nextInt(3);
-            switch (rand) 
-            {
-                case 0:
-                    object = new LiquidNitrogen();
-                break;
+        private Item itemInStorage;
+        private Field map;
 
-                case 1:
-                    object = new Shotgun();
-                break;
-                
-                case 2:
-                    object = new WoodenStick();
-                break;
-                
-                default:
-                break;
-            }
+        /**
+         * Constructor creating an helicopter object
+         * 
+         * @param map
+         */
+        public Helico(Field map) {
+                this.map = map;
+                this.itemInStorage = initializeStorage();
         }
-        else if(rand==2)
-        {
-            rand = r.nextInt(6);
-            switch (rand)
-            {
-                case 0:
-                    object = new Bread();
-                break;
-                
-                case 1:
-                    object = new CureLycan();
-                break;
-                    
-                case 2:
-                    object = new CureVamp();
-                break;
-                    
-                case 3:
-                    object = new CureZombie();
-                break;
-                    
-                case 4:
-                    object = new MajorPotion();
-                break;
-                    
-                case 5:
-                    object = new MinorPotion();
-                break;
 
-                default:
-                break;
-            }
+        /**
+         * Initialize what is in the storage
+         * 
+         * @return
+         */
+        private Item initializeStorage() {
+                Item object = null;
+
+                Random r = new Random();
+                int rand = r.nextInt(3);
+
+                if (rand == 1) {
+                        rand = r.nextInt(3);
+                        switch (rand) {
+                        case 0:
+                                object = new LiquidNitrogen();
+                                break;
+
+                        case 1:
+                                object = new Shotgun();
+                                break;
+
+                        case 2:
+                                object = new WoodenStick();
+                                break;
+
+                        default:
+                                break;
+                        }
+                } else if (rand == 2) {
+                        rand = r.nextInt(6);
+                        switch (rand) {
+                        case 0:
+                                object = new Bread();
+                                break;
+
+                        case 1:
+                                object = new CureLycan();
+                                break;
+
+                        case 2:
+                                object = new CureVamp();
+                                break;
+
+                        case 3:
+                                object = new CureZombie();
+                                break;
+
+                        case 4:
+                                object = new MajorPotion();
+                                break;
+
+                        case 5:
+                                object = new MinorPotion();
+                                break;
+
+                        default:
+                                break;
+                        }
+                } else {
+                        object = new SilverBullet();
+                }
+
+                return object;
         }
-        else {
-                object=new SilverBullet();
+
+        /**
+         * Drop the content of the storage on a random spot of the map
+         */
+        public void dropItem(JFrame frame,int widthBox,int heightBox) {
+                
+                Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
+
+                Image imgHelico = tk.getImage(this.getClass().getResource("/img/helico.png"));
+                Random r = new Random();
+                int y=r.nextInt(map.getDepth());
+                int x=r.nextInt(map.getWidth());
+                map.placeItem(itemInStorage, y, x);
+                
+                System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+                System.out.println("x "+x+" y "+y);
+                
+                for(int j=0;j<=x;j++){
+                        frame.getGraphics().drawImage(imgHelico, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
+                        System.out.println("j "+j+" y "+y);
+                        try {
+                                Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                        }
+                        frame.repaint();
+                }
+                
+                
         }
-        
-        return object;
-    }
-    
-    /**
-     * Drop the content of the storage on a random spot of the map
-     */
-    public void dropItem()
-    {
-        Random r = new Random();
-        map.placeItem(itemInStorage,r.nextInt(map.getDepth()),r.nextInt(map.getWidth()));        
-    }
-    
-    
-    
+
 }
