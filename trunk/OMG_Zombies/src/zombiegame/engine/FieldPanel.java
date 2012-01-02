@@ -22,6 +22,7 @@ public class FieldPanel extends JPanel {
         private Image imgHumanStick;
         private Image imgZombie;
         private Image imgWerewolf;
+        private Image imgWerewolfCrew;
         private Image imgVampire;
         
         
@@ -35,10 +36,11 @@ public class FieldPanel extends JPanel {
                 imgMap=tk.getImage(this.getClass().getResource("/img/map_grass2.jpg"));
                 imgHuman=tk.getImage(this.getClass().getResource("/img/Human.png"));
                 imgHumanShotgun=tk.getImage(this.getClass().getResource("/img/HumanShotgun.png"));
-                imgHumanFlameThrower=tk.getImage(this.getClass().getResource("/img/HumanWoodenStick.png"));
-                imgHumanStick=tk.getImage(this.getClass().getResource("/img/HumanFlamThrower.png"));
+                imgHumanFlameThrower=tk.getImage(this.getClass().getResource("/img/HumanFlamThrower.png"));
+                imgHumanStick=tk.getImage(this.getClass().getResource("/img/HumanWoodenStick.png"));
                 imgZombie=tk.getImage(this.getClass().getResource("/img/Zombie.png"));
                 imgWerewolf=tk.getImage(this.getClass().getResource("/img/Werewolf.png"));
+                imgWerewolfCrew=tk.getImage(this.getClass().getResource("/img/WerewolfCrew.png"));
                 imgVampire=tk.getImage(this.getClass().getResource("/img/Vamp.png"));
         }
 
@@ -54,11 +56,27 @@ public class FieldPanel extends JPanel {
                                 if (field.getObjectAt(i, j) != null) {
                                         Character o=(Character)field.getObjectAt(i,j);
                                         if(o.isHuman()){
+                                                Human h=(Human)o;
+                                                if(h.isArmed()){
+                                                        if(h.getWeapon().isLiquidNitrogen()){
+                                                                g.drawImage(imgHumanFlameThrower, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                heightBox, null);
+                                                        }
+                                                        else if(h.getWeapon().isShotgun()){
+                                                                g.drawImage(imgHumanShotgun, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                heightBox, null);
+                                                        }
+                                                        else if(h.getWeapon().isWoodenStick()){
+                                                                g.drawImage(imgHumanStick, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                heightBox, null);
+                                                        }
+                                                        
+                                                }
                                                 g.drawImage(imgHuman, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
                                                 heightBox, null);
                                         }
                                         else if(o.isWerewolfCrew()){
-                                                g.drawImage(imgWerewolf, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                g.drawImage(imgWerewolfCrew, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
                                                                 heightBox, null);
                                         }
                                         else if(o.isWerewolf()){

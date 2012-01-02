@@ -1,5 +1,6 @@
 package zombiegame.objects.weapons;
 
+
 import zombiegame.people.Character;
 
 /**

@@ -10,8 +10,8 @@ import zombiegame.people.Human;
  *
  */
 public class CureVamp extends Edible{
-
-        private static final String TYPE="CURE VAMPIRE POTION";
+        private static final String TYPE = "CURE VAMP";
+        
         
         private static final int cureUse =1;
         
