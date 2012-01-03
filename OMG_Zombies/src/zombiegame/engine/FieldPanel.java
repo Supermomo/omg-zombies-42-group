@@ -53,9 +53,11 @@ public class FieldPanel extends JPanel {
                 g.drawImage(imgMap, widthBox, heightBox, field.getWidth()*widthBox, field.getDepth()*heightBox, null);
                 
                 for (int i = 0; i < field.getDepth(); i++) {
-                        g.drawLine(widthBox,(i+1)*heightBox , (field.getWidth()+1)*widthBox, (i+1)*heightBox);
+                        //dessin ligne
+                        g.drawLine(widthBox,(i+1)*heightBox, (field.getWidth()+1)*widthBox, (i+1)*heightBox);
                         for (int j = 0; j < field.getWidth(); j++) {
-                                g.drawLine((j+1)*widthBox,heightBox , (j+1)*widthBox,field.getDepth()*widthBox);
+                                //dessin colonne
+                                g.drawLine((j+1)*widthBox,heightBox, (j+1)*widthBox,(field.getDepth()+1)*heightBox);
                                 if (field.getObjectAt(i, j) != null) {
                                         Character o=(Character)field.getObjectAt(i,j);
                                         if(o.isHuman()){

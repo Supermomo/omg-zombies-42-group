@@ -18,8 +18,10 @@ Refaire l'égalité entre objets
 Check si il manque des try/chatch et exception
 Faire les tests unitaires
 
-Bug grille si aggrandissement
-Bug helico
+Bug grille si aggrandissement X
+Bug helico X
+
+Probleme Helico Rouge largage objet
 ===============================================
 
 deplacements en diagonale ? on laisse ou pas ?
