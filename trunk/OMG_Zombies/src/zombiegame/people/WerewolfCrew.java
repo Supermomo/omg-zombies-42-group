@@ -75,13 +75,12 @@ public class WerewolfCrew extends Werewolf {
                                 attack(c);
                         }
                 } else {
-                        if (c.isHuman() && (c.getHealthPoints() <= 25)) {
+                        if (c.isHuman()) {
                                 this.bite((Human) c);
-                        } else {
-                                attack(c);
-                                if (c.isHuman() && (c.getHealthPoints() <= 25)) {
-                                        this.bite((Human) c);
-                                }
+                        }
+                        else 
+                        {
+                            attack(c);
                         }
 
                 }
