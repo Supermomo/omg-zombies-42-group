@@ -123,7 +123,7 @@ public class Helico {
                 System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
                 System.out.println("x "+x+" y "+y);
                 
-                for(int j=0;j<=x;j++){
+                for(int j=0;j<=map.getWidth();j++){
                         frame.getGraphics().drawImage(imgHelico, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
                         System.out.println("j "+j+" y "+y);
                         try {
