@@ -91,18 +91,19 @@ public class Simulator {
                 int widthBox = ff.getWidth() / (field.getWidth() + 2);
                 
                 Character c = null;
-                try {
-                        Thread.sleep(1100);
-                } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
+               
                 for(int i=0; i <field.getDepth();i++ )
                 {
                     for(int j=0; j<field.getWidth();j++)
                     {   
-                            ff.repaint();
-
+                        try {
+                            Thread.sleep(2);
+                        } catch (InterruptedException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        ff.repaint();
+                        
                         try 
                         {
                             c = (Character)field.getObjectAt(i,j);
@@ -117,6 +118,7 @@ public class Simulator {
                             c.action(field, fieldObject);
                             c.justPlayed();
                             c.endOfTurn(field);
+                            ff.repaint();
                         }
 
                     }
