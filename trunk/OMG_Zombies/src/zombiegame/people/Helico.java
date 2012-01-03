@@ -129,12 +129,12 @@ public class Helico {
                 for(int j=0;j<map.getWidth();j++){
                         frame.getPanel().getGraphics().drawImage(imgHelico, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
                         if(j==x){
+                                frame.getPanel().getGraphics().drawImage(imgHelicoRed, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
                                 try {
-                                        frame.getPanel().getGraphics().drawImage(imgHelicoRed, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
                                         Thread.sleep(1000);
                                 } catch (InterruptedException e) {
                                         e.printStackTrace();
-                                } 
+                                }
                         }
                         try {                            
                                 Thread.sleep(10);
