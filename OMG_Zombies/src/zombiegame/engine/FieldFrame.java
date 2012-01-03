@@ -8,12 +8,14 @@ public class FieldFrame extends JFrame{
         
         private Field field;
         
+        private FieldPanel fieldPan;
+        
         public FieldFrame(Field fielde){
                 super("OMG Zombie");
                 this.field=fielde;
                 
                 
-                FieldPanel fieldPan=new FieldPanel(field);
+                fieldPan=new FieldPanel(field);
                 
                 this.add(fieldPan);
                 fieldPan.setVisible(true);
@@ -23,5 +25,9 @@ public class FieldFrame extends JFrame{
                 this.setSize(800,800);
                 this.setVisible(true);
                 
+        }
+        
+        public FieldPanel getPanel(){
+                return this.fieldPan;
         }
 }

@@ -49,7 +49,7 @@ public class FieldPanel extends JPanel {
                 super.paintComponent(g);
                 int heightBox = this.getHeight() / (field.getDepth() + 2);
                 int widthBox = this.getWidth() / (field.getWidth() + 2);
-                
+
                 g.drawImage(imgMap, widthBox, heightBox, field.getWidth()*widthBox, field.getDepth()*heightBox, null);
                 
                 for (int i = 0; i < field.getDepth(); i++) {

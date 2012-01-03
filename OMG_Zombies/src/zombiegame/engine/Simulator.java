@@ -87,8 +87,8 @@ public class Simulator {
         public void nextTurn() {
                 // All characters encounter the next character in the list
                 // (question 5)
-                int heightBox = ff.getHeight() / (field.getDepth() + 2);
-                int widthBox = ff.getWidth() / (field.getWidth() + 2);
+                //int heightBox = ff.getHeight() / (field.getDepth() + 2);
+                //int widthBox = ff.getWidth() / (field.getWidth() + 2);
                 
                 Character c = null;
                
@@ -96,12 +96,7 @@ public class Simulator {
                 {
                     for(int j=0; j<field.getWidth();j++)
                     {   
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+ 
                         ff.repaint();
                         
                         try 
@@ -123,8 +118,14 @@ public class Simulator {
 
                     }
                 }
+                try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 Helico helic = new Helico(fieldObject);
-                helic.dropItem(ff,widthBox,heightBox);
+                helic.dropItem(ff);
                 
                 System.out.println("\n FIN DU TOUR \n");
         }
