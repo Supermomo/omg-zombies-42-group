@@ -8,6 +8,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 import zombiegame.engine.Field;
+import zombiegame.engine.FieldFrame;
 import zombiegame.objects.Item;
 import zombiegame.objects.edible.Bread;
 import zombiegame.objects.edible.CureLycan;
@@ -110,26 +111,34 @@ public class Helico {
         /**
          * Drop the content of the storage on a random spot of the map
          */
-        public void dropItem(JFrame frame,int widthBox,int heightBox) {
+        public void dropItem(FieldFrame frame) {
                 
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
 
+                int heightBox = frame.getPanel().getHeight() / (map.getDepth() + 2);
+                int widthBox = frame.getPanel().getWidth() / (map.getWidth() + 2);
+                
                 Image imgHelico = tk.getImage(this.getClass().getResource("/img/helico.png"));
+                Image imgHelicoRed = tk.getImage(this.getClass().getResource("/img/helicoRed.png"));
                 Random r = new Random();
                 int y=r.nextInt(map.getDepth());
                 int x=r.nextInt(map.getWidth());
                 map.placeItem(itemInStorage, y, x);
+
                 
-                System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-                System.out.println("x "+x+" y "+y);
-                
-                for(int j=0;j<=map.getWidth();j++){
-                        frame.getGraphics().drawImage(imgHelico, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
-                        System.out.println("j "+j+" y "+y);
-                        try {
-                                Thread.sleep(100);
+                for(int j=0;j<map.getWidth();j++){
+                        frame.getPanel().getGraphics().drawImage(imgHelico, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
+                        if(j==x){
+                                try {
+                                        frame.getPanel().getGraphics().drawImage(imgHelicoRed, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
+                                        Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                } 
+                        }
+                        try {                            
+                                Thread.sleep(10);
                         } catch (InterruptedException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                         }
                         frame.repaint();
