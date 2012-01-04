@@ -9,7 +9,7 @@ Helicop X
 Ajout du systeme d'ajout de munition pour les objets trouvés...ca me fait galerer ca...je regrette mon systeme d'enum X
 Gestion du stun X
 Checker les TODO X
-Ajout de la possibilité de se soigner avec les potion de cure
+Ajout de la possibilité de se soigner avec les potion de cure?
 Interface de base X
 Interface plus stylée
 Interface Helico
@@ -20,6 +20,8 @@ Faire les tests unitaires
 
 Bug grille si aggrandissement X
 Bug helico X
+Affichage des objets sur la maps ?
+
 
 Probleme Helico Rouge largage objet
 ===============================================
