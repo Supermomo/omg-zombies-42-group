@@ -96,8 +96,12 @@ public class Simulator {
                 {
                     for(int j=0; j<field.getWidth();j++)
                     {   
- 
-                        ff.repaint();
+                        try {
+                            Thread.sleep(5);
+                        } catch (InterruptedException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
                         
                         try 
                         {
