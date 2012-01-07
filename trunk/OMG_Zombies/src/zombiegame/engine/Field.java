@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import javax.swing.JTextArea;
+
 import zombiegame.people.*;
 import zombiegame.people.Character;
 
@@ -22,6 +25,8 @@ public class Field {
         private int depth, width;
         // Storage for the animals.
         private Object[][] field;
+        
+        private JTextArea cons;
 
         /**
          * Represent a field of the given dimensions.
@@ -31,10 +36,11 @@ public class Field {
          * @param width
          *                The width of the field.
          */
-        public Field(int depth, int width) {
+        public Field(int depth, int width, JTextArea conso) {
                 this.depth = depth;
                 this.width = width;
                 field = new Object[depth][width];
+                cons=conso;
         }
 
         /**
@@ -92,7 +98,7 @@ public class Field {
          */
         public void place(Object character, Location location) {
                 field[location.getRow()][location.getCol()] = character;
-                ((Character)character).setLocation(location);
+                ((Character)character).setLocation(location,this.getConsolePanel());
         }
 
         /**
@@ -241,5 +247,82 @@ public class Field {
                         column = r.nextInt(this.width);
                 }
                 return new Location(row, column);
+        }
+        
+        
+        public int getNbWerewolf(){
+                int x=0;
+                Object c;
+                Location l;
+                for(int i=0;i<getDepth();i++){
+                        for(int j=0;j<getWidth();j++){
+                                l=new Location(i,j);
+                                c=getObjectAt(l);
+                                if(c!=null&& ((Character)c).isWerewolf()){
+                                        x++;
+                                }
+                        }
+                }
+                
+                return x;
+        }
+        
+        public int getNbHuman(){
+                int x=0;
+                Object c;
+                Location l;
+                for(int i=0;i<getDepth();i++){
+                        for(int j=0;j<getWidth();j++){
+                                l=new Location(i,j);
+                                c=getObjectAt(l);
+                                if(c!=null && ((Character)c).isHuman()){
+                                        x++;
+                                }
+                        }
+                }
+                
+                return x;
+        }
+        
+        public int getNbZombie(){
+                int x=0;
+                Object c;
+                Location l;
+                for(int i=0;i<getDepth();i++){
+                        for(int j=0;j<getWidth();j++){
+                                l=new Location(i,j);
+                                c=getObjectAt(l);
+                                if(c!=null && ((Character)c).isZombie()){
+                                        x++;
+                                }
+                        }
+                }
+                
+                return x;
+        }
+        
+        public int getNbVampire(){
+                int x=0;
+                Object c;
+                Location l;
+                for(int i=0;i<getDepth();i++){
+                        for(int j=0;j<getWidth();j++){
+                                l=new Location(i,j);
+                                c=getObjectAt(l);
+                                if(c!=null && ((Character)c).isVampire()){
+                                        x++;
+                                }
+                        }
+                }
+                
+                return x;
+        }
+        
+        /**
+         * 
+         * @return the panel where the console log are printed
+         */
+        public JTextArea getConsolePanel(){
+                return cons;
         }
 }

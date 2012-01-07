@@ -79,18 +79,18 @@ public class Human extends Character {
                 if(hasBeenBittenByVamp)
                 {
                     Vampire vamp = turnIntoVampire();
-                    vamp.setLocation(this.location);
+                    vamp.setLocation(this.location,field.getConsolePanel());
                     field.clear(this.location);
                     field.place(vamp,vamp.location);
-                    this.say("I'm a vampire now");
+                    this.say("I'm a vampire now",field.getConsolePanel());
                 }
                 else if(hasBeenBittenByLycan)
                 {
                         Werewolf w = turnIntoWerewolf();
-                        w.setLocation(this.location);
+                        w.setLocation(this.location,field.getConsolePanel());
                         field.clear(this.location);
                         field.place(w,w.location);
-                        this.say("I'm a vampire now");
+                        this.say("I'm a vampire now",field.getConsolePanel());
                  }
                 
                 
@@ -134,15 +134,19 @@ public class Human extends Character {
                         if(weapon.getUses()<=0){
                                 weapon=null;
                         }
-                        this.say("humm...may be i shoulden't have done that...");
+                        this.say("humm...may be i shoulden't have done that...",field.getConsolePanel());
                 }
                 else if(c.isHuman()){
-                        this.say("Hi "+c.getName()+"...what's up ?");
-                        baby(field);
+                        this.say("Hi "+c.getName()+"...what's up ?",field.getConsolePanel());
+                        Random r=new Random();
+                        if(r.nextInt(4)==4){
+                                baby(field);
+                        }            
                 }
                 else {
                         this.say("Go away " + c.getName()
-                                        + " before i start to...humm...beg you to leave me alive ???");
+                                        + " before i start to...humm...beg you to leave me alive ???"
+                                        ,field.getConsolePanel());
                 }
         }
 
@@ -283,7 +287,7 @@ public class Human extends Character {
                                         }
                                 }
                                 
-                                System.out.println(super.getName()+"  just picked up an object");
+                                say("I just picked up an object",fieldObj.getConsolePanel());
                                 
                         } catch (Exception e) {
                                 e.printStackTrace();

@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import javax.swing.JTextArea;
+
 import zombiegame.engine.Field;
 
 /**
@@ -33,9 +35,9 @@ public class MadZombie extends Zombie {
         /**
          * attack as a madZombie the character c
          */
-        protected void attack(Character c) {
+        protected void attack(Character c,JTextArea cons) {
                 int hp = c.getHealthPoints();
-                super.attack(c);
+                super.attack(c,cons);
                 if (hp != c.getHealthPoints()) {
                         c.reduceHealthPoints(20);
                 }

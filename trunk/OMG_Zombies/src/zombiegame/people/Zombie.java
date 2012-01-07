@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import javax.swing.JTextArea;
+
 import zombiegame.engine.Field;
 import zombiegame.engine.Simulator;
 
@@ -30,14 +32,14 @@ public class Zombie extends EvilCharacter {
          *                what the character says
          */
         public void say(String str) {
-                System.out.println(name + " says: BRAIIIIIINS!");
+                System.out.println(name + " says: BRAIIIIIINS! \r\n");
         }
 
         /**
          * the encounter between this character and c attack c
          */
-        public void encounterCharacter(Character c, Field fielf) {
-                attack(c);
+        public void encounterCharacter(Character c, Field field) {
+                attack(c,field.getConsolePanel());
         }
 
         /**
@@ -63,9 +65,9 @@ public class Zombie extends EvilCharacter {
          * 
          * @param c
          */
-        protected void attack(Character c) {
+        protected void attack(Character c, JTextArea cons) {
                 if (c.isHuman() || c.isVampire() && Simulator.GenerateRandomBoolean()) {
-                        super.attack(c);
+                        super.attack(c,cons);
                         c.reduceHealthPoints(5);
                 }
         }

@@ -2,6 +2,8 @@ package zombiegame.people;
 
 import java.util.List;
 
+import javax.swing.JTextArea;
+
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
@@ -43,20 +45,20 @@ public class Werewolf extends EvilCharacter {
                         field.clear(c.location);
                         field.clear(this.location);
                         field.place(meute, c.location);
-                        this.say("We are now a crew !");
+                        this.say("We are now a crew !",field.getConsolePanel());
                         if (c.isWerewolfCrew()) {
                                 if (((WerewolfCrew) c).getCrewMembers() < 5) {
-                                        ((WerewolfCrew) c).addMember();
+                                        ((WerewolfCrew) c).addMember(field.getConsolePanel());
                                         field.clear(this.location);
                                 }
                         }
                 } else {
                         if (c.isHuman() && (c.getHealthPoints() <= 25)) {
-                                this.bite((Human) c);
+                                this.bite((Human) c,field.getConsolePanel());
                         } else {
-                                attack(c);
+                                attack(c,field.getConsolePanel());
                                 if (c.isHuman() && (c.getHealthPoints() <= 25)) {
-                                        this.bite((Human) c);
+                                        this.bite((Human) c,field.getConsolePanel());
                                 }
                         }
 
@@ -68,8 +70,8 @@ public class Werewolf extends EvilCharacter {
          * 
          * @param c
          */
-        protected void attack(Character c) {
-                super.attack(c);
+        protected void attack(Character c,JTextArea cons) {
+                super.attack(c,cons);
                 c.reduceHealthPoints(15);
         }
 
@@ -86,10 +88,10 @@ public class Werewolf extends EvilCharacter {
          * @param h
          *                Human who gets bitten by this vampire
          */
-        public void bite(Human h) {
+        public void bite(Human h,JTextArea cons) {
                 // The human has no way to escape. He gets bitten.
                 h.setHasBeenBittenByLycan(true);
-                say("I have bitten you, " + h.getName() + "!");
+                say("I have bitten you, " + h.getName() + "!",cons);
         }
         
         /**
@@ -98,7 +100,7 @@ public class Werewolf extends EvilCharacter {
          * @return null if no best location have been found
          */
         public Location bestMove(Field field){
-                System.out.println("WE ARE WEREWOLF");
+
                 Location dest=null;
                 List<Location> loc=field.adjacentLocations(this.location);
                 Location vamp=null;
@@ -123,7 +125,7 @@ public class Werewolf extends EvilCharacter {
                 else if (human!=null){
                         dest=human;
                 }
-                else if(field.getFreeAdjacentLocations(location)!=null)
+                else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0)
                 {
                         dest=field.getFreeAdjacentLocations(location).get(0);
                 }
