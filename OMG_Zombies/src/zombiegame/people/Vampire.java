@@ -1,6 +1,9 @@
 package zombiegame.people;
 
+import java.util.List;
+
 import zombiegame.engine.Field;
+import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
 
 /**
@@ -100,5 +103,38 @@ public class Vampire extends EvilCharacter {
                 say("I have bitten you, " + h.getName() + "!");
                 // Vampire is not thirsty anymore
                 isThirsty = false;
+        }
+        
+        /**
+         * Do the best move for the character
+         * @param field
+         * @return null if no best location have been found
+         */
+        public Location bestMove(Field field){
+                Location dest=null;
+                List<Location> loc=field.adjacentLocations(this.location);
+                Location human=null;
+                Location vamp=null;
+                
+                for(Location l : loc){
+                        if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isHuman()){
+                                human=l;
+                        }
+                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isVampire()){
+                                vamp=l;
+                        }
+                }
+                if(human!=null){
+                        dest=human;;
+                }
+                else if(field.getFreeAdjacentLocations(location)!=null){
+                        dest=field.getFreeAdjacentLocations(location).get(0);
+                }
+                else if(vamp!=null){
+                        dest=vamp;
+                }
+
+                
+                return dest;
         }
 }
