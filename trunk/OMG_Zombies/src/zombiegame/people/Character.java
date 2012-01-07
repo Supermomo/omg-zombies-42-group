@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import java.util.List;
+
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 
@@ -190,8 +192,12 @@ public abstract class Character {
                 }
 
                 if (!stun) {
-
-                        Location loc = field.randomAdjacentLocation(location);
+                        
+                        Location loc=bestMove(field);
+                        if(loc==null){
+                                loc = field.randomAdjacentLocation(location);
+                        }
+                        
                         this.say("I'm now acting");
 
                         if (field.getObjectAt(loc) == null) {
@@ -207,8 +213,7 @@ public abstract class Character {
                                                 if (c.isHuman()) {
                                                         field.place(((Human) c).turnIntoZombie(),
                                                                         loc);
-                                                        System.out
-                                                                        .println(c.getName()
+                                                        System.out.println(c.getName()
                                                                                         + " has been turned into a zombie");
                                                 }
 
@@ -272,5 +277,30 @@ public abstract class Character {
 
                 this.location = newLocation;
                 System.out.println(" to : " + location.getRow() + " " + location.getCol());
+        }
+        
+        /**
+         * Do the best move for the character
+         * @param field
+         * @return null if no best location have been found
+         */
+        public Location bestMove(Field field){
+                Location dest=null;
+                List<Location> loc=field.adjacentLocations(this.location);
+                Location human=null;
+                
+                for(Location l : loc){
+                        if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isHuman()){
+                                human=l;
+                        }
+                }
+                if(human!=null){
+                        dest=human;;
+                }
+                else{
+                        dest=field.getFreeAdjacentLocations(location).get(0);
+                }
+                
+                return dest;
         }
 }

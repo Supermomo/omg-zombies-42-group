@@ -1,6 +1,9 @@
 package zombiegame.people;
 
+import java.util.List;
+
 import zombiegame.engine.Field;
+import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
 
 /**
@@ -87,5 +90,48 @@ public class Werewolf extends EvilCharacter {
                 // The human has no way to escape. He gets bitten.
                 h.setHasBeenBittenByLycan(true);
                 say("I have bitten you, " + h.getName() + "!");
+        }
+        
+        /**
+         * Do the best move for the character
+         * @param field
+         * @return null if no best location have been found
+         */
+        public Location bestMove(Field field){
+                System.out.println("WE ARE WEREWOLF");
+                Location dest=null;
+                List<Location> loc=field.adjacentLocations(this.location);
+                Location vamp=null;
+                Location human=null;
+                Location lycan=null;
+                
+                for(Location l : loc){
+                        if(field.getObjectAt(l)!= null && ((Character)field.getObjectAt(l)).isVampire()){
+                                vamp=l;
+                        }
+                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isHuman()){
+                                human=l;
+                        }
+                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isWerewolf()){
+                                lycan=l;
+                        }
+                }
+                
+                if(vamp!=null ){
+                    dest=vamp  ;  
+                }
+                else if (human!=null){
+                        dest=human;
+                }
+                else if(field.getFreeAdjacentLocations(location)!=null)
+                {
+                        dest=field.getFreeAdjacentLocations(location).get(0);
+                }
+                else if (lycan!=null){
+                        dest=lycan;
+                }
+
+                
+                return dest;
         }
 }
