@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import javax.swing.JTextArea;
+
 import zombiegame.engine.Field;
 
 /**
@@ -28,16 +30,16 @@ public class WerewolfCrew extends Werewolf {
         /**
          * Add a member to the crew
          */
-        public void addMember() {
-                super.say("We are " + getCrewMembers());
+        public void addMember(JTextArea cons) {
+                super.say("We are " + getCrewMembers(),cons);
                 this.CrewMembers++;
         }
 
         /**
          * The crew attack the character
          */
-        protected void attack(Character c) {
-                super.attack(c);
+        protected void attack(Character c,JTextArea cons) {
+                super.attack(c,cons);
                 c.reduceHealthPoints(15 * (CrewMembers - 1));
         }
 
@@ -68,19 +70,19 @@ public class WerewolfCrew extends Werewolf {
                                 //TODO erreur appelée ici...pourquoi c'est a c qu'on ajoute un membre ?
                                 //c'est pas this le crew normalement ?
                                // ((WerewolfCrew) c).addMember();
-                                this.addMember();
+                                this.addMember(field.getConsolePanel());
                                 field.clear(c.location);
                         }
                         if (c.isWerewolfCrew()) {
-                                attack(c);
+                                attack(c,field.getConsolePanel());
                         }
                 } else {
                         if (c.isHuman()) {
-                                this.bite((Human) c);
+                                this.bite((Human) c,field.getConsolePanel());
                         }
                         else 
                         {
-                            attack(c);
+                            attack(c,field.getConsolePanel());
                         }
 
                 }

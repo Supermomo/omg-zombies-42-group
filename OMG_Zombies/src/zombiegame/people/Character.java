@@ -2,6 +2,7 @@ package zombiegame.people;
 
 import java.util.List;
 
+import javax.swing.JTextArea;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 
@@ -149,8 +150,8 @@ public abstract class Character {
          * @param str
          *                what the character says
          */
-        public void say(String str) {
-                System.out.println(name + " says: " + str);
+        public void say(String str, JTextArea cons) {
+                cons.append(name + " says: " + str+"\r\n");
         }
 
         /**
@@ -198,7 +199,7 @@ public abstract class Character {
                                 loc = field.randomAdjacentLocation(location);
                         }
                         
-                        this.say("I'm now acting");
+                        this.say("I'm now acting", field.getConsolePanel());
 
                         if (field.getObjectAt(loc) == null) {
                                 Location a = this.location;
@@ -246,8 +247,8 @@ public abstract class Character {
          * 
          * @param c
          */
-        protected void attack(Character c) {
-                this.say(c.getName() + ", I'm gonna kill you!");
+        protected void attack(Character c, JTextArea cons) {
+                say(c.getName() + ", I'm gonna kill you!",cons);
 
         }
 
@@ -266,17 +267,17 @@ public abstract class Character {
          * @param newLocation
          *                The rabbit's new location.
          */
-        public void setLocation(Location newLocation) {
+        public void setLocation(Location newLocation, JTextArea cons) {
 
                 if (location != null) {
-                        System.out.print(this.name + " go from " + location.getRow() + " "
-                                        + location.getCol());
+                        say(" goes from " + location.getRow() + " "
+                                        + location.getCol(),cons);
                 } else {
-                        System.out.print("start at location ");
+                        say("start at location ",cons);
                 }
 
                 this.location = newLocation;
-                System.out.println(" to : " + location.getRow() + " " + location.getCol());
+                say(" to : " + location.getRow() + " " + location.getCol(),cons);
         }
         
         /**
@@ -297,7 +298,7 @@ public abstract class Character {
                 if(human!=null){
                         dest=human;;
                 }
-                else{
+                else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0){
                         dest=field.getFreeAdjacentLocations(location).get(0);
                 }
                 

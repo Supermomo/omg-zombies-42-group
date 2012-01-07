@@ -2,6 +2,8 @@ package zombiegame.people;
 
 import java.util.List;
 
+import javax.swing.JTextArea;
+
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
@@ -59,11 +61,11 @@ public class Vampire extends EvilCharacter {
             {
                 if(c.isHuman() && this.getIsThirsty())
                 {
-                    this.bite((Human)c);
+                    this.bite((Human)c,field.getConsolePanel());
                 }
                 else
                 {
-                    attack(c);
+                    attack(c,field.getConsolePanel());
                 }
                     
             }
@@ -74,8 +76,8 @@ public class Vampire extends EvilCharacter {
          * 
          * @param c
          */
-        protected void attack(Character c) {
-                super.attack(c);
+        protected void attack(Character c,JTextArea cons) {
+                super.attack(c,cons);
                 c.reduceHealthPoints(10);
         }
 
@@ -87,7 +89,7 @@ public class Vampire extends EvilCharacter {
                 // already
                 if (isThirsty || (Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean())) {
                         isThirsty = true;
-                        say("I am thirsty now!!");
+                        say("I am thirsty now!!",field.getConsolePanel());
                 }
         }
 
@@ -97,10 +99,10 @@ public class Vampire extends EvilCharacter {
          * @param h
          *                Human who gets bitten by this vampire
          */
-        public void bite(Human h) {
+        public void bite(Human h,JTextArea cons) {
                 // The human has no way to escape. He gets bitten.
                 h.setHasBeenBittenByVamp(true);
-                say("I have bitten you, " + h.getName() + "!");
+                say("I have bitten you, " + h.getName() + "!",cons);
                 // Vampire is not thirsty anymore
                 isThirsty = false;
         }
@@ -127,7 +129,7 @@ public class Vampire extends EvilCharacter {
                 if(human!=null){
                         dest=human;;
                 }
-                else if(field.getFreeAdjacentLocations(location)!=null){
+                else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0){
                         dest=field.getFreeAdjacentLocations(location).get(0);
                 }
                 else if(vamp!=null){
