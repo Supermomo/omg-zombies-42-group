@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import zombiegame.engine.Field;
 
-public class testZombie 
+public class TestZombie 
 {
     Zombie z;
     Field f;
