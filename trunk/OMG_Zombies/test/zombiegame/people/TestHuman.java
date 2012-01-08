@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
+import zombiegame.engine.Simulator;
 import zombiegame.objects.weapons.Shotgun;
 
 public class TestHuman 
@@ -93,7 +94,7 @@ public class TestHuman
         Zombie z = h1.turnIntoZombie();
         String s = "(Zomb)" + h1.getName();
         assertArrayEquals(z.getName().toCharArray(),s.toCharArray());
-        assertTrue(z.getHealthPoints() == h1.getHealthPoints());
+        assertTrue(z.getHealthPoints() == Simulator.HP_ZOMBIES);
     }
 
     @Test
