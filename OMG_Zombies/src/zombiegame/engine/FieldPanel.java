@@ -21,6 +21,7 @@ public class FieldPanel extends JPanel {
         private Image imgHumanFlameThrower;
         private Image imgHumanStick;
         private Image imgZombie;
+        private Image imgMadZombie;
         private Image imgWerewolf;
         private Image imgWerewolfCrew;
         private Image imgVampire;
@@ -40,6 +41,7 @@ public class FieldPanel extends JPanel {
                 imgHumanStick = tk.getImage(this.getClass()
                                 .getResource("/img/HumanWoodenStick.png"));
                 imgZombie = tk.getImage(this.getClass().getResource("/img/Zombie.png"));
+                imgMadZombie = tk.getImage(this.getClass().getResource("/img/MadZombie.png"));
                 imgWerewolf = tk.getImage(this.getClass().getResource("/img/Werewolf.png"));
                 imgWerewolfCrew = tk.getImage(this.getClass().getResource("/img/WerewolfCrew.png"));
                 imgVampire = tk.getImage(this.getClass().getResource("/img/Vamp.png"));
@@ -120,10 +122,18 @@ public class FieldPanel extends JPanel {
                                                                 (i + 1) * heightBox, widthBox,
                                                                 heightBox, null);
                                         } else if (o.isZombie()) {
-                                                g.drawImage(imgZombie, (j + 1) * (widthBox),
-                                                                (i + 1) * heightBox, widthBox,
-                                                                heightBox, null);
+                                                if(((Zombie)o).isMadZombie()){
+                                                        g.drawImage(imgMadZombie, (j + 1) * (widthBox),
+                                                                        (i + 1) * heightBox, widthBox,
+                                                                        heightBox, null);
+                                                }
+                                                else{
+                                                        g.drawImage(imgZombie, (j + 1) * (widthBox),
+                                                                        (i + 1) * heightBox, widthBox,
+                                                                        heightBox, null);  
+                                                }                                              
                                         }
+                                        
 
                                 } else {
                                         /*

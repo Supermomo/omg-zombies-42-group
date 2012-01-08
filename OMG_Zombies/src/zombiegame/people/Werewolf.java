@@ -130,4 +130,6 @@ public class Werewolf extends EvilCharacter {
                 
                 return dest;
         }
+        
+
 }
