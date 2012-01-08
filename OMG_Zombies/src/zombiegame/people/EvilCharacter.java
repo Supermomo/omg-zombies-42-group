@@ -1,5 +1,7 @@
 package zombiegame.people;
 
+import zombiegame.engine.Field;
+
 
 /**
  * The class of en EvilCharacter, derive from character<BR>
@@ -55,5 +57,9 @@ public abstract class EvilCharacter extends Character {
          */
         public boolean isEvilCharacter() {
                 return true;
+        }
+        
+        public void endOfTurn(Field field){
+                setStun(false);
         }
 }

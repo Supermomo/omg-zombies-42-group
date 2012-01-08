@@ -72,12 +72,4 @@ public class Zombie extends EvilCharacter {
                 }
         }
 
-        /**
-         * Method triggered on each character at the end of each turn. Unstun
-         * the zombie if stun
-         */
-        public void endOfTurn(Field field) {
-                super.setStun(false);
-                // Do nothing. Zombies are useless anyway...
-        }
 }

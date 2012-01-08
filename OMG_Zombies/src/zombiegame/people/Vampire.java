@@ -87,6 +87,7 @@ public class Vampire extends EvilCharacter {
         public void endOfTurn(Field field) {
                 // The vampire has 1/6 chance of becoming thirsty, if he is not
                 // already
+                super.endOfTurn(field);
                 if (isThirsty || (Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean())) {
                         isThirsty = true;
                         say("I am thirsty now!!",field.getConsolePanel());
