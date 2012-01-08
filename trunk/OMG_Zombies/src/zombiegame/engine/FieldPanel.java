@@ -32,7 +32,7 @@ public class FieldPanel extends JPanel {
 
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
 
-                imgMap = tk.getImage(this.getClass().getResource("/img/map_grass2.jpg"));
+                imgMap = tk.getImage(this.getClass().getResource("/img/map_grass.png"));
                 imgHuman = tk.getImage(this.getClass().getResource("/img/Human.png"));
                 imgHumanShotgun = tk.getImage(this.getClass().getResource("/img/HumanShotgun.png"));
                 imgHumanFlameThrower = tk.getImage(this.getClass().getResource(
