@@ -179,7 +179,7 @@ public abstract class Character {
 
         /**
          * Method triggered when the new turn start. Perform the action of this
-         * character Clear the encounter character if dead, turn it into zombie
+         * character Clear the encounter character if dead and human, turn it into zombie
          * if human After the action, if human, pick up the object on the
          * ground(if there is any)
          * 
@@ -223,9 +223,11 @@ public abstract class Character {
                                                 field.clear(loc);
                                                 if (c.isHuman()) {
                                                         field.place(((Human) c).turnIntoZombie(),
-                                                                        loc);
-                                                        System.out.println(c.getName()
-                                                                                        + " has been turned into a zombie");
+                                                                        loc);                                                     
+                                                }
+                                                else if(c.isZombie()) {
+                                                        field.place(((Zombie) c).turnIntoMadZombie(),
+                                                                        loc);   
                                                 }
 
                                         }

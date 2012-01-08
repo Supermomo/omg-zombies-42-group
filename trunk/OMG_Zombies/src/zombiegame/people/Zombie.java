@@ -71,5 +71,15 @@ public class Zombie extends EvilCharacter {
                         c.reduceHealthPoints(5);
                 }
         }
+        
+        public MadZombie turnIntoMadZombie(){
+                String name=null;
+                name=super.name;
+                if(!name.startsWith("(Mad)")){
+                        name="(Mad)"+super.name;
+                }
+                MadZombie mz=new MadZombie(name,super.healthPoints);
+                return mz;
+        }
 
 }

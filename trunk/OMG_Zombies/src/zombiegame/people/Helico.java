@@ -131,7 +131,7 @@ public class Helico {
                         if(j==x){
                                 frame.getPanel().getGraphics().drawImage(imgHelicoRed, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
                                 try {
-                                        Thread.sleep(1000);
+                                        Thread.sleep(500);
                                 } catch (InterruptedException e) {
                                         e.printStackTrace();
                                 }

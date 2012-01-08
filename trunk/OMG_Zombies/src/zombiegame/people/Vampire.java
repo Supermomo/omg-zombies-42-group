@@ -118,17 +118,25 @@ public class Vampire extends EvilCharacter {
                 List<Location> loc=field.adjacentLocations(this.location);
                 Location human=null;
                 Location vamp=null;
+                Location zomb=null;
                 
                 for(Location l : loc){
                         if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isHuman()){
                                 human=l;
                         }
+                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isZombie()){
+                                zomb=l;
+                        }
                         else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isVampire()){
                                 vamp=l;
                         }
+                        
                 }
                 if(human!=null){
                         dest=human;;
+                }
+                else if(zomb!=null){
+                        dest=zomb;
                 }
                 else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0){
                         dest=field.getFreeAdjacentLocations(location).get(0);
