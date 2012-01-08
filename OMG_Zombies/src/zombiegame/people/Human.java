@@ -139,7 +139,7 @@ public class Human extends Character {
                 else if(c.isHuman()){
                         this.say("Hi "+c.getName()+"...what's up ?",field.getConsolePanel());
                         Random r=new Random();
-                        if(r.nextInt(4)==4){
+                        if(r.nextInt(5)==4){
                                 baby(field);
                         }            
                 }
