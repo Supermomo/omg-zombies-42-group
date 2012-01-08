@@ -51,9 +51,4 @@ public class TestEdible {
                 assertFalse(e.isCureLycan());
         }
 
-        @Test
-        public void testIsIncreasingHp() {
-                assertFalse(e.isIncreasingHp());
-        }
-
 }

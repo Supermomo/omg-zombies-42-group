@@ -8,29 +8,29 @@ import org.junit.Test;
 import zombiegame.objects.edible.CureLycan;
 import zombiegame.objects.edible.CureVamp;
 
-public class TestCureLycan {
+public class TestCureVamp {
 
-        CureLycan cl;
-        
+        CureVamp cv;
+
         @Before
         public void setUp() throws Exception {
-                cl=new CureLycan();
+                cv = new CureVamp();
         }
 
         @Test
         public void testGetType() {
-                assertTrue(cl.getType().equals(new CureLycan().getType()));
-                assertFalse(cl.getType().equals(new CureVamp().getType()));
+                assertFalse(cv.getType().equals(new CureLycan().getType()));
+                assertTrue(cv.getType().equals(new CureVamp().getType()));
         }
 
         @Test
         public void testUse() {
-               
+
         }
-        
+
         @Test
-        public void testIsCureLycan() {
-                assertTrue(cl.isCureLycan());
+        public void testIsCureVamp() {
+                assertTrue(cv.isCureVamp());
         }
 
 }
