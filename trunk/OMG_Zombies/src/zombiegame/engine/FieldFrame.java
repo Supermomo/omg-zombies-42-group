@@ -35,7 +35,7 @@ public class FieldFrame extends JFrame{
                 this.setLayout(new GridLayout(0,2));
 
                 this.setBackground(java.awt.Color.LIGHT_GRAY);
-                this.setLocation(200, 100);
+                this.setLocation(30, 30);
                 this.setSize(1400,800);
                 this.setVisible(true);
                 
