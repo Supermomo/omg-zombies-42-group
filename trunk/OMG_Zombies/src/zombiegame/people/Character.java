@@ -226,8 +226,9 @@ public abstract class Character {
                                                                         loc);                                                     
                                                 }
                                                 else if(c.isZombie()) {
-                                                        field.place(((Zombie) c).turnIntoMadZombie(),
-                                                                        loc);   
+                                                        MadZombie mz=((Zombie) c).turnIntoMadZombie();
+                                                        mz.setStun(true);
+                                                        field.place(mz,loc);   
                                                 }
 
                                         }
