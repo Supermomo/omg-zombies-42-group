@@ -1,3 +1,4 @@
+package zombiegame.people;
 
 import org.junit.Before;
 
