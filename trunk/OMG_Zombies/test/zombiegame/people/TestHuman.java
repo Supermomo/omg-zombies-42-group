@@ -38,7 +38,9 @@ public class TestHuman
     @Test
     public void testEndOfTurn() 
     {
-        
+        h1.setHasBeenBittenByLycan(true);
+        h1.endOfTurn(f);
+        assertTrue(((Werewolf)f.getObjectAt(0,0)).isWerewolf());
     }
 
     @Test
