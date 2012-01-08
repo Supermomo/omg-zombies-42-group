@@ -42,18 +42,11 @@ public class TestWerewolf {
         }
 
         @Test
-        public void testBestMove() {
-                fail("Not yet implemented");
-        }
-
-        @Test
-        public void testWerewolf() {
-                fail("Not yet implemented");
-        }
-
-        @Test
         public void testBite() {
-                fail("Not yet implemented");
+                Human h=new Human("gros",50);
+                assertFalse(h.getHasBeenBittenByLycan());
+                w.bite(h, new JTextArea());
+                assertTrue(h.getHasBeenBittenByLycan());
         }
 
 }
