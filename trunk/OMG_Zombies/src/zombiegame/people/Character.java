@@ -51,14 +51,24 @@ public abstract class Character {
                 return healthPoints;
         }
 
+        /**
+         * 
+         * @return true if the character can play, false if not
+         */
         public boolean canPlay() {
                 return !hasPlayed;
         }
 
+        /**
+         * This character is now able to play
+         */
         public void setPlay() {
                 hasPlayed = false;
         }
 
+        /**
+         * This character won't be able to play until the end of the turn
+         */
         public void justPlayed() {
                 hasPlayed = true;
         }
