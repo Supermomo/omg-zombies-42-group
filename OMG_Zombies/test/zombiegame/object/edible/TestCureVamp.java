@@ -24,11 +24,6 @@ public class TestCureVamp {
         }
 
         @Test
-        public void testUse() {
-
-        }
-
-        @Test
         public void testIsCureVamp() {
                 assertTrue(cv.isCureVamp());
         }
