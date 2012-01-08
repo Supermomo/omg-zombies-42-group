@@ -44,7 +44,7 @@ public class Simulator {
                 JTextArea cons=new JTextArea(200,200);
                 field = new Field(25,25,cons);
                 fieldObject=new Field(25,25,cons);             
-                this.generatePeople(10, 30, 1, 10);
+                this.generatePeople(10, 30, 30, 20);
                 
                 ff=new FieldFrame(field, cons);
         }
