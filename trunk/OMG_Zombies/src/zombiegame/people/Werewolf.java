@@ -75,12 +75,6 @@ public class Werewolf extends EvilCharacter {
                 c.reduceHealthPoints(15);
         }
 
-        /**
-         * Method triggered on each character at the end of each turn.
-         */
-        public void endOfTurn(Field field) {
-
-        }
 
         /**
          * Method called when a vampire decides to bite a human
