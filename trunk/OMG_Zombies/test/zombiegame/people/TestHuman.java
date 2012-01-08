@@ -20,6 +20,7 @@ public class TestHuman
     public void setUp() 
     {
         h1 = new Human("Humain1",100);
+        h1.setLocation(new Location(0,0),new JTextArea());
         f = new Field(2,1,new JTextArea());
     }
     
