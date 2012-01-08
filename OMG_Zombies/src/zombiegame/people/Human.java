@@ -221,7 +221,7 @@ public class Human extends Character {
          */
         public Zombie turnIntoZombie()
         {
-            Zombie z = new Zombie("(Zomb)"+super.name, super.healthPoints);
+            Zombie z = new Zombie("(Zomb)"+super.name, Simulator.HP_ZOMBIES);
             return z;
         }
         
