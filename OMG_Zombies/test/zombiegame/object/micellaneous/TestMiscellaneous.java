@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import zombiegame.objects.micellaneous.Miscellaneous;
 import zombiegame.objects.micellaneous.SilverBullet;
 import zombiegame.objects.weapons.Shotgun;
 import zombiegame.objects.weapons.Weapon;
@@ -12,7 +13,7 @@ import zombiegame.objects.weapons.WoodenStick;
 
 public class TestMiscellaneous {
     
-    SilverBullet sb;
+    Miscellaneous sb;
     @Before
     public void setUp()
     {
