@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import zombiegame.objects.edible.CureLycan;
 import zombiegame.objects.edible.CureVamp;
+import zombiegame.people.EvilCharacter;
+import zombiegame.people.Werewolf;
 
 public class TestCureLycan {
 
@@ -21,11 +23,6 @@ public class TestCureLycan {
         public void testGetType() {
                 assertTrue(cl.getType().equals(new CureLycan().getType()));
                 assertFalse(cl.getType().equals(new CureVamp().getType()));
-        }
-
-        @Test
-        public void testUse() {
-               
         }
         
         @Test

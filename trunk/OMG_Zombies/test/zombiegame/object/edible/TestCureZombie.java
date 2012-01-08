@@ -25,11 +25,6 @@ public class TestCureZombie {
         }
 
         @Test
-        public void testUse() {
-                
-        }
-
-        @Test
         public void testIsCureZomb() {
                 assertTrue(cz.isCureZomb());
         }
