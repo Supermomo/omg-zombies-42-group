@@ -154,6 +154,7 @@ public class Vampire extends EvilCharacter {
          * ...just twice
          * 
          */
+        @Override
         public void action(Field field, Field fieldObj) {
                 super.action(field, fieldObj);
                 super.action(field, fieldObj);
