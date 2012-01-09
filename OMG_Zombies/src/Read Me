@@ -12,7 +12,7 @@ Checker les TODO X
 Ajout de la possibilité de se soigner avec les potion de cure?
 Interface de base X
 Interface plus stylée
-Interface Helico
+Interface Helico X
 Refaire l'égalité entre objets
 
 Check si il manque des try/chatch et exception
@@ -25,13 +25,14 @@ Systeme du choix du meilleur deplacement X
 Ajout de la console des messages dans l'interface X
 Reproduction moins fréquente X
 Ajout des WerewolfZombie ==> finalement Zombie tué => MadZombie X
+Deplacements différenciés selon la race X
 
 
 
-Probleme Helico Rouge largage objet
+Probleme Helico Rouge largage objet réglé par magie. X
 ===============================================
 
-deplacements en diagonale ? on laisse ou pas ?
+deplacements en diagonale ? on laisse ou pas ? OUI X
 Changement des combats Werewolf VS Vamp ?(augentation des degat vamp sur werewolf ?
 
 
