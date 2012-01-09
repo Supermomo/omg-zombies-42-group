@@ -148,4 +148,14 @@ public class Vampire extends EvilCharacter {
                 
                 return dest;
         }
+        
+        /**
+         * Perform the usual character method
+         * ...just twice
+         * 
+         */
+        public void action(Field field, Field fieldObj) {
+                super.action(field, fieldObj);
+                super.action(field, fieldObj);
+        }
 }

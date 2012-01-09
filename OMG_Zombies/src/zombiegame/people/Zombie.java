@@ -81,5 +81,15 @@ public class Zombie extends EvilCharacter {
                 MadZombie mz=new MadZombie(name,Simulator.HP_ZOMBIES+20);
                 return mz;
         }
+        
+        /**
+         * Has one out of two chance to perform the usual action method
+         * 
+         */
+        public void action(Field field, Field fieldObj) {
+                if(Simulator.GenerateRandomBoolean()){
+                        super.action(field, fieldObj);
+                }
+        }
 
 }
