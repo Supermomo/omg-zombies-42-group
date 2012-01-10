@@ -10,6 +10,9 @@ import org.junit.Test;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
+import zombiegame.objects.edible.CureLycan;
+import zombiegame.objects.edible.CureVamp;
+import zombiegame.objects.edible.CureZombie;
 import zombiegame.objects.micellaneous.SilverBullet;
 import zombiegame.objects.weapons.LiquidNitrogen;
 import zombiegame.objects.weapons.Shotgun;
@@ -59,6 +62,7 @@ public class TestHuman
         h1.pickUpObject(f1,new Location(0,0));
         h1.encounterCharacter(w,f);
         assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
+        f.clear(new Location(1,0));
         
         Zombie z = new Zombie("c",30);
         f.place(w,new Location(1,0));
@@ -66,12 +70,45 @@ public class TestHuman
         h1.pickUpObject(f1,new Location(0,0));
         h1.encounterCharacter(w,f);
         assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
+        f.clear(new Location(1,0));
         
         MadZombie mz = new MadZombie("d",30);
-        WerewolfCrew wc = new WerewolfCrew("e",150,2);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new LiquidNitrogen(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
+        f.clear(new Location(1,0));
         
-        //A FAIRE
+        WerewolfCrew wc = new WerewolfCrew("e",150,2);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new Shotgun(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
+        f.clear(new Location(1,0));
+        
         //Test de l'utilisation des edible ( debut de encounter character
+        w = new Werewolf("a",150);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new CureLycan(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
+        
+        v = new Vampire("b",150);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new CureVamp(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
+        
+        z = new Zombie("c",150);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new CureZombie(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
         
         //Test de la suppression de l'inventaire d'un miscellaneous qui n'a plus d'utilisation
         
