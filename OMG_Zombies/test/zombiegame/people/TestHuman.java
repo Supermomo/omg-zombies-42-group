@@ -10,6 +10,7 @@ import org.junit.Test;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
+import zombiegame.objects.edible.Bread;
 import zombiegame.objects.edible.CureLycan;
 import zombiegame.objects.edible.CureVamp;
 import zombiegame.objects.edible.CureZombie;
@@ -111,6 +112,13 @@ public class TestHuman
         assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
         //Test de la suppression de l'inventaire d'un miscellaneous qui n'a plus d'utilisation
         assertTrue(h1.getItem() == null);
+        
+        //test Edible
+        h1 = new Human("human",20);
+        f1.placeItem(new Bread(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(z,f);
+        assertEquals(25,h1.getHealthPoints());
         
         //Test que sinon, pas d'attaque effectuée
         z = new Zombie("c",150);
