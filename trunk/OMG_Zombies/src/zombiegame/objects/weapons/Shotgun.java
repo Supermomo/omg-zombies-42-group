@@ -29,22 +29,25 @@ public class Shotgun extends Weapon {
          */
         public void Use(Character character) {
             
-            if(character.isZombie()){
+            if(character.isZombie())
+            {
                 ((EvilCharacter)character).setStun(true);
                         character.reduceHealthPoints(5);
+            }
+            else
+            {
+                if(character.isWerewolf() && (this.usedWith(new SilverBullet())))
+                {
+                    System.out.println("bla");
+                       character.reduceHealthPoints(300);     
                 }
-                else{
-                    if(character.isWerewolf() && (this.usedWith(new SilverBullet())))
-                    {
-                           character.reduceHealthPoints(300);     
-                    }
-                    else
-                    {
-                        character.reduceHealthPoints(1);
-                    }
-                        
+                else
+                {
+                    character.reduceHealthPoints(1);
                 }
-                super.Use(character);
+                    
+            }
+            super.Use(character);
         }
         
         /**
