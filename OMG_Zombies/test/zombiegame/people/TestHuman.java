@@ -41,9 +41,11 @@ public class TestHuman
         f.place(w,new Location(1,0));
         f1.placeItem(new Shotgun(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
+        //f1.clear(new Location(0,0));
         f1.placeItem(new SilverBullet(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
         h1.encounterCharacter(w,f);
+        //System.out.println("ge");
         assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
         
         Vampire v = new Vampire("b",150);
