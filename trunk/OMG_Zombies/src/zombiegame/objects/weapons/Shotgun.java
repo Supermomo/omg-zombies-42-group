@@ -1,5 +1,6 @@
 package zombiegame.objects.weapons;
 
+import zombiegame.objects.micellaneous.SilverBullet;
 import zombiegame.people.Character;
 import zombiegame.people.EvilCharacter;
 
@@ -33,7 +34,7 @@ public class Shotgun extends Weapon {
                         character.reduceHealthPoints(5);
                 }
                 else{
-                    if(character.isWerewolf() && (this.usedWith("SILVER BULLET")))
+                    if(character.isWerewolf() && (this.usedWith(new SilverBullet())))
                     {
                            character.reduceHealthPoints(300);     
                     }
