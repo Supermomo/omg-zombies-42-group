@@ -135,11 +135,11 @@ public class Vampire extends EvilCharacter {
                 if(human!=null){
                         dest=human;;
                 }
-                else if(zomb!=null){
-                        dest=zomb;
-                }
                 else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0){
                         dest=field.getFreeAdjacentLocations(location).get(0);
+                }
+                else if(zomb!=null){
+                        dest=zomb;
                 }
                 else if(vamp!=null){
                         dest=vamp;

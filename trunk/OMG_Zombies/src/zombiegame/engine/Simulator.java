@@ -53,8 +53,8 @@ public class Simulator {
                 this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
                 
                 ff=new FieldFrame(field, cons);
-                ff.validate();
-                cons.repaint();
+                //ff.validate();
+                //cons.repaint();
         }
 
         /**
