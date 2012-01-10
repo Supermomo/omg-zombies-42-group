@@ -82,7 +82,8 @@ public class Human extends Character {
                     vamp.setLocation(this.location,field.getConsolePanel());
                     field.clear(this.location);
                     field.place(vamp,vamp.location);
-                    this.say("I'm a vampire now",field.getConsolePanel());
+                    vamp.say("I'm a vampire now",field.getConsolePanel());
+                    vamp.justPlayed();
                 }
                 else if(hasBeenBittenByLycan)
                 {
@@ -90,7 +91,8 @@ public class Human extends Character {
                         w.setLocation(this.location,field.getConsolePanel());
                         field.clear(this.location);
                         field.place(w,w.location);
-                        this.say("I'm a lycan now",field.getConsolePanel());
+                        w.say("I'm a lycan now",field.getConsolePanel());
+                        w.justPlayed();
                  }
                 
                 
