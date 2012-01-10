@@ -38,9 +38,10 @@ public class WerewolfCrew extends Werewolf {
         /**
          * The crew attack the character
          */
-        protected void attack(Character c,JTextArea cons) {
+        protected boolean attack(Character c,JTextArea cons) {
                 super.attack(c,cons);
                 c.reduceHealthPoints(15 * (CrewMembers - 1));
+                return true;
         }
 
         public boolean isWerewolfCrew() {
