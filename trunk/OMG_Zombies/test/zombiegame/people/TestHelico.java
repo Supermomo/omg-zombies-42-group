@@ -28,9 +28,4 @@ public class TestHelico {
                 assertTrue(it.isEdible() || it.isWeapon() || it.isMiscellaneous());
         }
 
-        @Test
-        public void testDropItem() {
-                assertTrue(hel.dropItem(new FieldFrame(f, new JTextArea())));
-        }
-
 }
