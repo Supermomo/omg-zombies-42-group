@@ -27,7 +27,21 @@ public class TestZombie
     }
 
     @Test
-    public void testEncounterCharacter() {
+    public void testAttack() {
+            
+        Human h=new Human("te",40);
+        int hp=h.getHealthPoints();
+        z.attack(h, new JTextArea());
+        assertTrue(h.getHealthPoints()<hp);
+        Vampire v=new Vampire("cd",100);
+        hp=v.getHealthPoints();
+        boolean done=z.attack(v, new JTextArea());
+        if(done){
+                assertTrue(hp>v.getHealthPoints());  
+        }
+        else{
+                assertTrue(hp==v.getHealthPoints());
+        }
         
     }
 
