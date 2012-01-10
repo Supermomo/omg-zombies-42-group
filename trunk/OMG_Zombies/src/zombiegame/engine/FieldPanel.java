@@ -106,9 +106,11 @@ public class FieldPanel extends JPanel {
                                                         }
 
                                                 }
-                                                g.drawImage(imgHuman, (j + 1) * (widthBox), (i + 1)
-                                                                * heightBox, widthBox, heightBox,
-                                                                null);
+                                                else{
+                                                        g.drawImage(imgHuman, (j + 1) * (widthBox), (i + 1)
+                                                                        * heightBox, widthBox, heightBox,
+                                                                        null);
+                                                }        
                                         } else if (o.isWerewolfCrew()) {
                                                 g.drawImage(imgWerewolfCrew, (j + 1) * (widthBox),
                                                                 (i + 1) * heightBox, widthBox,

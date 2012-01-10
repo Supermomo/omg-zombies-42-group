@@ -38,6 +38,9 @@ public abstract class Character {
          *                initial HP
          */
         public Character(String name, int healthPoints) {
+                if(healthPoints<=0){
+                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
+                }
                 this.name = name;
                 this.healthPoints = healthPoints;
         }
@@ -134,6 +137,9 @@ public abstract class Character {
          *                number of HP to reduce
          */
         public void reduceHealthPoints(int reduction) {
+                if(reduction<=0){
+                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
+                }
                 healthPoints = healthPoints - reduction;
                 if (healthPoints < 0) {
                         healthPoints = 0;
@@ -147,6 +153,9 @@ public abstract class Character {
          *                number of HP to add
          */
         public void increaseHealthPoints(int increase) {
+                if(increase<=0){
+                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
+                }
                 if (increase >= 0) {
                         this.healthPoints += increase;
                 } else {
