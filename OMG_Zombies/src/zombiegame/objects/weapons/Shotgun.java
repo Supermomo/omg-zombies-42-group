@@ -1,5 +1,6 @@
 package zombiegame.objects.weapons;
 
+import zombiegame.engine.Field;
 import zombiegame.objects.micellaneous.SilverBullet;
 import zombiegame.people.Character;
 import zombiegame.people.EvilCharacter;
@@ -27,7 +28,7 @@ public class Shotgun extends Weapon {
         /**
          * attack with the shotgun
          */
-        public void Use(Character character) {
+        public void Use(Character character, Field field) {
             
             if(character.isZombie())
             {
@@ -46,7 +47,7 @@ public class Shotgun extends Weapon {
                 }
                     
             }
-            super.Use(character);
+            super.Use(character,field);
         }
         
         /**

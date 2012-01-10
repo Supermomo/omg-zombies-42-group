@@ -1,5 +1,6 @@
 package zombiegame.objects.weapons;
 
+import zombiegame.engine.Field;
 import zombiegame.objects.Item;
 import zombiegame.objects.Usable;
 import zombiegame.objects.micellaneous.Miscellaneous;
@@ -26,7 +27,7 @@ public abstract class Weapon extends Item implements Usable {
         }
 
         @Override
-        public void Use(Character character) {
+        public void Use(Character character, Field field) {
                 if (usedWith == null) {
                         super.loseUses();
                 } else {

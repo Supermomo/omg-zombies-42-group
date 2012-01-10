@@ -1,5 +1,6 @@
 package zombiegame.objects.edible;
 
+import zombiegame.engine.Field;
 import zombiegame.objects.Item;
 import zombiegame.objects.Usable;
 import zombiegame.people.Character;
@@ -26,8 +27,7 @@ public abstract class Edible extends Item implements Usable {
         /**
          * Use the object, remaining uses is decreased
          */
-        @Override
-        public void Use(Character character) {
+        public void Use(Character character, Field field) {
                super.loseUses();
                 
         }

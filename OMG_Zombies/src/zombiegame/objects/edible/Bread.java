@@ -1,5 +1,6 @@
 package zombiegame.objects.edible;
 
+import zombiegame.engine.Field;
 import zombiegame.people.Character;
 import zombiegame.people.Human;
 
@@ -28,8 +29,8 @@ public class Bread extends Edible {
          * OTHER : lose some healthPoints, the bread is not edible for evil
          * character
          */
-        public void Use(Character character) {
-                super.Use(character);
+        public void Use(Character character, Field field) {
+                super.Use(character,field);
 
                 character.increaseHealthPoints(5);
                 try {

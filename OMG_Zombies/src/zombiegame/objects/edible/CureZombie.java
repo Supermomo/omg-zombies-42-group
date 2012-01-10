@@ -1,5 +1,7 @@
 package zombiegame.objects.edible;
 
+import zombiegame.engine.Field;
+import zombiegame.engine.Location;
 import zombiegame.people.Character;
 import zombiegame.people.EvilCharacter;
 import zombiegame.people.Zombie;
@@ -26,15 +28,17 @@ public class CureZombie extends Edible{
          * Cure an already turned zombie or prevent a human to turn into a brainless zombie
          * a mad zombie can't be cured
          */
-        public void Use(Character character) {
+        public void Use(Character character, Field field) {
                 if (character.isZombie()) {
                         if (!((Zombie) character).isMadZombie()) {
-                                character = ((EvilCharacter) character)
-                                                .turnBackIntoHumain();
+                                Character c=((EvilCharacter) character).turnBackIntoHumain();
+                                Location loc=character.getLocation();
+                                field.clear(loc);
+                                field.place(c, loc);
                         }
 
                 }
-                super.Use(character);
+                super.Use(character,field);
         }
         
         

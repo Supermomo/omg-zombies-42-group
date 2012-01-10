@@ -1,5 +1,7 @@
 package zombiegame.objects.edible;
 
+import zombiegame.engine.Field;
+import zombiegame.engine.Location;
 import zombiegame.people.Character;
 import zombiegame.people.EvilCharacter;
 import zombiegame.people.Human;
@@ -25,14 +27,19 @@ public class CureVamp extends Edible{
         /**
          * Use the potion to cure a vampire or to prevent a human that have been bitten to turn into a vamp
          */
-        public void Use(Character character) {
+        @Override
+        public void Use(Character character, Field field) {
                 if (character.isVampire()) {
-                        character = ((EvilCharacter) character).turnBackIntoHumain();
+                        Character c=((EvilCharacter) character).turnBackIntoHumain();
+                        Location loc=character.getLocation();
+                        field.clear(loc);
+                        field.place(c, loc);
+                       
                 }
                 else if(character.isHuman()) {
                         ((Human)character).setHasBeenBittenByVamp(false);
                 }
-                super.Use(character);
+                super.Use(character,field);
         }
         
         public boolean isCureVamp(){

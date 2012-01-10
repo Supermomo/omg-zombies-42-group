@@ -2,9 +2,12 @@ package zombiegame.object.edible;
 
 import static org.junit.Assert.*;
 
+import javax.swing.JTextArea;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import zombiegame.engine.Field;
 import zombiegame.objects.edible.Bread;
 import zombiegame.objects.edible.Edible;
 import zombiegame.people.Human;
@@ -32,7 +35,7 @@ public class TestEdible {
         @Test
         public void testUse() {
                 int us=e.getUses();
-                e.Use(new Human("de",12));
+                e.Use(new Human("de",12),new Field(4,4, new JTextArea()));
                 assertEquals(us-1,e.getUses());
         }
 
