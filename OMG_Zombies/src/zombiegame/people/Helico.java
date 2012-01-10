@@ -111,12 +111,9 @@ public class Helico {
         /**
          * Drop the content of the storage on a random spot of the map
          */
-        public boolean dropItem(FieldFrame frame) {
+        public void dropItem(FieldFrame frame) {
                 
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
-                
-                boolean dropDone=false;
-                boolean displayPerformed=false;
                 
                 int heightBox = frame.getPanel().getHeight() / (map.getDepth() + 2);
                 int widthBox = frame.getPanel().getWidth() / (map.getWidth() + 2);
@@ -127,7 +124,6 @@ public class Helico {
                 int y=r.nextInt(map.getDepth());
                 int x=r.nextInt(map.getWidth());
                 map.placeItem(itemInStorage, y, x);
-                dropDone=true;
                 
                 for(int j=0;j<map.getWidth();j++){
                         frame.getPanel().getGraphics().drawImage(imgHelico, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
@@ -145,10 +141,7 @@ public class Helico {
                         } catch (InterruptedException e) {
                                 e.printStackTrace();
                         }
-                }
-                displayPerformed=true;
-                
-                return dropDone && displayPerformed;        
+                }       
         }
 
 }
