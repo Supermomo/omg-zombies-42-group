@@ -10,12 +10,14 @@ import org.junit.Test;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
+import zombiegame.objects.micellaneous.SilverBullet;
 import zombiegame.objects.weapons.Shotgun;
 
 public class TestHuman 
 {
     Human h1;
     Field f;
+    Field f1;
     
     @Before
     public void setUp() 
@@ -23,6 +25,7 @@ public class TestHuman
         h1 = new Human("Humain1",100);
         h1.setLocation(new Location(0,0),new JTextArea());
         f = new Field(2,1,new JTextArea());
+        f1 = new Field(2,1,new JTextArea());
     }
     
     @Test
@@ -34,6 +37,20 @@ public class TestHuman
     @Test
     public void testEncounterCharacter() 
     {
+        Werewolf w = new Werewolf("a",150);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new Shotgun(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        f1.placeItem(new SilverBullet(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
+        
+        Vampire v = new Vampire("b",150);
+        Zombie z = new Zombie("c",30);
+        MadZombie mz = new MadZombie("d",30);
+        WerewolfCrew wc = new WerewolfCrew("e",150,2);
+        
         
     }
 
