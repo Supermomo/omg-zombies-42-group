@@ -27,12 +27,21 @@ public class Shotgun extends Weapon {
          * attack with the shotgun
          */
         public void Use(Character character) {
-                if(character.isZombie()){
-                        ((EvilCharacter)character).setStun(true);
+            
+            if(character.isZombie()){
+                ((EvilCharacter)character).setStun(true);
                         character.reduceHealthPoints(5);
                 }
                 else{
+                    if(character.isWerewolf() && (this.usedWith("SILVER BULLET")))
+                    {
+                           character.reduceHealthPoints(300);     
+                    }
+                    else
+                    {
                         character.reduceHealthPoints(1);
+                    }
+                        
                 }
                 super.Use(character);
         }
