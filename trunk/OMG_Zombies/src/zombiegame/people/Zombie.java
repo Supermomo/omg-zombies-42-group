@@ -39,9 +39,7 @@ public class Zombie extends EvilCharacter {
          * the encounter between this character and c attack c
          */
         public void encounterCharacter(Character c, Field field) {
-                if (c.isHuman() || c.isVampire() && Simulator.GenerateRandomBoolean()) {
-                        attack(c,field.getConsolePanel());    
-                }          
+                        attack(c,field.getConsolePanel());             
         }
 
         /**
