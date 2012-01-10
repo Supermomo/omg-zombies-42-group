@@ -31,7 +31,7 @@ public class Simulator {
         public static final int HP_ZOMBIES = 30;
         public static final int HP_WEREWOLF = 150;
         public static final int SIZE_MAP=15;
-        public static final int NB_HUMANS = 5;
+        public static final int NB_HUMANS = 6;
         public static final int NB_VAMPIRES =4;
         public static final int NB_ZOMBIES = 4;
         public static final int NB_WEREWOLF = 3;

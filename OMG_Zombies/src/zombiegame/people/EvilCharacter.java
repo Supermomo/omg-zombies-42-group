@@ -32,6 +32,7 @@ public abstract class EvilCharacter extends Character {
          * @return the Human that have been created
          */
         public Human turnBackIntoHumain() {
+                System.out.println(healthPoints);
                 return new Human(name, healthPoints);
         }
 
