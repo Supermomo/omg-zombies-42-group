@@ -71,8 +71,8 @@ public abstract class Weapon extends Item implements Usable {
                 return TYPE;
         }
         
-        public boolean usedWith(String type)
+        public boolean usedWith(Miscellaneous m)
         {
-            return (usedWith.getType() == type);
+            return (this.usedWith != null && this.usedWith.getType().equals(m.getType()));
         }
 }
