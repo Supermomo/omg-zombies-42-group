@@ -15,10 +15,10 @@ import zombiegame.people.Human;
 public class TestMajorPotion {
 
         private MajorPotion majp;
-        
+
         @Before
         public void setUp() throws Exception {
-                majp=new MajorPotion();
+                majp = new MajorPotion();
         }
 
         @Test
@@ -29,10 +29,10 @@ public class TestMajorPotion {
 
         @Test
         public void testUse() {
-                Human h=new Human("de",50);
-                int hp=h.getHealthPoints();
-                majp.Use(h,new Field(4,4, new JTextArea()));
-                assertEquals(hp+25,h.getHealthPoints());
+                Human h = new Human("de", 50);
+                int hp = h.getHealthPoints();
+                majp.Use(h, new Field(4, 4, new JTextArea()));
+                assertEquals(hp + 25, h.getHealthPoints());
         }
 
         @Test

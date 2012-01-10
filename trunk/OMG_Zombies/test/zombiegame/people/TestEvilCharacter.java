@@ -12,12 +12,12 @@ import zombiegame.engine.Field;
 public class TestEvilCharacter {
 
         private EvilCharacter ec;
-        private int hp=100;
-        private String name="kevin";
-        
+        private int hp = 100;
+        private String name = "kevin";
+
         @Before
         public void setUp() throws Exception {
-                ec=new Vampire(name,hp);
+                ec = new Vampire(name, hp);
         }
 
         @Test
@@ -28,7 +28,7 @@ public class TestEvilCharacter {
         @Test
         public void testEndOfTurn() {
                 ec.setStun(true);
-                ec.endOfTurn(new Field(2,2,new JTextArea()));
+                ec.endOfTurn(new Field(2, 2, new JTextArea()));
                 assertFalse(ec.isStun());
         }
 
@@ -39,9 +39,9 @@ public class TestEvilCharacter {
 
         @Test
         public void testStun() {
-               assertFalse(ec.isStun());
-               ec.setStun(true);
-               assertTrue(ec.isStun());
+                assertFalse(ec.isStun());
+                ec.setStun(true);
+                assertTrue(ec.isStun());
         }
 
 }

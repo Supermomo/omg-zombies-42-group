@@ -39,7 +39,7 @@ public class Zombie extends EvilCharacter {
          * the encounter between this character and c attack c
          */
         public void encounterCharacter(Character c, Field field) {
-                        attack(c,field.getConsolePanel());             
+                attack(c, field.getConsolePanel());
         }
 
         /**
@@ -64,35 +64,35 @@ public class Zombie extends EvilCharacter {
          * attack the character c
          * 
          * @param c
-         * @return 
+         * @return
          */
         protected boolean attack(Character c, JTextArea cons) {
-                boolean attack=false;
+                boolean attack = false;
                 if (c.isHuman() || c.isVampire() && Simulator.GenerateRandomBoolean()) {
-                        super.attack(c,cons);
+                        super.attack(c, cons);
                         c.reduceHealthPoints(5);
-                        attack=true;
+                        attack = true;
                 }
                 return attack;
         }
-        
-        public MadZombie turnIntoMadZombie(){
-                String name=null;
-                name=super.name;
-                if(!name.startsWith("(Mad)")){
-                        name="(Mad)"+super.name;
+
+        public MadZombie turnIntoMadZombie() {
+                String name = null;
+                name = super.name;
+                if (!name.startsWith("(Mad)")) {
+                        name = "(Mad)" + super.name;
                 }
-                MadZombie mz=new MadZombie(name,Simulator.HP_ZOMBIES+20);
+                MadZombie mz = new MadZombie(name, Simulator.HP_ZOMBIES + 20);
                 mz.justPlayed();
                 return mz;
         }
-        
+
         /**
          * Has one out of two chance to perform the usual action method
          * 
          */
         public void action(Field field, Field fieldObj) {
-                if(Simulator.GenerateRandomBoolean()){
+                if (Simulator.GenerateRandomBoolean()) {
                         super.action(field, fieldObj);
                 }
         }

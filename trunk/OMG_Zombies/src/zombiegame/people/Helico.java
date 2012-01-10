@@ -1,12 +1,9 @@
 package zombiegame.people;
 
-import java.awt.Graphics;
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Random;
-
-import javax.swing.JFrame;
-
 import zombiegame.engine.Field;
 import zombiegame.engine.FieldFrame;
 import zombiegame.objects.Item;
@@ -43,8 +40,8 @@ public class Helico {
         }
 
         /**
-         * Initialize what is in the storage
-         * PS : put in package mode for tests
+         * Initialize what is in the storage PS : put in package mode for tests
+         * 
          * @return
          */
         Item initializeStorage() {
@@ -112,23 +109,26 @@ public class Helico {
          * Drop the content of the storage on a random spot of the map
          */
         public void dropItem(FieldFrame frame) {
-                
+
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
-                
+
                 int heightBox = frame.getPanel().getHeight() / (map.getDepth() + 2);
                 int widthBox = frame.getPanel().getWidth() / (map.getWidth() + 2);
-                
+
                 Image imgHelico = tk.getImage(this.getClass().getResource("/img/helico.png"));
                 Image imgHelicoRed = tk.getImage(this.getClass().getResource("/img/helicoRed.png"));
                 Random r = new Random();
-                int y=r.nextInt(map.getDepth());
-                int x=r.nextInt(map.getWidth());
+                int y = r.nextInt(map.getDepth());
+                int x = r.nextInt(map.getWidth());
                 map.placeItem(itemInStorage, y, x);
-                
-                for(int j=0;j<map.getWidth();j++){
-                        frame.getPanel().getGraphics().drawImage(imgHelico, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
-                        if(j==x){
-                                frame.getPanel().getGraphics().drawImage(imgHelicoRed, (j+1)*widthBox,(y+1)*heightBox,widthBox,heightBox, null);
+
+                for (int j = 0; j < map.getWidth(); j++) {
+                        frame.getPanel().getGraphics().drawImage(imgHelico, (j + 1) * widthBox,
+                                        (y + 1) * heightBox, widthBox, heightBox, null);
+                        if (j == x) {
+                                frame.getPanel().getGraphics().drawImage(imgHelicoRed,
+                                                (j + 1) * widthBox, (y + 1) * heightBox, widthBox,
+                                                heightBox, null);
                                 try {
                                         Thread.sleep(500);
                                 } catch (InterruptedException e) {
@@ -136,12 +136,12 @@ public class Helico {
                                 }
                         }
                         frame.repaint();
-                        try {                            
+                        try {
                                 Thread.sleep(75);
                         } catch (InterruptedException e) {
                                 e.printStackTrace();
                         }
-                }       
+                }
         }
 
 }

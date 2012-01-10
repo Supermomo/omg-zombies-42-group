@@ -12,12 +12,12 @@ import zombiegame.objects.weapons.Weapon;
  */
 public abstract class Miscellaneous extends Item implements Unusable {
 
-        private static final String TYPE="MISCELLANEOUS";
-        
-        public Miscellaneous(int uses){
+        private static final String TYPE = "MISCELLANEOUS";
+
+        public Miscellaneous(int uses) {
                 super(uses);
         }
-        
+
         /**
          * return whether or not the current object is usable with the weapon
          */
@@ -26,18 +26,18 @@ public abstract class Miscellaneous extends Item implements Unusable {
                 return false;
         }
 
-
         @Override
-        public boolean isMiscellaneous(){
+        public boolean isMiscellaneous() {
                 return true;
         }
-        
+
         /**
          * Get a string representing the type of the object
+         * 
          * @return
          */
         @Override
-        public String getType(){
+        public String getType() {
                 return TYPE;
         }
 }

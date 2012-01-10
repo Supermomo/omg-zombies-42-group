@@ -9,21 +9,21 @@ import zombiegame.objects.weapons.LiquidNitrogen;
 
 public class TestLiquidNitrogen {
 
-    LiquidNitrogen ln;
-    
-    @Before
-    public void setUp() throws Exception {
-        ln = new LiquidNitrogen();
-    }
+        LiquidNitrogen ln;
 
-    @Test
-    public void testGetType() {
-        assertArrayEquals("LIQUID NITROGEN".toCharArray(),ln.getType().toCharArray());
-    }
+        @Before
+        public void setUp() throws Exception {
+                ln = new LiquidNitrogen();
+        }
 
-    @Test
-    public void testIsLiquidNitrogen() {
-        assertTrue(ln.isLiquidNitrogen());
-    }
+        @Test
+        public void testGetType() {
+                assertArrayEquals("LIQUID NITROGEN".toCharArray(), ln.getType().toCharArray());
+        }
+
+        @Test
+        public void testIsLiquidNitrogen() {
+                assertTrue(ln.isLiquidNitrogen());
+        }
 
 }

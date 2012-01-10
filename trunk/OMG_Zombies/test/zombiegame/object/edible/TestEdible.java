@@ -15,16 +15,15 @@ import zombiegame.people.Human;
 public class TestEdible {
 
         Edible e;
-        
-        
+
         @Before
         public void setUp() throws Exception {
-                e=new Bread();
+                e = new Bread();
         }
 
         @Test
         public void testIsEdible() {
-               assertTrue(e.isEdible());
+                assertTrue(e.isEdible());
         }
 
         @Test
@@ -34,9 +33,9 @@ public class TestEdible {
 
         @Test
         public void testUse() {
-                int us=e.getUses();
-                e.Use(new Human("de",12),new Field(4,4, new JTextArea()));
-                assertEquals(us-1,e.getUses());
+                int us = e.getUses();
+                e.Use(new Human("de", 12), new Field(4, 4, new JTextArea()));
+                assertEquals(us - 1, e.getUses());
         }
 
         @Test

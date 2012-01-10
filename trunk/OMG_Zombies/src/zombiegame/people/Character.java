@@ -38,8 +38,9 @@ public abstract class Character {
          *                initial HP
          */
         public Character(String name, int healthPoints) {
-                if(healthPoints<=0){
-                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
+                if (healthPoints <= 0) {
+                        throw new RuntimeException(
+                                        "negative or null integer shouldn't be a parameter");
                 }
                 this.name = name;
                 this.healthPoints = healthPoints;
@@ -137,7 +138,7 @@ public abstract class Character {
          *                number of HP to reduce
          */
         public void reduceHealthPoints(int reduction) {
-                if(reduction<0){
+                if (reduction < 0) {
                         throw new RuntimeException("negative integer shouldn't be a parameter");
                 }
                 healthPoints = healthPoints - reduction;
@@ -153,8 +154,9 @@ public abstract class Character {
          *                number of HP to add
          */
         public void increaseHealthPoints(int increase) {
-                if(increase<=0){
-                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
+                if (increase <= 0) {
+                        throw new RuntimeException(
+                                        "negative or null integer shouldn't be a parameter");
                 }
                 if (increase >= 0) {
                         this.healthPoints += increase;
@@ -170,7 +172,7 @@ public abstract class Character {
          *                what the character says
          */
         public void say(String str, JTextArea cons) {
-                cons.append(name + " says: " + str+"\r\n");
+                cons.append(name + " says: " + str + "\r\n");
         }
 
         /**
@@ -188,9 +190,9 @@ public abstract class Character {
 
         /**
          * Method triggered when the new turn start. Perform the action of this
-         * character Clear the encounter character if dead and human, turn it into zombie
-         * if human After the action, if human, pick up the object on the
-         * ground(if there is any)
+         * character Clear the encounter character if dead and human, turn it
+         * into zombie if human After the action, if human, pick up the object
+         * on the ground(if there is any)
          * 
          * Do nothing if the character is stun
          * 
@@ -200,24 +202,25 @@ public abstract class Character {
                 boolean stun = false;
 
                 if (this.isEvilCharacter()) {
-                        
+
                         try {
                                 if (((EvilCharacter) this).isStun()) {
                                         stun = true;
                                 }
                         } catch (Exception e) {
                                 e.printStackTrace();
-                                System.out.println("Cannot cast into evilCharacter during the action method");
+                                System.out
+                                                .println("Cannot cast into evilCharacter during the action method");
                         }
                 }
 
                 if (!stun) {
-                        
-                        Location loc=bestMove(field);
-                        if(loc==null){
+
+                        Location loc = bestMove(field);
+                        if (loc == null) {
                                 loc = field.randomAdjacentLocation(location);
                         }
-                        
+
                         this.say("I'm now acting", field.getConsolePanel());
 
                         if (field.getObjectAt(loc) == null) {
@@ -232,12 +235,12 @@ public abstract class Character {
                                                 field.clear(loc);
                                                 if (c.isHuman()) {
                                                         field.place(((Human) c).turnIntoZombie(),
-                                                                        loc);                                                     
-                                                }
-                                                else if(c.isZombie()) {
-                                                        MadZombie mz=((Zombie) c).turnIntoMadZombie();
+                                                                        loc);
+                                                } else if (c.isZombie()) {
+                                                        MadZombie mz = ((Zombie) c)
+                                                                        .turnIntoMadZombie();
                                                         mz.setStun(true);
-                                                        field.place(mz,loc);   
+                                                        field.place(mz, loc);
                                                 }
 
                                         }
@@ -270,7 +273,7 @@ public abstract class Character {
          * @param c
          */
         protected boolean attack(Character c, JTextArea cons) {
-                say(c.getName() + ", I'm gonna kill you!",cons);
+                say(c.getName() + ", I'm gonna kill you!", cons);
                 return true;
 
         }
@@ -293,38 +296,40 @@ public abstract class Character {
         public void setLocation(Location newLocation, JTextArea cons) {
 
                 if (location != null) {
-                        say(" goes from " + location.getRow() + " "
-                                        + location.getCol(),cons);
+                        say(" goes from " + location.getRow() + " " + location.getCol(), cons);
                 } else {
-                        say("start at location ",cons);
+                        say("start at location ", cons);
                 }
 
                 this.location = newLocation;
-                say(" to : " + location.getRow() + " " + location.getCol(),cons);
+                say(" to : " + location.getRow() + " " + location.getCol(), cons);
         }
-        
+
         /**
          * Do the best move for the character
+         * 
          * @param field
          * @return null if no best location have been found
          */
-        public Location bestMove(Field field){
-                Location dest=null;
-                List<Location> loc=field.adjacentLocations(this.location);
-                Location human=null;
-                
-                for(Location l : loc){
-                        if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isHuman()){
-                                human=l;
+        public Location bestMove(Field field) {
+                Location dest = null;
+                List<Location> loc = field.adjacentLocations(this.location);
+                Location human = null;
+
+                for (Location l : loc) {
+                        if (field.getObjectAt(l) != null
+                                        && ((Character) field.getObjectAt(l)).isHuman()) {
+                                human = l;
                         }
                 }
-                if(human!=null){
-                        dest=human;;
+                if (human != null) {
+                        dest = human;
+                        ;
+                } else if (field.getFreeAdjacentLocations(location) != null
+                                && field.getFreeAdjacentLocations(location).size() > 0) {
+                        dest = field.getFreeAdjacentLocations(location).get(0);
                 }
-                else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0){
-                        dest=field.getFreeAdjacentLocations(location).get(0);
-                }
-                
+
                 return dest;
         }
 }

@@ -76,13 +76,13 @@ public class Human extends Character {
                         healthPoints -= 2;
                 }
 
-                if (super.healthPoints>0&&hasBeenBittenByVamp) {
+                if (super.healthPoints > 0 && hasBeenBittenByVamp) {
                         Vampire vamp = turnIntoVampire();
                         vamp.setLocation(this.location, field.getConsolePanel());
                         field.clear(this.location);
                         field.place(vamp, vamp.location);
                         vamp.say("I'm a vampire now", field.getConsolePanel());
-                } else if (super.healthPoints>0&&hasBeenBittenByLycan) {
+                } else if (super.healthPoints > 0 && hasBeenBittenByLycan) {
                         Werewolf w = turnIntoWerewolf();
                         w.setLocation(this.location, field.getConsolePanel());
                         field.clear(this.location);
@@ -165,7 +165,7 @@ public class Human extends Character {
          * 
          */
         public boolean baby(Field field) {
-                
+
                 boolean res = false;
                 Random rand = new Random();
                 if (rand.nextInt(5) == 4) {
@@ -180,7 +180,7 @@ public class Human extends Character {
                                 field.place(new Human(noms.get(0).toString(), Simulator.HP_HUMANS),
                                                 free.get(0));
                         }
-                        res=true;
+                        res = true;
                 }
                 return res;
         }
@@ -303,9 +303,9 @@ public class Human extends Character {
         public Weapon getWeapon() {
                 return this.weapon;
         }
-        
-        public Miscellaneous getItem(){
-                return this.item;                
-            }
+
+        public Miscellaneous getItem() {
+                return this.item;
+        }
 
 }

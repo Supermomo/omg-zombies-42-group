@@ -23,7 +23,7 @@ public class Vampire extends EvilCharacter {
          * 
          * @param name
          * @param healthPoints
-         * @param field 
+         * @param field
          */
         public Vampire(String name, int healthPoints) {
                 super(name, healthPoints);
@@ -48,27 +48,21 @@ public class Vampire extends EvilCharacter {
         }
 
         /**
-         * the encounter between this character and c attack c
-         * if the encountered is a vampire, take a bite of his blood to become more powerful
+         * the encounter between this character and c attack c if the
+         * encountered is a vampire, take a bite of his blood to become more
+         * powerful
          */
-        public void encounterCharacter(Character c, Field field) 
-        {
-            if(c.isVampire())
-            {
-                this.increaseHealthPoints(5);
-            }
-            else
-            {
-                if(c.isHuman() && this.getIsThirsty())
-                {
-                    this.bite((Human)c,field.getConsolePanel());
+        public void encounterCharacter(Character c, Field field) {
+                if (c.isVampire()) {
+                        this.increaseHealthPoints(5);
+                } else {
+                        if (c.isHuman() && this.getIsThirsty()) {
+                                this.bite((Human) c, field.getConsolePanel());
+                        } else {
+                                attack(c, field.getConsolePanel());
+                        }
+
                 }
-                else
-                {
-                    attack(c,field.getConsolePanel());
-                }
-                    
-            }
         }
 
         /**
@@ -76,8 +70,8 @@ public class Vampire extends EvilCharacter {
          * 
          * @param c
          */
-        protected boolean attack(Character c,JTextArea cons) {
-                super.attack(c,cons);
+        protected boolean attack(Character c, JTextArea cons) {
+                super.attack(c, cons);
                 c.reduceHealthPoints(10);
                 return true;
         }
@@ -89,9 +83,12 @@ public class Vampire extends EvilCharacter {
                 // The vampire has 1/6 chance of becoming thirsty, if he is not
                 // already
                 super.endOfTurn(field);
-                if (isThirsty || (Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean() && Simulator.GenerateRandomBoolean())) {
+                if (isThirsty
+                                || (Simulator.GenerateRandomBoolean()
+                                                && Simulator.GenerateRandomBoolean() && Simulator
+                                                .GenerateRandomBoolean())) {
                         isThirsty = true;
-                        say("I am thirsty now!!",field.getConsolePanel());
+                        say("I am thirsty now!!", field.getConsolePanel());
                 }
         }
 
@@ -101,58 +98,57 @@ public class Vampire extends EvilCharacter {
          * @param h
          *                Human who gets bitten by this vampire
          */
-        public void bite(Human h,JTextArea cons) {
+        public void bite(Human h, JTextArea cons) {
                 // The human has no way to escape. He gets bitten.
                 h.setHasBeenBittenByVamp(true);
-                say("I have bitten you, " + h.getName() + "!",cons);
+                say("I have bitten you, " + h.getName() + "!", cons);
                 // Vampire is not thirsty anymore
                 isThirsty = false;
         }
-        
+
         /**
          * Do the best move for the character
+         * 
          * @param field
          * @return null if no best location have been found
          */
-        public Location bestMove(Field field){
-                Location dest=null;
-                List<Location> loc=field.adjacentLocations(this.location);
-                Location human=null;
-                Location vamp=null;
-                Location zomb=null;
-                
-                for(Location l : loc){
-                        if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isHuman()){
-                                human=l;
+        public Location bestMove(Field field) {
+                Location dest = null;
+                List<Location> loc = field.adjacentLocations(this.location);
+                Location human = null;
+                Location vamp = null;
+                Location zomb = null;
+
+                for (Location l : loc) {
+                        if (field.getObjectAt(l) != null
+                                        && ((Character) field.getObjectAt(l)).isHuman()) {
+                                human = l;
+                        } else if (field.getObjectAt(l) != null
+                                        && ((Character) field.getObjectAt(l)).isZombie()) {
+                                zomb = l;
+                        } else if (field.getObjectAt(l) != null
+                                        && ((Character) field.getObjectAt(l)).isVampire()) {
+                                vamp = l;
                         }
-                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isZombie()){
-                                zomb=l;
-                        }
-                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isVampire()){
-                                vamp=l;
-                        }
-                        
+
                 }
-                if(human!=null){
-                        dest=human;;
-                }
-                else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0){
-                        dest=field.getFreeAdjacentLocations(location).get(0);
-                }
-                else if(zomb!=null){
-                        dest=zomb;
-                }
-                else if(vamp!=null){
-                        dest=vamp;
+                if (human != null) {
+                        dest = human;
+                        ;
+                } else if (field.getFreeAdjacentLocations(location) != null
+                                && field.getFreeAdjacentLocations(location).size() > 0) {
+                        dest = field.getFreeAdjacentLocations(location).get(0);
+                } else if (zomb != null) {
+                        dest = zomb;
+                } else if (vamp != null) {
+                        dest = vamp;
                 }
 
-                
                 return dest;
         }
-        
+
         /**
-         * Perform the usual character method
-         * ...just twice
+         * Perform the usual character method ...just twice
          * 
          */
         @Override

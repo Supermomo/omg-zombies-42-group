@@ -31,15 +31,15 @@ public class WerewolfCrew extends Werewolf {
          * Add a member to the crew
          */
         public void addMember(JTextArea cons) {
-                super.say("We are " + getCrewMembers(),cons);
+                super.say("We are " + getCrewMembers(), cons);
                 this.CrewMembers++;
         }
 
         /**
          * The crew attack the character
          */
-        protected boolean attack(Character c,JTextArea cons) {
-                super.attack(c,cons);
+        protected boolean attack(Character c, JTextArea cons) {
+                super.attack(c, cons);
                 c.reduceHealthPoints(15 * (CrewMembers - 1));
                 return true;
         }
@@ -60,7 +60,8 @@ public class WerewolfCrew extends Werewolf {
         /**
          * Make the encounter with the chraracter<BR>
          * if encounter a werewolf, add it to the crew if there is room for it <BR>
-         * if encounter a werewolf crew, attack it, the crew don't like being challenged<BR>
+         * if encounter a werewolf crew, attack it, the crew don't like being
+         * challenged<BR>
          * if encounter a human, bite him<BR>
          * otherwise attack
          */
@@ -68,19 +69,16 @@ public class WerewolfCrew extends Werewolf {
 
                 if (c.isWerewolf()) {
                         if (c.isWerewolfCrew()) {
-                                attack(c,field.getConsolePanel());
-                        }
-                        else if (this.getCrewMembers() < 5) {
+                                attack(c, field.getConsolePanel());
+                        } else if (this.getCrewMembers() < 5) {
                                 this.addMember(field.getConsolePanel());
                                 field.clear(c.location);
                         }
                 } else {
                         if (c.isHuman()) {
-                                this.bite((Human) c,field.getConsolePanel());
-                        }
-                        else 
-                        {
-                            attack(c,field.getConsolePanel());
+                                this.bite((Human) c, field.getConsolePanel());
+                        } else {
+                                attack(c, field.getConsolePanel());
                         }
 
                 }

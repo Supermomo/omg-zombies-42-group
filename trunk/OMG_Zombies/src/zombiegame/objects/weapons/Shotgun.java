@@ -7,60 +7,55 @@ import zombiegame.people.EvilCharacter;
 
 /**
  * Class of the Shotgun weapon
+ * 
  * @author gaubert
- *
+ * 
  */
 public class Shotgun extends Weapon {
-        
-        
-        private static final String TYPE="SHOTGUN";
-        
-        private static final int shotgunAmmo=8;
-        
+
+        private static final String TYPE = "SHOTGUN";
+
+        private static final int shotgunAmmo = 8;
+
         /**
-         * Constructor for a shotgun object
-         * is initialized with the default number of ammo
+         * Constructor for a shotgun object is initialized with the default
+         * number of ammo
          */
         public Shotgun() {
                 super(Shotgun.shotgunAmmo);
         }
-        
+
         /**
          * attack with the shotgun
          */
         public void Use(Character character, Field field) {
-            
-            if(character.isZombie())
-            {
-                ((EvilCharacter)character).setStun(true);
+
+                if (character.isZombie()) {
+                        ((EvilCharacter) character).setStun(true);
                         character.reduceHealthPoints(5);
-            }
-            else
-            {
-                if(character.isWerewolf() && (this.usedWith(new SilverBullet())))
-                {
-                       character.reduceHealthPoints(300);     
+                } else {
+                        if (character.isWerewolf() && (this.usedWith(new SilverBullet()))) {
+                                character.reduceHealthPoints(300);
+                        } else {
+                                character.reduceHealthPoints(1);
+                        }
+
                 }
-                else
-                {
-                    character.reduceHealthPoints(1);
-                }
-                    
-            }
-            super.Use(character,field);
+                super.Use(character, field);
         }
-        
+
         /**
          * Get a string representing the type of the object
+         * 
          * @return
          */
         @Override
-        public String getType(){
+        public String getType() {
                 return TYPE;
         }
-        
-        public boolean isShotgun(){
+
+        public boolean isShotgun() {
                 return true;
-        }    
+        }
 
 }

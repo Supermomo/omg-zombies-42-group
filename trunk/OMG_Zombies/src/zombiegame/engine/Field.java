@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JTextArea;
-
-import zombiegame.people.*;
 import zombiegame.people.Character;
 
 /**
@@ -25,7 +23,7 @@ public class Field {
         private int depth, width;
         // Storage for the animals.
         private Object[][] field;
-        
+
         private JTextArea cons;
 
         /**
@@ -40,7 +38,7 @@ public class Field {
                 this.depth = depth;
                 this.width = width;
                 field = new Object[depth][width];
-                cons=conso;
+                cons = conso;
         }
 
         /**
@@ -65,8 +63,8 @@ public class Field {
         }
 
         /**
-         * Place an object at the given location. If there is already an
-         * object at the location it will be lost.
+         * Place an object at the given location. If there is already an object
+         * at the location it will be lost.
          * 
          * @param object
          *                The animal to be placed.
@@ -84,12 +82,12 @@ public class Field {
          */
         public void placeRandomly(Object character) {
                 place(character, getFreeRandomLocation());
-                
+
         }
 
         /**
-         * Place an object at the given location. If there is already a character
-         * at the location it will be lost.
+         * Place an object at the given location. If there is already a
+         * character at the location it will be lost.
          * 
          * @param character
          *                The animal to be placed.
@@ -98,7 +96,7 @@ public class Field {
          */
         public void place(Object character, Location location) {
                 field[location.getRow()][location.getCol()] = character;
-                ((Character)character).setLocation(location,this.getConsolePanel());
+                ((Character) character).setLocation(location, this.getConsolePanel());
         }
 
         /**
@@ -201,7 +199,9 @@ public class Field {
                                                 // the original location.
                                                 if (nextCol >= 0 && nextCol < width
                                                                 && (roffset != 0 || coffset != 0)) {
-                                                        locations.add(new Location(nextRow,nextCol));
+                                                        locations
+                                                                        .add(new Location(nextRow,
+                                                                                        nextCol));
                                                 }
                                         }
                                 }
@@ -248,81 +248,80 @@ public class Field {
                 }
                 return new Location(row, column);
         }
-        
-        
-        public int getNbWerewolf(){
-                int x=0;
+
+        public int getNbWerewolf() {
+                int x = 0;
                 Object c;
                 Location l;
-                for(int i=0;i<getDepth();i++){
-                        for(int j=0;j<getWidth();j++){
-                                l=new Location(i,j);
-                                c=getObjectAt(l);
-                                if(c!=null&& ((Character)c).isWerewolf()){
+                for (int i = 0; i < getDepth(); i++) {
+                        for (int j = 0; j < getWidth(); j++) {
+                                l = new Location(i, j);
+                                c = getObjectAt(l);
+                                if (c != null && ((Character) c).isWerewolf()) {
                                         x++;
                                 }
                         }
                 }
-                
+
                 return x;
         }
-        
-        public int getNbHuman(){
-                int x=0;
+
+        public int getNbHuman() {
+                int x = 0;
                 Object c;
                 Location l;
-                for(int i=0;i<getDepth();i++){
-                        for(int j=0;j<getWidth();j++){
-                                l=new Location(i,j);
-                                c=getObjectAt(l);
-                                if(c!=null && ((Character)c).isHuman()){
+                for (int i = 0; i < getDepth(); i++) {
+                        for (int j = 0; j < getWidth(); j++) {
+                                l = new Location(i, j);
+                                c = getObjectAt(l);
+                                if (c != null && ((Character) c).isHuman()) {
                                         x++;
                                 }
                         }
                 }
-                
+
                 return x;
         }
-        
-        public int getNbZombie(){
-                int x=0;
+
+        public int getNbZombie() {
+                int x = 0;
                 Object c;
                 Location l;
-                for(int i=0;i<getDepth();i++){
-                        for(int j=0;j<getWidth();j++){
-                                l=new Location(i,j);
-                                c=getObjectAt(l);
-                                if(c!=null && ((Character)c).isZombie()){
+                for (int i = 0; i < getDepth(); i++) {
+                        for (int j = 0; j < getWidth(); j++) {
+                                l = new Location(i, j);
+                                c = getObjectAt(l);
+                                if (c != null && ((Character) c).isZombie()) {
                                         x++;
                                 }
                         }
                 }
-                
+
                 return x;
         }
-        
-        public int getNbVampire(){
-                int x=0;
+
+        public int getNbVampire() {
+                int x = 0;
                 Object c;
                 Location l;
-                for(int i=0;i<getDepth();i++){
-                        for(int j=0;j<getWidth();j++){
-                                l=new Location(i,j);
-                                c=getObjectAt(l);
-                                if(c!=null && ((Character)c).isVampire()){
+                for (int i = 0; i < getDepth(); i++) {
+                        for (int j = 0; j < getWidth(); j++) {
+                                l = new Location(i, j);
+                                c = getObjectAt(l);
+                                if (c != null && ((Character) c).isVampire()) {
                                         x++;
                                 }
                         }
                 }
-                
+
                 return x;
         }
-        
+
         /**
          * 
          * @return the panel where the console log are printed
          */
-        public JTextArea getConsolePanel(){
+        public JTextArea getConsolePanel() {
                 return cons;
         }
 }
