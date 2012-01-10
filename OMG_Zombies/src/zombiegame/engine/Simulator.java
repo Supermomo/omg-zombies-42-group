@@ -31,8 +31,8 @@ public class Simulator {
         public static final int HP_ZOMBIES = 30;
         public static final int HP_WEREWOLF = 150;
         public static final int SIZE_MAP=15;
-        public static final int NB_HUMANS = 1;
-        public static final int NB_VAMPIRES =3;
+        public static final int NB_HUMANS = 5;
+        public static final int NB_VAMPIRES =4;
         public static final int NB_ZOMBIES = 4;
         public static final int NB_WEREWOLF = 3;
 
@@ -171,6 +171,10 @@ public class Simulator {
         }
         
         public void generatePeople(int nbVamp, int nbWerewolf, int nbZombie, int nbHuman){
+                
+                if(nbVamp<0 || nbWerewolf<0 || nbZombie<0 || nbHuman<0){
+                        throw new RuntimeException("negative integer shouldn't be a parameter");
+                }
                 
                 Random rand = new Random();
                 List<Nom> noms = new LinkedList<Nom>();
