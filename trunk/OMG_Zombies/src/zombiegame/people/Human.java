@@ -101,13 +101,13 @@ public class Human extends Character {
 
                 if (edible != null) {
                         if (c.isVampire() && edible.isCureVamp()) {
-                                edible.Use(c);
+                                edible.Use(c, field);
                         } else if (c.isWerewolf() && edible.isCureLycan()) {
-                                edible.Use(c);
+                                edible.Use(c, field);
                         } else if (c.isZombie() && edible.isCureZomb()) {
-                                edible.Use(c);
+                                edible.Use(c, field);
                         } else if (edible.isIncreasingHp() && super.getHealthPoints() < 30) {
-                                edible.Use(this);
+                                edible.Use(this, field);
                         }
 
                         if (edible.getUses() <= 0) {
@@ -122,7 +122,7 @@ public class Human extends Character {
                 }
 
                 if (isArmed() && !c.isHuman()) {
-                        weapon.Use(c);
+                        weapon.Use(c, field);
                         if (weapon.getUses() <= 0) {
                                 weapon = null;
                         }

@@ -55,7 +55,7 @@ public class TestHuman
         //Verifier si le loup-garou est bien mort
         assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
         
-        // répétition des tests sur les autres "classes"
+        // rï¿½pï¿½tition des tests sur les autres "classes"
         Vampire v = new Vampire("b",150);
         f.place(w,new Location(1,0));
         f1.placeItem(new WoodenStick(),0,0);
@@ -81,10 +81,10 @@ public class TestHuman
         f.clear(new Location(1,0));
         
         WerewolfCrew wc = new WerewolfCrew("e",150,2);
-        f.place(w,new Location(1,0));
+        f.place(wc,new Location(1,0));
         f1.placeItem(new Shotgun(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
-        h1.encounterCharacter(w,f);
+        h1.encounterCharacter(wc,f);
         assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
         f.clear(new Location(1,0));
         
@@ -97,17 +97,17 @@ public class TestHuman
         assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
         
         v = new Vampire("b",150);
-        f.place(w,new Location(1,0));
+        f.place(v,new Location(1,0));
         f1.placeItem(new CureVamp(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
-        h1.encounterCharacter(w,f);
+        h1.encounterCharacter(v,f);
         assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
         
         z = new Zombie("c",150);
-        f.place(w,new Location(1,0));
+        f.place(z,new Location(1,0));
         f1.placeItem(new CureZombie(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
-        h1.encounterCharacter(w,f);
+        h1.encounterCharacter(z,f);
         assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
         //Test de la suppression de l'inventaire d'un miscellaneous qui n'a plus d'utilisation
         assertTrue(h1.getItem() == null);

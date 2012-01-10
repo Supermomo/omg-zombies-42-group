@@ -1,5 +1,7 @@
 package zombiegame.objects.edible;
 
+import zombiegame.engine.Field;
+import zombiegame.engine.Location;
 import zombiegame.people.Character;
 import zombiegame.people.EvilCharacter;
 import zombiegame.people.Human;
@@ -24,14 +26,17 @@ public class CureLycan extends Edible{
                 super(CureLycan.cureUses);
         }
         
-        public void Use(Character character) {
+        public void Use(Character character, Field field) {
                 if (character.isWerewolf() && ! character.isWerewolfCrew()) {
-                        character = ((EvilCharacter) character).turnBackIntoHumain();
+                        Character c=((EvilCharacter) character).turnBackIntoHumain();
+                        Location loc=character.getLocation();
+                        field.clear(loc);
+                        field.place(c, loc);
                 }
                 else if(character.isHuman()){
                         ((Human)character).setHasBeenBittenByLycan(false);
                 }
-                super.Use(character);
+                super.Use(character,field);
         }
 
         

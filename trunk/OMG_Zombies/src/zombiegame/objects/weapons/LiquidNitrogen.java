@@ -1,6 +1,7 @@
 package zombiegame.objects.weapons;
 
 
+import zombiegame.engine.Field;
 import zombiegame.people.Character;
 
 /**
@@ -26,14 +27,14 @@ public class LiquidNitrogen extends Weapon{
         /**
          * Use the liquid nitrogen on the character
          */
-        public void Use(Character character) {
+        public void Use(Character character,Field field) {
                 if(character.isZombie()){
                         character.reduceHealthPoints(200);
                 }
                 else {
                         character.reduceHealthPoints(1);
                 }
-                super.Use(character);
+                super.Use(character,field);
         }
        
         public boolean isLiquidNitrogen(){

@@ -1,5 +1,6 @@
 package zombiegame.objects.edible;
 
+import zombiegame.engine.Field;
 import zombiegame.people.Character;
 
 /**
@@ -23,9 +24,9 @@ public class MajorPotion extends Edible{
         /**
          * Use the potion to use the character
          */
-        public void Use(Character character) {
+        public void Use(Character character, Field field) {
                 character.increaseHealthPoints(25);
-                super.Use(character);
+                super.Use(character, field);
         }
         
         /**

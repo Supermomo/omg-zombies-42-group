@@ -1,5 +1,6 @@
 package zombiegame.objects;
 
+import zombiegame.engine.Field;
 import zombiegame.people.Character;
 
 /**
@@ -16,5 +17,5 @@ public interface Usable {
          * @param character
          *                on witch the item will be used
          */
-        public void Use(Character character);
+        public void Use(Character character, Field field);
 }
