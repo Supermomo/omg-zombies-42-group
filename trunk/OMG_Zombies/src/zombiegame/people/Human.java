@@ -76,13 +76,13 @@ public class Human extends Character {
                         healthPoints -= 2;
                 }
 
-                if (hasBeenBittenByVamp) {
+                if (super.healthPoints>0&&hasBeenBittenByVamp) {
                         Vampire vamp = turnIntoVampire();
                         vamp.setLocation(this.location, field.getConsolePanel());
                         field.clear(this.location);
                         field.place(vamp, vamp.location);
                         vamp.say("I'm a vampire now", field.getConsolePanel());
-                } else if (hasBeenBittenByLycan) {
+                } else if (super.healthPoints>0&&hasBeenBittenByLycan) {
                         Werewolf w = turnIntoWerewolf();
                         w.setLocation(this.location, field.getConsolePanel());
                         field.clear(this.location);
