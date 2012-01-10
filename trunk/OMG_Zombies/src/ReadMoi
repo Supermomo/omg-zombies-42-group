@@ -16,7 +16,7 @@ simultatnée pouvoir obtenir rapidement un avis sur les problèmes rencontrés.
 De part cela, il est difficile de dire qui à écrit quelle partie car même si l'un d'entre nous écrivait une 
 partie, les idées de l'autre y trouvaient souvent leur place.
 
-On a toutefois pu établir grossiérement une répartition.
+On a toutefois pu établir grossiérement une répartition des activités.
 
 
 Gwenn AUBERT :
@@ -25,7 +25,7 @@ Ecriture de toute la partie faites au partiel
 Ecriture du système d'objet (interface, SuperClasses et Objets)
 Ecriture du système de choix de l'action (méthode BestMove)
 Ecriture de la partie Graphique (FieldFrame, FieldPanel, ajout de la console)
-Ecriture des tests : package edible (toutes les classes), Class Zombie, Human, Mad Zombie, Werewolf, Vampire
+Ecriture des tests : package edible (toutes les classes), Classes Zombie, Mad Zombie, Werewolf, Vampire
 
 
 Matthieu MAUGARD :
@@ -33,7 +33,7 @@ Matthieu MAUGARD :
 Reecriture du simulateur
 Ecriture des Classes de people : Helico, Werewolf, WerewolfCrew
 Redéfinition des méthodes d'action (notament encounterCharacter) dans : Character, Vampire, Human et Zombie
-Ecriture des tests : Classe Human et Character, Helico, WerewolfCrew
+Ecriture des tests : Classes Human et Character, Helico, WerewolfCrew
 Tests sur les package Weapons et Miscellaneous
 
 
