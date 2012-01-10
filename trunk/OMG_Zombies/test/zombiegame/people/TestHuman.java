@@ -11,7 +11,9 @@ import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
 import zombiegame.objects.micellaneous.SilverBullet;
+import zombiegame.objects.weapons.LiquidNitrogen;
 import zombiegame.objects.weapons.Shotgun;
+import zombiegame.objects.weapons.WoodenStick;
 
 public class TestHuman 
 {
@@ -47,11 +49,24 @@ public class TestHuman
         f1.placeItem(new SilverBullet(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
         h1.encounterCharacter(w,f);
-        //System.out.println("ge");
+        //Verifier si le loup-garou est bien mort
         assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
         
+        // répétition des tests sur les autres "classes"
         Vampire v = new Vampire("b",150);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new WoodenStick(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
+        
         Zombie z = new Zombie("c",30);
+        f.place(w,new Location(1,0));
+        f1.placeItem(new LiquidNitrogen(),0,0);
+        h1.pickUpObject(f1,new Location(0,0));
+        h1.encounterCharacter(w,f);
+        assertEquals(0,((Character)f.getObjectAt(1,0)).getHealthPoints());
+        
         MadZombie mz = new MadZombie("d",30);
         WerewolfCrew wc = new WerewolfCrew("e",150,2);
         
