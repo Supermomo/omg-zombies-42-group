@@ -30,6 +30,7 @@ public class Simulator {
         public static final int HP_VAMPIRES = 150;
         public static final int HP_ZOMBIES = 30;
         public static final int HP_WEREWOLF = 150;
+        public static final int SIZE_MAP=30;
 
         // List of characters currently in the game
         private Field field;
@@ -42,11 +43,12 @@ public class Simulator {
         public void init() {
                 // Create characters
                 JTextArea cons=new JTextArea(200,200);
-                field = new Field(25,25,cons);
-                fieldObject=new Field(25,25,cons);             
+                field = new Field(SIZE_MAP,SIZE_MAP,cons);
+                fieldObject=new Field(SIZE_MAP,SIZE_MAP,cons);             
                 this.generatePeople(10, 30, 30, 20);
                 
                 ff=new FieldFrame(field, cons);
+                ff.validate();
         }
 
         /**
@@ -60,12 +62,12 @@ public class Simulator {
                 {
                     for(int j=0; j<field.getWidth();j++)
                     {   
-                        try {
+                        /*try {
                             Thread.sleep(1);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
-                        }
+                        }*/
                         
                         try 
                         {
@@ -86,12 +88,12 @@ public class Simulator {
 
                     }
                 }
-                try {
+                /*try {
                         Thread.sleep(200);
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
-                    }
+                    }*/
                 Helico helic = new Helico(fieldObject);
                 helic.dropItem(ff);
                 

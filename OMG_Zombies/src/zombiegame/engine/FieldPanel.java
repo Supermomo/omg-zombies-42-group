@@ -28,12 +28,12 @@ public class FieldPanel extends JPanel {
 
         public FieldPanel(Field fiel) {
                 super();
-                this.setBackground(java.awt.Color.green);
+                this.setBackground(java.awt.Color.GRAY);
                 this.field = fiel;
 
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
 
-                imgMap = tk.getImage(this.getClass().getResource("/img/map_grass.png"));
+                imgMap = tk.getImage(this.getClass().getResource("/img/map_ice2.png"));
                 imgHuman = tk.getImage(this.getClass().getResource("/img/Human.png"));
                 imgHumanShotgun = tk.getImage(this.getClass().getResource("/img/HumanShotgun.png"));
                 imgHumanFlameThrower = tk.getImage(this.getClass().getResource(
@@ -42,7 +42,7 @@ public class FieldPanel extends JPanel {
                                 .getResource("/img/HumanWoodenStick.png"));
                 imgZombie = tk.getImage(this.getClass().getResource("/img/Zombie.png"));
                 imgMadZombie = tk.getImage(this.getClass().getResource("/img/MadZombie.png"));
-                imgWerewolf = tk.getImage(this.getClass().getResource("/img/Werewolf.png"));
+                imgWerewolf = tk.getImage(this.getClass().getResource("/img/Werewolf2.png"));
                 imgWerewolfCrew = tk.getImage(this.getClass().getResource("/img/WerewolfCrew.png"));
                 imgVampire = tk.getImage(this.getClass().getResource("/img/Vamp.png"));
 
