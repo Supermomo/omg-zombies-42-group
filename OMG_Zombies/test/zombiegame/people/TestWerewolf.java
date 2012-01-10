@@ -58,11 +58,6 @@ public class TestWerewolf {
         }
 
         @Test
-        public void testEndOfTurn() {
-
-        }
-
-        @Test
         public void testAttack() {
                 Human h=new Human("gros",50);
                 int hph=h.getHealthPoints();
