@@ -303,5 +303,9 @@ public class Human extends Character {
         public Weapon getWeapon() {
                 return this.weapon;
         }
+        
+        public Miscellaneous getItem(){
+                return this.item;                
+            }
 
 }
