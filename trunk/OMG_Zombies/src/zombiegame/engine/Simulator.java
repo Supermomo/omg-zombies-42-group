@@ -30,7 +30,11 @@ public class Simulator {
         public static final int HP_VAMPIRES = 150;
         public static final int HP_ZOMBIES = 30;
         public static final int HP_WEREWOLF = 150;
-        public static final int SIZE_MAP=30;
+        public static final int SIZE_MAP=15;
+        public static final int NB_HUMANS = 1;
+        public static final int NB_VAMPIRES =3;
+        public static final int NB_ZOMBIES = 4;
+        public static final int NB_WEREWOLF = 3;
 
         // List of characters currently in the game
         private Field field;
@@ -43,12 +47,14 @@ public class Simulator {
         public void init() {
                 // Create characters
                 JTextArea cons=new JTextArea(200,200);
+                cons.setText("New game running");
                 field = new Field(SIZE_MAP,SIZE_MAP,cons);
                 fieldObject=new Field(SIZE_MAP,SIZE_MAP,cons);             
-                this.generatePeople(10, 30, 30, 20);
+                this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
                 
                 ff=new FieldFrame(field, cons);
                 ff.validate();
+                cons.repaint();
         }
 
         /**
