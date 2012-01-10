@@ -137,8 +137,8 @@ public abstract class Character {
          *                number of HP to reduce
          */
         public void reduceHealthPoints(int reduction) {
-                if(reduction<=0){
-                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
+                if(reduction<0){
+                        throw new RuntimeException("negative integer shouldn't be a parameter");
                 }
                 healthPoints = healthPoints - reduction;
                 if (healthPoints < 0) {

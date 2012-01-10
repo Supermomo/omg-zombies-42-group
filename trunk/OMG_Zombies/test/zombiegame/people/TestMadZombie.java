@@ -31,9 +31,9 @@ public class TestMadZombie {
                         assertTrue(hp==v.getHealthPoints());
                 }
                 Human h=new Human("h",50);
-                hp=v.getHealthPoints();
+                hp=h.getHealthPoints();
                 mz.attack(h, new JTextArea());
-                assertTrue(hp>v.getHealthPoints());
+                assertTrue(hp>h.getHealthPoints());
         }
 
         @Test
