@@ -79,6 +79,7 @@ public class Zombie extends EvilCharacter {
                         name="(Mad)"+super.name;
                 }
                 MadZombie mz=new MadZombie(name,Simulator.HP_ZOMBIES+20);
+                mz.justPlayed();
                 return mz;
         }
         

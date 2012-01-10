@@ -83,7 +83,6 @@ public class Human extends Character {
                     field.clear(this.location);
                     field.place(vamp,vamp.location);
                     vamp.say("I'm a vampire now",field.getConsolePanel());
-                    vamp.justPlayed();
                 }
                 else if(hasBeenBittenByLycan)
                 {
@@ -92,7 +91,6 @@ public class Human extends Character {
                         field.clear(this.location);
                         field.place(w,w.location);
                         w.say("I'm a lycan now",field.getConsolePanel());
-                        w.justPlayed();
                  }
                 
                 
@@ -202,6 +200,7 @@ public class Human extends Character {
          */
         public Vampire turnIntoVampire() {
                 Vampire v = new Vampire("(Vamp)"+super.name, super.healthPoints);
+                v.justPlayed();
                 return v;
         }
         
@@ -213,6 +212,7 @@ public class Human extends Character {
         public Werewolf turnIntoWerewolf()
         {
             Werewolf w = new Werewolf("(Wolf)"+super.name, super.healthPoints);
+            w.justPlayed();
             return w;
         }
         
@@ -224,6 +224,7 @@ public class Human extends Character {
         public Zombie turnIntoZombie()
         {
             Zombie z = new Zombie("(Zomb)"+super.name, Simulator.HP_ZOMBIES);
+            z.justPlayed();
             return z;
         }
         
