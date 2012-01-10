@@ -3,10 +3,9 @@ package zombiegame.people;
 import java.util.List;
 
 import javax.swing.JTextArea;
-
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
-import zombiegame.engine.Simulator;
+
 
 /**
  * Class for a werewolf extends from EvilCharacter
@@ -45,21 +44,20 @@ public class Werewolf extends EvilCharacter {
                                 ((WerewolfCrew) c).addMember(field.getConsolePanel());
                                 field.clear(this.location);
                         }
-                }
-                else if (c.isWerewolf()) {
+                } else if (c.isWerewolf()) {
                         WerewolfCrew meute = new WerewolfCrew("(Crew)" + this.name, 150, 2);
                         field.clear(c.location);
                         field.clear(this.location);
                         field.place(meute, c.location);
-                        this.say("We are now a crew !",field.getConsolePanel());
+                        this.say("We are now a crew !", field.getConsolePanel());
 
                 } else {
                         if (c.isHuman() && (c.getHealthPoints() <= 25)) {
-                                this.bite((Human) c,field.getConsolePanel());
+                                this.bite((Human) c, field.getConsolePanel());
                         } else {
-                                attack(c,field.getConsolePanel());
+                                attack(c, field.getConsolePanel());
                                 if (c.isHuman() && (c.getHealthPoints() <= 25)) {
-                                        this.bite((Human) c,field.getConsolePanel());
+                                        this.bite((Human) c, field.getConsolePanel());
                                 }
                         }
 
@@ -71,12 +69,11 @@ public class Werewolf extends EvilCharacter {
          * 
          * @param c
          */
-        protected boolean attack(Character c,JTextArea cons) {
-                super.attack(c,cons);
+        protected boolean attack(Character c, JTextArea cons) {
+                super.attack(c, cons);
                 c.reduceHealthPoints(15);
                 return true;
         }
-
 
         /**
          * Method called when a vampire decides to bite a human
@@ -84,54 +81,51 @@ public class Werewolf extends EvilCharacter {
          * @param h
          *                Human who gets bitten by this vampire
          */
-        public void bite(Human h,JTextArea cons) {
+        public void bite(Human h, JTextArea cons) {
                 // The human has no way to escape. He gets bitten.
                 h.setHasBeenBittenByLycan(true);
-                say("I have bitten you, " + h.getName() + "!",cons);
+                say("I have bitten you, " + h.getName() + "!", cons);
         }
-        
+
         /**
          * Do the best move for the character
+         * 
          * @param field
          * @return null if no best location have been found
          */
-        public Location bestMove(Field field){
+        public Location bestMove(Field field) {
 
-                Location dest=null;
-                List<Location> loc=field.adjacentLocations(this.location);
-                Location vamp=null;
-                Location human=null;
-                Location lycan=null;
-                
-                for(Location l : loc){
-                        if(field.getObjectAt(l)!= null && ((Character)field.getObjectAt(l)).isVampire()){
-                                vamp=l;
+                Location dest = null;
+                List<Location> loc = field.adjacentLocations(this.location);
+                Location vamp = null;
+                Location human = null;
+                Location lycan = null;
+
+                for (Location l : loc) {
+                        if (field.getObjectAt(l) != null
+                                        && ((Character) field.getObjectAt(l)).isVampire()) {
+                                vamp = l;
+                        } else if (field.getObjectAt(l) != null
+                                        && ((Character) field.getObjectAt(l)).isHuman()) {
+                                human = l;
+                        } else if (field.getObjectAt(l) != null
+                                        && ((Character) field.getObjectAt(l)).isWerewolf()) {
+                                lycan = l;
                         }
-                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isHuman()){
-                                human=l;
-                        }
-                        else if(field.getObjectAt(l)!= null &&((Character)field.getObjectAt(l)).isWerewolf()){
-                                lycan=l;
-                        }
-                }
-                
-                if(vamp!=null ){
-                    dest=vamp  ;  
-                }
-                else if (human!=null){
-                        dest=human;
-                }
-                else if(field.getFreeAdjacentLocations(location)!=null && field.getFreeAdjacentLocations(location).size()>0)
-                {
-                        dest=field.getFreeAdjacentLocations(location).get(0);
-                }
-                else if (lycan!=null){
-                        dest=lycan;
                 }
 
-                
+                if (vamp != null) {
+                        dest = vamp;
+                } else if (human != null) {
+                        dest = human;
+                } else if (field.getFreeAdjacentLocations(location) != null
+                                && field.getFreeAdjacentLocations(location).size() > 0) {
+                        dest = field.getFreeAdjacentLocations(location).get(0);
+                } else if (lycan != null) {
+                        dest = lycan;
+                }
+
                 return dest;
         }
-        
 
 }

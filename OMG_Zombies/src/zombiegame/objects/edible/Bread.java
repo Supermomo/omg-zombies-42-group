@@ -13,7 +13,7 @@ import zombiegame.people.Human;
 public class Bread extends Edible {
 
         private static final String TYPE = "BREAD";
-        
+
         private static final int breadUses = 4;
 
         /**
@@ -30,7 +30,7 @@ public class Bread extends Edible {
          * character
          */
         public void Use(Character character, Field field) {
-                super.Use(character,field);
+                super.Use(character, field);
 
                 character.increaseHealthPoints(5);
                 try {
@@ -41,20 +41,21 @@ public class Bread extends Edible {
                 }
 
         }
-        
+
         /**
          * return true if the item increase your Hp when eaten
          */
-        public boolean isIncreasingHp(){
+        public boolean isIncreasingHp() {
                 return true;
         }
-        
+
         /**
          * Get a string representing the type of the object
+         * 
          * @return
          */
         @Override
-        public String getType(){
+        public String getType() {
                 return TYPE;
         }
 }

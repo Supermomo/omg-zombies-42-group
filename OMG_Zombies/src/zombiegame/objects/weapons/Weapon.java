@@ -14,13 +14,15 @@ import zombiegame.people.Character;
  */
 public abstract class Weapon extends Item implements Usable {
 
-        private static final String TYPE="WEAPON";
-        
+        private static final String TYPE = "WEAPON";
+
         private Miscellaneous usedWith = null;
 
         /**
          * Constructor for a weapon, will not be used directly
-         * @param ammo number of ammunition for this weapon
+         * 
+         * @param ammo
+         *                number of ammunition for this weapon
          */
         public Weapon(int ammo) {
                 super(ammo);
@@ -41,39 +43,40 @@ public abstract class Weapon extends Item implements Usable {
 
         /**
          * Set the item to be used with this weapon
+         * 
          * @param item
          */
         public void useWith(Miscellaneous item) {
                 this.usedWith = item;
         }
-        
-        public boolean isShotgun(){
+
+        public boolean isShotgun() {
                 return false;
         }
-        
-        public boolean isWoodenStick(){
+
+        public boolean isWoodenStick() {
                 return false;
         }
-        
-        public boolean isLiquidNitrogen(){
+
+        public boolean isLiquidNitrogen() {
                 return false;
         }
-        
-        public boolean isWeapon(){
+
+        public boolean isWeapon() {
                 return true;
         }
 
         /**
          * Get a string representing the type of the object
+         * 
          * @return
          */
         @Override
-        public String getType(){
+        public String getType() {
                 return TYPE;
         }
-        
-        public boolean usedWith(Miscellaneous m)
-        {
-            return (this.usedWith != null && this.usedWith.getType().equals(m.getType()));
+
+        public boolean usedWith(Miscellaneous m) {
+                return (this.usedWith != null && this.usedWith.getType().equals(m.getType()));
         }
 }

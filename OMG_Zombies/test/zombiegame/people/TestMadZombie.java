@@ -10,30 +10,29 @@ import org.junit.Test;
 public class TestMadZombie {
 
         private MadZombie mz;
-        private String name="jule";
-        private int hp=100;
-        
+        private String name = "jule";
+        private int hp = 100;
+
         @Before
         public void setUp() throws Exception {
-                mz=new MadZombie(name,hp);
+                mz = new MadZombie(name, hp);
         }
-        
+
         @Test
         public void testAttack() {
-                
-                Vampire v=new Vampire("e",100);
-                int hp=v.getHealthPoints();
-                boolean done=mz.attack(v, new JTextArea());
-                if(done){
-                        assertTrue(hp>v.getHealthPoints());
+
+                Vampire v = new Vampire("e", 100);
+                int hp = v.getHealthPoints();
+                boolean done = mz.attack(v, new JTextArea());
+                if (done) {
+                        assertTrue(hp > v.getHealthPoints());
+                } else {
+                        assertTrue(hp == v.getHealthPoints());
                 }
-                else{
-                        assertTrue(hp==v.getHealthPoints());
-                }
-                Human h=new Human("h",50);
-                hp=h.getHealthPoints();
+                Human h = new Human("h", 50);
+                hp = h.getHealthPoints();
                 mz.attack(h, new JTextArea());
-                assertTrue(hp>h.getHealthPoints());
+                assertTrue(hp > h.getHealthPoints());
         }
 
         @Test

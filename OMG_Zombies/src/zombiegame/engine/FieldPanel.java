@@ -105,12 +105,11 @@ public class FieldPanel extends JPanel {
                                                                                                 null);
                                                         }
 
+                                                } else {
+                                                        g.drawImage(imgHuman, (j + 1) * (widthBox),
+                                                                        (i + 1) * heightBox,
+                                                                        widthBox, heightBox, null);
                                                 }
-                                                else{
-                                                        g.drawImage(imgHuman, (j + 1) * (widthBox), (i + 1)
-                                                                        * heightBox, widthBox, heightBox,
-                                                                        null);
-                                                }        
                                         } else if (o.isWerewolfCrew()) {
                                                 g.drawImage(imgWerewolfCrew, (j + 1) * (widthBox),
                                                                 (i + 1) * heightBox, widthBox,
@@ -124,18 +123,18 @@ public class FieldPanel extends JPanel {
                                                                 (i + 1) * heightBox, widthBox,
                                                                 heightBox, null);
                                         } else if (o.isZombie()) {
-                                                if(((Zombie)o).isMadZombie()){
-                                                        g.drawImage(imgMadZombie, (j + 1) * (widthBox),
-                                                                        (i + 1) * heightBox, widthBox,
+                                                if (((Zombie) o).isMadZombie()) {
+                                                        g.drawImage(imgMadZombie, (j + 1)
+                                                                        * (widthBox), (i + 1)
+                                                                        * heightBox, widthBox,
                                                                         heightBox, null);
+                                                } else {
+                                                        g.drawImage(imgZombie,
+                                                                        (j + 1) * (widthBox),
+                                                                        (i + 1) * heightBox,
+                                                                        widthBox, heightBox, null);
                                                 }
-                                                else{
-                                                        g.drawImage(imgZombie, (j + 1) * (widthBox),
-                                                                        (i + 1) * heightBox, widthBox,
-                                                                        heightBox, null);  
-                                                }                                              
                                         }
-                                        
 
                                 } else {
                                         /*

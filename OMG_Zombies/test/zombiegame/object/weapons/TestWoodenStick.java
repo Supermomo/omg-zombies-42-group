@@ -8,22 +8,22 @@ import org.junit.Test;
 import zombiegame.objects.weapons.WoodenStick;
 
 public class TestWoodenStick {
-    
-    WoodenStick ws;
 
-    @Before
-    public void setUp() throws Exception {
-        ws = new WoodenStick();
-    }
+        WoodenStick ws;
 
-    @Test
-    public void testGetType() {
-        assertArrayEquals("WOODEN STICK".toCharArray(),ws.getType().toCharArray());
-    }
+        @Before
+        public void setUp() throws Exception {
+                ws = new WoodenStick();
+        }
 
-    @Test
-    public void testIsWoodenStick() {
-        assertTrue(ws.isWoodenStick());
-    }
+        @Test
+        public void testGetType() {
+                assertArrayEquals("WOODEN STICK".toCharArray(), ws.getType().toCharArray());
+        }
+
+        @Test
+        public void testIsWoodenStick() {
+                assertTrue(ws.isWoodenStick());
+        }
 
 }

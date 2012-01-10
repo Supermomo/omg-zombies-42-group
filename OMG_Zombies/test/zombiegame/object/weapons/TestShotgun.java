@@ -9,21 +9,21 @@ import zombiegame.objects.weapons.Shotgun;
 
 public class TestShotgun {
 
-    Shotgun s;
-    
-    @Before
-    public void setUp() throws Exception {
-        s = new Shotgun();
-    }
+        Shotgun s;
 
-    @Test
-    public void testGetType() {
-        assertArrayEquals("SHOTGUN".toCharArray(),s.getType().toCharArray());
-    }
+        @Before
+        public void setUp() throws Exception {
+                s = new Shotgun();
+        }
 
-    @Test
-    public void testIsLiquidNitrogen() {
-        assertTrue(s.isShotgun());
-    }
+        @Test
+        public void testGetType() {
+                assertArrayEquals("SHOTGUN".toCharArray(), s.getType().toCharArray());
+        }
+
+        @Test
+        public void testIsLiquidNitrogen() {
+                assertTrue(s.isShotgun());
+        }
 
 }

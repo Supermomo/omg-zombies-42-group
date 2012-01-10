@@ -5,18 +5,19 @@ import zombiegame.people.Character;
 
 /**
  * Class for the wooden sticks objects
+ * 
  * @author gaubert
- *
+ * 
  */
-public class WoodenStick extends Weapon{
-        
-        private static final String TYPE="WOODEN STICK";
-        
-        private static final int woodenStickAmmo=1;
-        
+public class WoodenStick extends Weapon {
+
+        private static final String TYPE = "WOODEN STICK";
+
+        private static final int woodenStickAmmo = 1;
+
         /**
-         * Constructor for a wooden stick object
-         * is initialized with the default number of ammo
+         * Constructor for a wooden stick object is initialized with the default
+         * number of ammo
          */
         public WoodenStick() {
                 super(WoodenStick.woodenStickAmmo);
@@ -32,18 +33,19 @@ public class WoodenStick extends Weapon{
                         character.reduceHealthPoints(1); // Ouch !
                 }
                 super.Use(character, field);
-        }      
-        
-        public boolean isWoodenStick(){
+        }
+
+        public boolean isWoodenStick() {
                 return true;
         }
-        
+
         /**
          * Get a string representing the type of the object
+         * 
          * @return
          */
         @Override
-        public String getType(){
+        public String getType() {
                 return TYPE;
         }
 

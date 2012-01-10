@@ -8,51 +8,52 @@ import zombiegame.people.Human;
 
 /**
  * the cure potion used to turn a vampire back into a humain
+ * 
  * @author gaubert
- *
+ * 
  */
-public class CureVamp extends Edible{
+public class CureVamp extends Edible {
         private static final String TYPE = "CURE VAMP";
-        
-        
-        private static final int cureUse =1;
-        
+
+        private static final int cureUse = 1;
+
         /**
          * create a CureVamp object that can only be use once
          */
         public CureVamp() {
                 super(CureVamp.cureUse);
         }
-        
+
         /**
-         * Use the potion to cure a vampire or to prevent a human that have been bitten to turn into a vamp
+         * Use the potion to cure a vampire or to prevent a human that have been
+         * bitten to turn into a vamp
          */
         @Override
         public void Use(Character character, Field field) {
                 if (character.isVampire()) {
-                        Character c=((EvilCharacter) character).turnBackIntoHumain();
-                        Location loc=character.getLocation();
+                        Character c = ((EvilCharacter) character).turnBackIntoHumain();
+                        Location loc = character.getLocation();
                         field.clear(loc);
                         field.place(c, loc);
-                       
+
+                } else if (character.isHuman()) {
+                        ((Human) character).setHasBeenBittenByVamp(false);
                 }
-                else if(character.isHuman()) {
-                        ((Human)character).setHasBeenBittenByVamp(false);
-                }
-                super.Use(character,field);
+                super.Use(character, field);
         }
-        
-        public boolean isCureVamp(){
+
+        public boolean isCureVamp() {
                 return true;
         }
-        
+
         /**
          * Get a string representing the type of the object
+         * 
          * @return
          */
         @Override
-        public String getType(){
+        public String getType() {
                 return TYPE;
         }
-        
+
 }
