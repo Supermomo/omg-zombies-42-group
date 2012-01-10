@@ -109,12 +109,14 @@ public class TestHuman
         h1.pickUpObject(f1,new Location(0,0));
         h1.encounterCharacter(w,f);
         assertEquals(h1.getClass(),f.getObjectAt(1,0).getClass());
-        
         //Test de la suppression de l'inventaire d'un miscellaneous qui n'a plus d'utilisation
+        assertTrue(h1.getItem() == null);
         
         //Test que sinon, pas d'attaque effectuée
-        
-        
+        z = new Zombie("c",150);
+        f.place(w,new Location(1,0));
+        h1.encounterCharacter(w,f);
+        assertTrue(z.getHealthPoints() != 0);
     }
 
     @Test
