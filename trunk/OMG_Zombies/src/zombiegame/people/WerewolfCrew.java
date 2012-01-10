@@ -61,18 +61,18 @@ public class WerewolfCrew extends Werewolf {
          * Make the encounter with the chraracter<BR>
          * if encounter a werewolf, add it to the crew if there is room for it <BR>
          * if encounter a werewolf crew, attack it, the crew don't like being challenged<BR>
-         * if encounter a human, bite him if he is wounded<BR>
+         * if encounter a human, bite him<BR>
          * otherwise attack
          */
         public void encounterCharacter(Character c, Field field) {
 
                 if (c.isWerewolf()) {
-                        if (this.getCrewMembers() < 5) {
-                                this.addMember(field.getConsolePanel());
-                                field.clear(c.location);
-                        }
                         if (c.isWerewolfCrew()) {
                                 attack(c,field.getConsolePanel());
+                        }
+                        else if (this.getCrewMembers() < 5) {
+                                this.addMember(field.getConsolePanel());
+                                field.clear(c.location);
                         }
                 } else {
                         if (c.isHuman()) {

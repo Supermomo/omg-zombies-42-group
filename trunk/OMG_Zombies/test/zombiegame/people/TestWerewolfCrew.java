@@ -7,6 +7,9 @@ import javax.swing.JTextArea;
 import org.junit.Before;
 import org.junit.Test;
 
+import zombiegame.engine.Field;
+import zombiegame.engine.Location;
+
 public class TestWerewolfCrew {
 
         
@@ -26,7 +29,30 @@ public class TestWerewolfCrew {
 
         @Test
         public void testEncounterCharacter() {
-
+                
+                int memb=wc.getCrewMembers();
+                
+                Werewolf w=new Werewolf("e",100);
+                Field f=new Field(23,23,new JTextArea());
+                f.place(w, new Location(2,2));
+                f.place(wc, new Location(2,3));
+                wc.encounterCharacter(w, f);
+                assertTrue(memb+1==wc.getCrewMembers());
+                
+                WerewolfCrew wc2= new WerewolfCrew("h",100,2);
+                int hp=wc2.getHealthPoints();
+                f.place(wc2, new Location(1,2));
+                wc.encounterCharacter(wc2, f);
+                assertTrue(hp>wc2.getHealthPoints());
+                
+                Human h=new Human("c",50);
+                wc2.encounterCharacter(h, f);
+                assertTrue(h.getHasBeenBittenByLycan());
+                
+                Vampire v= new Vampire("v",100);
+                hp=v.getHealthPoints();
+                wc.encounterCharacter(v, f);
+                assertTrue(hp>v.getHealthPoints());
         }
 
         @Test
