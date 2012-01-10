@@ -36,12 +36,14 @@ public class TestHuman
     
     @Test
     public void testEncounterCharacter() 
-    {
+    {   
+        //test de l'utilisation des objets
         Werewolf w = new Werewolf("a",150);
         f.place(w,new Location(1,0));
         f1.placeItem(new Shotgun(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
-        //f1.clear(new Location(0,0));
+        //test : ramasser l'objet l'a bien supprimé
+        assertTrue(f1.getObjectAt(new Location(0,0))==null);
         f1.placeItem(new SilverBullet(),0,0);
         h1.pickUpObject(f1,new Location(0,0));
         h1.encounterCharacter(w,f);
@@ -52,6 +54,13 @@ public class TestHuman
         Zombie z = new Zombie("c",30);
         MadZombie mz = new MadZombie("d",30);
         WerewolfCrew wc = new WerewolfCrew("e",150,2);
+        
+        //A FAIRE
+        //Test de l'utilisation des edible ( debut de encounter character
+        
+        //Test de la suppression de l'inventaire d'un miscellaneous qui n'a plus d'utilisation
+        
+        //Test que sinon, pas d'attaque effectuée
         
         
     }
@@ -85,9 +94,15 @@ public class TestHuman
     public void testBaby()
     {
         h1.setLocation(new Location(0,0),new JTextArea());
-        h1.baby(f);
-        assertTrue(((Human) f.getObjectAt(1,0)).isHuman());
+        boolean res=h1.baby(f);
+        if(res){
+                assertTrue(((Human) f.getObjectAt(1,0)).isHuman());  
         }
+        else {
+                assertTrue(f.getObjectAt(1,0)==null);
+        }
+        
+    }
 
     @Test
     public void testTurnIntoVampire() 
