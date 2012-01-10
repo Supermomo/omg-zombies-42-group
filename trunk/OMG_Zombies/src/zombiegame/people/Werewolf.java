@@ -40,18 +40,19 @@ public class Werewolf extends EvilCharacter {
          * a werewolf or attack any other race
          */
         public void encounterCharacter(Character c, Field field) {
-                if (c.isWerewolf()) {
+                if (c.isWerewolfCrew()) {
+                        if (((WerewolfCrew) c).getCrewMembers() < 5) {
+                                ((WerewolfCrew) c).addMember(field.getConsolePanel());
+                                field.clear(this.location);
+                        }
+                }
+                else if (c.isWerewolf()) {
                         WerewolfCrew meute = new WerewolfCrew("(Crew)" + this.name, 150, 2);
                         field.clear(c.location);
                         field.clear(this.location);
                         field.place(meute, c.location);
                         this.say("We are now a crew !",field.getConsolePanel());
-                        if (c.isWerewolfCrew()) {
-                                if (((WerewolfCrew) c).getCrewMembers() < 5) {
-                                        ((WerewolfCrew) c).addMember(field.getConsolePanel());
-                                        field.clear(this.location);
-                                }
-                        }
+
                 } else {
                         if (c.isHuman() && (c.getHealthPoints() <= 25)) {
                                 this.bite((Human) c,field.getConsolePanel());

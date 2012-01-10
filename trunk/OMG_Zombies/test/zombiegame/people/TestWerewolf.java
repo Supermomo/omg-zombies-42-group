@@ -7,6 +7,9 @@ import javax.swing.JTextArea;
 import org.junit.Before;
 import org.junit.Test;
 
+import zombiegame.engine.Field;
+import zombiegame.engine.Location;
+
 public class TestWerewolf {
 
         private Werewolf w;
@@ -25,6 +28,32 @@ public class TestWerewolf {
 
         @Test
         public void testEncounterCharacter() {
+                
+                //if encounter a werewolf
+                Werewolf w2=new Werewolf("we",100);
+                Field f=new Field(23,23,new JTextArea());
+                f.place(w, new Location(2,2));
+                f.place(w2, new Location(3,2));
+                w.encounterCharacter(w2, f);
+                assertTrue(((Character)f.getObjectAt(w2.getLocation())).isWerewolfCrew());
+                
+                //if a wounded human is encounter
+                Human h=new Human("te",20);
+                w.encounterCharacter(h, f);
+                assertTrue(h.getHasBeenBittenByLycan());
+                
+                h.increaseHealthPoints(30);
+                int hp=h.getHealthPoints();
+                w.encounterCharacter(h, f);
+                assertTrue(h.getHealthPoints()<hp);
+                // the behavior for non wounded human is the same that the one for every other races
+                
+                //if a werewolfCrew is encountered
+                int crNumber=2;
+                WerewolfCrew wc=new WerewolfCrew("JE",100,crNumber);
+                f.place(wc, new Location(2,3));
+                w.encounterCharacter(wc, f);
+                assertTrue(crNumber+1==((WerewolfCrew)f.getObjectAt(wc.getLocation())).getCrewMembers());
                 
         }
 
