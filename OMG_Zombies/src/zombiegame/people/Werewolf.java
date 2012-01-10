@@ -70,9 +70,10 @@ public class Werewolf extends EvilCharacter {
          * 
          * @param c
          */
-        protected void attack(Character c,JTextArea cons) {
+        protected boolean attack(Character c,JTextArea cons) {
                 super.attack(c,cons);
                 c.reduceHealthPoints(15);
+                return true;
         }
 
 

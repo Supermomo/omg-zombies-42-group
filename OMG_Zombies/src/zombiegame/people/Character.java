@@ -269,8 +269,9 @@ public abstract class Character {
          * 
          * @param c
          */
-        protected void attack(Character c, JTextArea cons) {
+        protected boolean attack(Character c, JTextArea cons) {
                 say(c.getName() + ", I'm gonna kill you!",cons);
+                return true;
 
         }
 

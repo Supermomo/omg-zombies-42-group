@@ -39,7 +39,9 @@ public class Zombie extends EvilCharacter {
          * the encounter between this character and c attack c
          */
         public void encounterCharacter(Character c, Field field) {
-                attack(c,field.getConsolePanel());
+                if (c.isHuman() || c.isVampire() && Simulator.GenerateRandomBoolean()) {
+                        attack(c,field.getConsolePanel());    
+                }          
         }
 
         /**
@@ -64,12 +66,16 @@ public class Zombie extends EvilCharacter {
          * attack the character c
          * 
          * @param c
+         * @return 
          */
-        protected void attack(Character c, JTextArea cons) {
+        protected boolean attack(Character c, JTextArea cons) {
+                boolean attack=false;
                 if (c.isHuman() || c.isVampire() && Simulator.GenerateRandomBoolean()) {
                         super.attack(c,cons);
                         c.reduceHealthPoints(5);
+                        attack=true;
                 }
+                return attack;
         }
         
         public MadZombie turnIntoMadZombie(){
