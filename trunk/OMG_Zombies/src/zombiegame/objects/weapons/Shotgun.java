@@ -38,7 +38,6 @@ public class Shotgun extends Weapon {
             {
                 if(character.isWerewolf() && (this.usedWith(new SilverBullet())))
                 {
-                    System.out.println("bla");
                        character.reduceHealthPoints(300);     
                 }
                 else

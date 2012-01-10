@@ -37,7 +37,7 @@ public class TestMiscellaneous {
 
     @Test
     public void testIsMicellaneous() {
-        assertTrue(sb.isMicellaneous());
+        assertTrue(sb.isMiscellaneous());
     }
 
 }

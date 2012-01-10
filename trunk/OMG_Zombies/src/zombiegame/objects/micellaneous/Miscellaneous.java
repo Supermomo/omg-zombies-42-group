@@ -27,8 +27,8 @@ public abstract class Miscellaneous extends Item implements Unusable {
         }
 
 
-        
-        public boolean isMicellaneous(){
+        @Override
+        public boolean isMiscellaneous(){
                 return true;
         }
         
