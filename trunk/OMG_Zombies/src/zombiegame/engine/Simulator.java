@@ -10,7 +10,6 @@ import javax.swing.JTextArea;
 import zombiegame.people.Character;
 import zombiegame.people.Helico;
 import zombiegame.people.Human;
-import zombiegame.people.MadZombie;
 import zombiegame.people.Nom;
 import zombiegame.people.Vampire;
 import zombiegame.people.Werewolf;
