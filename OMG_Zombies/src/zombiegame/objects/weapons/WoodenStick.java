@@ -26,13 +26,15 @@ public class WoodenStick extends Weapon {
         /**
          * attack with the wooden stick
          */
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
+                super.Use(character, field);
                 if (character.isVampire()) {
                         character.reduceHealthPoints(200);
+                        return true;
                 } else {
                         character.reduceHealthPoints(1); // Ouch !
-                }
-                super.Use(character, field);
+                        return false;
+                }           
         }
 
         public boolean isWoodenStick() {

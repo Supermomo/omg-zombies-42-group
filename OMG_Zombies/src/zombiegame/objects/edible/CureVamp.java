@@ -29,7 +29,7 @@ public class CureVamp extends Edible {
          * bitten to turn into a vamp
          */
         @Override
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
                 if (character.isVampire()) {
                         Character c = ((EvilCharacter) character).turnBackIntoHumain();
                         Location loc = character.getLocation();
@@ -39,7 +39,7 @@ public class CureVamp extends Edible {
                 } else if (character.isHuman()) {
                         ((Human) character).setHasBeenBittenByVamp(false);
                 }
-                super.Use(character, field);
+                return super.Use(character, field);
         }
 
         public boolean isCureVamp() {

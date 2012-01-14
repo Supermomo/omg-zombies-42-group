@@ -27,13 +27,17 @@ public class LiquidNitrogen extends Weapon {
         /**
          * Use the liquid nitrogen on the character
          */
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
+                
+                super.Use(character, field);
+                
                 if (character.isZombie()) {
                         character.reduceHealthPoints(200);
+                        return true;
                 } else {
                         character.reduceHealthPoints(1);
-                }
-                super.Use(character, field);
+                        return false;
+                }               
         }
 
         public boolean isLiquidNitrogen() {

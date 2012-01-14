@@ -1,10 +1,13 @@
 package zombiegame.people;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JTextArea;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
+import zombiegame.objects.weapons.Shotgun;
+import zombiegame.objects.weapons.WoodenStick;
 
 
 /**
@@ -38,7 +41,7 @@ public class Werewolf extends EvilCharacter {
          * Make the encounter with the character c Create a crew if he encounter
          * a werewolf or attack any other race
          */
-        public void encounterCharacter(Character c, Field field) {
+        public boolean encounterCharacter(Character c, Field field) {
                 if (c.isWerewolfCrew()) {
                         if (((WerewolfCrew) c).getCrewMembers() < 5) {
                                 ((WerewolfCrew) c).addMember(field.getConsolePanel());
@@ -51,7 +54,7 @@ public class Werewolf extends EvilCharacter {
                         field.place(meute, c.location);
                         this.say("We are now a crew !", field.getConsolePanel());
 
-                } else {
+                } else if(!c.defend(this, field)){
                         if (c.isHuman() && (c.getHealthPoints() <= 25)) {
                                 this.bite((Human) c, field.getConsolePanel());
                         } else {
@@ -62,6 +65,29 @@ public class Werewolf extends EvilCharacter {
                         }
 
                 }
+                return false;
+        }
+        
+        /**
+         * The defense method, called in some occasion during encounters
+         * 
+         * @param c
+         *                the character against the one you have to defend
+         * @param field
+         * @return true if the defend method is preventing the attack to happen
+         */
+        public boolean defend(Character c, Field field) {
+                        if(c.isHuman() && !((Human)c).getWeapon().getType().equals(new Shotgun().getType())){   
+                                //A werewolf has a chance to bite his opponent during the defense
+                                Random r=new Random();
+                                if(r.nextInt(5)>3){
+                                        super.defend(c, field);
+                                        ((Human)c).setHasBeenBittenByLycan(true);
+                                        return true;
+                                }                                
+                        }
+                        this.say("I can't defend myself against "+c.getName(), field.getConsolePanel());
+                        return false;
         }
 
         /**

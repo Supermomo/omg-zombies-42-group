@@ -27,8 +27,9 @@ public abstract class Edible extends Item implements Usable {
         /**
          * Use the object, remaining uses is decreased
          */
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
                 super.loseUses();
+                return true;
 
         }
 

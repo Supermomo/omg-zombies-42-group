@@ -97,15 +97,19 @@ public class Human extends Character {
          * character if he is human Use weapon if he has one and if the
          * encountered character is an enemy Eat something if he need to
          */
-        public void encounterCharacter(Character c, Field field) {
+        public boolean encounterCharacter(Character c, Field field) {
 
+                boolean result = false;
                 if (edible != null) {
                         if (c.isVampire() && edible.isCureVamp()) {
                                 edible.Use(c, field);
+                                result = true;
                         } else if (c.isWerewolf() && edible.isCureLycan()) {
                                 edible.Use(c, field);
+                                result = true;
                         } else if (c.isZombie() && edible.isCureZomb()) {
                                 edible.Use(c, field);
+                                result = true;
                         } else if (edible.isIncreasingHp() && super.getHealthPoints() < 30) {
                                 edible.Use(this, field);
                         }
@@ -121,25 +125,37 @@ public class Human extends Character {
                         }
                 }
 
-                if (isArmed() && !c.isHuman()) {
-                        weapon.Use(c, field);
+                if (isArmed() && !c.isHuman() && !c.defend(this,field)) {
+                        result = weapon.Use(c, field);
                         if (weapon.getUses() <= 0) {
                                 weapon = null;
                         }
-                        this.say("humm...may be i shoulden't have done that...", field
-                                        .getConsolePanel());
+                        this.say("humm...may be i shoulden't have done that...", field.getConsolePanel());
                 } else if (c.isHuman()) {
                         this.say("Hi " + c.getName() + "...what's up ?", field.getConsolePanel());
                         baby(field);
 
                 } else {
-                        this
-                                        .say(
-                                                        "Go away "
-                                                                        + c.getName()
-                                                                        + " before i start to...humm...beg you to leave me alive ???",
-                                                        field.getConsolePanel());
+                        this.say("Go away " + c.getName() + " before i start to...humm...beg you to leave me alive ???", field.getConsolePanel());
                 }
+                return result;
+        }
+
+        /**
+         * The defense method, called in some occasion during encounters
+         * 
+         * @param c
+         *                the character against the one you have to defend
+         * @param field
+         * @return true if the defend method is preventing the attack to happen
+         */
+        public boolean defend(Character c, Field field) {
+                        if(c.isEvilCharacter()){
+                                super.defend(c, field);
+                                return this.encounterCharacter(c, field);
+                        }
+                        this.say("I can't defend myself against "+c.getName(), field.getConsolePanel());
+                        return false;
         }
 
         /**
@@ -177,8 +193,7 @@ public class Human extends Character {
                         Collections.shuffle(noms, rand);
                         List<Location> free = field.getFreeAdjacentLocations(this.location);
                         if (free.size() != 0) {
-                                field.place(new Human(noms.get(0).toString(), Simulator.HP_HUMANS),
-                                                free.get(0));
+                                field.place(new Human(noms.get(0).toString(), Simulator.HP_HUMANS), free.get(0));
                         }
                         res = true;
                 }
@@ -259,14 +274,11 @@ public class Human extends Character {
                         try {
                                 it = (Item) fieldObj.getObjectAt(loc);
 
-                                if (this.edible != null
-                                                && it.getType().equals(this.edible.getType())) {
+                                if (this.edible != null && it.getType().equals(this.edible.getType())) {
                                         this.edible.addUses(it.getUses());
-                                } else if (this.item != null
-                                                && it.getType().equals(this.item.getType())) {
+                                } else if (this.item != null && it.getType().equals(this.item.getType())) {
                                         this.item.addUses(it.getUses());
-                                } else if (this.weapon != null
-                                                && it.getType().equals(this.weapon.getType())) {
+                                } else if (this.weapon != null && it.getType().equals(this.weapon.getType())) {
                                         this.weapon.addUses(it.getUses());
                                 } else if (it.isEdible()) {
                                         fieldObj.placeItem(this.edible, loc.getRow(), loc.getCol());

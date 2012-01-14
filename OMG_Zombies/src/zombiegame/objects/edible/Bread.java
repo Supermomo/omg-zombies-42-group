@@ -29,9 +29,8 @@ public class Bread extends Edible {
          * OTHER : lose some healthPoints, the bread is not edible for evil
          * character
          */
-        public void Use(Character character, Field field) {
-                super.Use(character, field);
-
+        public boolean Use(Character character, Field field) {
+                
                 character.increaseHealthPoints(5);
                 try {
                         ((Human) character).eatFood();
@@ -39,7 +38,7 @@ public class Bread extends Edible {
                         e.printStackTrace();
                         System.out.println("the character can't eat because he is not human");
                 }
-
+                return super.Use(character, field);
         }
 
         /**

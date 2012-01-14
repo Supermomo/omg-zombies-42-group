@@ -29,7 +29,7 @@ public abstract class Weapon extends Item implements Usable {
         }
 
         @Override
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
                 if (usedWith == null) {
                         super.loseUses();
                 } else {
@@ -38,7 +38,7 @@ public abstract class Weapon extends Item implements Usable {
                                 usedWith = null;
                         }
                 }
-
+                return false;
         }
 
         /**

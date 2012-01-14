@@ -27,7 +27,7 @@ public class CureLycan extends Edible {
                 super(CureLycan.cureUses);
         }
 
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
                 if (character.isWerewolf() && !character.isWerewolfCrew()) {
                         Character c = ((EvilCharacter) character).turnBackIntoHumain();
                         Location loc = character.getLocation();
@@ -36,7 +36,7 @@ public class CureLycan extends Edible {
                 } else if (character.isHuman()) {
                         ((Human) character).setHasBeenBittenByLycan(false);
                 }
-                super.Use(character, field);
+                return super.Use(character, field);
         }
 
         public boolean isCureLycan() {
