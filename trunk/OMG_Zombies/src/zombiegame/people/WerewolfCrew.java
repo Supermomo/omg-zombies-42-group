@@ -65,7 +65,7 @@ public class WerewolfCrew extends Werewolf {
          * if encounter a human, bite him<BR>
          * otherwise attack
          */
-        public void encounterCharacter(Character c, Field field) {
+        public boolean encounterCharacter(Character c, Field field) {
 
                 if (c.isWerewolf()) {
                         if (c.isWerewolfCrew()) {
@@ -74,7 +74,7 @@ public class WerewolfCrew extends Werewolf {
                                 this.addMember(field.getConsolePanel());
                                 field.clear(c.location);
                         }
-                } else {
+                } else if(!c.defend(this, field)){
                         if (c.isHuman()) {
                                 this.bite((Human) c, field.getConsolePanel());
                         } else {
@@ -82,5 +82,6 @@ public class WerewolfCrew extends Werewolf {
                         }
 
                 }
+                return false;
         }
 }

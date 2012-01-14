@@ -183,9 +183,21 @@ public abstract class Character {
          * @param c
          *                the other character that this character meets
          */
-        public void encounterCharacter(Character c, Field field) {
+        public boolean encounterCharacter(Character c, Field field) {
                 // Default action: do nothing
                 System.out.println(name + " meets " + c.name + " and does not attack!");
+                return false;
+        }
+        
+        /**
+         * The defense method, called in some occasion during encounters
+         * @param c the character against the one you have to defend
+         * @param field
+         * @return true if the defend method is preventing the attack to happen
+         */
+        public boolean defend(Character c, Field field){
+                this.say("I'm defending myseft against "+c.getName(), field.getConsolePanel());
+                return false;
         }
 
         /**

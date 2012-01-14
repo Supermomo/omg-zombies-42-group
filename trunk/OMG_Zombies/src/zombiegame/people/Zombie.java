@@ -38,10 +38,12 @@ public class Zombie extends EvilCharacter {
         /**
          * the encounter between this character and c attack c
          */
-        public void encounterCharacter(Character c, Field field) {
+        public boolean encounterCharacter(Character c, Field field) {
                 attack(c, field.getConsolePanel());
+                return false;
         }
 
+        
         /**
          * wether or not this character is a zombie
          * 

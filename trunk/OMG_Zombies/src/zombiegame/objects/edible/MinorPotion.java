@@ -27,9 +27,9 @@ public class MinorPotion extends Edible {
         /**
          * use the minor potion to health the charater
          */
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
                 character.increaseHealthPoints(15);
-                super.Use(character, field);
+                return super.Use(character, field);
         }
 
         /**

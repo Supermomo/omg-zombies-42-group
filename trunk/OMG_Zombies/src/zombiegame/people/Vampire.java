@@ -1,12 +1,14 @@
 package zombiegame.people;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JTextArea;
 
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
+import zombiegame.objects.weapons.WoodenStick;
 
 /**
  * Vampire class, derives from EvilCharacter.
@@ -52,19 +54,43 @@ public class Vampire extends EvilCharacter {
          * encountered is a vampire, take a bite of his blood to become more
          * powerful
          */
-        public void encounterCharacter(Character c, Field field) {
+        public boolean encounterCharacter(Character c, Field field) {
                 if (c.isVampire()) {
                         this.increaseHealthPoints(5);
-                } else {
+                } else if(!c.defend(this, field)){
                         if (c.isHuman() && this.getIsThirsty()) {
-                                this.bite((Human) c, field.getConsolePanel());
+                                this.bite((Human) c, field.getConsolePanel());                             
                         } else {
                                 attack(c, field.getConsolePanel());
                         }
 
                 }
+                return false;
         }
 
+        /**
+         * The defense method, called in some occasion during encounters
+         * 
+         * @param c
+         *                the character against the one you have to defend
+         * @param field
+         * @return true if the defend method is preventing the attack to happen
+         */
+        public boolean defend(Character c, Field field) {
+                        if(c.isHuman() && !((Human)c).getWeapon().getType().equals(new WoodenStick().getType())){                             
+                                //if this a a human, we can try to suck blood from him
+                                if(Simulator.GenerateRandomBoolean())
+                                {
+                                        super.defend(c, field);
+                                        c.reduceHealthPoints(5);
+                                        this.increaseHealthPoints(5);
+                                        return true;
+                                }                                    
+                        }
+                        this.say("I can't defend myself against "+c.getName(), field.getConsolePanel());
+                        return false;
+        }
+        
         /**
          * attack a character
          * 

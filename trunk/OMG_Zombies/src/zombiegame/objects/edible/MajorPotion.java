@@ -25,9 +25,9 @@ public class MajorPotion extends Edible {
         /**
          * Use the potion to use the character
          */
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
                 character.increaseHealthPoints(25);
-                super.Use(character, field);
+                return super.Use(character, field);
         }
 
         /**

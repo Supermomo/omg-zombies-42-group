@@ -29,7 +29,7 @@ public class CureZombie extends Edible {
          * Cure an already turned zombie or prevent a human to turn into a
          * brainless zombie a mad zombie can't be cured
          */
-        public void Use(Character character, Field field) {
+        public boolean Use(Character character, Field field) {
                 if (character.isZombie()) {
                         if (!((Zombie) character).isMadZombie()) {
                                 Character c = ((EvilCharacter) character).turnBackIntoHumain();
@@ -39,7 +39,7 @@ public class CureZombie extends Edible {
                         }
 
                 }
-                super.Use(character, field);
+                return super.Use(character, field);
         }
 
         public boolean isCureZomb() {

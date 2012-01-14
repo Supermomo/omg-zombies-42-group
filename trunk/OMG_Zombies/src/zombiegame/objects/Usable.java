@@ -17,5 +17,5 @@ public interface Usable {
          * @param character
          *                on witch the item will be used
          */
-        public void Use(Character character, Field field);
+        public boolean Use(Character character, Field field);
 }
