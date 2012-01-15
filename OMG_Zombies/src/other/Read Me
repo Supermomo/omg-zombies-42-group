@@ -15,8 +15,8 @@ Interface plus stylée
 Interface Helico X
 Refaire l'égalité entre objets
 
-Check si il manque des try/chatch et exception
-Faire les tests unitaires
+Check si il manque des try/chatch et exception X
+Faire les tests unitaires X
 
 Bug grille si aggrandissement X
 Bug helico X
@@ -28,6 +28,7 @@ Ajout des WerewolfZombie ==> finalement Zombie tué => MadZombie X
 Deplacements différenciés selon la race X
 
 
+Ajout de la défense X
 
 Probleme Helico Rouge largage objet réglé par magie. X
 ===============================================
