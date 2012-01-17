@@ -14,8 +14,7 @@ import javax.swing.JPanel;
 import zombiegame.objects.Item;
 import zombiegame.objects.Wearable;
 
-
-public class BackPackPanel extends JPanel implements ActionListener{
+public class BackPackPanel extends JPanel implements ActionListener {
 
         private static final long serialVersionUID = 1822112021548305065L;
         private FieldFrame frame;
@@ -23,76 +22,73 @@ public class BackPackPanel extends JPanel implements ActionListener{
         private JLabel labEdible;
         private JLabel labItem;
         private JPanel panLab;
-        
-        public BackPackPanel(FieldFrame fram){
+
+        public BackPackPanel(FieldFrame fram) {
                 setBackground(java.awt.Color.blue);
-                frame=fram;
-                labEdible=new JLabel();
-                labItem=new JLabel();
-                panLab=new JPanel();
-                listButton=new ArrayList<JButton>();
+                frame = fram;
+                labEdible = new JLabel();
+                labItem = new JLabel();
+                panLab = new JPanel();
+                listButton = new ArrayList<JButton>();
         }
-        
+
         @Override
         public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 System.out.println("Test !!!!!!!!!!!!!!!!!!!!");
-                Wearable equipped=frame.getPlayer().getBackPack().getEquiped();
-                List<Wearable> list=frame.getPlayer().getBackPack().getItemList();
-                for(JButton b : listButton){
+                Wearable equipped = frame.getPlayer().getBackPack().getEquiped();
+                List<Wearable> list = frame.getPlayer().getBackPack().getItemList();
+                for (JButton b : listButton) {
                         this.remove(b);
                 }
                 listButton.clear();
                 this.validate();
 
-                this.setLayout(new GridLayout(list.size()+2,1));
-                System.out.println("size "+list.size());
-                
-                for(int i=0;i<list.size();i++){
-                        System.out.println("i : "+i+"  "+((Item)list.get(i)).getType());
-                        JButton temp=new JButton(((Item)list.get(i)).getType());
+                this.setLayout(new GridLayout(list.size() + 2, 1));
+                System.out.println("size " + list.size());
+
+                for (int i = 0; i < list.size(); i++) {
+                        System.out.println("i : " + i + "  " + ((Item) list.get(i)).getType());
+                        JButton temp = new JButton(((Item) list.get(i)).getType());
                         temp.addActionListener(this);
                         listButton.add(temp);
-                        this.add(temp,i);
-                        if(list.get(i)==equipped || ((Item)list.get(i)).getType().equals(frame.getPlayer().getWeapon().getType())){
+                        this.add(temp, i);
+                        if (list.get(i) == equipped || (frame.getPlayer().getWeapon() != null && ((Item) list.get(i)).getType().equals(frame.getPlayer().getWeapon().getType()))) {
                                 temp.setEnabled(false);
                         }
                 }
-                if(frame.getPlayer().getEdible()!=null){
-                        JButton temp=new JButton("Edible : "+frame.getPlayer().getEdible().getType());
+                if (frame.getPlayer().getEdible() != null) {
+                        JButton temp = new JButton("Edible : " + frame.getPlayer().getEdible().getType());
                         temp.setEnabled(false);
-                        listButton.add(temp); 
-                        this.add(temp,list.size());
+                        listButton.add(temp);
+                        this.add(temp, list.size());
+                } else {
+                        JButton temp = new JButton("Edible : Empty");
+                        temp.setEnabled(false);
+                        listButton.add(temp);
+                        this.add(temp, list.size());
                 }
-                else {
-                        JButton temp=new JButton("Edible : Empty");
+
+                if (frame.getPlayer().getItem() != null) {
+                        JButton temp = new JButton("Miscellaneous : " + frame.getPlayer().getItem().getType());
                         temp.setEnabled(false);
-                        listButton.add(temp); 
-                        this.add(temp,list.size());
-                }
-                
-                
-                if(frame.getPlayer().getItem()!=null){
-                        JButton temp=new JButton("Miscellaneous : "+frame.getPlayer().getItem().getType());
+                        listButton.add(temp);
+                        this.add(temp, list.size() + 1);
+                } else {
+                        JButton temp = new JButton("Miscellaneous : Empty");
                         temp.setEnabled(false);
-                        listButton.add(temp); 
-                        this.add(temp,list.size()+1);
-                }
-                else {
-                        JButton temp=new JButton("Miscellaneous : Empty");
-                        temp.setEnabled(false);
-                        listButton.add(temp); 
-                        this.add(temp,list.size()+1);
+                        listButton.add(temp);
+                        this.add(temp, list.size() + 1);
                 }
                 this.validate();
         }
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-                
+
                 try {
-                        Item it=Item.getItem(arg0.getActionCommand());
-                        frame.getPlayer().getBackPack().equip((Wearable)it, frame.getPlayer());
+                        Item it = Item.getItem(arg0.getActionCommand());
+                        frame.getPlayer().getBackPack().equip((Wearable) it, frame.getPlayer());
                 } catch (Exception e) {
                         System.out.println("Impossible to get the item for the string : null");
                         e.printStackTrace();

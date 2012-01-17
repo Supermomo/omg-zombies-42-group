@@ -40,7 +40,7 @@ public class BackPack {
         public boolean isInBackPack(Wearable item) {
                 for (Wearable i : inventory) {
                         System.out.println(((Item)i).getType());
-                        if (i.getClass().equals(item.getClass())) {
+                        if (((Item)i).getType().equals(((Item)item).getType())) {
                                 return true;
                         }
                 }
@@ -56,6 +56,16 @@ public class BackPack {
                 if(!isInBackPack(item)){
                         inventory.add(item);
                         return true;
+                }
+                return false;
+        }
+        
+        public boolean remove(Item item){
+                for (Wearable i : inventory) {
+                        if (i.getClass().equals(item.getClass())) {
+                                inventory.remove(i);
+                                return true;
+                        }
                 }
                 return false;
         }
