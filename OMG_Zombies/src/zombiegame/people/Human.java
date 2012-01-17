@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import zombiegame.engine.Field;
+import zombiegame.engine.FieldFrame;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
 import zombiegame.objects.Item;
@@ -136,6 +137,7 @@ public class Human extends Character {
                         baby(field);
 
                 } else {
+                        //result=true;
                         this.say("Go away " + c.getName() + " before i start to...humm...beg you to leave me alive ???", field.getConsolePanel());
                 }
                 return result;
@@ -193,7 +195,7 @@ public class Human extends Character {
                         Collections.shuffle(noms, rand);
                         List<Location> free = field.getFreeAdjacentLocations(this.location);
                         if (free.size() != 0) {
-                                field.place(new Human(noms.get(0).toString(), Simulator.HP_HUMANS), free.get(0));
+                                field.place(new Human(noms.get(0).toString(), FieldFrame.HP_HUMANS), free.get(0));
                         }
                         res = true;
                 }
@@ -235,7 +237,7 @@ public class Human extends Character {
          *         healthpoints
          */
         public Zombie turnIntoZombie() {
-                Zombie z = new Zombie("(Zomb)" + super.name, Simulator.HP_ZOMBIES);
+                Zombie z = new Zombie("(Zomb)" + super.name, FieldFrame.HP_ZOMBIES);
                 z.justPlayed();
                 return z;
         }

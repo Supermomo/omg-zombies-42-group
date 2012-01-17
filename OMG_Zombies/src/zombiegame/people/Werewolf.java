@@ -63,7 +63,7 @@ public class Werewolf extends EvilCharacter {
                                         this.bite((Human) c, field.getConsolePanel());
                                 }
                         }
-
+                        
                 }
                 return false;
         }
@@ -77,7 +77,7 @@ public class Werewolf extends EvilCharacter {
          * @return true if the defend method is preventing the attack to happen
          */
         public boolean defend(Character c, Field field) {
-                        if(c.isHuman() && !((Human)c).getWeapon().getType().equals(new Shotgun().getType())){   
+                        if(c.isHuman() && ((Human)c).getWeapon()!=null && !((Human)c).getWeapon().getType().equals(new Shotgun().getType())){   
                                 //A werewolf has a chance to bite his opponent during the defense
                                 Random r=new Random();
                                 if(r.nextInt(5)>3){

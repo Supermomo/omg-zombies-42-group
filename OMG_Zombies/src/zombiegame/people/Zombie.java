@@ -3,6 +3,7 @@ package zombiegame.people;
 import javax.swing.JTextArea;
 
 import zombiegame.engine.Field;
+import zombiegame.engine.FieldFrame;
 import zombiegame.engine.Simulator;
 
 /**
@@ -39,7 +40,10 @@ public class Zombie extends EvilCharacter {
          * the encounter between this character and c attack c
          */
         public boolean encounterCharacter(Character c, Field field) {
-                attack(c, field.getConsolePanel());
+                if(!c.defend(this, field))
+                {
+                        attack(c, field.getConsolePanel());
+                }
                 return false;
         }
 
@@ -84,7 +88,7 @@ public class Zombie extends EvilCharacter {
                 if (!name.startsWith("(Mad)")) {
                         name = "(Mad)" + super.name;
                 }
-                MadZombie mz = new MadZombie(name, Simulator.HP_ZOMBIES + 20);
+                MadZombie mz = new MadZombie(name, FieldFrame.HP_ZOMBIES + 20);
                 mz.justPlayed();
                 return mz;
         }
