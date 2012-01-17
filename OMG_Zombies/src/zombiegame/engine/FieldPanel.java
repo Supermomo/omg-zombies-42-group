@@ -157,8 +157,8 @@ public class FieldPanel extends JPanel {
                 boolean xb = false;
                 boolean yb = false;
 
-                xb = (j == player.getCol() - 1 || j == player.getCol() || j == player.getCol() + 1 || j == player.getCol() + 2) && j >= 0 && j < field.getWidth() && x >= widthBox;
-                yb = (i == player.getRow() - 1 || i == player.getRow() || i == player.getRow() + 1 || i == player.getRow() + 2) && i >= 0 && i < field.getDepth() && y >= heightBox;
+                xb = (j == player.getCol() - 1 || j == player.getCol() || j == player.getCol() + 1 ) && j >= 0 && j < field.getWidth() && x >= widthBox;
+                yb = (i == player.getRow() - 1 || i == player.getRow() || i == player.getRow() + 1 ) && i >= 0 && i < field.getDepth() && y >= heightBox;
 
                 System.out.println("i : " + i + " j : " + j + " y " + y + " x " + x + " result : " + (xb && yb && !(i != player.getCol() && j != player.getRow())));
                 System.out.println("xb " + xb);

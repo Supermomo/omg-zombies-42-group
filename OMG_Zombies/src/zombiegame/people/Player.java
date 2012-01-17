@@ -118,9 +118,61 @@ public class Player extends Human{
                                         e.printStackTrace();
                                 }
                         }
+                }
+        }
+        
+        
+        /**
+         * the encounter between this character and c Greet the encountered
+         * character if he is human Use weapon if he has one and if the
+         * encountered character is an enemy Eat something if he need to
+         */
+        public boolean encounterCharacter(Character c, Field field) {
+
+                boolean result = false;
+                if (edible != null) {
+                        if (c.isVampire() && edible.isCureVamp()) {
+                                edible.Use(c, field);
+                                result = true;
+                        } else if (c.isWerewolf() && edible.isCureLycan()) {
+                                edible.Use(c, field);
+                                result = true;
+                        } else if (c.isZombie() && edible.isCureZomb()) {
+                                edible.Use(c, field);
+                                result = true;
+                        } else if (edible.isIncreasingHp() && super.getHealthPoints() < 30) {
+                                edible.Use(this, field);
+                        }
+
+                        if (edible.getUses() <= 0) {
+                                this.backPack.remove(edible);
+                                edible = null;                    
+                        }
 
                 }
+                if (this.item != null) {
+                        if (this.item.getUses() <= 0) {
+                                this.backPack.remove(item);
+                                item = null;
+                        }
+                }
 
+                if (isArmed() && !c.isHuman() && !c.defend(this,field)) {
+                        result = weapon.Use(c, field);
+                        if (weapon.getUses() <= 0) {
+                                this.backPack.remove(weapon);
+                                weapon = null;
+                        }
+                        this.say("humm...may be i shoulden't have done that...", field.getConsolePanel());
+                } else if (c.isHuman()) {
+                        this.say("Hi " + c.getName() + "...what's up ?", field.getConsolePanel());
+                        baby(field);
+
+                } else {
+                        //result=true;
+                        this.say("Go away " + c.getName() + " before i start to...humm...beg you to leave me alive ???", field.getConsolePanel());
+                }
+                return result;
         }
 
         /**
