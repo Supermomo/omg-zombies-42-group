@@ -3,8 +3,10 @@ package zombiegame.objects.weapons;
 import zombiegame.engine.Field;
 import zombiegame.objects.Item;
 import zombiegame.objects.Usable;
+import zombiegame.objects.Wearable;
 import zombiegame.objects.micellaneous.Miscellaneous;
 import zombiegame.people.Character;
+import zombiegame.people.Player;
 
 /**
  * The Class of the weapon available in the game
@@ -12,7 +14,7 @@ import zombiegame.people.Character;
  * @author gaubert
  * 
  */
-public abstract class Weapon extends Item implements Usable {
+public abstract class Weapon extends Item implements Usable, Wearable {
 
         private static final String TYPE = "WEAPON";
 
@@ -78,5 +80,9 @@ public abstract class Weapon extends Item implements Usable {
 
         public boolean usedWith(Miscellaneous m) {
                 return (this.usedWith != null && this.usedWith.getType().equals(m.getType()));
+        }
+        
+        public void select(Player p){
+                p.setWeapon(this);
         }
 }

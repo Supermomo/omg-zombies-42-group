@@ -1,7 +1,9 @@
 package zombiegame.objects.edible;
 
 import zombiegame.engine.Field;
+import zombiegame.objects.Wearable;
 import zombiegame.people.Character;
+import zombiegame.people.Player;
 
 /**
  * class for a minor potion
@@ -9,7 +11,7 @@ import zombiegame.people.Character;
  * @author gaubert
  * 
  */
-public class MinorPotion extends Edible {
+public class MinorPotion extends Edible implements Wearable{
 
         private static final String TYPE = "MINOR POTION";
 
@@ -47,5 +49,10 @@ public class MinorPotion extends Edible {
         @Override
         public String getType() {
                 return TYPE;
+        }
+
+        @Override
+        public void select(Player p) {
+                Use(p, null);
         }
 }

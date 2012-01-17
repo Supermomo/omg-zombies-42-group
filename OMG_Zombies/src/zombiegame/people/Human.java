@@ -31,9 +31,9 @@ public class Human extends Character {
         /** the human will lose health if he's too hungry */
         private int turnsSinceLastMeal;
 
-        private Weapon weapon;
-        private Edible edible;
-        private Miscellaneous item;
+        protected Weapon weapon;
+        protected Edible edible;
+        protected Miscellaneous item;
 
         /**
          * Constructor of Human class. At the beginning of the game, humans just
@@ -317,9 +317,17 @@ public class Human extends Character {
         public Weapon getWeapon() {
                 return this.weapon;
         }
+        
+        public void setWeapon(Weapon w){
+                weapon=w;
+        }
 
         public Miscellaneous getItem() {
                 return this.item;
+        }
+        
+        public Edible getEdible(){
+                return edible;
         }
 
 }

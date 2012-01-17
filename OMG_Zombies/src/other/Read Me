@@ -33,7 +33,7 @@ Tests de la Défense X
 
 Classe Player pour le mode a un joueur X
 Sac à dos X
-Affichage de l'inventaire (JComboBox)
+Affichage de l'inventaire (JButtons avec Item.GetType() en nom) X
 Ajout du Menu X
 Niveaux de difficultés X
 Système de lightBox
@@ -51,7 +51,9 @@ Se faire passer pour un Lycan/Vamp + objets
 Ajout du choix du nom de joueur
 Ajout du passage d'une map à l'autre=>Image de la map sauvegardées dans le field
 Largage ciblé des objets de l'Helico X
+Probleme de l'affichage quand récup d'une arme 
 Affichage du game over==> a régler ! important
+Probleme de remise à zéro des utilisations des objets
 
 Probleme Helico Rouge largage objet réglé par magie. X
 ===============================================
