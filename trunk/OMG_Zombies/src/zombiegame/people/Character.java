@@ -130,6 +130,14 @@ public abstract class Character {
         public boolean isWerewolfCrew() {
                 return false;
         }
+        
+        /**
+         * Wether or not the character is the actual player
+         * @return
+         */
+        public boolean isPlayer(){
+                return false;
+        }
 
         /**
          * Decrease the number of HP by a certain amount. HP cannot go below 0.
@@ -172,7 +180,9 @@ public abstract class Character {
          *                what the character says
          */
         public void say(String str, JTextArea cons) {
-                cons.append(name + " says: " + str + "\r\n");
+                if(this.isPlayer()){
+                        cons.append(name + " says: " + str + "\r\n"); 
+                }
         }
 
         /**

@@ -77,13 +77,13 @@ public class Vampire extends EvilCharacter {
          * @return true if the defend method is preventing the attack to happen
          */
         public boolean defend(Character c, Field field) {
-                        if(c.isHuman() && !((Human)c).getWeapon().getType().equals(new WoodenStick().getType())){                             
+                        if(c.isHuman() && ((Human)c).getWeapon()!=null && !((Human)c).getWeapon().getType().equals(new WoodenStick().getType())){                             
                                 //if this a a human, we can try to suck blood from him
                                 if(Simulator.GenerateRandomBoolean())
                                 {
                                         super.defend(c, field);
-                                        c.reduceHealthPoints(5);
-                                        this.increaseHealthPoints(5);
+                                        c.reduceHealthPoints(15);
+                                        this.increaseHealthPoints(15);
                                         return true;
                                 }                                    
                         }

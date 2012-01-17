@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import zombiegame.engine.Field;
+import zombiegame.engine.FieldFrame;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
 import zombiegame.objects.edible.Bread;
@@ -102,6 +103,7 @@ public class TestHuman {
                 assertEquals(h1.getClass(), f.getObjectAt(1, 0).getClass());
 
                 z = new Zombie("c", 150);
+                h1=new Human("jend",100);
                 f.place(z, new Location(1, 0));
                 f1.placeItem(new CureZombie(), 0, 0);
                 h1.pickUpObject(f1, new Location(0, 0));
@@ -180,7 +182,7 @@ public class TestHuman {
                 Zombie z = h1.turnIntoZombie();
                 String s = "(Zomb)" + h1.getName();
                 assertArrayEquals(z.getName().toCharArray(), s.toCharArray());
-                assertTrue(z.getHealthPoints() == Simulator.HP_ZOMBIES);
+                assertTrue(z.getHealthPoints() == FieldFrame.HP_ZOMBIES);
         }
 
         @Test
@@ -208,6 +210,21 @@ public class TestHuman {
                 f.placeItem(s, 0, 0);
                 h1.pickUpObject(f, new Location(0, 0));
                 assertEquals(s, h1.getWeapon());
+        }
+        
+        @Test
+        public void testDefend(){
+                WoodenStick w=new WoodenStick();
+                f1.placeItem(w, 0, 0);
+                h1.pickUpObject(f1, new Location(0,0));
+                f.place(h1, new Location(0,0));
+                Vampire v=new Vampire("jean",100);
+                int hph=h1.getHealthPoints();
+                int hp=v.getHealthPoints();
+                f.place(v, new Location(1,0));
+                v.encounterCharacter(h1, f);
+                assertTrue(v.getHealthPoints()<hp);
+                assertTrue(hph==h1.getHealthPoints());
         }
 
 }

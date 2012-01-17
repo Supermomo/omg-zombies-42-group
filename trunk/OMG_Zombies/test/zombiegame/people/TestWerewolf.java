@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
+import zombiegame.objects.weapons.Shotgun;
 
 public class TestWerewolf {
 
@@ -54,8 +55,7 @@ public class TestWerewolf {
                 WerewolfCrew wc = new WerewolfCrew("JE", 100, crNumber);
                 f.place(wc, new Location(2, 3));
                 w.encounterCharacter(wc, f);
-                assertTrue(crNumber + 1 == ((WerewolfCrew) f.getObjectAt(wc.getLocation()))
-                                .getCrewMembers());
+                assertTrue(crNumber + 1 == ((WerewolfCrew) f.getObjectAt(wc.getLocation())).getCrewMembers());
 
         }
 
@@ -73,6 +73,23 @@ public class TestWerewolf {
                 assertFalse(h.getHasBeenBittenByLycan());
                 w.bite(h, new JTextArea());
                 assertTrue(h.getHasBeenBittenByLycan());
+        }
+
+        @Test
+        public void testDefend() {
+
+                Field f = new Field(3, 3, new JTextArea());
+
+                Human h1 = new Human("marc", 50);
+
+                f.place(h1, new Location(0, 0));
+                f.place(w, new Location(1, 0));
+                if (w.defend(h1, f)) {
+                        assertTrue(h1.getHasBeenBittenByLycan());
+                } else {
+                        assertFalse(h1.getHasBeenBittenByLycan());
+                }
+
         }
 
 }

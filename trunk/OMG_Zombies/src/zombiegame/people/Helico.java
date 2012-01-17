@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.util.Random;
 import zombiegame.engine.Field;
 import zombiegame.engine.FieldFrame;
+import zombiegame.engine.Location;
 import zombiegame.objects.Item;
 import zombiegame.objects.edible.Bread;
 import zombiegame.objects.edible.CureLycan;
@@ -107,8 +108,9 @@ public class Helico {
 
         /**
          * Drop the content of the storage on a random spot of the map
+         * Aim around the area where the player stand
          */
-        public void dropItem(FieldFrame frame) {
+        public void dropItem(FieldFrame frame,Location loc) {
 
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
 
@@ -118,8 +120,16 @@ public class Helico {
                 Image imgHelico = tk.getImage(this.getClass().getResource("/img/helico.png"));
                 Image imgHelicoRed = tk.getImage(this.getClass().getResource("/img/helicoRed.png"));
                 Random r = new Random();
-                int y = r.nextInt(map.getDepth());
-                int x = r.nextInt(map.getWidth());
+                int rx=loc.getCol()+r.nextInt(7)-3;
+                int ry=loc.getRow()+r.nextInt(7)-3;
+                int y = Math.max(0, ry);
+                int x = Math.max(0, rx);
+                if(x>=map.getWidth()){
+                        x=map.getWidth()-1;
+                }
+                if(y>=map.getDepth()){
+                        y=map.getDepth()-1;
+                }
                 map.placeItem(itemInStorage, y, x);
 
                 for (int j = 0; j < map.getWidth(); j++) {
@@ -136,11 +146,6 @@ public class Helico {
                                 }
                         }
                         frame.repaint();
-                        try {
-                                Thread.sleep(75);
-                        } catch (InterruptedException e) {
-                                e.printStackTrace();
-                        }
                 }
         }
 
