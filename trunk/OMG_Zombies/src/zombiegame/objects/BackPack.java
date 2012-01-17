@@ -8,7 +8,7 @@ import zombiegame.people.Player;
 public class BackPack {
 
         private List<Wearable> inventory;
-        private Wearable equiped;
+        private Wearable  equiped;
 
         public BackPack() {
                 inventory = new ArrayList<Wearable>();
@@ -21,8 +21,17 @@ public class BackPack {
 
         public boolean equip(Wearable item, Player p) {
                 if (isInBackPack(item)) {
+                        System.out.println("item used");
+                        System.out.println(((Item)item).getType()+" uses "+((Item)item).getUses());
                         item.select(p);
-                        equiped=item;
+                        if(((Item)item).getUses()<=0){
+                                System.out.println("Item removed");
+                                inventory.remove(item);
+                        }
+                        else if( !((Item)item).isWeapon() && !((Item)item).isEdible()){
+                                equiped=item;
+                        }
+                        System.out.println("inventiry size :"+inventory.size());
                         return true;
                 }
                 return false;
@@ -30,6 +39,7 @@ public class BackPack {
 
         public boolean isInBackPack(Wearable item) {
                 for (Wearable i : inventory) {
+                        System.out.println(((Item)i).getType());
                         if (i.getClass().equals(item.getClass())) {
                                 return true;
                         }
@@ -38,6 +48,11 @@ public class BackPack {
         }
 
         public boolean addItem(Wearable item) {
+                for(Wearable w : inventory){
+                        if(((Item)w).getUses()<=0){
+                                inventory.remove(w);
+                        }
+                }
                 if(!isInBackPack(item)){
                         inventory.add(item);
                         return true;

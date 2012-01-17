@@ -72,7 +72,10 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
         
         private String playerName= "defaultPlayer";
         private Player player;
-        JMenuItem stopGame;
+        private JMenuItem stopGame;
+        
+        private BackPackPanel bpPanel;
+        
         public FieldFrame() {
                 
                 super("OMG Zombie");
@@ -113,7 +116,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 //ajout de la JMenuBar à la fenêtre
                 this.setJMenuBar(menu);
                 
-                this.setLayout(new GridLayout(1, 2));
+                this.setLayout(new GridLayout(1, 3));
 
                 
                 this.setBackground(java.awt.Color.LIGHT_GRAY);
@@ -288,6 +291,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                 this.gameOver=true;
                                 this.remove(jsp);
                                 this.remove(fieldPan);
+                                this.remove(bpPanel);
                                 this.validate();
                                 this.repaint();
                         } catch (Exception e1) {
@@ -309,11 +313,15 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                         init();
 
                         fieldPan = new FieldPanel(this, field,fieldObject);
-
+                        
                         fieldPan.addMouseListener(this);
-
+                        
                         this.add(fieldPan, 0);
                         fieldPan.setVisible(true);
+                        
+                        bpPanel=new BackPackPanel(this);
+                        this.add(bpPanel,1);
+                        
                         jsp = new JScrollPane(cons);
 
                         /*jsp.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
@@ -369,7 +377,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                 this.repaint();
                                 this.nextTurn();
                                 this.nbHumansAlive();
-                                this.repaint();
+                                this.validate();
                         }
                         if (field.getObjectAt(player.getLocation())==null || !((Character)field.getObjectAt(player.getLocation())).isPlayer() || this.getPlayer().getHealthPoints() <= 0
                                         || field.getNbHuman() == 0) {
@@ -381,8 +389,8 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                         Thread.sleep(3000);
                                         this.remove(jsp);
                                         this.remove(fieldPan);
+                                        this.remove(bpPanel);
                                         this.validate();
-                                        this.repaint();
                                 } catch (Exception e1) {
                                         System.out.println("No game to stop");
                                 }
@@ -399,19 +407,25 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 if(source==this.consoleDisp){
                         if(consoleDisp.isSelected()){
                                 consoleDisplayState=true;
-                                this.remove(fieldPan);
-                                this.setLayout(new GridLayout(1, 2));
-                                this.add(fieldPan,0);
-                                this.add(jsp,-1);
-                                this.validate();
+                                try {
+                                        this.remove(fieldPan);
+                                        this.setLayout(new GridLayout(1, 2));
+                                        this.add(fieldPan,0);
+                                        this.add(jsp,-1);
+                                        this.validate();
+                                } catch (Exception e) {
+                                }
                         }
                         else{
                                 consoleDisplayState=false;
-                                this.remove(jsp);
-                                this.remove(fieldPan);
-                                this.setLayout(new GridLayout(1, 1));
-                                this.add(fieldPan,0);
-                                this.validate();
+                                try {
+                                        this.remove(jsp);
+                                        this.remove(fieldPan);
+                                        this.setLayout(new GridLayout(1, 1));
+                                        this.add(fieldPan,0);
+                                        this.validate();
+                                } catch (Exception e) {
+                                }
                         }
                 }
                 this.repaint();

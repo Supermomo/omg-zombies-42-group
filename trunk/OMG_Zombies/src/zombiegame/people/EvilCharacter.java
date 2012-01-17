@@ -1,6 +1,7 @@
 package zombiegame.people;
 
 import zombiegame.engine.Field;
+import zombiegame.engine.FieldFrame;
 
 /**
  * The class of en EvilCharacter, derive from character<BR>
@@ -31,7 +32,7 @@ public abstract class EvilCharacter extends Character {
          * @return the Human that have been created
          */
         public Human turnBackIntoHumain() {
-                return new Human(name, healthPoints);
+                return new Human(name, FieldFrame.HP_HUMANS);
         }
 
         /**

@@ -1,8 +1,10 @@
 package zombiegame.objects.edible;
 
 import zombiegame.engine.Field;
+import zombiegame.objects.Wearable;
 import zombiegame.people.Character;
 import zombiegame.people.Human;
+import zombiegame.people.Player;
 
 /**
  * The bread, the most basic food in the world
@@ -10,7 +12,7 @@ import zombiegame.people.Human;
  * @author gaubert
  * 
  */
-public class Bread extends Edible {
+public class Bread extends Edible implements Wearable{
 
         private static final String TYPE = "BREAD";
 
@@ -56,5 +58,10 @@ public class Bread extends Edible {
         @Override
         public String getType() {
                 return TYPE;
+        }
+
+        @Override
+        public void select(Player p) {
+                Use(p, null);
         }
 }

@@ -6,6 +6,11 @@ import java.awt.Image;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.objects.BackPack;
+import zombiegame.objects.Item;
+import zombiegame.objects.Wearable;
+import zombiegame.objects.edible.Edible;
+import zombiegame.objects.micellaneous.Miscellaneous;
+import zombiegame.objects.weapons.Weapon;
 
 
 /**
@@ -161,4 +166,60 @@ public class Player extends Human{
         }
 
 
+        /**
+         * pick up an object Replace the current object by the new one associate
+         * the objects if possible if the object find is already in the
+         * inventory, add the found one to the possessed one
+         */
+        @Override
+        public void pickUpObject(Field fieldObj, Location loc) {
+
+                if (fieldObj.getObjectAt(loc) != null) {
+                        Item it = null;
+                        try {
+                                it = (Item) fieldObj.getObjectAt(loc);
+
+                                if (this.edible != null && it.getType().equals(this.edible.getType())) {
+                                        this.edible.addUses(it.getUses());
+                                } else if (this.item != null && it.getType().equals(this.item.getType())) {
+                                        this.item.addUses(it.getUses());
+                                } else if (this.weapon != null && it.getType().equals(this.weapon.getType())) {
+                                        this.weapon.addUses(it.getUses());
+                                } else if (it.isEdible()) {
+                                        fieldObj.clear(loc);
+                                        fieldObj.placeItem(this.edible, loc.getRow(), loc.getCol());
+                                        this.edible = (Edible) it;
+                                } else if (it.isMiscellaneous()) {
+                                        fieldObj.clear(loc);
+                                        fieldObj.placeItem(this.item, loc.getRow(), loc.getCol());
+                                        this.item = (Miscellaneous) it;
+                                } else if (it.isWeapon()) {
+                                        fieldObj.clear(loc);
+                                        fieldObj.placeItem(this.weapon, loc.getRow(), loc.getCol());
+                                        this.weapon = (Weapon) it;
+                                }
+
+                                if (weapon != null && item != null) {
+                                        if (item.isUsableWith(weapon)) {
+                                                weapon.useWith(item);
+                                        }
+                                }
+                                
+                                try {
+                                        backPack.addItem((Wearable)it);
+                                        System.out.println(it.getType()+" has been add to the backPack, bp size "+backPack.getItemList().size());
+                                } catch (Exception e) {
+                                        System.out.println(it.getType()+" is not a wearable object : cannot addd it to the backpack");
+                                }
+
+                                say("I just picked up a "+it.getType(), fieldObj.getConsolePanel());
+
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                                System.out.println("Fail to pick up the object");
+                        }
+
+                }
+        }
+        
 }
