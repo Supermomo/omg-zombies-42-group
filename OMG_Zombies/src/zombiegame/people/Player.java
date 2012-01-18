@@ -159,6 +159,7 @@ public class Player extends Human{
 
                 if (isArmed() && !c.isHuman() && !c.defend(this,field)) {
                         result = weapon.Use(c, field);
+                        say("I use "+weapon.getType()+" on "+c.getName(), field.getConsolePanel());
                         if (weapon.getUses() <= 0) {
                                 this.backPack.remove(weapon);
                                 weapon = null;
@@ -217,6 +218,14 @@ public class Player extends Human{
                 return imgPlayerStick;
         }
 
+        public void superSetWeapon(Weapon w){
+                super.setWeapon(w);
+        }
+        
+        public void setWeapon(Weapon w){
+                backPack.equip(w, this);
+        }
+        
 
         /**
          * pick up an object Replace the current object by the new one associate
@@ -239,8 +248,12 @@ public class Player extends Human{
                                         this.weapon.addUses(it.getUses());
                                 } else if (it.isEdible()) {
                                         fieldObj.clear(loc);
-                                        fieldObj.placeItem(this.edible, loc.getRow(), loc.getCol());
-                                        this.edible = (Edible) it;
+                                        try {
+                                                Wearable w=(Wearable)it;
+                                        } catch (Exception e) {
+                                                fieldObj.placeItem(this.edible, loc.getRow(), loc.getCol());
+                                                this.edible = (Edible) it;
+                                        }
                                 } else if (it.isMiscellaneous()) {
                                         fieldObj.clear(loc);
                                         fieldObj.placeItem(this.item, loc.getRow(), loc.getCol());

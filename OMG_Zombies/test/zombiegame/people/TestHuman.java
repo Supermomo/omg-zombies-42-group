@@ -129,7 +129,7 @@ public class TestHuman {
 
         @Test
         public void testEndOfTurn() {
-                h1.setHasBeenBittenByLycan(true);
+                h1.setHasBeenBittenByLycan(true,new JTextArea());
                 h1.endOfTurn(f);
                 assertTrue(((Werewolf) f.getObjectAt(0, 0)).isWerewolf());
         }
@@ -137,7 +137,7 @@ public class TestHuman {
         @Test
         public void testHasBeenBittenByVamp() {
                 assertFalse(h1.getHasBeenBittenByVamp());
-                h1.setHasBeenBittenByVamp(true);
+                h1.setHasBeenBittenByVamp(true,new JTextArea());
                 assertTrue(h1.getHasBeenBittenByVamp());
         }
 
@@ -200,7 +200,7 @@ public class TestHuman {
         @Test
         public void testHasBeenBittenByLycan() {
                 assertFalse(h1.getHasBeenBittenByLycan());
-                h1.setHasBeenBittenByLycan(true);
+                h1.setHasBeenBittenByLycan(true,new JTextArea());
                 assertTrue(h1.getHasBeenBittenByLycan());
         }
 

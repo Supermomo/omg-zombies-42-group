@@ -34,7 +34,7 @@ public class CureLycan extends Edible {
                         field.clear(loc);
                         field.place(c, loc);
                 } else if (character.isHuman()) {
-                        ((Human) character).setHasBeenBittenByLycan(false);
+                        ((Human) character).setHasBeenBittenByLycan(false,field.getConsolePanel());
                 }
                 return super.Use(character, field);
         }

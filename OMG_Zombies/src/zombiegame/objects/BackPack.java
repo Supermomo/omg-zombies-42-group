@@ -18,28 +18,40 @@ public class BackPack {
         public List<Wearable> getItemList() {
                 return inventory;
         }
-
+        
+        private Item getInstanceInBackPack(Item it){
+                for (Wearable i : inventory) {
+                       
+                        if (((Item)i).getType().equals(((Item)it).getType())) {
+                                return (Item) i;
+                        }
+                }
+                return null;
+        }
         public boolean equip(Wearable item, Player p) {
                 if (isInBackPack(item)) {
+                        Wearable i=(Wearable)getInstanceInBackPack((Item)item);
+                        System.out.println(((Item)i).getType());
+                          
+                        i.select(p);
                         System.out.println("item used");
-                        System.out.println(((Item)item).getType()+" uses "+((Item)item).getUses());
-                        item.select(p);
-                        if(((Item)item).getUses()<=0){
+                        System.out.println(((Item)item).getType()+" uses "+((Item)i).getUses());
+                        
+                        if(((Item)i).getUses()<=0){
                                 System.out.println("Item removed");
-                                inventory.remove(item);
+                                inventory.remove(i);
                         }
                         else if( !((Item)item).isWeapon() && !((Item)item).isEdible()){
-                                equiped=item;
+                                equiped=i;
                         }
                         System.out.println("inventiry size :"+inventory.size());
-                        return true;
+                        return true;                                  
                 }
                 return false;
         }
 
         public boolean isInBackPack(Wearable item) {
                 for (Wearable i : inventory) {
-                        System.out.println(((Item)i).getType());
                         if (((Item)i).getType().equals(((Item)item).getType())) {
                                 return true;
                         }
@@ -56,6 +68,14 @@ public class BackPack {
                 if(!isInBackPack(item)){
                         inventory.add(item);
                         return true;
+                }
+                else{
+                        for (Wearable i : inventory) {                             
+                                if (((Item)i).getType().equals(((Item)item).getType())) {
+                                        i=item;
+                                        return true;
+                                }
+                        }  
                 }
                 return false;
         }

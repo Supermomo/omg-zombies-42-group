@@ -82,7 +82,7 @@ public class Werewolf extends EvilCharacter {
                                 Random r=new Random();
                                 if(r.nextInt(5)>3){
                                         super.defend(c, field);
-                                        ((Human)c).setHasBeenBittenByLycan(true);
+                                        ((Human)c).setHasBeenBittenByLycan(true,field.getConsolePanel());
                                         return true;
                                 }                                
                         }
@@ -109,7 +109,7 @@ public class Werewolf extends EvilCharacter {
          */
         public void bite(Human h, JTextArea cons) {
                 // The human has no way to escape. He gets bitten.
-                h.setHasBeenBittenByLycan(true);
+                h.setHasBeenBittenByLycan(true,cons);
                 say("I have bitten you, " + h.getName() + "!", cons);
         }
 

@@ -83,6 +83,6 @@ public abstract class Weapon extends Item implements Usable, Wearable {
         }
         
         public void select(Player p){
-                p.setWeapon(this);
+                p.superSetWeapon(this);
         }
 }
