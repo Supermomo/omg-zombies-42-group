@@ -266,6 +266,18 @@ public abstract class Character {
                                                 }
 
                                         }
+                                        if(healthPoints<=0){
+                                                field.clear(loc);
+                                                if (c.isHuman()) {
+                                                        field.place(((Human) c).turnIntoZombie(),
+                                                                        loc);
+                                                } else if (c.isZombie()) {
+                                                        MadZombie mz = ((Zombie) c)
+                                                                        .turnIntoMadZombie();
+                                                        mz.setStun(true);
+                                                        field.place(mz, loc);
+                                                }
+                                        }
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                 }

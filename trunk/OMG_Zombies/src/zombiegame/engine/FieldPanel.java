@@ -1,6 +1,7 @@
 package zombiegame.engine;
 
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -12,6 +13,7 @@ import zombiegame.people.*;
 import zombiegame.people.Character;
 
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 public class FieldPanel extends JPanel {
 
@@ -34,17 +36,29 @@ public class FieldPanel extends JPanel {
         private Image imgHighLight;
         private Image imgChest;
         private Image imgBloodTitle;
+        private Image imgDoor;
 
+        private JProgressBar hpBar;
+        
         public FieldPanel(FieldFrame ff, Field fiel, Field objField) {
                 super();
-                fieldObject=objField;
+                fieldObject = objField;
                 frame = ff;
-                this.setBackground(java.awt.Color.GRAY);
+                this.setBackground(java.awt.Color.GREEN);
                 this.field = fiel;
-             
+                
+                hpBar=new JProgressBar(JProgressBar.HORIZONTAL,0,100);
+                hpBar.setValue(frame.getPlayer().getHealthPoints());
+                hpBar.setString("HP : "+hpBar.getValue());
+                hpBar.setStringPainted(true);
+                hpBar.setOpaque(false);
+                hpBar.setForeground(java.awt.Color.red);
+                this.setLayout(new GridLayout(field.getDepth()+10,1));
+                this.add(hpBar,0);
+                
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
-                imgBloodTitle=tk.getImage(this.getClass().getResource("/img/blood_title.png"));
-                imgChest=tk.getImage(this.getClass().getResource("/img/chest.png"));
+                imgBloodTitle = tk.getImage(this.getClass().getResource("/img/blood_title.png"));
+                imgChest = tk.getImage(this.getClass().getResource("/img/chest.png"));
                 imgMap = tk.getImage(this.getClass().getResource("/img/map_ice2.png"));
                 imgHuman = tk.getImage(this.getClass().getResource("/img/Human.png"));
                 imgHumanShotgun = tk.getImage(this.getClass().getResource("/img/HumanShotgun.png"));
@@ -55,7 +69,8 @@ public class FieldPanel extends JPanel {
                 imgWerewolf = tk.getImage(this.getClass().getResource("/img/Werewolf2.png"));
                 imgWerewolfCrew = tk.getImage(this.getClass().getResource("/img/WerewolfCrew.png"));
                 imgVampire = tk.getImage(this.getClass().getResource("/img/Vamp.png"));
-                imgHighLight= tk.getImage(this.getClass().getResource("/img/highLight.png"));
+                imgHighLight = tk.getImage(this.getClass().getResource("/img/highLight.png"));
+                imgDoor = tk.getImage(this.getClass().getResource("/img/door.png"));
 
         }
 
@@ -63,37 +78,50 @@ public class FieldPanel extends JPanel {
                 super.paintComponent(g);
                 int heightBox = this.getHeight() / (field.getDepth() + 2);
                 int widthBox = this.getWidth() / (field.getWidth() + 2);
-
+                
+                if(frame.getPlayer().getHealthPoints()>hpBar.getMaximum()){
+                        hpBar.setMaximum(frame.getPlayer().getHealthPoints());
+                }
+                hpBar.setValue(frame.getPlayer().getHealthPoints());
+                hpBar.setString("HP : "+hpBar.getValue());
+                
                 if (!frame.getGameOver()) {
                         g.drawImage(imgMap, widthBox, heightBox, field.getWidth() * widthBox, field.getDepth() * heightBox, null);
 
                         for (int i = 0; i < field.getDepth(); i++) {
+
                                 // dessin ligne
                                 g.drawLine(widthBox, (i + 1) * heightBox, (field.getWidth() + 1) * widthBox, (i + 1) * heightBox);
                                 for (int j = 0; j < field.getWidth(); j++) {
+
                                         // dessin colonne
+
+                                        if (field.getOut().getRow() == i && field.getOut().getCol() == j) {
+                                                g.drawImage(imgDoor, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
+                                        }
+
                                         g.drawLine((j + 1) * widthBox, heightBox, (j + 1) * widthBox, (field.getDepth() + 1) * heightBox);
                                         if (field.getObjectAt(i, j) != null) {
                                                 Character o = (Character) field.getObjectAt(i, j);
-                                                if(o.isPlayer()){
+                                                if (o.isPlayer()) {
                                                         g.drawImage(imgHighLight, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
-                                                        Player p=(Player)o;
-                                                        if(p.isArmed()){
-                                                                if(p.getWeapon().isShotgun()){
-                                                                        g.drawImage(frame.getPlayer().getImgPlayerShotgun(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
+                                                        Player p = (Player) o;
+                                                        if (p.isArmed()) {
+                                                                if (p.getWeapon().isShotgun()) {
+                                                                        g.drawImage(frame.getPlayer().getImgPlayerShotgun(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                        heightBox, null);
+                                                                } else if (p.getWeapon().isLiquidNitrogen()) {
+                                                                        g.drawImage(frame.getPlayer().getImgPlayerFlam(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                        heightBox, null);
+                                                                } else if (p.getWeapon().isWoodenStick()) {
+                                                                        g.drawImage(frame.getPlayer().getImgPlayerStick(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                        heightBox, null);
                                                                 }
-                                                                else if(p.getWeapon().isLiquidNitrogen()){
-                                                                        g.drawImage(frame.getPlayer().getImgPlayerFlam(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
-                                                                }
-                                                                else if(p.getWeapon().isWoodenStick()){
-                                                                        g.drawImage(frame.getPlayer().getImgPlayerStick(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
-                                                                }
+                                                        } else {
+                                                                g.drawImage(frame.getPlayer().getImagePlayer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox,
+                                                                                null);
                                                         }
-                                                        else {
-                                                                g.drawImage(frame.getPlayer().getImagePlayer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
-                                                        }
-                                                }
-                                                else if (o.isHuman()) {
+                                                } else if (o.isHuman()) {
                                                         Human h = (Human) o;
                                                         if (h.isArmed()) {
                                                                 if (h.getWeapon().isLiquidNitrogen()) {
@@ -130,17 +158,17 @@ public class FieldPanel extends JPanel {
                                                  * heightBox);
                                                  */
                                         }
-                                        
-                                        if(fieldObject.getObjectAt(new Location(i,j))!=null){
+
+                                        if (fieldObject.getObjectAt(new Location(i, j)) != null) {
                                                 g.drawImage(imgChest, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
                                         }
+
                                 }
                         }
 
                         g.drawString("Human : " + field.getNbHuman() + " Vampire : " + field.getNbVampire() + " Zombie " + field.getNbZombie() + " Werewolf "
                                         + field.getNbWerewolf(), widthBox, this.getHeight() - (heightBox / 2));
-                }
-                else {
+                } else {
                         g.drawImage(imgBloodTitle, 0, 0, this.getWidth(), this.getHeight(), null);
                 }
 
@@ -157,8 +185,8 @@ public class FieldPanel extends JPanel {
                 boolean xb = false;
                 boolean yb = false;
 
-                xb = (j == player.getCol() - 1 || j == player.getCol() || j == player.getCol() + 1 ) && j >= 0 && j < field.getWidth() && x >= widthBox;
-                yb = (i == player.getRow() - 1 || i == player.getRow() || i == player.getRow() + 1 ) && i >= 0 && i < field.getDepth() && y >= heightBox;
+                xb = (j == player.getCol() - 1 || j == player.getCol() || j == player.getCol() + 1) && j >= 0 && j < field.getWidth() && x >= widthBox;
+                yb = (i == player.getRow() - 1 || i == player.getRow() || i == player.getRow() + 1) && i >= 0 && i < field.getDepth() && y >= heightBox;
 
                 System.out.println("i : " + i + " j : " + j + " y " + y + " x " + x + " result : " + (xb && yb && !(i != player.getCol() && j != player.getRow())));
                 System.out.println("xb " + xb);
@@ -170,9 +198,5 @@ public class FieldPanel extends JPanel {
                 }
                 return p;
         }
-
-
-
-
 
 }

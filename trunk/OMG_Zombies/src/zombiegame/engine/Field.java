@@ -25,7 +25,13 @@ public class Field {
         private Object[][] field;
 
         private JTextArea cons;
+        
+        private Location in;
 
+        private Location out;
+        
+        private Field nextField;
+        
         /**
          * Represent a field of the given dimensions.
          * 
@@ -40,7 +46,32 @@ public class Field {
                 field = new Object[depth][width];
                 cons = conso;
         }
+        
+        public Field(int depth, int width, JTextArea conso,Location inway, Location outway) {
+                this.depth = depth;
+                this.width = width;
+                in=inway;
+                out=outway;
+                field = new Object[depth][width];
+                cons = conso;
+        }
+        
+        public Location getIn(){
+                return in;
+        }
+        
+        public Location getOut(){
+                return out;
+        }
 
+        public void setNextField(Field f){
+                nextField=f;
+        }
+        
+        public Field getNextField(){
+                return nextField;
+        }
+        
         /**
          * Empty the field.
          */

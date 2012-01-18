@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JTextArea;
+
 import zombiegame.engine.Field;
 import zombiegame.engine.FieldFrame;
 import zombiegame.engine.Location;
@@ -48,7 +50,7 @@ public class Human extends Character {
         public Human(String name, int healthPoints) {
                 super(name, healthPoints);
                 hasBeenBittenByVamp = false;
-                setHasBeenBittenByLycan(false);
+                hasBeenBittenByLycan=false;
                 turnsSinceLastMeal = 0;
                 weapon = null;
                 edible = null;
@@ -59,7 +61,10 @@ public class Human extends Character {
                 return hasBeenBittenByVamp;
         }
 
-        public void setHasBeenBittenByVamp(boolean hasBeenBitten) {
+        public void setHasBeenBittenByVamp(boolean hasBeenBitten, JTextArea cons) {
+                if(hasBeenBitten){
+                        this.say("I have been bitten by a vampire", cons);
+                }
                 this.hasBeenBittenByVamp = hasBeenBitten;
         }
 
@@ -253,7 +258,10 @@ public class Human extends Character {
          * @param hasBeenBittenByLycan
          *                the hasBeenBittenByLycan to set
          */
-        public void setHasBeenBittenByLycan(boolean hasBeenBittenByLycan) {
+        public void setHasBeenBittenByLycan(boolean hasBeenBittenByLycan, JTextArea cons) {
+                if(hasBeenBittenByLycan){
+                        this.say("I have been bitten by a Lycan", cons);
+                }
                 this.hasBeenBittenByLycan = hasBeenBittenByLycan;
         }
 

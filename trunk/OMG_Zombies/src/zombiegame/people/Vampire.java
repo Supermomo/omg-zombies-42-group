@@ -126,7 +126,7 @@ public class Vampire extends EvilCharacter {
          */
         public void bite(Human h, JTextArea cons) {
                 // The human has no way to escape. He gets bitten.
-                h.setHasBeenBittenByVamp(true);
+                h.setHasBeenBittenByVamp(true,cons);
                 say("I have bitten you, " + h.getName() + "!", cons);
                 // Vampire is not thirsty anymore
                 isThirsty = false;

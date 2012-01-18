@@ -29,7 +29,7 @@ public class WoodenStick extends Weapon {
         public boolean Use(Character character, Field field) {
                 super.Use(character, field);
                 if (character.isVampire()) {
-                        character.reduceHealthPoints(200);
+                        character.reduceHealthPoints(300);
                         return true;
                 } else {
                         character.reduceHealthPoints(1); // Ouch !

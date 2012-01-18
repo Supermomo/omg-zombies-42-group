@@ -37,7 +37,7 @@ public class CureVamp extends Edible {
                         field.place(c, loc);
 
                 } else if (character.isHuman()) {
-                        ((Human) character).setHasBeenBittenByVamp(false);
+                        ((Human) character).setHasBeenBittenByVamp(false,field.getConsolePanel());
                 }
                 return super.Use(character, field);
         }

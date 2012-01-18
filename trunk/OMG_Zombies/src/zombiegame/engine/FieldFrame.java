@@ -127,43 +127,52 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 this.repaint();
         }
         
-        /**
-         * Initialize game.
-         */
-        public void init() {
-                // Create characters
-                field = new Field(SIZE_MAP, SIZE_MAP, cons);
+        private void initField(){
+                field = new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,SIZE_MAP/2),new Location(SIZE_MAP-1,SIZE_MAP/2));
+                field.setNextField(new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,SIZE_MAP/2),new Location(SIZE_MAP-1,SIZE_MAP-1)));
+                field.getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,SIZE_MAP-1),new Location(SIZE_MAP-1,0)));
+                field.getNextField().getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,0),new Location(SIZE_MAP-1,SIZE_MAP/2)));
                 fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
-                
-                if(dif2.isSelected()){
-                        NB_HUMANS = 4;
-                        NB_VAMPIRES = 10;
-                        NB_ZOMBIES = 9;
-                        NB_WEREWOLF = 8;
-                }
-                else if(dif3.isSelected()){
-                        NB_HUMANS = 2;
-                        NB_VAMPIRES = 18;
-                        NB_ZOMBIES = 14;
-                        NB_WEREWOLF = 12;
-                }
-                else
-                {
-                        NB_HUMANS = 6;
-                        NB_VAMPIRES = 4;
-                        NB_ZOMBIES = 4;
-                        NB_WEREWOLF = 3;
-                }
-                this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
-                this.gameOver=false;
                 player=new Player(playerName,HP_HUMANS);
+                field.place(player, field.getIn());
+                
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
                 player.setImagePlayer(tk.getImage(this.getClass().getResource("/img/Human2.png")));
                 player.setImgPlayerFlam(tk.getImage(this.getClass().getResource("/img/Human2FlamThrower.png")));
                 player.setImgPlayerShotgun(tk.getImage(this.getClass().getResource("/img/Human2Shotgun.png")));
                 player.setImgPlayerStick(tk.getImage(this.getClass().getResource("/img/Human2WoodenStick.png")));
-                field.place(player, new Location(0,0));
-
+        }
+        
+        private void initPeople(){
+                if(dif2.isSelected()){
+                        NB_HUMANS = 3;
+                        NB_VAMPIRES = 5;
+                        NB_ZOMBIES = 6;
+                        NB_WEREWOLF = 3;
+                }
+                else if(dif3.isSelected()){
+                        NB_HUMANS = 2;
+                        NB_VAMPIRES = 8;
+                        NB_ZOMBIES = 9;
+                        NB_WEREWOLF = 5;
+                }
+                else
+                {
+                        NB_HUMANS = 4;
+                        NB_VAMPIRES = 2;
+                        NB_ZOMBIES = 4;
+                        NB_WEREWOLF = 1;
+                }
+                this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
+                this.gameOver=false;
+        }
+        
+        /**
+         * Initialize game.
+         */
+        public void init() {
+                initField();
+                initPeople();
         }
         
         public boolean getGameOver(){
@@ -269,6 +278,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 helic.dropItem(this,player.getLocation());
 
                 field.getConsolePanel().append("\r\n FIN DU TOUR \r\n");
+                this.repaint();
         }
         
         public FieldPanel getPanel(){
@@ -331,7 +341,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                         });*/
 
                         this.add(jsp, -1);
-
+                        this.consoleDisp.setSelected(true);
                         cons.setVisible(true);
                         cons.setBounds(this.getWidth() - 200, 0, 200, getHeight());
                         fieldPan.validate();
@@ -369,16 +379,56 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
         @Override
         public void mouseReleased(MouseEvent e) {
                 if (!this.getGameOver()) {
+                        System.out.println("row "+field.getOut().getRow() + " col "+field.getOut().getCol());
                         System.out.println("x  " + this.getPlayer().getLocation().getCol() + "  y  " + this.getPlayer().getLocation().getRow());
                         Point p = fieldPan.validDestination(this.getPlayer().getLocation(), e.getX(), e.getY());
                         if (p.x != -1) {
                                 this.getPlayer().move(new Location(p.y, p.x), field, this.getObjectField());
                                 this.getPlayer().endOfTurn(field);
+                                if(getPlayer().isArmed()){
+                                        this.repaint();
+                                }
                                 this.repaint();
                                 this.nextTurn();
                                 this.nbHumansAlive();
                                 this.validate();
                         }
+                        if(player.getLocation().getRow()==field.getOut().getRow() && player.getLocation().getCol()==field.getOut().getCol()){
+                                System.out.println("nextField");
+                                if(field.getNextField()!=null){
+                                        Location in=field.getNextField().getIn();
+                                        field=field.getNextField();
+                                        field.place(player, in);
+                                        fieldObject=new Field(SIZE_MAP,SIZE_MAP,cons);
+                                        NB_HUMANS += 1;
+                                        NB_VAMPIRES += 1;
+                                        NB_ZOMBIES += 2;
+                                        NB_WEREWOLF += 1;
+                                        this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);  
+                                        this.remove(fieldPan);
+                                        fieldPan=new FieldPanel(this,field, fieldObject);
+                                        this.add(fieldPan,0);
+                                        fieldPan.addMouseListener(this);
+                                        this.validate();
+                                        this.repaint();
+                                }
+                                else {
+                                        System.out.println("VICTORY");
+                                        try {
+                                                player.say("I WIN !!!!!!!!!!!", cons);
+                                                this.gameOver=true;
+                                                this.repaint();
+                                                Thread.sleep(3000);
+                                                this.remove(jsp);
+                                                this.remove(fieldPan);
+                                                this.remove(bpPanel);
+                                                this.validate();
+                                        } catch (Exception e1) {
+                                                System.out.println("No game to stop");
+                                        }
+                                }                               
+                        }
+                        this.repaint();
                         if (field.getObjectAt(player.getLocation())==null || !((Character)field.getObjectAt(player.getLocation())).isPlayer() || this.getPlayer().getHealthPoints() <= 0
                                         || field.getNbHuman() == 0) {
                                 System.out.println("OVER");
@@ -386,11 +436,13 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                         player.say("I'm dead...too bad", cons);
                                         this.gameOver=true;
                                         this.repaint();
-                                        Thread.sleep(3000);
+                                        fieldPan.validate();
+                                        fieldPan.repaint();
+                                        /*Thread.sleep(3000);
                                         this.remove(jsp);
                                         this.remove(fieldPan);
                                         this.remove(bpPanel);
-                                        this.validate();
+                                        this.validate();*/
                                 } catch (Exception e1) {
                                         System.out.println("No game to stop");
                                 }
@@ -405,24 +457,29 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 
                 Object source=arg0.getItemSelectable();
                 if(source==this.consoleDisp){
-                        if(consoleDisp.isSelected()){
+                        if(consoleDisp.isSelected() && !gameOver){
                                 consoleDisplayState=true;
                                 try {
                                         this.remove(fieldPan);
+                                        this.remove(jsp);
+                                        this.remove(bpPanel);
                                         this.setLayout(new GridLayout(1, 2));
                                         this.add(fieldPan,0);
+                                        this.add(bpPanel,1);
                                         this.add(jsp,-1);
                                         this.validate();
                                 } catch (Exception e) {
                                 }
                         }
-                        else{
+                        else if(!gameOver){
                                 consoleDisplayState=false;
                                 try {
                                         this.remove(jsp);
                                         this.remove(fieldPan);
+                                        this.remove(bpPanel);
                                         this.setLayout(new GridLayout(1, 1));
                                         this.add(fieldPan,0);
+                                        this.add(bpPanel,1);
                                         this.validate();
                                 } catch (Exception e) {
                                 }

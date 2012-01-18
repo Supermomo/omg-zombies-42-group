@@ -27,35 +27,45 @@ Reproduction moins fréquente X
 Ajout des WerewolfZombie ==> finalement Zombie tué => MadZombie X
 Deplacements différenciés selon la race X
 
+Probleme Helico Rouge largage objet réglé par magie. X
+
+APRES PROJET :
+
+
 Mode de jeu à un joueur X
 Ajout de la défense X
 Tests de la Défense X
-
 Classe Player pour le mode a un joueur X
 Sac à dos X
 Affichage de l'inventaire (JButtons avec Item.GetType() en nom) X
 Ajout du Menu X
 Niveaux de difficultés X
-Système de lightBox
-Ajout des objets selectionnables
-Changement du système de simulation pour permettre le jeu
+Ajout des objets selectionnables X
+Changement du système de simulation pour permettre le jeu X
 Ajout de l'affichage ou pas de la console X
 Mise en place du systéme de localisation des  clics X
-Ajout de l'environnement 
-Affichage des objets sur la maps 
+Affichage des objets sur la maps X
 Nouveau skins player X
 Choix du skin player (Pop up window ==> choix)
 Affichage du joueur en surligné X
+Ajout du passage d'une map à l'autre=>Image de la map sauvegardées dans le field X
+Largage ciblé des objets de l'Helico X
+Probleme de remise à zéro des utilisations des objets X
+Test BackPack et Player X
+Ajout de la barre de vie X
+------------------------------------------------------
+Probleme de l'affichage quand récup d'une arme 
+Affichage du game over==> a régler ! important
 Ajout d'un fond de map
 Se faire passer pour un Lycan/Vamp + objets
 Ajout du choix du nom de joueur
-Ajout du passage d'une map à l'autre=>Image de la map sauvegardées dans le field
-Largage ciblé des objets de l'Helico X
-Probleme de l'affichage quand récup d'une arme 
-Affichage du game over==> a régler ! important
-Probleme de remise à zéro des utilisations des objets
+Système de lightBox
+Ajout de l'environnement 
+Probleme : objet non efficace lors de la défense : ou actualliser plus tard ?
+Refaire le layout
 
-Probleme Helico Rouge largage objet réglé par magie. X
+
+
 ===============================================
 
 deplacements en diagonale ? on laisse ou pas ? OUI X
