@@ -56,15 +56,15 @@ Probleme de l'affichage quand récup d'une arme /quand debut de map/quand fin de
 Affichage du game over==> a régler ! important X
 morts innexpliquées ==>la supression du char qui fait l'action si il est mort clearé la location encountered au lieu de la location du character X
 Probleme : objet non efficace lors de la défense : ou actualliser plus tard ? voir morts innexpliquées X
+Ajout du choix du nom de joueur X
+Choix du skin player (Pop up window ==> choix) X
 ------------------------------------------------------
 Ajout d'un fond de map
-Choix du skin player (Pop up window ==> choix)
 Se faire passer pour un Lycan/Vamp + objets
-Ajout du choix du nom de joueur
 Système de lightBox
 Ajout de l'environnement 
 Refaire le layout
-ajout de la grenade
+ajout de la grenade + seek player
 ajout de nouvelles armes(machette, sabre laser...)
 Mette des images pour l'inventaire
 

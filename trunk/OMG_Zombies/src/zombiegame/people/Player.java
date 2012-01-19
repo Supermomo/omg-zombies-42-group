@@ -226,6 +226,10 @@ public class Player extends Human{
                 backPack.equip(w, this);
         }
         
+        public void setName(String name){
+                super.name=name;
+        }
+        
 
         /**
          * pick up an object Replace the current object by the new one associate
