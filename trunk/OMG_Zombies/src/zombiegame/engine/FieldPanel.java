@@ -8,10 +8,13 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
 import zombiegame.people.*;
 import zombiegame.people.Character;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
@@ -55,22 +58,26 @@ public class FieldPanel extends JPanel {
                 hpBar.setForeground(java.awt.Color.red);
                 this.setLayout(new GridLayout(field.getDepth()+10,1));
                 this.add(hpBar,0);
-                
-                Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
-                imgBloodTitle = tk.getImage(this.getClass().getResource("/img/blood_title.png"));
-                imgChest = tk.getImage(this.getClass().getResource("/img/chest.png"));
-                imgMap = tk.getImage(this.getClass().getResource("/img/map_ice2.png"));
-                imgHuman = tk.getImage(this.getClass().getResource("/img/Human.png"));
-                imgHumanShotgun = tk.getImage(this.getClass().getResource("/img/HumanShotgun.png"));
-                imgHumanFlameThrower = tk.getImage(this.getClass().getResource("/img/HumanFlamThrower.png"));
-                imgHumanStick = tk.getImage(this.getClass().getResource("/img/HumanWoodenStick.png"));
-                imgZombie = tk.getImage(this.getClass().getResource("/img/Zombie.png"));
-                imgMadZombie = tk.getImage(this.getClass().getResource("/img/MadZombie.png"));
-                imgWerewolf = tk.getImage(this.getClass().getResource("/img/Werewolf2.png"));
-                imgWerewolfCrew = tk.getImage(this.getClass().getResource("/img/WerewolfCrew.png"));
-                imgVampire = tk.getImage(this.getClass().getResource("/img/Vamp.png"));
-                imgHighLight = tk.getImage(this.getClass().getResource("/img/highLight.png"));
-                imgDoor = tk.getImage(this.getClass().getResource("/img/door.png"));
+
+                try {
+                        imgBloodTitle = ImageIO.read(new File("src//img/blood_title.png"));
+                        imgChest = ImageIO.read(new File("src//img/chest.png"));
+                        imgMap = ImageIO.read(new File("src//img/map_ice2.png"));
+                        imgHuman = ImageIO.read(new File("src//img/Human.png"));
+                        imgHumanShotgun = ImageIO.read(new File("src//img/HumanShotgun.png"));
+                        imgHumanFlameThrower = ImageIO.read(new File("src//img/HumanFlamThrower.png"));
+                        imgHumanStick = ImageIO.read(new File("src//img/HumanWoodenStick.png"));
+                        imgZombie = ImageIO.read(new File("src//img/Zombie.png"));
+                        imgMadZombie = ImageIO.read(new File("src//img/MadZombie.png"));
+                        imgWerewolf = ImageIO.read(new File("src//img/Werewolf2.png"));
+                        imgWerewolfCrew = ImageIO.read(new File("src//img/WerewolfCrew.png"));
+                        imgVampire = ImageIO.read(new File("src//img/Vamp.png"));
+                        imgHighLight = ImageIO.read(new File("src//img/highLight.png"));
+                        imgDoor = ImageIO.read(new File("src//img/door.png"));
+                } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
 
         }
 

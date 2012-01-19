@@ -133,6 +133,7 @@ public class Human extends Character {
 
                 if (isArmed() && !c.isHuman() && !c.defend(this,field)) {
                         result = weapon.Use(c, field);
+                        say("I use a "+weapon.getType()+" on "+c.getName(), field.getConsolePanel());
                         if (weapon.getUses() <= 0) {
                                 weapon = null;
                         }
@@ -159,7 +160,48 @@ public class Human extends Character {
         public boolean defend(Character c, Field field) {
                         if(c.isEvilCharacter()){
                                 super.defend(c, field);
-                                return this.encounterCharacter(c, field);
+                                boolean result = false;
+                                if (edible != null) {
+                                        if (c.isVampire() && edible.isCureVamp()) {
+                                                edible.Use(c, field);
+                                                result = true;
+                                        } else if (c.isWerewolf() && edible.isCureLycan()) {
+                                                edible.Use(c, field);
+                                                result = true;
+                                        } else if (c.isZombie() && edible.isCureZomb()) {
+                                                edible.Use(c, field);
+                                                result = true;
+                                        } else if (edible.isIncreasingHp() && super.getHealthPoints() < 30) {
+                                                edible.Use(this, field);
+                                        }
+
+                                        if (edible.getUses() <= 0) {
+                                                edible = null;
+                                        }
+
+                                }
+                                if (this.item != null) {
+                                        if (this.item.getUses() <= 0) {
+                                                item = null;
+                                        }
+                                }
+
+                                if (isArmed() && !c.isHuman()) {
+                                        result = weapon.Use(c, field);
+                                        say("I use a "+weapon.getType()+" on "+c.getName()+" result : "+result, field.getConsolePanel());
+                                        if (weapon.getUses() <= 0) {
+                                                weapon = null;
+                                        }
+                                        this.say("humm...may be i shoulden't have done that...", field.getConsolePanel());
+                                } else if (c.isHuman()) {
+                                        this.say("Hi " + c.getName() + "...what's up ?", field.getConsolePanel());
+                                        baby(field);
+
+                                } else {
+                                        //result=true;
+                                        this.say("There is nothing I can do", field.getConsolePanel());
+                                }
+                                return result;
                         }
                         this.say("I can't defend myself against "+c.getName(), field.getConsolePanel());
                         return false;
@@ -242,6 +284,7 @@ public class Human extends Character {
          *         healthpoints
          */
         public Zombie turnIntoZombie() {
+                System.out.println(getName()+" is turning into a zombie");
                 Zombie z = new Zombie("(Zomb)" + super.name, FieldFrame.HP_ZOMBIES);
                 z.justPlayed();
                 return z;

@@ -12,11 +12,14 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import javax.swing.ButtonGroup;
@@ -67,7 +70,8 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
         private JRadioButtonMenuItem dif2;
         private JRadioButtonMenuItem dif3;
         private JCheckBoxMenuItem consoleDisp;
-        private boolean gameOver=true;
+        private boolean displayGameOver=true;
+        private boolean gameRunning=false;
         public boolean consoleDisplayState=true;
         
         private String playerName= "defaultPlayer";
@@ -135,12 +139,15 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
                 player=new Player(playerName,HP_HUMANS);
                 field.place(player, field.getIn());
-                
-                Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
-                player.setImagePlayer(tk.getImage(this.getClass().getResource("/img/Human2.png")));
-                player.setImgPlayerFlam(tk.getImage(this.getClass().getResource("/img/Human2FlamThrower.png")));
-                player.setImgPlayerShotgun(tk.getImage(this.getClass().getResource("/img/Human2Shotgun.png")));
-                player.setImgPlayerStick(tk.getImage(this.getClass().getResource("/img/Human2WoodenStick.png")));
+
+                try {
+                        player.setImagePlayer(ImageIO.read(new File("src/img/Human2.png")));
+                        player.setImgPlayerFlam(ImageIO.read(new File("src/img/Human2FlamThrower.png")));
+                        player.setImgPlayerShotgun(ImageIO.read(new File("src/img/Human2Shotgun.png")));
+                        player.setImgPlayerStick(ImageIO.read(new File("src/img/Human2WoodenStick.png")));
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
         }
         
         private void initPeople(){
@@ -164,7 +171,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                         NB_WEREWOLF = 1;
                 }
                 this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
-                this.gameOver=false;
+                this.displayGameOver=false;
         }
         
         /**
@@ -176,11 +183,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
         }
         
         public boolean getGameOver(){
-                return gameOver;
-        }
-        
-        public void setGameOver(boolean over){
-                gameOver=over;;
+                return displayGameOver;
         }
         
         public void generatePeople(int nbVamp, int nbWerewolf, int nbZombie, int nbHuman) {
@@ -298,7 +301,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
 
                 if(e.getActionCommand().equals("stop")){
                         try {
-                                this.gameOver=true;
+                                this.gameRunning=false;
                                 this.remove(jsp);
                                 this.remove(fieldPan);
                                 this.remove(bpPanel);
@@ -309,9 +312,10 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                         }
 
                 }
-                else if(e.getActionCommand().equals("new") && gameOver==true){
+                else if(e.getActionCommand().equals("new") && !gameRunning){
                         System.out.println("new");
-                        this.gameOver=false;
+                        this.displayGameOver=false;
+                        gameRunning=true;
                         
                         cons = new JTextArea(200, 200);
                         cons.setText("New game running\r\n");
@@ -378,7 +382,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
 
         @Override
         public void mouseReleased(MouseEvent e) {
-                if (!this.getGameOver()) {
+                if (!this.displayGameOver && gameRunning) {
                         System.out.println("row "+field.getOut().getRow() + " col "+field.getOut().getCol());
                         System.out.println("x  " + this.getPlayer().getLocation().getCol() + "  y  " + this.getPlayer().getLocation().getRow());
                         Point p = fieldPan.validDestination(this.getPlayer().getLocation(), e.getX(), e.getY());
@@ -416,7 +420,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                         System.out.println("VICTORY");
                                         try {
                                                 player.say("I WIN !!!!!!!!!!!", cons);
-                                                this.gameOver=true;
+                                                this.gameRunning=true;
                                                 this.repaint();
                                                 Thread.sleep(3000);
                                                 this.remove(jsp);
@@ -429,12 +433,17 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                 }                               
                         }
                         this.repaint();
-                        if (field.getObjectAt(player.getLocation())==null || !((Character)field.getObjectAt(player.getLocation())).isPlayer() || this.getPlayer().getHealthPoints() <= 0
-                                        || field.getNbHuman() == 0) {
+                        if (field.getObjectAt(player.getLocation())==null || !((Character)field.getObjectAt(player.getLocation())).isPlayer() 
+                                        || this.getPlayer().getHealthPoints() <= 0 || field.getNbHuman() == 0) {
                                 System.out.println("OVER");
-                                try {
+                                System.out.println(((Character)field.getObjectAt(player.getLocation())).isPlayer());
+                                System.out.println(field.getObjectAt(player.getLocation()).getClass()+ " hp "+player.getHealthPoints()+ " hum "+field.getNbHuman());
+                                System.out.println("loc : "+field.getObjectAt(player.getLocation())==null);
+                                try {   this.repaint();
+                                        nextTurn();
+                                        this.repaint();
                                         player.say("I'm dead...too bad", cons);
-                                        this.gameOver=true;
+                                        this.displayGameOver=true;
                                         this.repaint();
                                         fieldPan.validate();
                                         fieldPan.repaint();
@@ -457,7 +466,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 
                 Object source=arg0.getItemSelectable();
                 if(source==this.consoleDisp){
-                        if(consoleDisp.isSelected() && !gameOver){
+                        if(consoleDisp.isSelected() && !displayGameOver){
                                 consoleDisplayState=true;
                                 try {
                                         this.remove(fieldPan);
@@ -471,7 +480,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                 } catch (Exception e) {
                                 }
                         }
-                        else if(!gameOver){
+                        else if(!displayGameOver){
                                 consoleDisplayState=false;
                                 try {
                                         this.remove(jsp);

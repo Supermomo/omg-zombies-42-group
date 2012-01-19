@@ -8,7 +8,7 @@ import zombiegame.people.Player;
 public class BackPack {
 
         private List<Wearable> inventory;
-        private Wearable  equiped;
+        private Wearable equiped;
 
         public BackPack() {
                 inventory = new ArrayList<Wearable>();
@@ -16,43 +16,35 @@ public class BackPack {
         }
 
         public List<Wearable> getItemList() {
+                MAJ();
                 return inventory;
         }
-        
-        private Item getInstanceInBackPack(Item it){
+
+        private Item getInstanceInBackPack(Item it) {
                 for (Wearable i : inventory) {
-                       
-                        if (((Item)i).getType().equals(((Item)it).getType())) {
+                        if (((Item) i).getType().equals(((Item) it).getType())) {
                                 return (Item) i;
                         }
                 }
                 return null;
         }
+
         public boolean equip(Wearable item, Player p) {
                 if (isInBackPack(item)) {
-                        Wearable i=(Wearable)getInstanceInBackPack((Item)item);
-                        System.out.println(((Item)i).getType());
-                          
+                        Wearable i = (Wearable) getInstanceInBackPack((Item) item);
                         i.select(p);
-                        System.out.println("item used");
-                        System.out.println(((Item)item).getType()+" uses "+((Item)i).getUses());
-                        
-                        if(((Item)i).getUses()<=0){
-                                System.out.println("Item removed");
-                                inventory.remove(i);
+
+                        if (!((Item) item).isWeapon() && !((Item) item).isEdible()) {
+                                equiped = i;
                         }
-                        else if( !((Item)item).isWeapon() && !((Item)item).isEdible()){
-                                equiped=i;
-                        }
-                        System.out.println("inventiry size :"+inventory.size());
-                        return true;                                  
+                        return true;
                 }
                 return false;
         }
 
         public boolean isInBackPack(Wearable item) {
                 for (Wearable i : inventory) {
-                        if (((Item)i).getType().equals(((Item)item).getType())) {
+                        if (((Item) i).getType().equals(((Item) item).getType())) {
                                 return true;
                         }
                 }
@@ -60,27 +52,22 @@ public class BackPack {
         }
 
         public boolean addItem(Wearable item) {
-                for(Wearable w : inventory){
-                        if(((Item)w).getUses()<=0){
-                                inventory.remove(w);
-                        }
-                }
-                if(!isInBackPack(item)){
+                MAJ();
+                if (!isInBackPack(item)) {
                         inventory.add(item);
                         return true;
-                }
-                else{
-                        for (Wearable i : inventory) {                             
-                                if (((Item)i).getType().equals(((Item)item).getType())) {
-                                        i=item;
+                } else {
+                        for (Wearable i : inventory) {
+                                if (((Item) i).getType().equals(((Item) item).getType())) {
+                                        i = item;
                                         return true;
                                 }
-                        }  
+                        }
                 }
                 return false;
         }
-        
-        public boolean remove(Item item){
+
+        public boolean remove(Item item) {
                 for (Wearable i : inventory) {
                         if (i.getClass().equals(item.getClass())) {
                                 inventory.remove(i);
@@ -88,6 +75,18 @@ public class BackPack {
                         }
                 }
                 return false;
+        }
+
+        /**
+         * delete items with 0 uses
+         */
+        private void MAJ() {
+                for (int i=0;i<inventory.size();i++) {
+                        if (((Item) inventory.get(i)).getUses() <= 0) {
+                                inventory.remove(i);
+                        }
+                }
+
         }
 
         public Wearable getEquiped() {

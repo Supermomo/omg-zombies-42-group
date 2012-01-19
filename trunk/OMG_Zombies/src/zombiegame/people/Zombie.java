@@ -40,6 +40,7 @@ public class Zombie extends EvilCharacter {
          * the encounter between this character and c attack c
          */
         public boolean encounterCharacter(Character c, Field field) {
+
                 if(!c.defend(this, field))
                 {
                         attack(c, field.getConsolePanel());

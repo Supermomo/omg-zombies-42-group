@@ -255,7 +255,7 @@ public abstract class Character {
                                         encounterCharacter(c, field);
                                         if (c.getHealthPoints() == 0) {
                                                 field.clear(loc);
-                                                if (c.isHuman()) {
+                                                if (c.isHuman() && !c.isPlayer()) {
                                                         field.place(((Human) c).turnIntoZombie(),
                                                                         loc);
                                                 } else if (c.isZombie()) {
@@ -267,15 +267,15 @@ public abstract class Character {
 
                                         }
                                         if(healthPoints<=0){
-                                                field.clear(loc);
+                                                field.clear(location);
                                                 if (c.isHuman()) {
                                                         field.place(((Human) c).turnIntoZombie(),
-                                                                        loc);
+                                                                        location);
                                                 } else if (c.isZombie()) {
                                                         MadZombie mz = ((Zombie) c)
                                                                         .turnIntoMadZombie();
                                                         mz.setStun(true);
-                                                        field.place(mz, loc);
+                                                        field.place(mz, location);
                                                 }
                                         }
                                 } catch (Exception e) {

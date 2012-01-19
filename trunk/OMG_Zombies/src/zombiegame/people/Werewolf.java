@@ -42,6 +42,7 @@ public class Werewolf extends EvilCharacter {
          * a werewolf or attack any other race
          */
         public boolean encounterCharacter(Character c, Field field) {
+
                 if (c.isWerewolfCrew()) {
                         if (((WerewolfCrew) c).getCrewMembers() < 5) {
                                 ((WerewolfCrew) c).addMember(field.getConsolePanel());
