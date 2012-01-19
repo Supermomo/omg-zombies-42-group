@@ -1,6 +1,5 @@
 package zombiegame.engine;
 
-
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -23,10 +22,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
@@ -43,8 +44,7 @@ import zombiegame.people.Vampire;
 import zombiegame.people.Werewolf;
 import zombiegame.people.Zombie;
 
-
-public class FieldFrame extends JFrame implements ActionListener,ItemListener, MouseListener{
+public class FieldFrame extends JFrame implements ActionListener, ItemListener, MouseListener {
 
         private static final long serialVersionUID = 8523670543879106864L;
 
@@ -65,64 +65,63 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
         private FieldPanel fieldPan;
         private JScrollPane jsp;
         private JTextArea cons;
-        
+
         private JRadioButtonMenuItem dif1;
         private JRadioButtonMenuItem dif2;
         private JRadioButtonMenuItem dif3;
         private JCheckBoxMenuItem consoleDisp;
-        private boolean displayGameOver=true;
-        private boolean gameRunning=false;
-        public boolean consoleDisplayState=true;
-        
-        private String playerName= "defaultPlayer";
+        private boolean displayGameOver = true;
+        private boolean gameRunning = false;
+        public boolean consoleDisplayState = true;
+
+        private String playerName = "defaultPlayer";
         private Player player;
         private JMenuItem stopGame;
-        
+
         private BackPackPanel bpPanel;
-        
+
         public FieldFrame() {
-                
+
                 super("OMG Zombie");
-                
-                //Ajout des menus
-                JMenuBar menu=new JMenuBar();
-                JMenu run=new JMenu("Run");
-                JMenuItem newGame=new JMenuItem("New Game");
+
+                // Ajout des menus
+                JMenuBar menu = new JMenuBar();
+                JMenu run = new JMenu("Run");
+                JMenuItem newGame = new JMenuItem("New Game");
                 newGame.setActionCommand("new");
-                stopGame=new JMenuItem("Stop Game");
+                stopGame = new JMenuItem("Stop Game");
                 stopGame.setActionCommand("stop");
-                //menus de choix de la difficulté
-                JMenu diff=new JMenu("Set next game difficulty");
-                ButtonGroup group=new ButtonGroup();
-                dif1=new JRadioButtonMenuItem("Level 1",true);
+                // menus de choix de la difficulté
+                JMenu diff = new JMenu("Set next game difficulty");
+                ButtonGroup group = new ButtonGroup();
+                dif1 = new JRadioButtonMenuItem("Level 1", true);
                 group.add(dif1);
                 diff.add(dif1);
-                dif2=new JRadioButtonMenuItem("Level 2",false);
+                dif2 = new JRadioButtonMenuItem("Level 2", false);
                 group.add(dif2);
                 diff.add(dif2);
-                dif3=new JRadioButtonMenuItem("Level 3",false);
+                dif3 = new JRadioButtonMenuItem("Level 3", false);
                 group.add(dif3);
                 diff.add(dif3);
-                //Ajout des menus Item au menu
+                // Ajout des menus Item au menu
                 run.add(newGame);
                 run.add(stopGame);
                 run.add(diff);
                 newGame.addActionListener(this);
                 stopGame.addActionListener(this);
                 menu.add(run);
-                //Ajout du menu Window : permettant l'activation de la console
-                JMenu window=new JMenu("Window");
-                consoleDisp=new JCheckBoxMenuItem("Display console");
+                // Ajout du menu Window : permettant l'activation de la console
+                JMenu window = new JMenu("Window");
+                consoleDisp = new JCheckBoxMenuItem("Display console");
                 consoleDisp.setSelected(true);
                 consoleDisp.addItemListener(this);
                 window.add(consoleDisp);
                 menu.add(window);
-                //ajout de la JMenuBar à la fenêtre
+                // ajout de la JMenuBar à la fenêtre
                 this.setJMenuBar(menu);
-                
+
                 this.setLayout(new GridLayout(1, 3));
 
-                
                 this.setBackground(java.awt.Color.LIGHT_GRAY);
                 this.setLocation(30, 30);
                 this.setSize(1400, 800);
@@ -130,50 +129,38 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 this.validate();
                 this.repaint();
         }
-        
-        private void initField(){
-                field = new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,SIZE_MAP/2),new Location(SIZE_MAP-1,SIZE_MAP/2));
-                field.setNextField(new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,SIZE_MAP/2),new Location(SIZE_MAP-1,SIZE_MAP-1)));
-                field.getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,SIZE_MAP-1),new Location(SIZE_MAP-1,0)));
-                field.getNextField().getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons,new Location(0,0),new Location(SIZE_MAP-1,SIZE_MAP/2)));
-                fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
-                player=new Player(playerName,HP_HUMANS);
-                field.place(player, field.getIn());
 
-                try {
-                        player.setImagePlayer(ImageIO.read(new File("src/img/Human2.png")));
-                        player.setImgPlayerFlam(ImageIO.read(new File("src/img/Human2FlamThrower.png")));
-                        player.setImgPlayerShotgun(ImageIO.read(new File("src/img/Human2Shotgun.png")));
-                        player.setImgPlayerStick(ImageIO.read(new File("src/img/Human2WoodenStick.png")));
-                } catch (IOException e) {
-                        e.printStackTrace();
-                }
+        private void initField() {
+                field = new Field(SIZE_MAP, SIZE_MAP, cons, new Location(0, SIZE_MAP / 2), new Location(SIZE_MAP - 1, SIZE_MAP / 2));
+                field.setNextField(new Field(SIZE_MAP, SIZE_MAP, cons, new Location(0, SIZE_MAP / 2), new Location(SIZE_MAP - 1, SIZE_MAP - 1)));
+                field.getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons, new Location(0, SIZE_MAP - 1), new Location(SIZE_MAP - 1, 0)));
+                field.getNextField().getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons, new Location(0, 0), new Location(SIZE_MAP - 1, SIZE_MAP / 2)));
+                fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
+                player = new Player(playerName, HP_HUMANS);
+                field.place(player, field.getIn());
         }
-        
-        private void initPeople(){
-                if(dif2.isSelected()){
+
+        private void initPeople() {
+                if (dif2.isSelected()) {
                         NB_HUMANS = 3;
                         NB_VAMPIRES = 5;
                         NB_ZOMBIES = 6;
                         NB_WEREWOLF = 3;
-                }
-                else if(dif3.isSelected()){
+                } else if (dif3.isSelected()) {
                         NB_HUMANS = 2;
                         NB_VAMPIRES = 8;
                         NB_ZOMBIES = 9;
                         NB_WEREWOLF = 5;
-                }
-                else
-                {
+                } else {
                         NB_HUMANS = 4;
                         NB_VAMPIRES = 2;
                         NB_ZOMBIES = 4;
                         NB_WEREWOLF = 1;
                 }
                 this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
-                this.displayGameOver=false;
+                this.displayGameOver = false;
         }
-        
+
         /**
          * Initialize game.
          */
@@ -181,11 +168,11 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 initField();
                 initPeople();
         }
-        
-        public boolean getGameOver(){
+
+        public boolean getGameOver() {
                 return displayGameOver;
         }
-        
+
         public void generatePeople(int nbVamp, int nbWerewolf, int nbZombie, int nbHuman) {
 
                 if (nbVamp < 0 || nbWerewolf < 0 || nbZombie < 0 || nbHuman < 0) {
@@ -219,7 +206,7 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 }
 
         }
-        
+
         /**
          * @return the number of human characters currently in the game
          */
@@ -278,20 +265,20 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 }
 
                 Helico helic = new Helico(fieldObject);
-                helic.dropItem(this,player.getLocation());
+                helic.dropItem(this, player.getLocation());
 
                 field.getConsolePanel().append("\r\n FIN DU TOUR \r\n");
                 this.repaint();
         }
-        
-        public FieldPanel getPanel(){
+
+        public FieldPanel getPanel() {
                 return this.fieldPan;
         }
-        
-        public Field getObjectField(){
+
+        public Field getObjectField() {
                 return this.fieldObject;
         }
-        
+
         public Player getPlayer() {
                 return this.player;
         }
@@ -299,9 +286,9 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
         @Override
         public void actionPerformed(ActionEvent e) {
 
-                if(e.getActionCommand().equals("stop")){
+                if (e.getActionCommand().equals("stop")) {
                         try {
-                                this.gameRunning=false;
+                                this.gameRunning = false;
                                 this.remove(jsp);
                                 this.remove(fieldPan);
                                 this.remove(bpPanel);
@@ -311,11 +298,13 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                 System.out.println("No game to stop");
                         }
 
-                }
-                else if(e.getActionCommand().equals("new") && !gameRunning){
+                } else if (e.getActionCommand().equals("new") && !gameRunning) {
                         System.out.println("new");
-                        this.displayGameOver=false;
-                        gameRunning=true;
+                        
+                        String s = JOptionPane.showInputDialog("Type your name here : ");
+                        if (s != null) {
+                                playerName = s;
+                        }
                         
                         cons = new JTextArea(200, 200);
                         cons.setText("New game running\r\n");
@@ -323,26 +312,57 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                         cons.setLineWrap(true);
                         cons.setForeground(java.awt.Color.green);
                         cons.setBackground(java.awt.Color.black);
-                        
-                        init();
 
-                        fieldPan = new FieldPanel(this, field,fieldObject);
+                        init();
                         
+                        String[] option = { "PokéTrainer", "Adventurer" };
+
+                        int res = JOptionPane.showOptionDialog(this, "Select your character", "Character selection", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                                        null, option, "Adventurer");
+
+                        if (res == 0) {
+                                try {
+                                        player.setImagePlayer(ImageIO.read(new File("src/img/Human3.png")));
+                                        player.setImgPlayerFlam(ImageIO.read(new File("src/img/Human3FlamThrower.png")));
+                                        player.setImgPlayerShotgun(ImageIO.read(new File("src/img/Human3Shotgun.png")));
+                                        player.setImgPlayerStick(ImageIO.read(new File("src/img/Human3WoodenStick.png")));
+                                } catch (IOException a) {
+                                        a.printStackTrace();
+                                }
+                        } else {
+                                try {
+                                        player.setImagePlayer(ImageIO.read(new File("src/img/Human2.png")));
+                                        player.setImgPlayerFlam(ImageIO.read(new File("src/img/Human2FlamThrower.png")));
+                                        player.setImgPlayerShotgun(ImageIO.read(new File("src/img/Human2Shotgun.png")));
+                                        player.setImgPlayerStick(ImageIO.read(new File("src/img/Human2WoodenStick.png")));
+                                } catch (IOException exc) {
+                                        exc.printStackTrace();
+                                }
+                        }
+
+                        this.displayGameOver = false;
+                        gameRunning = true;
+
+
+                        fieldPan = new FieldPanel(this, field, fieldObject);
+
                         fieldPan.addMouseListener(this);
-                        
+
                         this.add(fieldPan, 0);
                         fieldPan.setVisible(true);
-                        
-                        bpPanel=new BackPackPanel(this);
-                        this.add(bpPanel,1);
-                        
+
+                        bpPanel = new BackPackPanel(this);
+                        this.add(bpPanel, 1);
+
                         jsp = new JScrollPane(cons);
 
-                        /*jsp.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-                                public void adjustmentValueChanged(AdjustmentEvent e) {
-                                        e.getAdjustable().setValue(e.getAdjustable().getMaximum());
-                                }
-                        });*/
+                        /*
+                         * jsp.getVerticalScrollBar().addAdjustmentListener(new
+                         * AdjustmentListener() { public void
+                         * adjustmentValueChanged(AdjustmentEvent e) {
+                         * e.getAdjustable
+                         * ().setValue(e.getAdjustable().getMaximum()); } });
+                         */
 
                         this.add(jsp, -1);
                         this.consoleDisp.setSelected(true);
@@ -359,37 +379,37 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
         @Override
         public void mouseClicked(MouseEvent arg0) {
                 // TODO Auto-generated method stub
-                
+
         }
 
         @Override
         public void mouseEntered(MouseEvent arg0) {
                 // TODO Auto-generated method stub
-                
+
         }
 
         @Override
         public void mouseExited(MouseEvent arg0) {
                 // TODO Auto-generated method stub
-                
+
         }
 
         @Override
         public void mousePressed(MouseEvent arg0) {
                 // TODO Auto-generated method stub
-                
+
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
                 if (!this.displayGameOver && gameRunning) {
-                        System.out.println("row "+field.getOut().getRow() + " col "+field.getOut().getCol());
+                        System.out.println("row " + field.getOut().getRow() + " col " + field.getOut().getCol());
                         System.out.println("x  " + this.getPlayer().getLocation().getCol() + "  y  " + this.getPlayer().getLocation().getRow());
                         Point p = fieldPan.validDestination(this.getPlayer().getLocation(), e.getX(), e.getY());
                         if (p.x != -1) {
                                 this.getPlayer().move(new Location(p.y, p.x), field, this.getObjectField());
                                 this.getPlayer().endOfTurn(field);
-                                if(getPlayer().isArmed()){
+                                if (getPlayer().isArmed()) {
                                         this.repaint();
                                 }
                                 this.repaint();
@@ -397,30 +417,29 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                 this.nbHumansAlive();
                                 this.validate();
                         }
-                        if(player.getLocation().getRow()==field.getOut().getRow() && player.getLocation().getCol()==field.getOut().getCol()){
+                        if (player.getLocation().getRow() == field.getOut().getRow() && player.getLocation().getCol() == field.getOut().getCol()) {
                                 System.out.println("nextField");
-                                if(field.getNextField()!=null){
-                                        Location in=field.getNextField().getIn();
-                                        field=field.getNextField();
+                                if (field.getNextField() != null) {
+                                        Location in = field.getNextField().getIn();
+                                        field = field.getNextField();
                                         field.place(player, in);
-                                        fieldObject=new Field(SIZE_MAP,SIZE_MAP,cons);
+                                        fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
                                         NB_HUMANS += 1;
                                         NB_VAMPIRES += 1;
                                         NB_ZOMBIES += 2;
                                         NB_WEREWOLF += 1;
-                                        this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);  
+                                        this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
                                         this.remove(fieldPan);
-                                        fieldPan=new FieldPanel(this,field, fieldObject);
-                                        this.add(fieldPan,0);
+                                        fieldPan = new FieldPanel(this, field, fieldObject);
+                                        this.add(fieldPan, 0);
                                         fieldPan.addMouseListener(this);
                                         this.validate();
                                         this.repaint();
-                                }
-                                else {
+                                } else {
                                         System.out.println("VICTORY");
                                         try {
                                                 player.say("I WIN !!!!!!!!!!!", cons);
-                                                this.gameRunning=true;
+                                                this.gameRunning = true;
                                                 this.repaint();
                                                 Thread.sleep(3000);
                                                 this.remove(jsp);
@@ -430,28 +449,30 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                                         } catch (Exception e1) {
                                                 System.out.println("No game to stop");
                                         }
-                                }                               
+                                }
                         }
                         this.repaint();
-                        if (field.getObjectAt(player.getLocation())==null || !((Character)field.getObjectAt(player.getLocation())).isPlayer() 
+                        if (field.getObjectAt(player.getLocation()) == null || !((Character) field.getObjectAt(player.getLocation())).isPlayer()
                                         || this.getPlayer().getHealthPoints() <= 0 || field.getNbHuman() == 0) {
                                 System.out.println("OVER");
-                                System.out.println(((Character)field.getObjectAt(player.getLocation())).isPlayer());
-                                System.out.println(field.getObjectAt(player.getLocation()).getClass()+ " hp "+player.getHealthPoints()+ " hum "+field.getNbHuman());
-                                System.out.println("loc : "+field.getObjectAt(player.getLocation())==null);
-                                try {   this.repaint();
+                                System.out.println(((Character) field.getObjectAt(player.getLocation())).isPlayer());
+                                System.out.println(field.getObjectAt(player.getLocation()).getClass() + " hp " + player.getHealthPoints() + " hum " + field.getNbHuman());
+                                System.out.println("loc : " + field.getObjectAt(player.getLocation()) == null);
+                                try {
+                                        this.repaint();
                                         nextTurn();
                                         this.repaint();
                                         player.say("I'm dead...too bad", cons);
-                                        this.displayGameOver=true;
+                                        this.displayGameOver = true;
                                         this.repaint();
                                         fieldPan.validate();
                                         fieldPan.repaint();
-                                        /*Thread.sleep(3000);
-                                        this.remove(jsp);
-                                        this.remove(fieldPan);
-                                        this.remove(bpPanel);
-                                        this.validate();*/
+                                        /*
+                                         * Thread.sleep(3000); this.remove(jsp);
+                                         * this.remove(fieldPan);
+                                         * this.remove(bpPanel);
+                                         * this.validate();
+                                         */
                                 } catch (Exception e1) {
                                         System.out.println("No game to stop");
                                 }
@@ -463,32 +484,31 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
 
         @Override
         public void itemStateChanged(ItemEvent arg0) {
-                
-                Object source=arg0.getItemSelectable();
-                if(source==this.consoleDisp){
-                        if(consoleDisp.isSelected() && !displayGameOver){
-                                consoleDisplayState=true;
+
+                Object source = arg0.getItemSelectable();
+                if (source == this.consoleDisp) {
+                        if (consoleDisp.isSelected() && !displayGameOver) {
+                                consoleDisplayState = true;
                                 try {
                                         this.remove(fieldPan);
                                         this.remove(jsp);
                                         this.remove(bpPanel);
                                         this.setLayout(new GridLayout(1, 2));
-                                        this.add(fieldPan,0);
-                                        this.add(bpPanel,1);
-                                        this.add(jsp,-1);
+                                        this.add(fieldPan, 0);
+                                        this.add(bpPanel, 1);
+                                        this.add(jsp, -1);
                                         this.validate();
                                 } catch (Exception e) {
                                 }
-                        }
-                        else if(!displayGameOver){
-                                consoleDisplayState=false;
+                        } else if (!displayGameOver) {
+                                consoleDisplayState = false;
                                 try {
                                         this.remove(jsp);
                                         this.remove(fieldPan);
                                         this.remove(bpPanel);
                                         this.setLayout(new GridLayout(1, 1));
-                                        this.add(fieldPan,0);
-                                        this.add(bpPanel,1);
+                                        this.add(fieldPan, 0);
+                                        this.add(bpPanel, 1);
                                         this.validate();
                                 } catch (Exception e) {
                                 }
@@ -496,6 +516,5 @@ public class FieldFrame extends JFrame implements ActionListener,ItemListener, M
                 }
                 this.repaint();
         }
-
 
 }
