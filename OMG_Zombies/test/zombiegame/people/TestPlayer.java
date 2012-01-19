@@ -12,11 +12,12 @@ import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.objects.micellaneous.SilverBullet;
 import zombiegame.objects.weapons.Shotgun;
+import zombiegame.objects.weapons.WoodenStick;
 
 public class TestPlayer {
 
         private Player p;
-        
+
         @Before
         public void setUp() throws Exception {
                 p=new Player("jean",100);
@@ -87,6 +88,23 @@ public class TestPlayer {
                 assertTrue(p.getLocation().getCol()==1 && p.getLocation().getRow()==1);
                 
                 
+        }
+        
+        @Test
+        public void testDefend(){
+                Field f = new Field(2, 1, new JTextArea());
+                Field f1 = new Field(2, 1, new JTextArea());
+                WoodenStick w=new WoodenStick();
+                f1.placeItem(w, 0, 0);
+                p.pickUpObject(f1, new Location(0,0));
+                f.place(p, new Location(0,0));
+                Vampire v=new Vampire("jean",100);
+                int hph=p.getHealthPoints();
+                int hp=v.getHealthPoints();
+                f.place(v, new Location(1,0));
+                v.encounterCharacter(p, f);
+                assertTrue(v.getHealthPoints()<hp);
+                assertTrue(hph==p.getHealthPoints());
         }
 
 }

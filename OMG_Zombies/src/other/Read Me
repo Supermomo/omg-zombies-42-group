@@ -46,23 +46,28 @@ Ajout de l'affichage ou pas de la console X
 Mise en place du systéme de localisation des  clics X
 Affichage des objets sur la maps X
 Nouveau skins player X
-Choix du skin player (Pop up window ==> choix)
 Affichage du joueur en surligné X
 Ajout du passage d'une map à l'autre=>Image de la map sauvegardées dans le field X
 Largage ciblé des objets de l'Helico X
 Probleme de remise à zéro des utilisations des objets X
 Test BackPack et Player X
 Ajout de la barre de vie X
+Probleme de l'affichage quand récup d'une arme /quand debut de map/quand fin de jeu X
+Affichage du game over==> a régler ! important X
+morts innexpliquées ==>la supression du char qui fait l'action si il est mort clearé la location encountered au lieu de la location du character X
+Probleme : objet non efficace lors de la défense : ou actualliser plus tard ? voir morts innexpliquées X
 ------------------------------------------------------
-Probleme de l'affichage quand récup d'une arme 
-Affichage du game over==> a régler ! important
 Ajout d'un fond de map
+Choix du skin player (Pop up window ==> choix)
 Se faire passer pour un Lycan/Vamp + objets
 Ajout du choix du nom de joueur
 Système de lightBox
 Ajout de l'environnement 
-Probleme : objet non efficace lors de la défense : ou actualliser plus tard ?
 Refaire le layout
+ajout de la grenade
+ajout de nouvelles armes(machette, sabre laser...)
+Mette des images pour l'inventaire
+
 
 
 

@@ -55,6 +55,7 @@ public class Vampire extends EvilCharacter {
          * powerful
          */
         public boolean encounterCharacter(Character c, Field field) {
+
                 if (c.isVampire()) {
                         this.increaseHealthPoints(5);
                 } else if(!c.defend(this, field)){
@@ -180,6 +181,13 @@ public class Vampire extends EvilCharacter {
         @Override
         public void action(Field field, Field fieldObj) {
                 super.action(field, fieldObj);
-                super.action(field, fieldObj);
+                if(healthPoints>0){
+                        System.out.println("Vamp : "+super.name+" 2eme attaque");
+                        super.action(field, fieldObj); 
+                }
+                else{
+                        field.clear(location);
+                }
+                
         }
 }
