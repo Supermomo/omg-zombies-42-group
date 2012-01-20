@@ -68,9 +68,11 @@ Ajout de l'environnement
 Refaire le layout
 ajout de la grenade + seek player
 ajout de nouvelles armes(machette, sabre laser...)
+Sabre laser = lightBox
 Mette des images pour l'inventaire
 Systeme de gestion des scores
-Nouveaux miscellaneous
+Nouveaux miscellaneous (graisse de zombie + stick = Weapon(Torche)
+Torche = lightBox
 Ajout d'une image de victoire
 
 
