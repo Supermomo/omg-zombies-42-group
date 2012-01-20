@@ -10,6 +10,8 @@ import zombiegame.objects.Item;
 import zombiegame.objects.Wearable;
 import zombiegame.objects.edible.Edible;
 import zombiegame.objects.micellaneous.Miscellaneous;
+import zombiegame.objects.micellaneous.VampireCape;
+import zombiegame.objects.micellaneous.WerewolfHide;
 import zombiegame.objects.weapons.Weapon;
 
 
@@ -29,6 +31,14 @@ public class Player extends Human{
         private Image imgPlayerFlam;
         private Image imgPlayerShotgun;
         private Image imgPlayerStick;
+        private Image imgPlayerVamp;
+        private Image imgPlayerFlamVamp;
+        private Image imgPlayerShotgunVamp;
+        private Image imgPlayerStickVamp;
+        private Image imgPlayerWer;
+        private Image imgPlayerFlamWer;
+        private Image imgPlayerShotgunWer;
+        private Image imgPlayerStickWer;
         
         /**The width of the light Box from 0 to half the size of the field, 0 means no lightBox*/
         private int lightBoxWidth;
@@ -45,14 +55,28 @@ public class Player extends Human{
         }
         
         public boolean isHuman(){
+                isHuman=!isVampire() && !isWerewolf();
                 return isHuman;
         }
         
         public boolean isVampire(){
+                if(backPack.getEquiped()!=null){
+                        isVampire=((Item)backPack.getEquiped()).getType().equals(new VampireCape().getType());
+                }
+                else {
+                        isVampire=false;
+                }
+
                 return isVampire;
         }
         
         public boolean isWerewolf(){
+                if(backPack.getEquiped()!=null){
+                        isWerewolf=((Item)backPack.getEquiped()).getType().equals(new WerewolfHide().getType());
+                }
+                else {
+                        isWerewolf=false;
+                }
                 return isWerewolf;
         }
         
@@ -289,6 +313,118 @@ public class Player extends Human{
                         }
 
                 }
+        }
+
+        /**
+         * @param imgPlayerVamp the imgPlayerVamp to set
+         */
+        public void setImgPlayerVamp(Image imgPlayerVamp) {
+                this.imgPlayerVamp = imgPlayerVamp;
+        }
+
+        /**
+         * @return the imgPlayerVamp
+         */
+        public Image getImgPlayerVamp() {
+                return imgPlayerVamp;
+        }
+
+        /**
+         * @param imgPlayerFlamVamp the imgPlayerFlamVamp to set
+         */
+        public void setImgPlayerFlamVamp(Image imgPlayerFlamVamp) {
+                this.imgPlayerFlamVamp = imgPlayerFlamVamp;
+        }
+
+        /**
+         * @return the imgPlayerFlamVamp
+         */
+        public Image getImgPlayerFlamVamp() {
+                return imgPlayerFlamVamp;
+        }
+
+        /**
+         * @param imgPlayerShotgunVamp the imgPlayerShotgunVamp to set
+         */
+        public void setImgPlayerShotgunVamp(Image imgPlayerShotgunVamp) {
+                this.imgPlayerShotgunVamp = imgPlayerShotgunVamp;
+        }
+
+        /**
+         * @return the imgPlayerShotgunVamp
+         */
+        public Image getImgPlayerShotgunVamp() {
+                return imgPlayerShotgunVamp;
+        }
+
+        /**
+         * @param imgPlayerStickVamp the imgPlayerStickVamp to set
+         */
+        public void setImgPlayerStickVamp(Image imgPlayerStickVamp) {
+                this.imgPlayerStickVamp = imgPlayerStickVamp;
+        }
+
+        /**
+         * @return the imgPlayerStickVamp
+         */
+        public Image getImgPlayerStickVamp() {
+                return imgPlayerStickVamp;
+        }
+
+        /**
+         * @param imgPlayerWer the imgPlayerWer to set
+         */
+        public void setImgPlayerWer(Image imgPlayerWer) {
+                this.imgPlayerWer = imgPlayerWer;
+        }
+
+        /**
+         * @return the imgPlayerWer
+         */
+        public Image getImgPlayerWer() {
+                return imgPlayerWer;
+        }
+
+        /**
+         * @param imgPlayerFlamWer the imgPlayerFlamWer to set
+         */
+        public void setImgPlayerFlamWer(Image imgPlayerFlamWer) {
+                this.imgPlayerFlamWer = imgPlayerFlamWer;
+        }
+
+        /**
+         * @return the imgPlayerFlamWer
+         */
+        public Image getImgPlayerFlamWer() {
+                return imgPlayerFlamWer;
+        }
+
+        /**
+         * @param imgPlayerShotgunWer the imgPlayerShotgunWer to set
+         */
+        public void setImgPlayerShotgunWer(Image imgPlayerShotgunWer) {
+                this.imgPlayerShotgunWer = imgPlayerShotgunWer;
+        }
+
+        /**
+         * @return the imgPlayerShotgunWer
+         */
+        public Image getImgPlayerShotgunWer() {
+                return imgPlayerShotgunWer;
+        }
+
+        /**
+         * @param imgPlayerStickWer the imgPlayerStickWer to set
+         */
+        public void setImgPlayerStickWer(Image imgPlayerStickWer) {
+                this.imgPlayerStickWer = imgPlayerStickWer;
+        }
+
+        /**
+         * @return the imgPlayerStickWer
+         */
+        public Image getImgPlayerStickWer() {
+                return imgPlayerStickWer;
         }
         
 }

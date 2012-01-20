@@ -113,21 +113,59 @@ public class FieldPanel extends JPanel {
                                                 if (o.isPlayer()) {
                                                         g.drawImage(imgHighLight, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
                                                         Player p = (Player) o;
-                                                        if (p.isArmed()) {
-                                                                if (p.getWeapon().isShotgun()) {
-                                                                        g.drawImage(frame.getPlayer().getImgPlayerShotgun(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
-                                                                                        heightBox, null);
-                                                                } else if (p.getWeapon().isLiquidNitrogen()) {
-                                                                        g.drawImage(frame.getPlayer().getImgPlayerFlam(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
-                                                                                        heightBox, null);
-                                                                } else if (p.getWeapon().isWoodenStick()) {
-                                                                        g.drawImage(frame.getPlayer().getImgPlayerStick(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
-                                                                                        heightBox, null);
+                                                        
+                                                        if(p.isVampire()){
+                                                                if (p.isArmed()) {
+                                                                        if (p.getWeapon().isShotgun()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerShotgunVamp(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        } else if (p.getWeapon().isLiquidNitrogen()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerFlamVamp(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        } else if (p.getWeapon().isWoodenStick()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerStickVamp(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        }
+                                                                } else {
+                                                                        g.drawImage(frame.getPlayer().getImgPlayerVamp(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox,
+                                                                                        null);
                                                                 }
-                                                        } else {
-                                                                g.drawImage(frame.getPlayer().getImagePlayer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox,
-                                                                                null);
                                                         }
+                                                        else if(p.isWerewolf()){
+                                                                if (p.isArmed()) {
+                                                                        if (p.getWeapon().isShotgun()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerShotgunWer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        } else if (p.getWeapon().isLiquidNitrogen()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerFlamWer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        } else if (p.getWeapon().isWoodenStick()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerStickWer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        }
+                                                                } else {
+                                                                        g.drawImage(frame.getPlayer().getImgPlayerWer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox,
+                                                                                        null);
+                                                                }
+                                                        }
+                                                        else {
+                                                                if (p.isArmed()) {
+                                                                        if (p.getWeapon().isShotgun()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerShotgun(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        } else if (p.getWeapon().isLiquidNitrogen()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerFlam(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        } else if (p.getWeapon().isWoodenStick()) {
+                                                                                g.drawImage(frame.getPlayer().getImgPlayerStick(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox,
+                                                                                                heightBox, null);
+                                                                        }
+                                                                } else {
+                                                                        g.drawImage(frame.getPlayer().getImagePlayer(), (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox,
+                                                                                        null);
+                                                                }   
+                                                        }
+                                                        
                                                 } else if (o.isHuman()) {
                                                         Human h = (Human) o;
                                                         if (h.isArmed()) {

@@ -15,6 +15,8 @@ import zombiegame.objects.edible.CureZombie;
 import zombiegame.objects.edible.MajorPotion;
 import zombiegame.objects.edible.MinorPotion;
 import zombiegame.objects.micellaneous.SilverBullet;
+import zombiegame.objects.micellaneous.VampireCape;
+import zombiegame.objects.micellaneous.WerewolfHide;
 import zombiegame.objects.weapons.LiquidNitrogen;
 import zombiegame.objects.weapons.Shotgun;
 import zombiegame.objects.weapons.WoodenStick;
@@ -49,9 +51,9 @@ public class Helico {
                 Item object = null;
 
                 Random r = new Random();
-                int rand = r.nextInt(3);
+                int rand = r.nextInt(7);
 
-                if (rand == 1) {
+                if (rand >4) {
                         rand = r.nextInt(3);
                         switch (rand) {
                         case 0:
@@ -69,7 +71,7 @@ public class Helico {
                         default:
                                 break;
                         }
-                } else if (rand == 2) {
+                } else if (rand >1) {
                         rand = r.nextInt(6);
                         switch (rand) {
                         case 0:
@@ -100,7 +102,7 @@ public class Helico {
                                 break;
                         }
                 } else {
-                        object = new SilverBullet();
+                        object = new SilverBullet();                       
                 }
 
                 return object;

@@ -8,6 +8,7 @@ import javax.swing.JTextArea;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
 import zombiegame.engine.Simulator;
+import zombiegame.objects.micellaneous.VampireCape;
 import zombiegame.objects.weapons.WoodenStick;
 
 /**
@@ -187,6 +188,7 @@ public class Vampire extends EvilCharacter {
                 }
                 else{
                         field.clear(location);
+                        fieldObj.placeItem(new VampireCape(), location.getRow(), location.getCol());
                 }
                 
         }
