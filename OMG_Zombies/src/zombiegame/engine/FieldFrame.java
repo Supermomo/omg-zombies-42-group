@@ -11,6 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
@@ -44,7 +45,7 @@ import zombiegame.people.Vampire;
 import zombiegame.people.Werewolf;
 import zombiegame.people.Zombie;
 
-public class FieldFrame extends JFrame implements ActionListener, ItemListener, MouseListener {
+public class FieldFrame extends JFrame implements ActionListener, ItemListener, MouseListener, MouseMotionListener {
 
         private static final long serialVersionUID = 8523670543879106864L;
 
@@ -80,6 +81,8 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
 
         private BackPackPanel bpPanel;
 
+        private Point mouseOver=null;
+        
         public FieldFrame() {
 
                 super("OMG Zombie");
@@ -282,6 +285,10 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         public Player getPlayer() {
                 return this.player;
         }
+        
+        public Point getMouseOver(){
+                return mouseOver;
+        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -363,7 +370,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         fieldPan = new FieldPanel(this, field, fieldObject);
 
                         fieldPan.addMouseListener(this);
-
+                        fieldPan.addMouseMotionListener(this);
                         this.add(fieldPan, 0);
                         fieldPan.setVisible(true);
 
@@ -441,6 +448,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                         fieldPan = new FieldPanel(this, field, fieldObject);
                                         this.add(fieldPan, 0);
                                         fieldPan.addMouseListener(this);
+                                        fieldPan.addMouseMotionListener(this);
                                         this.validate();
                                         this.repaint();
                                 } else {
@@ -461,7 +469,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         }
                         this.repaint();
                         if (field.getObjectAt(player.getLocation()) == null || !((Character) field.getObjectAt(player.getLocation())).isPlayer()
-                                        || this.getPlayer().getHealthPoints() <= 0 || field.getNbHuman() == 0) {
+                                        || this.getPlayer().getHealthPoints() <= 0) {
                                 System.out.println("OVER");
                                 System.out.println(((Character) field.getObjectAt(player.getLocation())).isPlayer());
                                 System.out.println(field.getObjectAt(player.getLocation()).getClass() + " hp " + player.getHealthPoints() + " hum " + field.getNbHuman());
@@ -495,7 +503,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
 
                 Object source = arg0.getItemSelectable();
                 if (source == this.consoleDisp) {
-                        if (consoleDisp.isSelected() && !displayGameOver) {
+                        if (consoleDisp.isSelected() && gameRunning) {
                                 consoleDisplayState = true;
                                 try {
                                         this.remove(fieldPan);
@@ -508,7 +516,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                         this.validate();
                                 } catch (Exception e) {
                                 }
-                        } else if (!displayGameOver) {
+                        } else if (gameRunning) {
                                 consoleDisplayState = false;
                                 try {
                                         this.remove(jsp);
@@ -521,6 +529,25 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                 } catch (Exception e) {
                                 }
                         }
+                }
+                this.repaint();
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+                // TODO Auto-generated method stub
+                
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+                Point p=fieldPan.validDestination(player.getLocation(), e.getX(), e.getY());
+                if(p!=null && p.x!=-1){
+                        this.mouseOver=p;
+                }
+                else
+                {
+                        this.mouseOver=null;
                 }
                 this.repaint();
         }
