@@ -40,6 +40,7 @@ public class FieldPanel extends JPanel {
         private Image imgChest;
         private Image imgBloodTitle;
         private Image imgDoor;
+        private Image imgOver;
 
         private JProgressBar hpBar;
         
@@ -74,6 +75,7 @@ public class FieldPanel extends JPanel {
                         imgVampire = ImageIO.read(new File("src//img/Vamp.png"));
                         imgHighLight = ImageIO.read(new File("src//img/highLight.png"));
                         imgDoor = ImageIO.read(new File("src//img/door.png"));
+                        imgOver=ImageIO.read(new File("src//img/mouseOver.png"));
                 } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -207,10 +209,15 @@ public class FieldPanel extends JPanel {
                                         if (fieldObject.getObjectAt(new Location(i, j)) != null) {
                                                 g.drawImage(imgChest, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
                                         }
+                                        
+                                        if(frame.getMouseOver()!=null && frame.getMouseOver().x==j && frame.getMouseOver().y==i){
+                                                System.out.println("Test");
+                                                g.drawImage(imgOver, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
+                                        }
 
                                 }
                         }
-
+                        
                         g.drawString("Human : " + field.getNbHuman() + " Vampire : " + field.getNbVampire() + " Zombie " + field.getNbZombie() + " Werewolf "
                                         + field.getNbWerewolf(), widthBox, this.getHeight() - (heightBox / 2));
                 } else {
@@ -218,7 +225,14 @@ public class FieldPanel extends JPanel {
                 }
 
         }
-
+        
+        /**
+         * Retrun the map position on the Frame coordinate
+         * @param player
+         * @param x
+         * @param y
+         * @return -1,-1 si the destination is not valid, the x,y coordinate either
+         */
         public Point validDestination(Location player, int x, int y) {
 
                 Point p = new Point(-1, -1);
