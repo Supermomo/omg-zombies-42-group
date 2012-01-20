@@ -41,7 +41,7 @@ public class FieldPanel extends JPanel {
         private Image imgBloodTitle;
         private Image imgDoor;
         private Image imgOver;
-
+        private Image imgVictory;
         private JProgressBar hpBar;
         
         public FieldPanel(FieldFrame ff, Field fiel, Field objField) {
@@ -76,6 +76,7 @@ public class FieldPanel extends JPanel {
                         imgHighLight = ImageIO.read(new File("src//img/highLight.png"));
                         imgDoor = ImageIO.read(new File("src//img/door.png"));
                         imgOver=ImageIO.read(new File("src//img/mouseOver.png"));
+                        imgVictory=ImageIO.read(new File("src//img/victory.png"));
                 } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -94,7 +95,7 @@ public class FieldPanel extends JPanel {
                 hpBar.setValue(frame.getPlayer().getHealthPoints());
                 hpBar.setString("HP : "+hpBar.getValue());
                 
-                if (!frame.getGameOver()) {
+                if (!frame.getGameOver() && !frame.getSucess()) {
                         g.drawImage(imgMap, widthBox, heightBox, field.getWidth() * widthBox, field.getDepth() * heightBox, null);
 
                         for (int i = 0; i < field.getDepth(); i++) {
@@ -210,7 +211,8 @@ public class FieldPanel extends JPanel {
                                                 g.drawImage(imgChest, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
                                         }
                                         
-                                        if(frame.getMouseOver()!=null && frame.getMouseOver().x==j && frame.getMouseOver().y==i){
+                                        if(frame.getMouseOver()!=null && frame.getMouseOver().x==j && frame.getMouseOver().y==i 
+                                                        && !(j==frame.getPlayer().getLocation().getCol() && i==frame.getPlayer().getLocation().getRow())){
                                                 System.out.println("Test");
                                                 g.drawImage(imgOver, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
                                         }
@@ -220,7 +222,11 @@ public class FieldPanel extends JPanel {
                         
                         g.drawString("Human : " + field.getNbHuman() + " Vampire : " + field.getNbVampire() + " Zombie " + field.getNbZombie() + " Werewolf "
                                         + field.getNbWerewolf(), widthBox, this.getHeight() - (heightBox / 2));
-                } else {
+                }
+                else if(frame.getSucess()){
+                        g.drawImage(imgVictory, 0, 0, this.getWidth(), this.getHeight(), null);
+                }
+                else {
                         g.drawImage(imgBloodTitle, 0, 0, this.getWidth(), this.getHeight(), null);
                 }
 
@@ -246,10 +252,6 @@ public class FieldPanel extends JPanel {
 
                 xb = (j == player.getCol() - 1 || j == player.getCol() || j == player.getCol() + 1) && j >= 0 && j < field.getWidth() && x >= widthBox;
                 yb = (i == player.getRow() - 1 || i == player.getRow() || i == player.getRow() + 1) && i >= 0 && i < field.getDepth() && y >= heightBox;
-
-                System.out.println("i : " + i + " j : " + j + " y " + y + " x " + x + " result : " + (xb && yb && !(i != player.getCol() && j != player.getRow())));
-                System.out.println("xb " + xb);
-                System.out.println("yb " + yb);
 
                 if (xb && yb && (j != player.getCol() || i != player.getRow())) {
                         p.x = j;
