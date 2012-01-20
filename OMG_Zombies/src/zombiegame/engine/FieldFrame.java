@@ -1,6 +1,7 @@
 package zombiegame.engine;
 
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -73,7 +74,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         private JCheckBoxMenuItem consoleDisp;
         private boolean displayGameOver = true;
         private boolean gameRunning = false;
-        public boolean consoleDisplayState = true;
+        private boolean sucess=false;
 
         private String playerName = "defaultPlayer";
         private Player player;
@@ -145,20 +146,20 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
 
         private void initPeople() {
                 if (dif2.isSelected()) {
-                        NB_HUMANS = 3;
-                        NB_VAMPIRES = 5;
-                        NB_ZOMBIES = 6;
-                        NB_WEREWOLF = 3;
-                } else if (dif3.isSelected()) {
-                        NB_HUMANS = 2;
-                        NB_VAMPIRES = 8;
-                        NB_ZOMBIES = 9;
-                        NB_WEREWOLF = 5;
-                } else {
                         NB_HUMANS = 4;
                         NB_VAMPIRES = 2;
-                        NB_ZOMBIES = 4;
+                        NB_ZOMBIES = 3;
                         NB_WEREWOLF = 1;
+                } else if (dif3.isSelected()) {
+                        NB_HUMANS = 4;
+                        NB_VAMPIRES = 3;
+                        NB_ZOMBIES = 4;
+                        NB_WEREWOLF = 2;
+                } else {
+                        NB_HUMANS = 6;
+                        NB_VAMPIRES = 0;
+                        NB_ZOMBIES = 0;
+                        NB_WEREWOLF = 0;
                 }
                 this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
                 this.displayGameOver = false;
@@ -289,12 +290,17 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         public Point getMouseOver(){
                 return mouseOver;
         }
+        
+        public boolean getSucess(){
+                return sucess;
+        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
                 if (e.getActionCommand().equals("stop")) {
                         try {
+                                this.sucess=false;
                                 this.gameRunning = false;
                                 this.remove(jsp);
                                 this.remove(fieldPan);
@@ -312,7 +318,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         if (s != null) {
                                 playerName = s;
                         }
-                        
+                        this.sucess=false;
                         cons = new JTextArea(200, 200);
                         cons.setText("New game running\r\n");
                         cons.setEditable(false);
@@ -418,8 +424,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         @Override
         public void mouseReleased(MouseEvent e) {
                 if (!this.displayGameOver && gameRunning) {
-                        System.out.println("row " + field.getOut().getRow() + " col " + field.getOut().getCol());
-                        System.out.println("x  " + this.getPlayer().getLocation().getCol() + "  y  " + this.getPlayer().getLocation().getRow());
+
                         Point p = fieldPan.validDestination(this.getPlayer().getLocation(), e.getX(), e.getY());
                         if (p.x != -1) {
                                 this.getPlayer().move(new Location(p.y, p.x), field, this.getObjectField());
@@ -439,7 +444,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                         field = field.getNextField();
                                         field.place(player, in);
                                         fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
-                                        NB_HUMANS += 1;
+                                        NB_HUMANS = Math.max(NB_HUMANS-1, 0);
                                         NB_VAMPIRES += 1;
                                         NB_ZOMBIES += 2;
                                         NB_WEREWOLF += 1;
@@ -453,15 +458,16 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                         this.repaint();
                                 } else {
                                         System.out.println("VICTORY");
+                                        this.sucess=true;
                                         try {
                                                 player.say("I WIN !!!!!!!!!!!", cons);
-                                                this.gameRunning = true;
+                                                /*this.gameRunning = true;
                                                 this.repaint();
                                                 Thread.sleep(3000);
                                                 this.remove(jsp);
                                                 this.remove(fieldPan);
                                                 this.remove(bpPanel);
-                                                this.validate();
+                                                this.validate();*/
                                         } catch (Exception e1) {
                                                 System.out.println("No game to stop");
                                         }
@@ -504,7 +510,6 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                 Object source = arg0.getItemSelectable();
                 if (source == this.consoleDisp) {
                         if (consoleDisp.isSelected() && gameRunning) {
-                                consoleDisplayState = true;
                                 try {
                                         this.remove(fieldPan);
                                         this.remove(jsp);
@@ -517,7 +522,6 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                 } catch (Exception e) {
                                 }
                         } else if (gameRunning) {
-                                consoleDisplayState = false;
                                 try {
                                         this.remove(jsp);
                                         this.remove(fieldPan);

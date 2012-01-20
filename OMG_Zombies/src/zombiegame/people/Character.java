@@ -276,7 +276,7 @@ public abstract class Character {
                                                         fieldObj.placeItem(new VampireCape(), getLocation().getRow(), getLocation().getCol());
                                                 } else if (c.isWerewolf()) {
                                                         fieldObj.placeItem(new WerewolfHide(), getLocation().getRow(), getLocation().getCol());
-                                                } else if (c.isHuman()) {
+                                                } else if (c.isHuman() && !c.isPlayer()) {
                                                         field.place(((Human) c).turnIntoZombie(), location);
                                                 } else if (c.isZombie()) {
                                                         MadZombie mz = ((Zombie) c).turnIntoMadZombie();
