@@ -58,9 +58,10 @@ morts innexpliquées ==>la supression du char qui fait l'action si il est mort c
 Probleme : objet non efficace lors de la défense : ou actualliser plus tard ? voir morts innexpliquées X
 Ajout du choix du nom de joueur X
 Choix du skin player (Pop up window ==> choix) X
+Se faire passer pour un Lycan/Vamp + objets X
+Reduction du taux de reproduction X
 ------------------------------------------------------
 Ajout d'un fond de map
-Se faire passer pour un Lycan/Vamp + objets
 Système de lightBox
 Ajout de l'environnement 
 Refaire le layout
@@ -68,6 +69,9 @@ ajout de la grenade + seek player
 ajout de nouvelles armes(machette, sabre laser...)
 Mette des images pour l'inventaire
 Systeme de gestion des scores
+Nouveaux miscellaneous
+surlignement du déplacement
+Ajout d'une image de victoire
 
 
 

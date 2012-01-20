@@ -7,6 +7,8 @@ import zombiegame.objects.edible.CureZombie;
 import zombiegame.objects.edible.MajorPotion;
 import zombiegame.objects.edible.MinorPotion;
 import zombiegame.objects.micellaneous.SilverBullet;
+import zombiegame.objects.micellaneous.VampireCape;
+import zombiegame.objects.micellaneous.WerewolfHide;
 import zombiegame.objects.weapons.LiquidNitrogen;
 import zombiegame.objects.weapons.Shotgun;
 import zombiegame.objects.weapons.WoodenStick;
@@ -109,6 +111,12 @@ public abstract class Item {
                 }
                 else if(type.equals(new WoodenStick().getType())){
                         t=new WoodenStick();
+                }
+                else if(type.equals(new VampireCape().getType())){
+                        t=new VampireCape();
+                }
+                else if(type.equals(new WerewolfHide().getType())){
+                        t=new WerewolfHide();
                 }
                 return t;
         }

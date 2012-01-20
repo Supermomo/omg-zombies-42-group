@@ -5,6 +5,8 @@ import java.util.List;
 import javax.swing.JTextArea;
 import zombiegame.engine.Field;
 import zombiegame.engine.Location;
+import zombiegame.objects.micellaneous.VampireCape;
+import zombiegame.objects.micellaneous.WerewolfHide;
 
 /**
  * Parent Character class
@@ -39,8 +41,7 @@ public abstract class Character {
          */
         public Character(String name, int healthPoints) {
                 if (healthPoints <= 0) {
-                        throw new RuntimeException(
-                                        "negative or null integer shouldn't be a parameter");
+                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
                 }
                 this.name = name;
                 this.healthPoints = healthPoints;
@@ -130,12 +131,13 @@ public abstract class Character {
         public boolean isWerewolfCrew() {
                 return false;
         }
-        
+
         /**
          * Wether or not the character is the actual player
+         * 
          * @return
          */
-        public boolean isPlayer(){
+        public boolean isPlayer() {
                 return false;
         }
 
@@ -163,8 +165,7 @@ public abstract class Character {
          */
         public void increaseHealthPoints(int increase) {
                 if (increase <= 0) {
-                        throw new RuntimeException(
-                                        "negative or null integer shouldn't be a parameter");
+                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
                 }
                 if (increase >= 0) {
                         this.healthPoints += increase;
@@ -180,8 +181,8 @@ public abstract class Character {
          *                what the character says
          */
         public void say(String str, JTextArea cons) {
-                if(this.isPlayer()){
-                        cons.append(name + " says: " + str + "\r\n"); 
+                if (this.isPlayer()) {
+                        cons.append(name + " says: " + str + "\r\n");
                 }
         }
 
@@ -198,15 +199,17 @@ public abstract class Character {
                 System.out.println(name + " meets " + c.name + " and does not attack!");
                 return false;
         }
-        
+
         /**
          * The defense method, called in some occasion during encounters
-         * @param c the character against the one you have to defend
+         * 
+         * @param c
+         *                the character against the one you have to defend
          * @param field
          * @return true if the defend method is preventing the attack to happen
          */
-        public boolean defend(Character c, Field field){
-                this.say("I'm defending myseft against "+c.getName(), field.getConsolePanel());
+        public boolean defend(Character c, Field field) {
+                this.say("I'm defending myseft against " + c.getName(), field.getConsolePanel());
                 return false;
         }
 
@@ -231,8 +234,7 @@ public abstract class Character {
                                 }
                         } catch (Exception e) {
                                 e.printStackTrace();
-                                System.out
-                                                .println("Cannot cast into evilCharacter during the action method");
+                                System.out.println("Cannot cast into evilCharacter during the action method");
                         }
                 }
 
@@ -255,25 +257,29 @@ public abstract class Character {
                                         encounterCharacter(c, field);
                                         if (c.getHealthPoints() == 0) {
                                                 field.clear(loc);
-                                                if (c.isHuman() && !c.isPlayer()) {
-                                                        field.place(((Human) c).turnIntoZombie(),
-                                                                        loc);
+                                                if (c.isVampire()) {
+                                                        fieldObj.placeItem(new VampireCape(), c.getLocation().getRow(), c.getLocation().getCol());
+                                                } else if (c.isWerewolf()) {
+                                                        fieldObj.placeItem(new WerewolfHide(), c.getLocation().getRow(), c.getLocation().getCol());
+                                                } else if (c.isHuman() && !c.isPlayer()) {
+                                                        field.place(((Human) c).turnIntoZombie(), loc);
                                                 } else if (c.isZombie()) {
-                                                        MadZombie mz = ((Zombie) c)
-                                                                        .turnIntoMadZombie();
+                                                        MadZombie mz = ((Zombie) c).turnIntoMadZombie();
                                                         mz.setStun(true);
                                                         field.place(mz, loc);
                                                 }
 
                                         }
-                                        if(healthPoints<=0){
+                                        if (healthPoints <= 0) {
                                                 field.clear(location);
-                                                if (c.isHuman()) {
-                                                        field.place(((Human) c).turnIntoZombie(),
-                                                                        location);
+                                                if (c.isVampire()) {
+                                                        fieldObj.placeItem(new VampireCape(), getLocation().getRow(), getLocation().getCol());
+                                                } else if (c.isWerewolf()) {
+                                                        fieldObj.placeItem(new WerewolfHide(), getLocation().getRow(), getLocation().getCol());
+                                                } else if (c.isHuman()) {
+                                                        field.place(((Human) c).turnIntoZombie(), location);
                                                 } else if (c.isZombie()) {
-                                                        MadZombie mz = ((Zombie) c)
-                                                                        .turnIntoMadZombie();
+                                                        MadZombie mz = ((Zombie) c).turnIntoMadZombie();
                                                         mz.setStun(true);
                                                         field.place(mz, location);
                                                 }
@@ -287,8 +293,7 @@ public abstract class Character {
                                         ((Human) this).pickUpObject(fieldObj, loc);
                                 } catch (Exception e) {
                                         e.printStackTrace();
-                                        System.out
-                                                        .println("Cannot cast into human in method action");
+                                        System.out.println("Cannot cast into human in method action");
                                 }
                         }
 
@@ -351,16 +356,14 @@ public abstract class Character {
                 Location human = null;
 
                 for (Location l : loc) {
-                        if (field.getObjectAt(l) != null
-                                        && ((Character) field.getObjectAt(l)).isHuman()) {
+                        if (field.getObjectAt(l) != null && ((Character) field.getObjectAt(l)).isHuman()) {
                                 human = l;
                         }
                 }
                 if (human != null) {
                         dest = human;
                         ;
-                } else if (field.getFreeAdjacentLocations(location) != null
-                                && field.getFreeAdjacentLocations(location).size() > 0) {
+                } else if (field.getFreeAdjacentLocations(location) != null && field.getFreeAdjacentLocations(location).size() > 0) {
                         dest = field.getFreeAdjacentLocations(location).get(0);
                 }
 

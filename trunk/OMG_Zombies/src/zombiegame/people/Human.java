@@ -233,7 +233,7 @@ public class Human extends Character {
 
                 boolean res = false;
                 Random rand = new Random();
-                if (rand.nextInt(5) == 4) {
+                if (rand.nextInt(10) == 0) {
                         List<Nom> noms = new LinkedList<Nom>();
                         for (int i = 0; Nom.values().length > i; i++) {
                                 noms.add(Nom.values()[i]);
