@@ -213,7 +213,6 @@ public class FieldPanel extends JPanel {
                                         
                                         if(frame.getMouseOver()!=null && frame.getMouseOver().x==j && frame.getMouseOver().y==i 
                                                         && !(j==frame.getPlayer().getLocation().getCol() && i==frame.getPlayer().getLocation().getRow())){
-                                                System.out.println("Test");
                                                 g.drawImage(imgOver, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
                                         }
 

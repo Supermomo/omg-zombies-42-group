@@ -273,9 +273,9 @@ public abstract class Character {
                                         if (healthPoints <= 0) {
                                                 field.clear(location);
                                                 if (isVampire()) {
-                                                        fieldObj.placeItem(new VampireCape(), getLocation().getRow(), getLocation().getCol());
+                                                        fieldObj.placeItem(new VampireCape(), location.getRow(), location.getCol());
                                                 } else if (isWerewolf()) {
-                                                        fieldObj.placeItem(new WerewolfHide(), getLocation().getRow(), getLocation().getCol());
+                                                        fieldObj.placeItem(new WerewolfHide(), location.getRow(), location.getCol());
                                                 } else if (isHuman() && !isPlayer()) {
                                                         field.place(((Human) this).turnIntoZombie(), location);
                                                 } else if (isZombie()) {

@@ -191,7 +191,7 @@ public class Player extends Human{
                         this.say("humm...may be i shoulden't have done that...", field.getConsolePanel());
                 } else if (c.isHuman()) {
                         this.say("Hi " + c.getName() + "...what's up ? Do you have any bandages ?", field.getConsolePanel());
-                        this.increaseHealthPoints(5);
+                        this.increaseHealthPoints(10);
 
                 } else {
                         //result=true;
