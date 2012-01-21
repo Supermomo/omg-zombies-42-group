@@ -59,11 +59,11 @@ public class FieldPanel extends JPanel {
                 hpBar.setForeground(java.awt.Color.red);
                 this.setLayout(new GridLayout(field.getDepth()+10,1));
                 this.add(hpBar,0);
-
+                System.out.println(getClass().getResource("/img/blood_title.png"));
                 try {
-                        imgBloodTitle = ImageIO.read(new File("src//img/blood_title.png"));
+                        imgBloodTitle = Toolkit.getDefaultToolkit().getImage(getClass().getResource("src//img/blood_title.png"));
                         imgChest = ImageIO.read(new File("src//img/chest.png"));
-                        imgMap = ImageIO.read(new File("src//img/map_ice2.png"));
+                        imgMap = Toolkit.getDefaultToolkit().getImage(getClass().getResource("src//img/map_ice2.png"));
                         imgHuman = ImageIO.read(new File("src//img/Human.png"));
                         imgHumanShotgun = ImageIO.read(new File("src//img/HumanShotgun.png"));
                         imgHumanFlameThrower = ImageIO.read(new File("src//img/HumanFlamThrower.png"));
