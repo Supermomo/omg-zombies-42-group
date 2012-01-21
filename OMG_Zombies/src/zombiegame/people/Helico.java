@@ -3,7 +3,12 @@ package zombiegame.people;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
+
 import zombiegame.engine.Field;
 import zombiegame.engine.FieldFrame;
 import zombiegame.engine.Location;
@@ -119,8 +124,15 @@ public class Helico {
                 int heightBox = frame.getPanel().getHeight() / (map.getDepth() + 2);
                 int widthBox = frame.getPanel().getWidth() / (map.getWidth() + 2);
 
-                Image imgHelico = tk.getImage(this.getClass().getResource("/img/helico.png"));
-                Image imgHelicoRed = tk.getImage(this.getClass().getResource("/img/helicoRed.png"));
+                Image imgHelico=null;
+                Image imgHelicoRed=null;
+                try {
+                        imgHelico = ImageIO.read(new File("src//img/helico.png"));
+                        imgHelicoRed = ImageIO.read(new File("src//img/helicoRed.png"));
+                } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
                 Random r = new Random();
                 int rx=loc.getCol()+r.nextInt(7)-3;
                 int ry=loc.getRow()+r.nextInt(7)-3;
