@@ -61,6 +61,7 @@ Choix du skin player (Pop up window ==> choix) X
 Se faire passer pour un Lycan/Vamp + objets X
 Reduction du taux de reproduction X
 surlignement du déplacement X
+Ajout d'une image de victoire X
 ------------------------------------------------------
 Ajout d'un fond de map
 Système de lightBox
@@ -73,7 +74,7 @@ Mette des images pour l'inventaire
 Systeme de gestion des scores
 Nouveaux miscellaneous (graisse de zombie + stick = Weapon(Torche)
 Torche = lightBox
-Ajout d'une image de victoire
+Passage en temps réel et modification de la gestion du field
 
 
 

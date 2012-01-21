@@ -258,9 +258,9 @@ public abstract class Character {
                                         if (c.getHealthPoints() == 0) {
                                                 field.clear(loc);
                                                 if (c.isVampire()) {
-                                                        fieldObj.placeItem(new VampireCape(), c.getLocation().getRow(), c.getLocation().getCol());
+                                                        fieldObj.placeItem(new VampireCape(), loc.getRow(), loc.getCol());
                                                 } else if (c.isWerewolf()) {
-                                                        fieldObj.placeItem(new WerewolfHide(), c.getLocation().getRow(), c.getLocation().getCol());
+                                                        fieldObj.placeItem(new WerewolfHide(), loc.getRow(), loc.getCol());
                                                 } else if (c.isHuman() && !c.isPlayer()) {
                                                         field.place(((Human) c).turnIntoZombie(), loc);
                                                 } else if (c.isZombie()) {
@@ -272,14 +272,14 @@ public abstract class Character {
                                         }
                                         if (healthPoints <= 0) {
                                                 field.clear(location);
-                                                if (c.isVampire()) {
+                                                if (isVampire()) {
                                                         fieldObj.placeItem(new VampireCape(), getLocation().getRow(), getLocation().getCol());
-                                                } else if (c.isWerewolf()) {
+                                                } else if (isWerewolf()) {
                                                         fieldObj.placeItem(new WerewolfHide(), getLocation().getRow(), getLocation().getCol());
-                                                } else if (c.isHuman() && !c.isPlayer()) {
-                                                        field.place(((Human) c).turnIntoZombie(), location);
-                                                } else if (c.isZombie()) {
-                                                        MadZombie mz = ((Zombie) c).turnIntoMadZombie();
+                                                } else if (isHuman() && !isPlayer()) {
+                                                        field.place(((Human) this).turnIntoZombie(), location);
+                                                } else if (isZombie()) {
+                                                        MadZombie mz = ((Zombie) this).turnIntoMadZombie();
                                                         mz.setStun(true);
                                                         field.place(mz, location);
                                                 }
