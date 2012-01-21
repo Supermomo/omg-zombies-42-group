@@ -182,7 +182,7 @@ public class Vampire extends EvilCharacter {
         @Override
         public void action(Field field, Field fieldObj) {
                 super.action(field, fieldObj);
-                if(healthPoints>0 || field.getObjectAt(location)!=null || !((Character)field.getObjectAt(location)).isVampire()){
+                if(healthPoints>0 && (field.getObjectAt(location)!=null && ((Character)field.getObjectAt(location)).isVampire())){
                         System.out.println("Vamp : "+super.name+" 2eme attaque");
                         super.action(field, fieldObj); 
                 }

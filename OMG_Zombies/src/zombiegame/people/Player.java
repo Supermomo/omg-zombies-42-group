@@ -284,8 +284,12 @@ public class Player extends Human{
                                         }
                                 } else if (it.isMiscellaneous()) {
                                         fieldObj.clear(loc);
-                                        fieldObj.placeItem(this.item, loc.getRow(), loc.getCol());
-                                        this.item = (Miscellaneous) it;
+                                        try {
+                                                Wearable w=(Wearable)it;
+                                        } catch (Exception e) {
+                                                fieldObj.placeItem(this.item, loc.getRow(), loc.getCol());
+                                                this.item = (Miscellaneous) it;
+                                        }
                                 } else if (it.isWeapon()) {
                                         fieldObj.clear(loc);
                                         fieldObj.placeItem(this.weapon, loc.getRow(), loc.getCol());
