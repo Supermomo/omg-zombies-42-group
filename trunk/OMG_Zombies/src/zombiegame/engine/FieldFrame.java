@@ -320,6 +320,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         }
                         this.sucess=false;
                         cons = new JTextArea(200, 200);
+                        cons.setVisible(true);
                         cons.setText("New game running\r\n");
                         cons.setEditable(false);
                         cons.setLineWrap(true);
@@ -477,9 +478,13 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         if (field.getObjectAt(player.getLocation()) == null || !((Character) field.getObjectAt(player.getLocation())).isPlayer()
                                         || this.getPlayer().getHealthPoints() <= 0) {
                                 System.out.println("OVER");
-                                System.out.println(((Character) field.getObjectAt(player.getLocation())).isPlayer());
-                                System.out.println(field.getObjectAt(player.getLocation()).getClass() + " hp " + player.getHealthPoints() + " hum " + field.getNbHuman());
-                                System.out.println("loc : " + field.getObjectAt(player.getLocation()) == null);
+                                try {
+                                        System.out.println(((Character) field.getObjectAt(player.getLocation())).isPlayer());
+                                        System.out.println(field.getObjectAt(player.getLocation()).getClass() + " hp " + player.getHealthPoints() + " hum " + field.getNbHuman());
+                                        System.out.println("loc : " + field.getObjectAt(player.getLocation()) == null);
+                                } catch (Exception e2) {
+                                        e2.printStackTrace();
+                                }
                                 try {
                                         this.repaint();
                                         nextTurn();
