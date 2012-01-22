@@ -336,35 +336,35 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
 
                         if (res == 0) {
                                 try {
-                                        player.setImagePlayer(ImageIO.read(new File("src/img/Human3.png")));
-                                        player.setImgPlayerFlam(ImageIO.read(new File("src/img/Human3FlamThrower.png")));
-                                        player.setImgPlayerShotgun(ImageIO.read(new File("src/img/Human3Shotgun.png")));
-                                        player.setImgPlayerStick(ImageIO.read(new File("src/img/Human3WoodenStick.png")));
-                                        player.setImgPlayerVamp(ImageIO.read(new File("src/img/Human3Vamp.png")));
-                                        player.setImgPlayerFlamVamp(ImageIO.read(new File("src/img/Human3FlamThrowerVamp.png")));
-                                        player.setImgPlayerShotgunVamp(ImageIO.read(new File("src/img/Human3ShotgunVamp.png")));
-                                        player.setImgPlayerStickVamp(ImageIO.read(new File("src/img/Human3WoodenStickVamp.png")));
-                                        player.setImgPlayerWer(ImageIO.read(new File("src/img/Human3Wer.png")));
-                                        player.setImgPlayerFlamWer(ImageIO.read(new File("src/img/Human3FlamThrowerWer.png")));
-                                        player.setImgPlayerShotgunWer(ImageIO.read(new File("src/img/Human3ShotgunWer.png")));
-                                        player.setImgPlayerStickWer(ImageIO.read(new File("src/img/Human3WoodenStickWer.png")));
+                                        player.setImagePlayer(ImageIO.read(getClass().getResourceAsStream("/img/Human3.png")));
+                                        player.setImgPlayerFlam(ImageIO.read(getClass().getResourceAsStream("/img/Human3FlamThrower.png")));
+                                        player.setImgPlayerShotgun(ImageIO.read(getClass().getResourceAsStream("/img/Human3Shotgun.png")));
+                                        player.setImgPlayerStick(ImageIO.read(getClass().getResourceAsStream("/img/Human3WoodenStick.png")));
+                                        player.setImgPlayerVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human3Vamp.png")));
+                                        player.setImgPlayerFlamVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human3FlamThrowerVamp.png")));
+                                        player.setImgPlayerShotgunVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human3ShotgunVamp.png")));
+                                        player.setImgPlayerStickVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human3WoodenStickVamp.png")));
+                                        player.setImgPlayerWer(ImageIO.read(getClass().getResourceAsStream("/img/Human3Wer.png")));
+                                        player.setImgPlayerFlamWer(ImageIO.read(getClass().getResourceAsStream("/img/Human3FlamThrowerWer.png")));
+                                        player.setImgPlayerShotgunWer(ImageIO.read(getClass().getResourceAsStream("/img/Human3ShotgunWer.png")));
+                                        player.setImgPlayerStickWer(ImageIO.read(getClass().getResourceAsStream("/img/Human3WoodenStickWer.png")));
                                 } catch (IOException a) {
                                         a.printStackTrace();
                                 }
                         } else {
                                 try {
-                                        player.setImagePlayer(ImageIO.read(new File("src/img/Human2.png")));
-                                        player.setImgPlayerFlam(ImageIO.read(new File("src/img/Human2FlamThrower.png")));
-                                        player.setImgPlayerShotgun(ImageIO.read(new File("src/img/Human2Shotgun.png")));
-                                        player.setImgPlayerStick(ImageIO.read(new File("src/img/Human2WoodenStick.png")));
-                                        player.setImgPlayerVamp(ImageIO.read(new File("src/img/Human2Vamp.png")));
-                                        player.setImgPlayerFlamVamp(ImageIO.read(new File("src/img/Human2FlamThrowerVamp.png")));
-                                        player.setImgPlayerShotgunVamp(ImageIO.read(new File("src/img/Human2ShotgunVamp.png")));
-                                        player.setImgPlayerStickVamp(ImageIO.read(new File("src/img/Human2WoodenStickVamp.png")));
-                                        player.setImgPlayerWer(ImageIO.read(new File("src/img/Human2Wer.png")));
-                                        player.setImgPlayerFlamWer(ImageIO.read(new File("src/img/Human2FlamThrowerWer.png")));
-                                        player.setImgPlayerShotgunWer(ImageIO.read(new File("src/img/Human2ShotgunWer.png")));
-                                        player.setImgPlayerStickWer(ImageIO.read(new File("src/img/Human2WoodenStickWer.png")));
+                                        player.setImagePlayer(ImageIO.read(getClass().getResourceAsStream("/img/Human2.png")));
+                                        player.setImgPlayerFlam(ImageIO.read(getClass().getResourceAsStream("/img/Human2FlamThrower.png")));
+                                        player.setImgPlayerShotgun(ImageIO.read(getClass().getResourceAsStream("/img/Human2Shotgun.png")));
+                                        player.setImgPlayerStick(ImageIO.read(getClass().getResourceAsStream("/img/Human2WoodenStick.png")));
+                                        player.setImgPlayerVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human2Vamp.png")));
+                                        player.setImgPlayerFlamVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human2FlamThrowerVamp.png")));
+                                        player.setImgPlayerShotgunVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human2ShotgunVamp.png")));
+                                        player.setImgPlayerStickVamp(ImageIO.read(getClass().getResourceAsStream("/img/Human2WoodenStickVamp.png")));
+                                        player.setImgPlayerWer(ImageIO.read(getClass().getResourceAsStream("/img/Human2Wer.png")));
+                                        player.setImgPlayerFlamWer(ImageIO.read(getClass().getResourceAsStream("/img/Human2FlamThrowerWer.png")));
+                                        player.setImgPlayerShotgunWer(ImageIO.read(getClass().getResourceAsStream("/img/Human2ShotgunWer.png")));
+                                        player.setImgPlayerStickWer(ImageIO.read(getClass().getResourceAsStream("/img/Human2WoodenStickWer.png")));
                                 } catch (IOException exc) {
                                         exc.printStackTrace();
                                 }

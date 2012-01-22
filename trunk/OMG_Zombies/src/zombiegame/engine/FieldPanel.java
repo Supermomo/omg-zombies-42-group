@@ -42,6 +42,7 @@ public class FieldPanel extends JPanel {
         private Image imgDoor;
         private Image imgOver;
         private Image imgVictory;
+        
         private JProgressBar hpBar;
         
         public FieldPanel(FieldFrame ff, Field fiel, Field objField) {
@@ -61,22 +62,22 @@ public class FieldPanel extends JPanel {
                 this.add(hpBar,0);
                 System.out.println(getClass().getResource("/img/blood_title.png"));
                 try {
-                        imgBloodTitle = ImageIO.read(new File("src/img/blood_title.png"));
-                        imgChest = ImageIO.read(new File("src/img/chest.png"));
-                        imgMap = ImageIO.read(new File("src/img/map_ice2.png"));
-                        imgHuman = ImageIO.read(new File("src/img/Human.png"));
-                        imgHumanShotgun = ImageIO.read(new File("src/img/HumanShotgun.png"));
-                        imgHumanFlameThrower = ImageIO.read(new File("src/img/HumanFlamThrower.png"));
-                        imgHumanStick = ImageIO.read(new File("src/img/HumanWoodenStick.png"));
-                        imgZombie = ImageIO.read(new File("src/img/Zombie.png"));
-                        imgMadZombie = ImageIO.read(new File("src/img/MadZombie.png"));
-                        imgWerewolf = ImageIO.read(new File("src/img/Werewolf2.png"));
-                        imgWerewolfCrew = ImageIO.read(new File("src/img/WerewolfCrew.png"));
-                        imgVampire = ImageIO.read(new File("src/img/Vamp.png"));
-                        imgHighLight = ImageIO.read(new File("src/img/highLight.png"));
-                        imgDoor = ImageIO.read(new File("src/img/door.png"));
-                        imgOver=ImageIO.read(new File("src/img/mouseOver.png"));
-                        imgVictory=ImageIO.read(new File("src/img/victory.png"));
+                        imgBloodTitle = ImageIO.read(getClass().getResourceAsStream("/img/blood_title.png"));
+                        imgChest = ImageIO.read(getClass().getResourceAsStream("/img/chest.png"));
+                        imgMap = ImageIO.read(getClass().getResourceAsStream("/img/map_ice2.png"));
+                        imgHuman = ImageIO.read(getClass().getResourceAsStream("/img/Human.png"));
+                        imgHumanShotgun = ImageIO.read(getClass().getResourceAsStream("/img/HumanShotgun.png"));
+                        imgHumanFlameThrower = ImageIO.read(getClass().getResourceAsStream("/img/HumanFlamThrower.png"));
+                        imgHumanStick = ImageIO.read(getClass().getResourceAsStream("/img/HumanWoodenStick.png"));
+                        imgZombie = ImageIO.read(getClass().getResourceAsStream("/img/Zombie.png"));
+                        imgMadZombie = ImageIO.read(getClass().getResourceAsStream("/img/MadZombie.png"));
+                        imgWerewolf = ImageIO.read(getClass().getResourceAsStream("/img/Werewolf2.png"));
+                        imgWerewolfCrew = ImageIO.read(getClass().getResourceAsStream("/img/WerewolfCrew.png"));
+                        imgVampire = ImageIO.read(getClass().getResourceAsStream("/img/Vamp.png"));
+                        imgHighLight = ImageIO.read(getClass().getResourceAsStream("/img/highLight.png"));
+                        imgDoor = ImageIO.read(getClass().getResourceAsStream("/img/door.png"));
+                        imgOver=ImageIO.read(getClass().getResourceAsStream("/img/mouseOver.png"));
+                        imgVictory=ImageIO.read(getClass().getResourceAsStream("/img/victory.png"));
                 } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
