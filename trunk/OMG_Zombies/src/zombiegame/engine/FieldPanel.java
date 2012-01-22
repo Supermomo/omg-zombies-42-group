@@ -61,22 +61,22 @@ public class FieldPanel extends JPanel {
                 this.add(hpBar,0);
                 System.out.println(getClass().getResource("/img/blood_title.png"));
                 try {
-                        imgBloodTitle = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/blood_title.png"));
-                        imgChest = ImageIO.read(new File("src//img/chest.png"));
-                        imgMap = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/map_ice2.png"));
-                        imgHuman = ImageIO.read(new File("src//img/Human.png"));
-                        imgHumanShotgun = ImageIO.read(new File("src//img/HumanShotgun.png"));
-                        imgHumanFlameThrower = ImageIO.read(new File("src//img/HumanFlamThrower.png"));
-                        imgHumanStick = ImageIO.read(new File("src//img/HumanWoodenStick.png"));
-                        imgZombie = ImageIO.read(new File("src//img/Zombie.png"));
-                        imgMadZombie = ImageIO.read(new File("src//img/MadZombie.png"));
-                        imgWerewolf = ImageIO.read(new File("src//img/Werewolf2.png"));
-                        imgWerewolfCrew = ImageIO.read(new File("src//img/WerewolfCrew.png"));
-                        imgVampire = ImageIO.read(new File("src//img/Vamp.png"));
-                        imgHighLight = ImageIO.read(new File("src//img/highLight.png"));
-                        imgDoor = ImageIO.read(new File("src//img/door.png"));
-                        imgOver=ImageIO.read(new File("src//img/mouseOver.png"));
-                        imgVictory=ImageIO.read(new File("src//img/victory.png"));
+                        imgBloodTitle = ImageIO.read(new File("src/img/blood_title.png"));
+                        imgChest = ImageIO.read(new File("src/img/chest.png"));
+                        imgMap = ImageIO.read(new File("src/img/map_ice2.png"));
+                        imgHuman = ImageIO.read(new File("src/img/Human.png"));
+                        imgHumanShotgun = ImageIO.read(new File("src/img/HumanShotgun.png"));
+                        imgHumanFlameThrower = ImageIO.read(new File("src/img/HumanFlamThrower.png"));
+                        imgHumanStick = ImageIO.read(new File("src/img/HumanWoodenStick.png"));
+                        imgZombie = ImageIO.read(new File("src/img/Zombie.png"));
+                        imgMadZombie = ImageIO.read(new File("src/img/MadZombie.png"));
+                        imgWerewolf = ImageIO.read(new File("src/img/Werewolf2.png"));
+                        imgWerewolfCrew = ImageIO.read(new File("src/img/WerewolfCrew.png"));
+                        imgVampire = ImageIO.read(new File("src/img/Vamp.png"));
+                        imgHighLight = ImageIO.read(new File("src/img/highLight.png"));
+                        imgDoor = ImageIO.read(new File("src/img/door.png"));
+                        imgOver=ImageIO.read(new File("src/img/mouseOver.png"));
+                        imgVictory=ImageIO.read(new File("src/img/victory.png"));
                 } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
