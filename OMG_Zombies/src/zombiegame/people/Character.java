@@ -28,7 +28,7 @@ public abstract class Character {
         /** the location of the character */
         protected Location location;
 
-        /** bollean telling if the character has just played */
+        /** Boolean telling if the character has just played */
         protected boolean hasPlayed;
 
         /**

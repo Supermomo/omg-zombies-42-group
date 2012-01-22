@@ -136,7 +136,19 @@ public class Player extends Human{
                                         Character c = (Character) field.getObjectAt(dest);
                                         encounterCharacter(c, field);
                                         if (c.getHealthPoints() == 0) {
-                                                field.clear(dest);
+                                                field.clear(c.getLocation());
+                                                if (c.isVampire()) {
+                                                        fieldObj.placeItem(new VampireCape(), c.getLocation().getRow(), c.getLocation().getCol());
+                                                } else if (c.isWerewolf()) {
+                                                        fieldObj.placeItem(new WerewolfHide(), c.getLocation().getRow(), c.getLocation().getCol());
+                                                } else if (c.isHuman() && !c.isPlayer()) {
+                                                        field.place(((Human) c).turnIntoZombie(), c.getLocation());
+                                                } else if (c.isZombie()) {
+                                                        MadZombie mz = ((Zombie) c).turnIntoMadZombie();
+                                                        mz.setStun(true);
+                                                        field.place(mz, c.getLocation());
+                                                }
+
                                         }
                                 } catch (Exception e) {
                                         e.printStackTrace();
