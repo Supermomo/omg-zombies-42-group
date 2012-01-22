@@ -127,8 +127,8 @@ public class Helico {
                 Image imgHelico=null;
                 Image imgHelicoRed=null;
                 try {
-                        imgHelico = ImageIO.read(new File("src//img/helico.png"));
-                        imgHelicoRed = ImageIO.read(new File("src//img/helicoRed.png"));
+                        imgHelico = ImageIO.read(getClass().getResourceAsStream("/img/helico.png"));
+                        imgHelicoRed = ImageIO.read(getClass().getResourceAsStream("/img/helicoRed.png"));
                 } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
