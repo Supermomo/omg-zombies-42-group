@@ -46,7 +46,7 @@ public class TestHuman {
                 f1.placeItem(new Shotgun(), 0, 0);
                 h1.pickUpObject(f1, new Location(0, 0));
                 // test : ramasser l'objet l'a bien supprimé
-                assertTrue(f1.getObjectAt(new Location(0, 0)) == null);
+                assertTrue(f1.getCharactertAt(new Location(0, 0)) == null);
                 f1.placeItem(new SilverBullet(), 0, 0);
                 h1.pickUpObject(f1, new Location(0, 0));
                 h1.encounterCharacter(w, f);

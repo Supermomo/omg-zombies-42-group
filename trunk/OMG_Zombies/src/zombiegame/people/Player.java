@@ -112,7 +112,7 @@ public class Player extends Human{
          * Do nothing if the character is stun
          * 
          */
-        public void move(Location dest, Field field, Field fieldObj) {
+        public void move(Location dest, Field field) {
 
                 boolean stun = false;
 
@@ -120,12 +120,12 @@ public class Player extends Human{
 
                         this.say("I'm now acting", field.getConsolePanel());
 
-                        if (field.getObjectAt(dest) == null) {
+                        if (field.getCharactertAt(dest) == null) {
                                 Location a = this.location;
                                 field.place(this, dest);
                                 try {
-                                        ((Human) this).pickUpObject(fieldObj, a);
-                                        ((Human) this).pickUpObject(fieldObj, dest);
+                                        ((Human) this).pickUpObject(field, a);
+                                        ((Human) this).pickUpObject(field, dest);
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                         System.out
@@ -133,7 +133,7 @@ public class Player extends Human{
                                 }
                         } else {
                                 try {
-                                        Character c = (Character) field.getObjectAt(dest);
+                                        Character c = (Character) field.getCharactertAt(dest);
                                         encounterCharacter(c, field);
                                         endCharacter(c, field);
                                 } catch (Exception e) {
@@ -261,10 +261,10 @@ public class Player extends Human{
         @Override
         public void pickUpObject(Field fieldObj, Location loc) {
 
-                if (fieldObj.getObjectAt(loc) != null) {
+                if (fieldObj.getCharactertAt(loc) != null) {
                         Item it = null;
                         try {
-                                it = (Item) fieldObj.getObjectAt(loc);
+                                it = (Item) fieldObj.getCharactertAt(loc);
 
                                 if (this.edible != null && it.getType().equals(this.edible.getType())) {
                                         this.edible.addUses(it.getUses());

@@ -161,7 +161,7 @@ public class Field {
          *                Where in the field.
          * @return The object at the given location, or null if there is none.
          */
-        public Object getObjectAt(Location location) {
+        public Object getCharactertAt(Location location) {
                 return getCharacterAt(location.getRow(), location.getCol());
         }
 
@@ -175,12 +175,25 @@ public class Field {
          * @return The object at the given location, or null if there is none.
          */
         public Object getCharacterAt(int row, int col) {
+                
+                int val;
+                
                 for(Character cha :listChar){
+                        
+                        val=(int) Math.sqrt(Math.pow(cha.getLocation().getRow()-row, 2)+Math.pow(cha.getLocation().getCol()-col, 2));
+                        
                         if(cha.getLocation().getRow()==row && cha.getLocation().getCol()==col){
+                                return cha;
+                        }
+                        else if(val<Character.COLISION_RADIUS){
                                 return cha;
                         }
                 }
                 return null;
+        }
+        
+        public Object getItemAt(Location loc){
+                return getItemAt(loc.getRow(), loc.getCol());
         }
         
         /**
@@ -193,8 +206,13 @@ public class Field {
          * @return The object at the given location, or null if there is none.
          */
         public Object getItemAt(int row, int col) {
+                int val;
                 for(Item it :listItem){
+                        val=(int) Math.sqrt(Math.pow(it.getLocation().getRow()-row, 2)+Math.pow(it.getLocation().getCol()-col, 2));
                         if(it.getLocation().getRow()==row && it.getLocation().getCol()==col){
+                                return it;
+                        }
+                        else if(val<Character.COLISION_RADIUS){
                                 return it;
                         }
                 }
@@ -226,7 +244,7 @@ public class Field {
                 List<Location> free = new LinkedList<Location>();
                 List<Location> adjacent = adjacentLocations(location);
                 for (Location next : adjacent) {
-                        if (getObjectAt(next) == null) {
+                        if (getCharactertAt(next) == null) {
                                 free.add(next);
                         }
                 }
@@ -339,7 +357,7 @@ public class Field {
                 for (int i = 0; i < getDepth(); i++) {
                         for (int j = 0; j < getWidth(); j++) {
                                 l = new Location(i, j);
-                                c = getObjectAt(l);
+                                c = getCharactertAt(l);
                                 if (c != null && ((Character) c).isWerewolf()) {
                                         x++;
                                 }
@@ -356,7 +374,7 @@ public class Field {
                 for (int i = 0; i < getDepth(); i++) {
                         for (int j = 0; j < getWidth(); j++) {
                                 l = new Location(i, j);
-                                c = getObjectAt(l);
+                                c = getCharactertAt(l);
                                 if (c != null && ((Character) c).isHuman()) {
                                         x++;
                                 }
@@ -373,7 +391,7 @@ public class Field {
                 for (int i = 0; i < getDepth(); i++) {
                         for (int j = 0; j < getWidth(); j++) {
                                 l = new Location(i, j);
-                                c = getObjectAt(l);
+                                c = getCharactertAt(l);
                                 if (c != null && ((Character) c).isZombie()) {
                                         x++;
                                 }
@@ -390,7 +408,7 @@ public class Field {
                 for (int i = 0; i < getDepth(); i++) {
                         for (int j = 0; j < getWidth(); j++) {
                                 l = new Location(i, j);
-                                c = getObjectAt(l);
+                                c = getCharactertAt(l);
                                 if (c != null && ((Character) c).isVampire()) {
                                         x++;
                                 }

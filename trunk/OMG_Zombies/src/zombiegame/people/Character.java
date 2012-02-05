@@ -16,8 +16,8 @@ import zombiegame.objects.micellaneous.WerewolfHide;
  */
 public abstract class Character {
 
-        public static int COLISION_RADIUS = 3;
-        public static int DETECTION_RADIUS = 15;
+        public static int COLISION_RADIUS = 10;
+        public static int DETECTION_RADIUS = 60;
 
         /** name of the character */
         protected String name;
@@ -225,7 +225,7 @@ public abstract class Character {
          * Do nothing if the character is stun
          * 
          */
-        public void action(Field field, Field fieldObj) {
+        public void action(Field field) {
 
                 boolean stun = false;
 
@@ -245,7 +245,7 @@ public abstract class Character {
                         this.say("I'm now acting", field.getConsolePanel());
                         if (this.isHuman()) {
                                 try {
-                                        ((Human) this).pickUpObject(fieldObj, this.getLocation());
+                                        ((Human) this).pickUpObject(field, this.getLocation());
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                         System.out.println("Cannot cast into human in method action");
@@ -256,7 +256,7 @@ public abstract class Character {
                         if (ca == null) {
                                 if (wander()) {
                                         try {
-                                                Character c = (Character) field.getObjectAt(location);
+                                                Character c = (Character) field.getCharactertAt(location);
                                                 encounterCharacter(c, field);
                                                 endCharacter(c, field);
                                                 endCharacter(this, field);
@@ -268,7 +268,7 @@ public abstract class Character {
 
                         if (this.isHuman()) {
                                 try {
-                                        ((Human) this).pickUpObject(fieldObj, this.getLocation());
+                                        ((Human) this).pickUpObject(field, this.getLocation());
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                         System.out.println("Cannot cast into human in method action");
@@ -334,8 +334,8 @@ public abstract class Character {
                 Character human = null;
 
                 for (Location l : loc) {
-                        if (field.getObjectAt(l) != null && ((Character) field.getObjectAt(l)).isHuman()) {
-                                human = (Character) field.getObjectAt(l);
+                        if (field.getCharactertAt(l) != null && ((Character) field.getCharactertAt(l)).isHuman()) {
+                                human = (Character) field.getCharactertAt(l);
                         }
                 }
                 if (human != null) {
