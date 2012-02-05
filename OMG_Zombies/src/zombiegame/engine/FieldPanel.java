@@ -112,8 +112,8 @@ public class FieldPanel extends JPanel {
                                         }
 
                                         g.drawLine((j + 1) * widthBox, heightBox, (j + 1) * widthBox, (field.getDepth() + 1) * heightBox);
-                                        if (field.getObjectAt(i, j) != null) {
-                                                Character o = (Character) field.getObjectAt(i, j);
+                                        if (field.getCharacterAt(i, j) != null) {
+                                                Character o = (Character) field.getCharacterAt(i, j);
                                                 if (o.isPlayer()) {
                                                         g.drawImage(imgHighLight, (j + 1) * (widthBox), (i + 1) * heightBox, widthBox, heightBox, null);
                                                         Player p = (Player) o;

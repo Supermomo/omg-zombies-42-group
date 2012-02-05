@@ -51,6 +51,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         private static final long serialVersionUID = 8523670543879106864L;
 
         public static final int HP_HUMANS = 100;
+        public static final int HP_HUMANS_MAX = 150;
         public static final int HP_VAMPIRES = 150;
         public static final int HP_ZOMBIES = 30;
         public static final int HP_WEREWOLF = 150;
@@ -220,7 +221,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                 for (int i = 0; i < field.getDepth(); i++) {
                         for (int j = 0; j < field.getWidth(); j++) {
                                 try {
-                                        c = (Character) field.getObjectAt(i, j);
+                                        c = (Character) field.getCharacterAt(i, j);
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                 }
@@ -253,7 +254,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         for (int j = 0; j < field.getWidth(); j++) {
 
                                 try {
-                                        c = (Character) field.getObjectAt(i, j);
+                                        c = (Character) field.getCharacterAt(i, j);
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                 }
