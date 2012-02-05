@@ -321,10 +321,10 @@ public class Human extends Character {
          */
         public void pickUpObject(Field fieldObj, Location loc) {
 
-                if (fieldObj.getObjectAt(loc) != null) {
+                if (fieldObj.getItemAt(loc) != null) {
                         Item it = null;
                         try {
-                                it = (Item) fieldObj.getObjectAt(loc);
+                                it = (Item) fieldObj.getItemAt(loc);
 
                                 if (this.edible != null && it.getType().equals(this.edible.getType())) {
                                         this.edible.addUses(it.getUses());

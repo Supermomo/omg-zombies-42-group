@@ -100,7 +100,7 @@ public class Zombie extends EvilCharacter {
          */
         public void action(Field field, Field fieldObj) {
                 if (Simulator.GenerateRandomBoolean()) {
-                        super.action(field, fieldObj);
+                        super.action(field);
                 }
         }
 

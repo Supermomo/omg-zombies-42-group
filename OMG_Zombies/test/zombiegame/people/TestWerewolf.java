@@ -36,7 +36,7 @@ public class TestWerewolf {
                 f.place(w, new Location(2, 2));
                 f.place(w2, new Location(3, 2));
                 w.encounterCharacter(w2, f);
-                assertTrue(((Character) f.getObjectAt(w2.getLocation())).isWerewolfCrew());
+                assertTrue(((Character) f.getCharactertAt(w2.getLocation())).isWerewolfCrew());
 
                 // if a wounded human is encounter
                 Human h = new Human("te", 20);
@@ -55,7 +55,7 @@ public class TestWerewolf {
                 WerewolfCrew wc = new WerewolfCrew("JE", 100, crNumber);
                 f.place(wc, new Location(2, 3));
                 w.encounterCharacter(wc, f);
-                assertTrue(crNumber + 1 == ((WerewolfCrew) f.getObjectAt(wc.getLocation())).getCrewMembers());
+                assertTrue(crNumber + 1 == ((WerewolfCrew) f.getCharactertAt(wc.getLocation())).getCrewMembers());
 
         }
 

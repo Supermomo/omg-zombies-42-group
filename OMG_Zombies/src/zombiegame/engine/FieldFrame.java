@@ -34,6 +34,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -55,7 +56,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         public static final int HP_VAMPIRES = 150;
         public static final int HP_ZOMBIES = 30;
         public static final int HP_WEREWOLF = 150;
-        public static int SIZE_MAP = 15;
+        public static int SIZE_MAP = 500;
         public static int NB_HUMANS = 0;
         public static int NB_VAMPIRES = 0;
         public static int NB_ZOMBIES = 0;
@@ -63,7 +64,6 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
 
         // List of characters currently in the game
         private Field field;
-        private Field fieldObject;
 
         private FieldPanel fieldPan;
         private JScrollPane jsp;
@@ -84,6 +84,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         private BackPackPanel bpPanel;
 
         private Point mouseOver=null;
+        private Timer time;
         
         public FieldFrame() {
 
@@ -140,7 +141,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                 field.setNextField(new Field(SIZE_MAP, SIZE_MAP, cons, new Location(0, SIZE_MAP / 2), new Location(SIZE_MAP - 1, SIZE_MAP - 1)));
                 field.getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons, new Location(0, SIZE_MAP - 1), new Location(SIZE_MAP - 1, 0)));
                 field.getNextField().getNextField().setNextField(new Field(SIZE_MAP, SIZE_MAP, cons, new Location(0, 0), new Location(SIZE_MAP - 1, SIZE_MAP / 2)));
-                fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
+
                 player = new Player(playerName, HP_HUMANS);
                 field.place(player, field.getIn());
         }
@@ -248,29 +249,21 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
          */
         public void nextTurn() {
 
-                Character c = null;
+                for(Character c: field.getListChar()){
 
-                for (int i = 0; i < field.getDepth(); i++) {
-                        for (int j = 0; j < field.getWidth(); j++) {
-
-                                try {
-                                        c = (Character) field.getCharacterAt(i, j);
-                                } catch (Exception e) {
-                                        e.printStackTrace();
-                                }
-
-                                if (c != null && c.canPlay() && !c.isPlayer()) {
-                                        c.action(field, fieldObject);
-                                        c.justPlayed();
-                                        c.endOfTurn(field);
-                                        this.repaint();
-                                }
-
+                        if (c != null && c.canPlay() && !c.isPlayer()) {
+                                c.action(field);
+                                c.justPlayed();
+                                c.endOfTurn(field);
+                                this.repaint();
                         }
-                }
 
-                Helico helic = new Helico(fieldObject);
-                helic.dropItem(this, player.getLocation());
+                }
+                
+                if(new Random().nextInt(5)==0){
+                        Helico helic = new Helico(field);
+                        helic.dropItem(this, player.getLocation());
+                }
 
                 field.getConsolePanel().append("\r\n FIN DU TOUR \r\n");
                 this.repaint();
@@ -278,10 +271,6 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
 
         public FieldPanel getPanel() {
                 return this.fieldPan;
-        }
-
-        public Field getObjectField() {
-                return this.fieldObject;
         }
 
         public Player getPlayer() {
@@ -300,6 +289,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
         public void actionPerformed(ActionEvent e) {
 
                 if (e.getActionCommand().equals("stop")) {
+                        time.stop();
                         try {
                                 this.sucess=false;
                                 this.gameRunning = false;
@@ -319,6 +309,8 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         if (s != null) {
                                 playerName = s;
                         }
+                        time=new Timer(100,this);
+                        time.setActionCommand("time");                     
                         this.sucess=false;
                         cons = new JTextArea(200, 200);
                         cons.setVisible(true);
@@ -375,7 +367,7 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         gameRunning = true;
 
 
-                        fieldPan = new FieldPanel(this, field, fieldObject);
+                        fieldPan = new FieldPanel(this, field);
 
                         fieldPan.addMouseListener(this);
                         fieldPan.addMouseMotionListener(this);
@@ -401,6 +393,12 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                         cons.setBounds(this.getWidth() - 200, 0, 200, getHeight());
                         fieldPan.validate();
                         fieldPan.repaint();
+                        time.start();
+                }
+                else if((e.getActionCommand().equals("time") && gameRunning)){
+                        this.nextTurn();
+                        this.nbHumansAlive();
+                        this.repaint();
                 }
 
                 this.validate();
@@ -429,14 +427,11 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
 
                         Point p = fieldPan.validDestination(this.getPlayer().getLocation(), e.getX(), e.getY());
                         if (p.x != -1) {
-                                this.getPlayer().move(new Location(p.y, p.x), field, this.getObjectField());
+                                this.getPlayer().move(new Location(p.y, p.x), field);
                                 this.getPlayer().endOfTurn(field);
                                 if (getPlayer().isArmed()) {
                                         this.repaint();
                                 }
-                                this.repaint();
-                                this.nextTurn();
-                                this.nbHumansAlive();
                                 this.validate();
                         }
                         if (player.getLocation().getRow() == field.getOut().getRow() && player.getLocation().getCol() == field.getOut().getCol()) {
@@ -445,14 +440,13 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                         Location in = field.getNextField().getIn();
                                         field = field.getNextField();
                                         field.place(player, in);
-                                        fieldObject = new Field(SIZE_MAP, SIZE_MAP, cons);
                                         NB_HUMANS = Math.max(NB_HUMANS-1, 0);
                                         NB_VAMPIRES += 1;
                                         NB_ZOMBIES += 2;
                                         NB_WEREWOLF += 1;
                                         this.generatePeople(NB_VAMPIRES, NB_WEREWOLF, NB_ZOMBIES, NB_HUMANS);
                                         this.remove(fieldPan);
-                                        fieldPan = new FieldPanel(this, field, fieldObject);
+                                        fieldPan = new FieldPanel(this, field);
                                         this.add(fieldPan, 0);
                                         fieldPan.addMouseListener(this);
                                         fieldPan.addMouseMotionListener(this);
@@ -476,13 +470,13 @@ public class FieldFrame extends JFrame implements ActionListener, ItemListener, 
                                 }
                         }
                         this.repaint();
-                        if (field.getObjectAt(player.getLocation()) == null || !((Character) field.getObjectAt(player.getLocation())).isPlayer()
+                        if (field.getCharactertAt(player.getLocation()) == null || !((Character) field.getCharactertAt(player.getLocation())).isPlayer()
                                         || this.getPlayer().getHealthPoints() <= 0) {
                                 System.out.println("OVER");
                                 try {
-                                        System.out.println(((Character) field.getObjectAt(player.getLocation())).isPlayer());
-                                        System.out.println(field.getObjectAt(player.getLocation()).getClass() + " hp " + player.getHealthPoints() + " hum " + field.getNbHuman());
-                                        System.out.println("loc : " + field.getObjectAt(player.getLocation()) == null);
+                                        System.out.println(((Character) field.getCharactertAt(player.getLocation())).isPlayer());
+                                        System.out.println(field.getCharactertAt(player.getLocation()).getClass() + " hp " + player.getHealthPoints() + " hum " + field.getNbHuman());
+                                        System.out.println("loc : " + field.getCharactertAt(player.getLocation()) == null);
                                 } catch (Exception e2) {
                                         e2.printStackTrace();
                                 }

@@ -129,15 +129,15 @@ public class Werewolf extends EvilCharacter {
                 Character lycan = null;
 
                 for (Location l : loc) {
-                        if (field.getObjectAt(l) != null
-                                        && ((Character) field.getObjectAt(l)).isVampire()) {
-                                vamp = (Character) field.getObjectAt(l);
-                        } else if (field.getObjectAt(l) != null
-                                        && ((Character) field.getObjectAt(l)).isHuman()) {
-                                human = (Character) field.getObjectAt(l);
-                        } else if (field.getObjectAt(l) != null
-                                        && ((Character) field.getObjectAt(l)).isWerewolf()) {
-                                lycan = (Character) field.getObjectAt(l);
+                        if (field.getCharactertAt(l) != null
+                                        && ((Character) field.getCharactertAt(l)).isVampire()) {
+                                vamp = (Character) field.getCharactertAt(l);
+                        } else if (field.getCharactertAt(l) != null
+                                        && ((Character) field.getCharactertAt(l)).isHuman()) {
+                                human = (Character) field.getCharactertAt(l);
+                        } else if (field.getCharactertAt(l) != null
+                                        && ((Character) field.getCharactertAt(l)).isWerewolf()) {
+                                lycan = (Character) field.getCharactertAt(l);
                         }
                 }
 

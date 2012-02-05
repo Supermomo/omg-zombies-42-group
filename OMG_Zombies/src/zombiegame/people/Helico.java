@@ -121,8 +121,8 @@ public class Helico {
 
                 Toolkit tk = java.awt.Toolkit.getDefaultToolkit();
 
-                int heightBox = frame.getPanel().getHeight() / (map.getDepth() + 2);
-                int widthBox = frame.getPanel().getWidth() / (map.getWidth() + 2);
+                int heightBox = 40;
+                int widthBox = 40;
 
                 Image imgHelico=null;
                 Image imgHelicoRed=null;
@@ -134,8 +134,8 @@ public class Helico {
                         e.printStackTrace();
                 }
                 Random r = new Random();
-                int rx=loc.getCol()+r.nextInt(7)-3;
-                int ry=loc.getRow()+r.nextInt(7)-3;
+                int rx=loc.getCol()+r.nextInt(120)-60;
+                int ry=loc.getRow()+r.nextInt(120)-60;
                 int y = Math.max(0, ry);
                 int x = Math.max(0, rx);
                 if(x>=map.getWidth()){
@@ -146,21 +146,26 @@ public class Helico {
                 }
                 map.placeItem(itemInStorage, y, x);
 
-                for (int j = 0; j < map.getWidth(); j++) {
-                        frame.getPanel().getGraphics().drawImage(imgHelico, (j + 1) * widthBox,
-                                        (y + 1) * heightBox, widthBox, heightBox, null);
-                        if (j == x) {
+                //for (int j = 0; j < map.getWidth(); j++) {
+                        //frame.getPanel().getGraphics().drawImage(imgHelico, 10+(j + 1),
+                                       // 60+(y + 1), widthBox, heightBox, null);
+                        //if (j == x) {
                                 frame.getPanel().getGraphics().drawImage(imgHelicoRed,
-                                                (j + 1) * widthBox, (y + 1) * heightBox, widthBox,
+                                                10+(x + 1), 60+(y + 1), widthBox,
                                                 heightBox, null);
                                 /*try {
                                         Thread.sleep(500);
                                 } catch (InterruptedException e) {
                                         e.printStackTrace();
                                 }*/
-                        }
-                        frame.repaint();
-                }
+                       // }
+                        /*try {
+                                Thread.sleep(5);
+                        } catch (InterruptedException e) {
+                                e.printStackTrace();
+                        }*/
+                        frame.getPanel().repaint();
+                //}
         }
 
 }

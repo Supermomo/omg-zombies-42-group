@@ -148,15 +148,15 @@ public class Vampire extends EvilCharacter {
                 Character zomb = null;
 
                 for (Location l : loc) {
-                        if (field.getObjectAt(l) != null
-                                        && ((Character) field.getObjectAt(l)).isHuman()) {
-                                human = (Character) field.getObjectAt(l);
-                        } else if (field.getObjectAt(l) != null
-                                        && ((Character) field.getObjectAt(l)).isZombie()) {
-                                zomb = (Character) field.getObjectAt(l);
-                        } else if (field.getObjectAt(l) != null
-                                        && ((Character) field.getObjectAt(l)).isVampire()) {
-                                vamp = (Character) field.getObjectAt(l);
+                        if (field.getCharactertAt(l) != null
+                                        && ((Character) field.getCharactertAt(l)).isHuman()) {
+                                human = (Character) field.getCharactertAt(l);
+                        } else if (field.getCharactertAt(l) != null
+                                        && ((Character) field.getCharactertAt(l)).isZombie()) {
+                                zomb = (Character) field.getCharactertAt(l);
+                        } else if (field.getCharactertAt(l) != null
+                                        && ((Character) field.getCharactertAt(l)).isVampire()) {
+                                vamp = (Character) field.getCharactertAt(l);
                         }
 
                 }
@@ -178,15 +178,15 @@ public class Vampire extends EvilCharacter {
          * 
          */
         @Override
-        public void action(Field field, Field fieldObj) {
-                super.action(field, fieldObj);
-                if(healthPoints>0 && (field.getObjectAt(location)!=null && ((Character)field.getObjectAt(location)).isVampire())){
+        public void action(Field field) {
+                super.action(field);
+                if(healthPoints>0 && (field.getCharactertAt(location)!=null && ((Character)field.getCharactertAt(location)).isVampire())){
                         System.out.println("Vamp : "+super.name+" 2eme attaque");
-                        super.action(field, fieldObj); 
+                        super.action(field); 
                 }
                 else{
                         field.clearCharacter(this);
-                        fieldObj.placeItem(new VampireCape(), location.getRow(), location.getCol());
+                        field.placeItem(new VampireCape(), location.getRow(), location.getCol());
                 }
                 
         }
