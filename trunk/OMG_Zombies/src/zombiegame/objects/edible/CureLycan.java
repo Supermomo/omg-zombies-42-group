@@ -31,7 +31,7 @@ public class CureLycan extends Edible {
                 if (character.isWerewolf() && !character.isWerewolfCrew()) {
                         Character c = ((EvilCharacter) character).turnBackIntoHumain();
                         Location loc = character.getLocation();
-                        field.clear(loc);
+                        field.clearCharacter(character);
                         field.place(c, loc);
                 } else if (character.isHuman()) {
                         ((Human) character).setHasBeenBittenByLycan(false,field.getConsolePanel());

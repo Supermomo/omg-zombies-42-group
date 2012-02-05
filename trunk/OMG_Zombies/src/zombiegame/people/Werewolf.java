@@ -46,12 +46,12 @@ public class Werewolf extends EvilCharacter {
                 if (c.isWerewolfCrew()) {
                         if (((WerewolfCrew) c).getCrewMembers() < 5) {
                                 ((WerewolfCrew) c).addMember(field.getConsolePanel());
-                                field.clear(this.location);
+                                field.clearCharacter(this);
                         }
                 } else if (c.isWerewolf()) {
                         WerewolfCrew meute = new WerewolfCrew("(Crew)" + this.name, 150, 2);
-                        field.clear(c.location);
-                        field.clear(this.location);
+                        field.clearCharacter(c);
+                        field.clearCharacter(this);
                         field.place(meute, c.location);
                         this.say("We are now a crew !", field.getConsolePanel());
 
@@ -120,39 +120,48 @@ public class Werewolf extends EvilCharacter {
          * @param field
          * @return null if no best location have been found
          */
-        public Location bestMove(Field field) {
+        public Character bestMove(Field field) {
 
                 Location dest = null;
                 List<Location> loc = field.adjacentLocations(this.location);
-                Location vamp = null;
-                Location human = null;
-                Location lycan = null;
+                Character vamp = null;
+                Character human = null;
+                Character lycan = null;
 
                 for (Location l : loc) {
                         if (field.getObjectAt(l) != null
                                         && ((Character) field.getObjectAt(l)).isVampire()) {
-                                vamp = l;
+                                vamp = (Character) field.getObjectAt(l);
                         } else if (field.getObjectAt(l) != null
                                         && ((Character) field.getObjectAt(l)).isHuman()) {
-                                human = l;
+                                human = (Character) field.getObjectAt(l);
                         } else if (field.getObjectAt(l) != null
                                         && ((Character) field.getObjectAt(l)).isWerewolf()) {
-                                lycan = l;
+                                lycan = (Character) field.getObjectAt(l);
                         }
                 }
 
                 if (vamp != null) {
-                        dest = vamp;
+                        if(seek(vamp)){
+                                encounterCharacter(vamp, field);
+                                endCharacter(vamp, field);
+                        }
+                        return vamp;
                 } else if (human != null) {
-                        dest = human;
-                } else if (field.getFreeAdjacentLocations(location) != null
-                                && field.getFreeAdjacentLocations(location).size() > 0) {
-                        dest = field.getFreeAdjacentLocations(location).get(0);
+                        if(seek(human)){
+                                encounterCharacter(human, field);
+                                endCharacter(human, field);
+                        }
+                        return human;
                 } else if (lycan != null) {
-                        dest = lycan;
+                        if(seek(lycan)){
+                                encounterCharacter(lycan, field);
+                                endCharacter(lycan, field);
+                        }
+                        return lycan;
                 }
 
-                return dest;
+                return null;
         }
 
 }

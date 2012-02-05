@@ -85,13 +85,13 @@ public class Human extends Character {
                 if (super.healthPoints > 0 && hasBeenBittenByVamp) {
                         Vampire vamp = turnIntoVampire();
                         vamp.setLocation(this.location, field.getConsolePanel());
-                        field.clear(this.location);
+                        field.clearCharacter(this);
                         field.place(vamp, vamp.location);
                         vamp.say("I'm a vampire now", field.getConsolePanel());
                 } else if (super.healthPoints > 0 && hasBeenBittenByLycan) {
                         Werewolf w = turnIntoWerewolf();
                         w.setLocation(this.location, field.getConsolePanel());
-                        field.clear(this.location);
+                        field.clearCharacter(this);
                         field.place(w, w.location);
                         w.say("I'm a lycan now", field.getConsolePanel());
                 }
@@ -140,8 +140,7 @@ public class Human extends Character {
                         this.say("humm...may be i shoulden't have done that...", field.getConsolePanel());
                 } else if (c.isHuman()) {
                         this.say("Hi " + c.getName() + "...what's up ?", field.getConsolePanel());
-                        baby(field);
-
+                        this.increaseHealthPoints(4);
                 } else {
                         //result=true;
                         this.say("Go away " + c.getName() + " before i start to...humm...beg you to leave me alive ???", field.getConsolePanel());
@@ -194,8 +193,8 @@ public class Human extends Character {
                                         }
                                         this.say("humm...may be i shoulden't have done that...", field.getConsolePanel());
                                 } else if (c.isHuman()) {
+                                        this.increaseHealthPoints(4);
                                         this.say("Hi " + c.getName() + "...what's up ?", field.getConsolePanel());
-                                        baby(field);
 
                                 } else {
                                         //result=true;
@@ -224,12 +223,12 @@ public class Human extends Character {
         public boolean isArmed() {
                 return weapon != null;
         }
-
+        
         /**
          * Create a baby
          * 
          */
-        public boolean baby(Field field) {
+        /*public boolean baby(Field field) {
 
                 boolean res = false;
                 Random rand = new Random();
@@ -240,14 +239,14 @@ public class Human extends Character {
                         }
 
                         Collections.shuffle(noms, rand);
-                        List<Location> free = field.getFreeAdjacentLocations(this.location);
+                        //List<Location> free = field.getFreeAdjacentLocations(this.location);
                         if (free.size() != 0) {
                                 field.place(new Human(noms.get(0).toString(), FieldFrame.HP_HUMANS), free.get(0));
                         }
                         res = true;
                 }
                 return res;
-        }
+        }*/
 
         /**
          * Transform this human who has been bitten, into a blood-thirsty
@@ -379,6 +378,30 @@ public class Human extends Character {
         
         public Edible getEdible(){
                 return edible;
+        }
+        
+        
+        /**
+         * Increase the number of HP by a certain amount.
+         * The human have a certain amount of HP they can't overrun
+         * @param increase
+         *                number of HP to add
+         */
+        public void increaseHealthPoints(int increase) {
+                if (increase <= 0) {
+                        throw new RuntimeException("negative or null integer shouldn't be a parameter");
+                }
+                if (increase >= 0) {
+                        if(increase+healthPoints>=FieldFrame.HP_HUMANS_MAX)
+                        {
+                                healthPoints=FieldFrame.HP_HUMANS_MAX;
+                        }
+                        else{
+                                this.healthPoints += increase; 
+                        }
+                } else {
+                        System.out.println("Wrong hp values in increaseHp method");
+                }
         }
 
 }

@@ -1,11 +1,14 @@
 package zombiegame.engine;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import javax.swing.JTextArea;
+
+import zombiegame.objects.Item;
 import zombiegame.people.Character;
 
 /**
@@ -32,6 +35,11 @@ public class Field {
         
         private Field nextField;
         
+        private ArrayList<Character> listChar;
+        
+        private ArrayList<Item> listItem;
+        
+
         /**
          * Represent a field of the given dimensions.
          * 
@@ -45,6 +53,8 @@ public class Field {
                 this.width = width;
                 field = new Object[depth][width];
                 cons = conso;
+                listChar=new ArrayList<Character>();
+                listItem=new ArrayList<Item>();
         }
         
         public Field(int depth, int width, JTextArea conso,Location inway, Location outway) {
@@ -54,6 +64,8 @@ public class Field {
                 out=outway;
                 field = new Object[depth][width];
                 cons = conso;
+                listChar=new ArrayList<Character>();
+                listItem=new ArrayList<Item>();
         }
         
         public Location getIn(){
@@ -89,8 +101,18 @@ public class Field {
          * @param location
          *                The location to clear.
          */
-        public void clear(Location location) {
-                field[location.getRow()][location.getCol()] = null;
+        public void clearCharacter(Character charac) {
+                listChar.remove(charac);
+        }
+        
+        /**
+         * Clear the given location.
+         * 
+         * @param location
+         *                The location to clear.
+         */
+        public void clearItem(Item item) {
+                listItem.remove(item);
         }
 
         /**
@@ -105,7 +127,8 @@ public class Field {
          *                Column coordinate of the location.
          */
         public void placeItem(Object object, int row, int col) {
-                field[row][col] = object;
+                listItem.add((Item)object);
+                ((Item)object).setLocation(new Location(row,col));
         }
 
         /**
@@ -113,7 +136,6 @@ public class Field {
          */
         public void placeRandomly(Object character) {
                 place(character, getFreeRandomLocation());
-
         }
 
         /**
@@ -126,19 +148,21 @@ public class Field {
          *                Where to place the animal.
          */
         public void place(Object character, Location location) {
-                field[location.getRow()][location.getCol()] = character;
+                if(!listChar.contains(character)){
+                        listChar.add((Character) character);
+                }
                 ((Character) character).setLocation(location, this.getConsolePanel());
         }
 
         /**
-         * Return the object at the given location, if any.
+         * Return the object near the given location, if any.
          * 
          * @param location
          *                Where in the field.
          * @return The object at the given location, or null if there is none.
          */
         public Object getObjectAt(Location location) {
-                return getObjectAt(location.getRow(), location.getCol());
+                return getCharacterAt(location.getRow(), location.getCol());
         }
 
         /**
@@ -150,8 +174,31 @@ public class Field {
          *                The desired column.
          * @return The object at the given location, or null if there is none.
          */
-        public Object getObjectAt(int row, int col) {
-                return field[row][col];
+        public Object getCharacterAt(int row, int col) {
+                for(Character cha :listChar){
+                        if(cha.getLocation().getRow()==row && cha.getLocation().getCol()==col){
+                                return cha;
+                        }
+                }
+                return null;
+        }
+        
+        /**
+         * Return the object at the given location, if any.
+         * 
+         * @param row
+         *                The desired row.
+         * @param col
+         *                The desired column.
+         * @return The object at the given location, or null if there is none.
+         */
+        public Object getItemAt(int row, int col) {
+                for(Item it :listItem){
+                        if(it.getLocation().getRow()==row && it.getLocation().getCol()==col){
+                                return it;
+                        }
+                }
+                return null;
         }
 
         /**
@@ -175,7 +222,7 @@ public class Field {
          *                Get locations adjacent to this.
          * @return A list of free adjacent locations.
          */
-        public List<Location> getFreeAdjacentLocations(Location location) {
+        public List<Location> getFFreeAdjacentLocations(Location location) {
                 List<Location> free = new LinkedList<Location>();
                 List<Location> adjacent = adjacentLocations(location);
                 for (Location next : adjacent) {
@@ -195,9 +242,9 @@ public class Field {
          *                The location from which to generate an adjacency.
          * @return A valid location within the grid area.
          */
-        public Location freeAdjacentLocation(Location location) {
+        public Location freeAAdjacentLocation(Location location) {
                 // The available free ones.
-                List<Location> free = getFreeAdjacentLocations(location);
+                List<Location> free = getFFreeAdjacentLocations(location);
                 if (free.size() > 0) {
                         return free.get(0);
                 } else {
@@ -215,6 +262,9 @@ public class Field {
          * @return A list of locations adjacent to that given.
          */
         public List<Location> adjacentLocations(Location location) {
+                
+                //TODO a refaire !!
+                
                 assert location != null : "Null location passed to adjacentLocations";
                 // The list of locations to be returned.
                 List<Location> locations = new LinkedList<Location>();
@@ -273,13 +323,15 @@ public class Field {
                 Random r = new Random();
                 int row = r.nextInt(this.depth);
                 int column = r.nextInt(this.width);
-                while (getObjectAt(row, column) != null) {
+                while (getCharacterAt(row, column) != null) {
                         row = r.nextInt(this.depth);
                         column = r.nextInt(this.width);
                 }
                 return new Location(row, column);
         }
+        
 
+        
         public int getNbWerewolf() {
                 int x = 0;
                 Object c;
@@ -354,5 +406,27 @@ public class Field {
          */
         public JTextArea getConsolePanel() {
                 return cons;
+        }
+
+        /**
+         * @param listChar the listChar to set
+         */
+        public void setListChar(ArrayList<Character> listChar) {
+                this.listChar = listChar;
+        }
+
+        /**
+         * @return the listChar
+         */
+        public ArrayList<Character> getListChar() {
+                return listChar;
+        }
+        
+        public ArrayList<Item> getListItem() {
+                return listItem;
+        }
+
+        public void setListItem(ArrayList<Item> listItem) {
+                this.listItem = listItem;
         }
 }

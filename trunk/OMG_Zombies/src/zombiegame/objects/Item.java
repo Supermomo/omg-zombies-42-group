@@ -1,5 +1,6 @@
 package zombiegame.objects;
 
+import zombiegame.engine.Location;
 import zombiegame.objects.edible.Bread;
 import zombiegame.objects.edible.CureLycan;
 import zombiegame.objects.edible.CureVamp;
@@ -25,6 +26,8 @@ public abstract class Item {
         private int numberOfUses;
 
         private static final String TYPE = "ITEM";
+        
+        private Location location;
 
         public Item(int uses) {
                 if (uses <= 0) {
@@ -119,5 +122,19 @@ public abstract class Item {
                         t=new WerewolfHide();
                 }
                 return t;
+        }
+
+        /**
+         * @param location the location to set
+         */
+        public void setLocation(Location location) {
+                this.location = location;
+        }
+
+        /**
+         * @return the location
+         */
+        public Location getLocation() {
+                return location;
         }
 }

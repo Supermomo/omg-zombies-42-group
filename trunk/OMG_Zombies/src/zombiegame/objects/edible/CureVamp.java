@@ -33,7 +33,7 @@ public class CureVamp extends Edible {
                 if (character.isVampire()) {
                         Character c = ((EvilCharacter) character).turnBackIntoHumain();
                         Location loc = character.getLocation();
-                        field.clear(loc);
+                        field.clearCharacter(character);
                         field.place(c, loc);
 
                 } else if (character.isHuman()) {

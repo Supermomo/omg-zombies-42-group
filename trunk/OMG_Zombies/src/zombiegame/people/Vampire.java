@@ -140,39 +140,37 @@ public class Vampire extends EvilCharacter {
          * @param field
          * @return null if no best location have been found
          */
-        public Location bestMove(Field field) {
+        public Character bestMove(Field field) {
                 Location dest = null;
                 List<Location> loc = field.adjacentLocations(this.location);
-                Location human = null;
-                Location vamp = null;
-                Location zomb = null;
+                Character human = null;
+                Character vamp = null;
+                Character zomb = null;
 
                 for (Location l : loc) {
                         if (field.getObjectAt(l) != null
                                         && ((Character) field.getObjectAt(l)).isHuman()) {
-                                human = l;
+                                human = (Character) field.getObjectAt(l);
                         } else if (field.getObjectAt(l) != null
                                         && ((Character) field.getObjectAt(l)).isZombie()) {
-                                zomb = l;
+                                zomb = (Character) field.getObjectAt(l);
                         } else if (field.getObjectAt(l) != null
                                         && ((Character) field.getObjectAt(l)).isVampire()) {
-                                vamp = l;
+                                vamp = (Character) field.getObjectAt(l);
                         }
 
                 }
                 if (human != null) {
-                        dest = human;
-                        ;
-                } else if (field.getFreeAdjacentLocations(location) != null
-                                && field.getFreeAdjacentLocations(location).size() > 0) {
-                        dest = field.getFreeAdjacentLocations(location).get(0);
-                } else if (zomb != null) {
-                        dest = zomb;
-                } else if (vamp != null) {
-                        dest = vamp;
-                }
+                        if(seek(human)){
+                                encounterCharacter(human, field);
+                                endCharacter(human, field);
+                        }
+                        return human;
+                } else {
+                        wander();
+                } 
 
-                return dest;
+                return null;
         }
 
         /**
@@ -187,7 +185,7 @@ public class Vampire extends EvilCharacter {
                         super.action(field, fieldObj); 
                 }
                 else{
-                        field.clear(location);
+                        field.clearCharacter(this);
                         fieldObj.placeItem(new VampireCape(), location.getRow(), location.getCol());
                 }
                 

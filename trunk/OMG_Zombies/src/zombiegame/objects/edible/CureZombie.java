@@ -34,7 +34,7 @@ public class CureZombie extends Edible {
                         if (!((Zombie) character).isMadZombie()) {
                                 Character c = ((EvilCharacter) character).turnBackIntoHumain();
                                 Location loc = character.getLocation();
-                                field.clear(loc);
+                                field.clearCharacter(character);
                                 field.place(c, loc);
                         }
 

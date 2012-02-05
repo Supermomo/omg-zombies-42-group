@@ -72,7 +72,7 @@ public class WerewolfCrew extends Werewolf {
                                 attack(c, field.getConsolePanel());
                         } else if (this.getCrewMembers() < 5) {
                                 this.addMember(field.getConsolePanel());
-                                field.clear(c.location);
+                                field.clearCharacter(c);
                         }
                 } else if(!c.defend(this, field)){
                         if (c.isHuman()) {

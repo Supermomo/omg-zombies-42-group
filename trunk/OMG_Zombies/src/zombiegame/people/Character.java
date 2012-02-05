@@ -16,6 +16,9 @@ import zombiegame.objects.micellaneous.WerewolfHide;
  */
 public abstract class Character {
 
+        public static int COLISION_RADIUS = 3;
+        public static int DETECTION_RADIUS = 15;
+
         /** name of the character */
         protected String name;
 
@@ -239,58 +242,33 @@ public abstract class Character {
                 }
 
                 if (!stun) {
-
-                        Location loc = bestMove(field);
-                        if (loc == null) {
-                                loc = field.randomAdjacentLocation(location);
-                        }
-
                         this.say("I'm now acting", field.getConsolePanel());
-
-                        if (field.getObjectAt(loc) == null) {
-                                Location a = this.location;
-                                field.place(this, loc);
-                                field.clear(a);
-                        } else {
-                                try {
-                                        Character c = (Character) field.getObjectAt(loc);
-                                        encounterCharacter(c, field);
-                                        if (c.getHealthPoints() == 0) {
-                                                field.clear(loc);
-                                                if (c.isVampire()) {
-                                                        fieldObj.placeItem(new VampireCape(), loc.getRow(), loc.getCol());
-                                                } else if (c.isWerewolf()) {
-                                                        fieldObj.placeItem(new WerewolfHide(), loc.getRow(), loc.getCol());
-                                                } else if (c.isHuman() && !c.isPlayer()) {
-                                                        field.place(((Human) c).turnIntoZombie(), loc);
-                                                } else if (c.isZombie()) {
-                                                        MadZombie mz = ((Zombie) c).turnIntoMadZombie();
-                                                        mz.setStun(true);
-                                                        field.place(mz, loc);
-                                                }
-
-                                        }
-                                        if (healthPoints <= 0) {
-                                                field.clear(location);
-                                                if (isVampire()) {
-                                                        fieldObj.placeItem(new VampireCape(), location.getRow(), location.getCol());
-                                                } else if (isWerewolf()) {
-                                                        fieldObj.placeItem(new WerewolfHide(), location.getRow(), location.getCol());
-                                                } else if (isHuman() && !isPlayer()) {
-                                                        field.place(((Human) this).turnIntoZombie(), location);
-                                                } else if (isZombie()) {
-                                                        MadZombie mz = ((Zombie) this).turnIntoMadZombie();
-                                                        mz.setStun(true);
-                                                        field.place(mz, location);
-                                                }
-                                        }
-                                } catch (Exception e) {
-                                        e.printStackTrace();
-                                }
-                        }
                         if (this.isHuman()) {
                                 try {
-                                        ((Human) this).pickUpObject(fieldObj, loc);
+                                        ((Human) this).pickUpObject(fieldObj, this.getLocation());
+                                } catch (Exception e) {
+                                        e.printStackTrace();
+                                        System.out.println("Cannot cast into human in method action");
+                                }
+                        }
+                        Character ca = bestMove(field);
+                        ;
+                        if (ca == null) {
+                                if (wander()) {
+                                        try {
+                                                Character c = (Character) field.getObjectAt(location);
+                                                encounterCharacter(c, field);
+                                                endCharacter(c, field);
+                                                endCharacter(this, field);
+                                        } catch (Exception e) {
+                                                e.printStackTrace();
+                                        }
+                                }
+                        }
+
+                        if (this.isHuman()) {
+                                try {
+                                        ((Human) this).pickUpObject(fieldObj, this.getLocation());
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                         System.out.println("Cannot cast into human in method action");
@@ -350,23 +328,76 @@ public abstract class Character {
          * @param field
          * @return null if no best location have been found
          */
-        public Location bestMove(Field field) {
+        public Character bestMove(Field field) {
                 Location dest = null;
                 List<Location> loc = field.adjacentLocations(this.location);
-                Location human = null;
+                Character human = null;
 
                 for (Location l : loc) {
                         if (field.getObjectAt(l) != null && ((Character) field.getObjectAt(l)).isHuman()) {
-                                human = l;
+                                human = (Character) field.getObjectAt(l);
                         }
                 }
                 if (human != null) {
-                        dest = human;
-                        ;
-                } else if (field.getFreeAdjacentLocations(location) != null && field.getFreeAdjacentLocations(location).size() > 0) {
-                        dest = field.getFreeAdjacentLocations(location).get(0);
+                        if (seek(human)) {
+                                // si collision
+                                encounterCharacter(human, field);
+                                endCharacter(human, field);
+                        }
+                        return human;
                 }
 
-                return dest;
+                return null;
+        }
+
+        /**
+         * wander, trying to avoid characters return true if he collides with
+         * something
+         * 
+         * @return
+         */
+        public boolean wander() {
+                return false;
+        }
+
+        /**
+         * arrive to the target character return true if he collides
+         * 
+         * @param c
+         * @return
+         */
+        private boolean arrive(Character c) {
+                return false;
+        }
+
+        /**
+         * seek the target character, return true if he collides
+         * 
+         * @param c
+         * @return
+         */
+        public boolean seek(Character c) {
+                return false;
+        }
+
+        public boolean flee(Character c) {
+                return false;
+        }
+
+        public void endCharacter(Character c, Field field) {
+                if (c.getHealthPoints() == 0) {
+                        field.clearCharacter(c);
+                        if (c.isVampire()) {
+                                field.placeItem(new VampireCape(), c.getLocation().getRow(), c.getLocation().getCol());
+                        } else if (c.isWerewolf()) {
+                                field.placeItem(new WerewolfHide(), c.getLocation().getRow(), c.getLocation().getCol());
+                        } else if (c.isHuman() && !c.isPlayer()) {
+                                field.place(((Human) c).turnIntoZombie(), c.getLocation());
+                        } else if (c.isZombie()) {
+                                MadZombie mz = ((Zombie) c).turnIntoMadZombie();
+                                mz.setStun(true);
+                                field.place(mz, c.getLocation());
+                        }
+                }
         }
 }

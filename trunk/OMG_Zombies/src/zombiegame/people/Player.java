@@ -123,8 +123,8 @@ public class Player extends Human{
                         if (field.getObjectAt(dest) == null) {
                                 Location a = this.location;
                                 field.place(this, dest);
-                                field.clear(a);
                                 try {
+                                        ((Human) this).pickUpObject(fieldObj, a);
                                         ((Human) this).pickUpObject(fieldObj, dest);
                                 } catch (Exception e) {
                                         e.printStackTrace();
@@ -135,21 +135,7 @@ public class Player extends Human{
                                 try {
                                         Character c = (Character) field.getObjectAt(dest);
                                         encounterCharacter(c, field);
-                                        if (c.getHealthPoints() == 0) {
-                                                field.clear(c.getLocation());
-                                                if (c.isVampire()) {
-                                                        fieldObj.placeItem(new VampireCape(), c.getLocation().getRow(), c.getLocation().getCol());
-                                                } else if (c.isWerewolf()) {
-                                                        fieldObj.placeItem(new WerewolfHide(), c.getLocation().getRow(), c.getLocation().getCol());
-                                                } else if (c.isHuman() && !c.isPlayer()) {
-                                                        field.place(((Human) c).turnIntoZombie(), c.getLocation());
-                                                } else if (c.isZombie()) {
-                                                        MadZombie mz = ((Zombie) c).turnIntoMadZombie();
-                                                        mz.setStun(true);
-                                                        field.place(mz, c.getLocation());
-                                                }
-
-                                        }
+                                        endCharacter(c, field);
                                 } catch (Exception e) {
                                         e.printStackTrace();
                                 }
@@ -287,7 +273,7 @@ public class Player extends Human{
                                 } else if (this.weapon != null && it.getType().equals(this.weapon.getType())) {
                                         this.weapon.addUses(it.getUses());
                                 } else if (it.isEdible()) {
-                                        fieldObj.clear(loc);
+                                        fieldObj.clearItem(it);
                                         try {
                                                 Wearable w=(Wearable)it;
                                         } catch (Exception e) {
@@ -295,7 +281,7 @@ public class Player extends Human{
                                                 this.edible = (Edible) it;
                                         }
                                 } else if (it.isMiscellaneous()) {
-                                        fieldObj.clear(loc);
+                                        fieldObj.clearItem(it);
                                         try {
                                                 Wearable w=(Wearable)it;
                                         } catch (Exception e) {
@@ -303,7 +289,7 @@ public class Player extends Human{
                                                 this.item = (Miscellaneous) it;
                                         }
                                 } else if (it.isWeapon()) {
-                                        fieldObj.clear(loc);
+                                        fieldObj.clearItem(it);
                                         fieldObj.placeItem(this.weapon, loc.getRow(), loc.getCol());
                                         this.weapon = (Weapon) it;
                                 }
